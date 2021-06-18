@@ -1,0 +1,27 @@
+body{
+    background-color: #a6dea2;
+}
+
+div{
+    height: 80 px;
+    margin: 0 auto;
+}
+
+
+.facet{
+    text-align:left;
+    display:inline-block; 
+}
+
+p{
+    text-align:left;
+    display:inline-block; 
+    border-style: dotted;
+    height: 80 px;
+    width: 80 px;
+    margin: 0 auto;
+}
+
+.row{
+    width: 100%;
+}
