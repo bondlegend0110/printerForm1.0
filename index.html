@@ -19,9 +19,19 @@
     <link rel="stylesheet" href="index.css" />
   </head>
 
-  <body>
-    <div><div id="stl_contMain" class="facet"></div></div>
-    <input type="file" onchange="stlLoad(this)" accept="*.*" />
+  <body onload="loadBasic()">
+    <div id="intro" style="width: 40% float:left; margin-left: 10px">
+      <h1>STL Dissect: 3D Paper Printing</h1>
+      <h4 style="width: 40%">
+        What if you could make high speed, low-resolution 3D printed parts with
+        no more hardware than a common paper printer? What if you could make a
+        3D print in seconds rather than hours?
+      </h4>
+    </div>
+    <div style="float: left; height: 500px; border-style: ridge; margin: 20px">
+      <div id="stl_contMain" style="width: 600px; height: 500px"></div>
+      <input type="file" onchange="stlLoad(this)" accept="*.*" />
+    </div>
 
     <div id="stlCube" style="text-align: center; float: right">
       <div id="cubeView1" class="row">
@@ -47,13 +57,58 @@
 
     <script src="stl_viewer.min.js"></script>
     <script src="index.js"></script>
-    <!-- <script src="index.js"></script> -->
-    <button onclick="splitSTL()">splitSTL</button>
+    <!--<button onclick="splitSTL()">splitSTL</button>-->
 
-    <button onclick="takeshot()">Take Screenshot</button>
-    <h1>Screenshot:</h1>
-    <div id="output"></div>
+    <div id="desText" style="width: 40%; margin-left: 10px">
+      <h2>How to use Dissect STL</h2>
+      <h5>
+        With nothing more than a common copy printer and STL Dissect, you can
+        produce high speed, low resolution printed objects. The process is
+        simple.
+      </h5>
+      <h5>
+        Upload your STL file as you would to a traditional 3D printer. Adjust
+        your part to your preferred specifications (these features are still
+        being developed). Then export your file as a PDF and print on any inkjet
+        or laser printer. Once you have printed your part on a 8.5 x 11 sheet of
+        paper, you can easily cut and fold the piece into your desired part.
+      </h5>
+      <h5>
+        These kinds of low resolution, high speed models are ideal for creative
+        ideation and quick iteration. 3D Paper Printing enhances the design
+        process by allowing designers to quickly visualize, critique, and
+        improve "looks like" prototypes. It also makes 3D printing accessible
+        when traditional 3D printers are not available.
+      </h5>
+    </div>
 
-    <button onclick="downloadPDF()">download as PDF</button>
+    <div id="saveResult" style="margin-left: 10px">
+      <h1>Screenshot:</h1>
+      <button onclick="takeshot()">Take Screenshot</button>
+      <div id="output" style="margin: 40px"></div>
+
+      <button onclick="downloadPDF()">download as PDF</button>
+    </div>
   </body>
+
+  <footer id="foot">
+    <h2>Tell us what you think</h2>
+    <h4>
+      This project is still in development, and we would love to hear your
+      feedback to help us improve Dissect STL. Please consider taking a few
+      seconds to share your thoughts with us here.
+    </h4>
+    <a
+      href="https://docs.google.com/forms/d/e/1FAIpQLSf27W38Aj58L5yj5vmA_2l4HU_TRUnu1F0bf36LD4kQ_CM7vA/viewform?usp=pp_url"
+    >
+      Tell us what you think</a
+    >
+    <a
+      href="https://docs.google.com/forms/d/e/1FAIpQLSeYNUQBWZ6mwz93AYiAC_8xTyTONAPHooyuic64Fyn88Wrcdw/viewform?usp=pp_url"
+    >
+      Show us what you have</a
+    >
+
+    <h4>Copyright 2021: Ian Gonsher, Tingyi Tan, and Damian Wei*</h4>
+  </footer>
 </html>

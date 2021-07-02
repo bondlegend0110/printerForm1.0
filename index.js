@@ -75,9 +75,73 @@ function stlLoad(files){
         rotationy: 0.5 * 3.14,
         rotationz: 0,
     });
+}
+
+function loadBasic(){
+    stl_viewerMain.remove_model(1);
+    stl_viewerMain.add_model({id:1, filename:"Utah_teapot.stl",  animation:{delta:{rotationx:1,rotationy:0.5, msec:1000, loop:true}}});
+    stl_viewerTop.remove_model(1);
+    stl_viewerTop.add_model ( {
+        id: 1,
+        filename:"Utah_teapot.stl",
+        rotationx: 0.5 * 3.14,
+        rotationy: 0,
+        rotationz: 0,
+        auto_resize: true,
+    });
+
+    
+    
+    stl_viewerButton.remove_model(1);
+    stl_viewerButton.add_model ( {
+        id: 1,
+        filename:"Utah_teapot.stl",
+        rotationx: -0.5 * 3.14,
+        rotationy: 0,
+        rotationz: 0,
+    });
 
 
+    
+    stl_viewerFront.remove_model(1);
+    stl_viewerFront.add_model ( {
+        id: 1,
+        filename:"Utah_teapot.stl",
+        rotationx: 0,
+        rotationy: 0,
+        rotationz: 0,
+    });
 
+    
+    
+    stl_viewerBack.remove_model(1);
+    stl_viewerBack.add_model ( {
+        id: 1,
+        filename:"Utah_teapot.stl",
+        rotationx: 3.14,
+        rotationy: 0,
+        rotationz: 0,
+    });
+
+
+    stl_viewerRight.remove_model(1);
+    stl_viewerRight.add_model ( {
+        id: 1,
+        filename:"Utah_teapot.stl",
+        rotationx: 0,
+        rotationy: -0.5 * 3.14,
+        rotationz: 0,
+    });
+
+    
+    stl_viewerLeft.remove_model(1);
+    stl_viewerLeft.add_model ( {
+        id: 1,
+        filename:"Utah_teapot.stl",
+        rotationx: 0,
+        rotationy: 0.5 * 3.14,
+        rotationz: 0,
+    });
 }
 
 function splitSTL(files){
