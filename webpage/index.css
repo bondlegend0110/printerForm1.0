@@ -1,27 +1,32 @@
+
+
 body{
-    background-color: #a6dea2;
+    background-color: black;
+    color: white;
 }
 
 div{
-    height: 80 px;
-    margin: 0 auto;
+    margin: -10px;
+    padding: 0;
 }
 
 
 .facet{
     text-align:left;
     display:inline-block; 
+    margin: -2px;
+    padding: 0;
+    margin-right: -4px;
 }
 
 p{
     text-align:left;
     display:inline-block; 
-    border-style: dotted;
-    height: 80 px;
-    width: 80 px;
-    margin: 0 auto;
-}
+    border-style: dashed;
+    margin: -2px;
+    padding: 0;
+    margin-right: -4px;
+    width: 100px;
+    height: 80px;
 
-.row{
-    width: 100%;
 }

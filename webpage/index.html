@@ -20,7 +20,10 @@
   </head>
 
   <body>
-    <div id="stlCube" style="text-align: center">
+    <div><div id="stl_contMain" class="facet"></div></div>
+    <input type="file" onchange="stlLoad(this)" accept="*.*" />
+
+    <div id="stlCube" style="text-align: center; float: right">
       <div id="cubeView1" class="row">
         <p id="stl_contTop"></p>
       </div>
@@ -45,6 +48,7 @@
     <script src="stl_viewer.min.js"></script>
     <script src="index.js"></script>
     <!-- <script src="index.js"></script> -->
+    <button onclick="splitSTL()">splitSTL</button>
 
     <button onclick="takeshot()">Take Screenshot</button>
     <h1>Screenshot:</h1>
