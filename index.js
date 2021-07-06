@@ -12,7 +12,7 @@ var stl_viewerBack = new StlViewer ( document.getElementById("stl_contBack") );
 
 function stlLoad(files){
     stl_viewerMain.remove_model(1);
-    stl_viewerMain.add_model({id:1, local_file:files.files[0],  animation:{delta:{rotationx:1,rotationy:0.5, msec:1000, loop:true}}});
+    stl_viewerMain.add_model({id:1, local_file:files.files[0]});
     stl_viewerTop.remove_model(1);
     stl_viewerTop.add_model ( {
         id: 1,
