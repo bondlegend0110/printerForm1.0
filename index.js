@@ -11,9 +11,34 @@ var stl_viewerBack = new StlViewer ( document.getElementById("stl_contBack") );
 //no rotation on z for the six sides
 
 function stlLoad(files){
-    stl_viewerMain.remove_model(1);
-    stl_viewerMain.add_model({id:1, local_file:files.files[0]});
+
+
+    var canvasList = document.getElementsByTagName("canvas");
+
+    for (var i = 0, len = canvasList.length; i < len; i++) {
+        canvasList[0].remove();
+    }
+
+
+    stl_viewerMain = new StlViewer ( document.getElementById("stl_contMain"));
+    stl_viewerRight = new StlViewer ( document.getElementById("stl_contRight") );
+    stl_viewerLeft = new StlViewer ( document.getElementById("stl_contLeft") );
+    stl_viewerTop = new StlViewer ( document.getElementById("stl_contTop") );
+    stl_viewerButton = new StlViewer ( document.getElementById("stl_contButton") );
+    stl_viewerFront = new StlViewer ( document.getElementById("stl_contFront") );
+    stl_viewerBack = new StlViewer ( document.getElementById("stl_contBack") );
+
+    stl_viewerMain.add_model(
+        {
+            id:1, 
+            local_file:files.files[0],
+            animation:{delta:{rotationx:1,rotationy:0.5, msec:1000, loop:true}}
+        }
+        );
+
     stl_viewerTop.remove_model(1);
+    
+
     stl_viewerTop.add_model ( {
         id: 1,
         local_file: files.files[0],
@@ -25,7 +50,6 @@ function stlLoad(files){
 
     
     
-    stl_viewerButton.remove_model(1);
     stl_viewerButton.add_model ( {
         id: 1,
         local_file: files.files[0],
@@ -36,7 +60,6 @@ function stlLoad(files){
 
 
     
-    stl_viewerFront.remove_model(1);
     stl_viewerFront.add_model ( {
         id: 1,
         local_file: files.files[0],
@@ -46,8 +69,6 @@ function stlLoad(files){
     });
 
     
-    
-    stl_viewerBack.remove_model(1);
     stl_viewerBack.add_model ( {
         id: 1,
         local_file: files.files[0],
@@ -56,8 +77,6 @@ function stlLoad(files){
         rotationz: 0,
     });
 
-
-    stl_viewerRight.remove_model(1);
     stl_viewerRight.add_model ( {
         id: 1,
         local_file: files.files[0],
@@ -67,7 +86,6 @@ function stlLoad(files){
     });
 
     
-    stl_viewerLeft.remove_model(1);
     stl_viewerLeft.add_model ( {
         id: 1,
         local_file: files.files[0],
@@ -151,6 +169,22 @@ function splitSTL(files){
     resizing("stl_contLeft", 1, 2);
     resizing("stl_contFront", 1, 0);
     resizing("stl_contBack", 1, 0);
+
+
+    var canvasList = document.getElementsByTagName("canvas");
+
+    for (var i = 0, len = canvasList.length; i < len; i++) {
+        canvasList[0].remove();
+    }
+
+
+    stl_viewerMain = new StlViewer ( document.getElementById("stl_contMain"));
+    stl_viewerRight = new StlViewer ( document.getElementById("stl_contRight") );
+    stl_viewerLeft = new StlViewer ( document.getElementById("stl_contLeft") );
+    stl_viewerTop = new StlViewer ( document.getElementById("stl_contTop") );
+    stl_viewerButton = new StlViewer ( document.getElementById("stl_contButton") );
+    stl_viewerFront = new StlViewer ( document.getElementById("stl_contFront") );
+    stl_viewerBack = new StlViewer ( document.getElementById("stl_contBack") );
 
     stl_viewerTop.remove_model(1);
     stl_viewerTop.add_model ( {

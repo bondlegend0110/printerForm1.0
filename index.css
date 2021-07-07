@@ -3,6 +3,17 @@
 body{
     background-color: #363635;
     color: white;
+    font-family:  Helvetica;
+}
+
+#stlCube{
+    text-align: center; 
+    float: right; 
+    width: 563px; 
+    height: 720px; 
+    background-color: white; 
+    color: black;
+    padding-top: 30px;
 }
 
 div{
@@ -27,7 +38,7 @@ p{
     padding: 0;
     margin-right: -4px;
     width: 160px;
-    height: 140px;
+    height: 170px;
 
 }
 
