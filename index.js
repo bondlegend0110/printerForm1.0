@@ -276,6 +276,7 @@ function resizing(divID, dim1, dim2){ // for dim1 and dim2, 0 is xd, 1 is yd, 2 
 function takeshot() {
 
 
+    
     let div =
         document.getElementById('stlCube');
 
@@ -291,14 +292,22 @@ function takeshot() {
             .getElementById('output')
             .appendChild(canvas);
         })
+        
+
+        /*
+    html2canvas(document.querySelector("#stlCube")).then(canvas => {
+        document.body.appendChild(canvas)
+        });
+        */
 };
 
 
 
-window.jsPDF = window.jspdf.jsPDF
+window.jsPDF = window.jspdf.jsPDF;
 
 function downloadPDF() {
     // only jpeg is supported by jsPDF
+
     var canvas = document.getElementById('myCanvas');
     var imgData = canvas.toDataURL("image/jpeg", 1.0);
 
@@ -317,6 +326,25 @@ function downloadPDF() {
     height = pdf.internal.pageSize.getHeight();
     pdf.addImage(canvas, 'JPEG', 0, 0,width,height);
     pdf.save("download.pdf");
+
   };
 
+/*
+  $(document).ready(function(){
+    var doc = new jsPDF();
+    var specialElementHandlers = {
+        '#editor': function (element, renderer) {
+            return true;
+        }
+    };
+    
 
+    $('#saveResultB').click(function () {
+        doc.fromHTML($('#stlCube').html(), 15, 15, {
+            'width': 170,
+                'elementHandlers': specialElementHandlers
+        });
+        doc.save('sample-file.pdf');
+    });
+  });
+  */

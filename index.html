@@ -2,6 +2,10 @@
 <html>
   <head>
     <title>STL Dissect</title>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <!-- bootstrap -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
@@ -19,6 +23,8 @@
     <link rel="stylesheet" href="index.css" />
   </head>
 
+
+
   <body onload="loadBasic()">
     <div id="intro" style="width: 40% float:left; margin-left: 10px">
       <h1>STL Dissect: 3D Paper Printing</h1>
@@ -28,12 +34,20 @@
         3D print in seconds rather than hours?
       </h4>
     </div>
+
+    <div id="saveResult" style="margin-left: 10px">
+      <h1>Preview:</h1>
+      <button onclick="takeshot()">Preview PDF</button>
+
+      <button id="saveResultB" onclick="downloadPDF()">Download as PDF</button>
+    </div>
+
     <div style="float: left; height: 500px; border-style: ridge; margin: 20px">
       <div id="stl_contMain" style="width: 600px; height: 500px"></div>
       <input type="file" onchange="stlLoad(this)" accept="*.*" />
     </div>
 
-    <div id="stlCube">
+    <div id="stlCube" >
       <div id="cubeView1" class="row">
         <p id="stl_contTop"></p>
       </div>
@@ -59,6 +73,7 @@
     <script src="index.js"></script>
     <!--<button onclick="splitSTL()">splitSTL</button>-->
 
+
     <div id="desText" style="width: 40%; margin-left: 10px">
       <h2>How to use Dissect STL</h2>
       <h5>
@@ -81,14 +96,9 @@
         when traditional 3D printers are not available.
       </h5>
     </div>
+    <div id="output" style="margin: 40px"></div>
 
-    <div id="saveResult" style="margin-left: 10px">
-      <h1>Screenshot:</h1>
-      <button onclick="takeshot()">Take Screenshot</button>
-      <div id="output" style="margin: 40px"></div>
-
-      <button onclick="downloadPDF()">download as PDF</button>
-    </div>
+    
   </body>
 
   <footer id="foot">
