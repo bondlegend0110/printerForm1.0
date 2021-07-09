@@ -26,13 +26,14 @@
 
 
   <body onload="loadBasic()">
-    <div id="intro" style="width: 40% float:left; margin-left: 10px">
-      <h1>STL Dissect: 3D Paper Printing</h1>
-      <h4 style="width: 40%">
+    <div id="intro" style="width: 40% float:center; margin-left: 10px">
+      <img src="temporaryheader .png" width="400" height="100" style="filter: contrast(200%)">
+      <h4 style="width: 50%">
         What if you could make high speed, low-resolution 3D printed parts with
         no more hardware than a common paper printer? What if you could make a
         3D print in seconds rather than hours?
       </h4>
+      
     </div>
 
     <div id="saveResult" style="margin-left: 10px">
@@ -44,8 +45,7 @@
 
     <div style="float: left; height: 500px; border-style: ridge; margin: 20px">
       <div id="stl_contMain" style="width: 600px; height: 500px"></div>
-      <label for="lFile">Upload STL</label>
-      <input type="file" onchange="stlLoad(this)" accept="*.*">
+      <input type="file" id="lFile" name="lFile" onchange="stlLoad(this)" accept="*.*"> 
     </div>
 
     <div id="stlCube" >

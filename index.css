@@ -54,3 +54,12 @@ footer{
 	text-align:center;
 	float:left;
 }
+
+a:link {
+    color: red;
+
+  }
+  
+  a:visited {
+    color: green;
+  }
