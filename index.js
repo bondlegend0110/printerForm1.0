@@ -97,11 +97,11 @@ function stlLoad(files){
 
 function loadBasic(){
     stl_viewerMain.remove_model(1);
-    stl_viewerMain.add_model({id:1, filename:"Utah_teapot.stl",  animation:{delta:{rotationx:1,rotationy:0.5, msec:1000, loop:true}}});
+    stl_viewerMain.add_model({id:1, filename:"Stanford_Bunny.stl",  animation:{delta:{rotationx:1,rotationy:0.5, msec:1000, loop:true}}});
     stl_viewerTop.remove_model(1);
     stl_viewerTop.add_model ( {
         id: 1,
-        filename:"Utah_teapot.stl",
+        filename:"Stanford_Bunny.stl",
         rotationx: 0.5 * 3.14,
         rotationy: 0,
         rotationz: 0,
@@ -113,7 +113,7 @@ function loadBasic(){
     stl_viewerButton.remove_model(1);
     stl_viewerButton.add_model ( {
         id: 1,
-        filename:"Utah_teapot.stl",
+        filename:"Stanford_Bunny.stl",
         rotationx: -0.5 * 3.14,
         rotationy: 0,
         rotationz: 0,
@@ -124,7 +124,7 @@ function loadBasic(){
     stl_viewerFront.remove_model(1);
     stl_viewerFront.add_model ( {
         id: 1,
-        filename:"Utah_teapot.stl",
+        filename:"Stanford_Bunny.stl",
         rotationx: 0,
         rotationy: 0,
         rotationz: 0,
@@ -135,7 +135,7 @@ function loadBasic(){
     stl_viewerBack.remove_model(1);
     stl_viewerBack.add_model ( {
         id: 1,
-        filename:"Utah_teapot.stl",
+        filename:"Stanford_Bunny.stl",
         rotationx: 3.14,
         rotationy: 0,
         rotationz: 0,
@@ -145,7 +145,7 @@ function loadBasic(){
     stl_viewerRight.remove_model(1);
     stl_viewerRight.add_model ( {
         id: 1,
-        filename:"Utah_teapot.stl",
+        filename:"Stanford_Bunny.stl",
         rotationx: 0,
         rotationy: -0.5 * 3.14,
         rotationz: 0,
@@ -155,7 +155,7 @@ function loadBasic(){
     stl_viewerLeft.remove_model(1);
     stl_viewerLeft.add_model ( {
         id: 1,
-        filename:"Utah_teapot.stl",
+        filename:"Stanford_Bunny.stl",
         rotationx: 0,
         rotationy: 0.5 * 3.14,
         rotationz: 0,
@@ -272,9 +272,13 @@ function resizing(divID, dim1, dim2){ // for dim1 and dim2, 0 is xd, 1 is yd, 2 
 
 // END of stlView //////////////////////////////////////////////////////////////////
 
+window.jsPDF = window.jspdf.jsPDF;
 
 function takeshot() {
 
+    var blank = document.getElementById("blank");
+
+    blank.remove();
 
     
     let div =
@@ -303,7 +307,6 @@ function takeshot() {
 
 
 
-window.jsPDF = window.jspdf.jsPDF;
 
 function downloadPDF() {
     // only jpeg is supported by jsPDF

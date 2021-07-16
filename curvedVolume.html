@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Printer Form</title>
+    <title>Printer Form - Select Form</title>
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -21,64 +21,38 @@
 
     <!--css-->
     <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="selectForm.css" />
+
+
     <div class="topnav">
-      <a class="active" href="index.html">Home</a>
+      <a href="index.html">Home</a>
       <a href="selectForm.html">Select Form</a>
       <a href="downloadPDF.html">Download PDF</a>
-      <a href="curvedVolume.html">Curved Volume</a>
+      <a class="active"  href="curvedVolume.html">Curved Volume</a>
     </div>
   </head>
 
 
-
-
-
-  <body onload="loadBasic()">
+<body onload="loadBasic()">
     <div id="intro" style="width: 40% float:center; margin-left: 10px">
       <img src="logo.png" width="400" height="100" style="filter: contrast(200%); padding-top: 30px;">
-      <h4 style="width: 50%">
-        What if you could make high speed, low-resolution 3D printed parts with
-        no more hardware than a common paper printer? What if you could make a
-        3D print in seconds rather than hours?
-      </h4>
       
     </div>
 
-    <div id="saveResult" style="margin-left: 10px">
-      <h1>Preview:</h1>
-      <button onclick="takeshot()">Preview PDF</button>
+    <div class="image" style = "float: right">
 
-      <button id="saveResultB" onclick="downloadPDF()">Download as PDF</button>
+        <img src="curvedVolumeBunny.jpg"/>
+
     </div>
+
 
     <div style="float: left; height: 500px; border-style: ridge; margin: 20px">
       <div id="stl_contMain" style="width: 600px; height: 500px"></div>
-      <input type="file" id="lFile" name="lFile" onchange="stlLoad(this)" accept="*.*"> 
     </div>
 
-    <div id="stlCube" >
-      <div id="cubeView1" class="row">
-        <p id="stl_contTop"></p>
-      </div>
 
-      <div id="cubeView2" class="row">
-        <p id="stl_contLeft" class="facet"></p>
 
-        <p id="stl_contFront" class="facet"></p>
-
-        <p id="stl_contRight" class="facet"></p>
-      </div>
-
-      <div id="cubeView3" class="row">
-        <p id="stl_contButton"></p>
-      </div>
-
-      <div id="cubeView4" class="row">
-        <p id="stl_contBack"></p>
-      </div>
-    </div>
-
-    <script src="stl_viewer.min.js"></script>
+ <script src="stl_viewer.min.js"></script>
     <script src="index.js"></script>
     <!--<button onclick="splitSTL()">splitSTL</button>-->
 
@@ -104,9 +78,6 @@
         improve "looks like" prototypes. It also makes 3D printing accessible
         when traditional 3D printers are not available.
       </h5>
-    </div>
-    <div id="output" style="margin: 40px">
-      <div id = "blank">Default Teapot 8.5 * 11 Print Preview here.</div>
     </div>
 
     
