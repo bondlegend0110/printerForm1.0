@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Printer Form - Curved Volume</title>
+    <title>Upload STL File</title>
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -21,55 +21,40 @@
 
     <!--css-->
     <link rel="stylesheet" href="index.css" />
-    <link rel="stylesheet" href="selectForm.css" />
-    <link rel="stylesheet" href="forms.css" />
-
-
   </head>
+
   <div id="intro" style="width: 40% float:center; padding-left: 5px; background-color:#c35442; margin:10px;">
     <img src="/Resource/logo.png" width="400" height="100" style="filter: contrast(200%); padding-top: 30px;">
   </div>
 
-<body >
 
 
-    <div style="float: left; width: 500px; height:700px; margin: 20px">
-      <h1><a href="uploadSTL.html">Upload</a></h1>
+  <body onload="loadBasic()">
+
+    <h4 style="width: 50%">
+        What if you could make high speed, low-resolution 3D printed parts with
+        no more hardware than a common paper printer? What if you could make a
+        3D print in seconds rather than hours?
+      </h4>
+      
+    </div>
+
+
+    <div style="float: left; width: 500px; margin: 20px">
+      <h1><a class="active" href="uploadSTL.html">Upload</a></h1>
       <h1><a href="selectForm.html">Select Form</a></h1>
-      <h1><a class="active" href="downloadPDF.html">Download PDF</a></h1>
-      <div id="saveResult" style="margin-left: 10px">
-        <h1>Preview:</h1>
-        <button onclick="takeshot()">Preview PDF</button>
-
-        <button id="saveResultB" onclick="downloadPDF()">Download as PDF</button>
-      </div>
-    </div>
-    
-
-    <div  class="image overlay" style = "width:700px; float: right">
-
-        <img id = "bottom"  src="/Resource/CURVED_FORM_TEMPLATE.jpg" style = "width:700px;"/>
-
+      <h1><a href="downloadPDF.html">Download PDF</a></h1>
     </div>
 
-    <div  class="overlay" id = "top" style = "float: right; left:700px; top:190px;">
-      <div id="stl_contTop" class="row" style = "width:500px; height:400px;">
-      </div>
+    <div style="float: right; height: 500px; border-style: ridge; margin: 20px">
+      <div id="stl_contMain" style="width: 600px; height: 500px"></div>
+      <input type="file" id="lFile" name="lFile" onchange="stlLoad(this)" accept="*.*"> 
     </div>
 
-    <div  class="overlay" id = "top" style = "float: right; left:700px; top:700px;">
-      <div id="stl_contButton" class="row" style = "width:500px; height:400px;">
-      </div>
-    </div>
-
- 
 
 
-
-
-
- <script src="stl_viewer.min.js"></script>
-    <script src="curved.js"></script>
+    <script src="stl_viewer.min.js"></script>
+    <script src="index.js"></script>
     <!--<button onclick="splitSTL()">splitSTL</button>-->
 
 

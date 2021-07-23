@@ -1,0 +1,18 @@
+.overlay {
+  position: absolute;
+}
+
+#bottom {
+  position: absolute;
+  top: 30px;
+  left: 550px;
+  background-color: none;
+  border-color: #d58570;
+  border-style: solid;
+}
+
+#top .overlay{
+  top: 0;
+  left: 0;
+  background-color: none;
+}

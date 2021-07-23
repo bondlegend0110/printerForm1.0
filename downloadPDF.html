@@ -24,18 +24,12 @@
     <link rel="stylesheet" href="selectForm.css" />
 
 
-    <div class="topnav">
-      <a href="index.html">Home</a>
-      <a href="selectForm.html">Select Form</a>
-      <a class="active"  href="downloadPDF.html">Download PDF</a>
-      <a href="curvedVolume.html">Curved Volume</a>
-    </div>
   </head>
 
 
 <body onload="loadBasic()">
     <div id="intro" style="width: 40% float:center; margin-left: 10px">
-      <img src="logo.png" width="400" height="100" style="filter: contrast(200%); padding-top: 30px;">
+      <img src="/Resource/logo.png" width="400" height="100" style="filter: contrast(200%); padding-top: 30px;">
       
     </div>
 
@@ -47,8 +41,11 @@
 
 
     <button id="saveResultB" onclick="downloadPDF()">Download as PDF</button>
-    <div style="float: left; height: 500px; border-style: ridge; margin: 20px">
-      <div id="stl_contMain" style="width: 600px; height: 500px"></div>
+    <div style="float: left; width: 600px; height: 500px; border-color: #d58570; margin: 20px">
+      <h1><a href="uploadSTL.html">Upload</a></h1>
+      <h1><a href="selectForm.html">Select Form</a></h1>
+      <h1><a class="active" href="downloadPDF.html">Download PDF</a></h1>
+      <h1><a href="curvedVolume.html">Curved Volume</a></h1>
     </div>
 
 
