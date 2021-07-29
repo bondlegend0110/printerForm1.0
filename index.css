@@ -3,7 +3,7 @@
 body{
     background-color: white;
     color: black;
-    font-family: "HelveticaNeue-CondensedBold", "HelveticaNeueBoldCondensed", "HelveticaNeue-Bold-Condensed", "Helvetica Neue Bold Condensed", "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnBold', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial", sans-serif; 
+    font-family: "HelveticaNeue-CondensedBold", "HelveticaNeueBoldCondensed", "HelveticaNeue-Bold-Condensed", "Helvetica Neue Bold Condensed", "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue"; 
     font-weight:600; 
     font-stretch:condensed;
     border-color: #d58570;
@@ -62,7 +62,7 @@ footer{
     padding-top: 60px;
     height: 200px;
 
-    background-color:#c35442;	
+    background-color:#d6001c;	
 	text-align:center;
 	float:left;
 }
@@ -118,7 +118,12 @@ button {
     font-size: 16px;
 }
 
+h1{
+    margin: -10px;
+}
+
 h1 a{
+    
     font-size: 200%;
     color:black;
     text-align:center;
