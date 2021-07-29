@@ -6,7 +6,7 @@
 .container img {
   width: calc(100% - (20px * 2));
   height: width;
-  margin: 5px;
+  margin: 0px;
 }
 
 .container h3{
@@ -15,13 +15,13 @@
 }
 
 .container{
+  margin-right:20px; 
+  margin-top: 20px; 
     text-align: center; 
     float: right; 
-    width: 612px; 
+    width: 700px; 
     height: 762px; 
-    background-color: white; 
     color: black;
-    padding-top: 30px;
 }
 
 span { font-weight: normal }

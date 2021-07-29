@@ -3,7 +3,7 @@ var stl_viewerButton = new StlViewer ( document.getElementById("stl_contButton")
 
 stl_viewerTop.add_model ( {
     id: 1,
-    filename:"/Resource/stlFiles/Stanford_Bunny.stl",
+    filename:"Stanford_Bunny.stl",
     rotationx: 0.5 * 3.14,
     rotationy: 0,
     rotationz: 0,
@@ -12,7 +12,7 @@ stl_viewerTop.add_model ( {
 
 stl_viewerButton.add_model ( {
     id: 1,
-    filename:"/Resource/stlFiles/Stanford_Bunny.stl",
+    filename:"Stanford_Bunny.stl",
     rotationx: -0.5 * 3.14,
     rotationy: 0,
     rotationz: 0,
