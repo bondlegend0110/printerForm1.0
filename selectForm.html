@@ -33,9 +33,15 @@
 
 
     <div id = "navBarLeft">
-      <h1><a href="uploadSTL.html">Upload</a></h1>
+      <h1><a href="index.html">Upload</a></h1>
       <h1><a class="active"href="selectForm.html">Select Form</a></h1>
-      <h1><a href="downloadPDF.html">Download PDF</a></h1>
+      <h1 onclick="alertSelect()"> <a>Download PDF<a/></h1>
+
+    <script>
+      function alertSelect(){
+          alert("Please select the form you want before trying to download!");
+      }
+    </script>
     </div>
 
     <div class="container" >
@@ -51,7 +57,7 @@
         </div>
         </a>
 
-       <a href="curvedVolume.html" style = "color: black;">
+       <a href="fourSide.html" style = "color: black;">
         <div class="image">
             <h3>Four Sided Cube</h3>
             <img src="fourSideCubeBunny.jpg" />
@@ -62,27 +68,6 @@
         </div>
         </a>
 
-        <a href="curvedVolume.html" style = "color: black;">
-        <div class="image">
-            <h3>Pyramid</h3>
-            <img src="Pyramid.png" />
-            <span> <b>Adjustable Dimision:</b> Height</span><br>
-            <span> <b>Annotations:</b> Yes</span><br>
-            <span> <b>Fastener:</b> None</span><br>
-            <span> <b>required/self-folding Instructions included:</b> Yes</span><br>
-
-        </div>
-        </a>
-
-        <a href="curvedVolume.html" style = "color: black;">
-        <div class="image">
-            <h3>Cylinder</h3>
-            <img src="cone.png" />
-            <span> <b>Adjustable Dimision:</b> Height</span><br>
-            <span> <b>Annotations:</b> No</span><br>
-            <span> <b>Fastener:</b> Staples or Tape</span><br>
-            <span> <b>required/self-folding Instructions included:</b> Yes</span><br>
-        </div>
         </a>
     </div>
 

@@ -34,12 +34,19 @@
 
 
     <div style="float: left; width: 500px; height:700px; margin: 20px">
-      <h1><a href="uploadSTL.html">Upload</a></h1>
+      <h1><a href="index.html">Upload</a></h1>
       <h1><a href="selectForm.html">Select Form</a></h1>
-      <h1><a class="active" href="downloadPDF.html">Download PDF</a></h1>
-      <div id="saveResult" style="margin-left: 10px">
-        <button id="saveResultB" onclick="downloadPDF()">Download as PDF</button>
-      </div>
+      <h1><a class="active" href="curvedVolume.html">Download PDF</a></h1>
+      
+
+    <div id = "annotationsInput" style="margin-left: 10px; margin-top: 20%;">
+      <form action="/action_page.php">
+        <label for="fname">Annotations</label>
+        <input type="text" id="annote" name="annotations" placeholder="Your annotations..">
+      
+        <input type="submit" value="Submit">
+      </form>
+    </div>
     </div>
     
 
@@ -49,15 +56,16 @@
 
     </div>
 
-    <div  class="overlay" id = "top" style = "float: right; left:700px; top:190px;">
+    <div  class="overlay" id = "top" style = "float: right; left:50%; top:190px;">
       <div id="stl_contTop" class="row" style = "width:500px; height:400px;">
       </div>
-    </div>
 
-    <div  class="overlay" id = "top" style = "float: right; left:700px; top:700px;">
       <div id="stl_contButton" class="row" style = "width:500px; height:400px;">
       </div>
+      
     </div>
+
+    
 
  
 
@@ -70,7 +78,12 @@
     <!--<button onclick="splitSTL()">splitSTL</button>-->
 
 
+
     <div id="desText" style="width: 40%; margin-left: 10px">
+    <div id="saveResult" style="margin-left: 10px">
+        <button id="saveResultB" onclick="downloadPDF()">Download as PDF</button>
+      </div>
+
       <h2>How to use PrinterForm</h2>
       <h5>
         With nothing more than a common copy printer and PrinterForm, you can

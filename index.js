@@ -332,6 +332,13 @@ function downloadPDF() {
 
   };
 
+function alertUpload(){
+    alert("Please upload file before proceed");
+}
+
+
+
+
 /*
   $(document).ready(function(){
     var doc = new jsPDF();

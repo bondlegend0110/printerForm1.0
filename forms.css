@@ -4,15 +4,50 @@
 
 #bottom {
   position: absolute;
-  top: 30px;
-  left: 550px;
+  top: 150px;
+  left: 50%;
   background-color: none;
   border-color: #d58570;
   border-style: solid;
+  width: 612px; 
+  height: 792px; 
+  padding:0px;
 }
 
 #top .overlay{
   top: 0;
   left: 0;
   background-color: none;
+}
+
+#top div{
+  margin:0px;
+  height:180px;
+  width:612px;
+
+  border-top: solid;
+  border-bottom: solid;
+  border-color: #d58570;
+}
+
+input[type=text], select {
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  background-color: #d58570;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #d6001c;
 }

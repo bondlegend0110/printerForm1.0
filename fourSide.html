@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Upload STL File</title>
+    <title>Printer Form - Curved Volume</title>
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -21,49 +21,76 @@
 
     <!--css-->
     <link rel="stylesheet" href="index.css" />
-  </head>
+    <link rel="stylesheet" href="selectForm.css" />
+    <link rel="stylesheet" href="forms.css" />
 
-  <div id="intro" style="width: 40% float:center; padding-left: 5px; border-top:soild #c35442; margin:10px;">
+
+  </head>
+  <div id="intro">
     <img src="logo.png" width="400" height="100" style="filter: contrast(200%); padding-top: 30px;">
   </div>
 
+<body >
 
 
-  <body onload="loadBasic()">
-
-
-
-
-
-    <div style="float: left; width: 500px; margin: 20px">
-      <h1><a class="active" href="index.html">Upload</a></h1>
+    <div style="float: left; width: 500px; height:700px; margin: 20px">
+      <h1><a href="index.html">Upload</a></h1>
       <h1><a href="selectForm.html">Select Form</a></h1>
-      <h1 onclick="alertSelect()"> <a>Download PDF<a/></h1>
+      <h1><a class="active" href="curvedVolume.html">Download PDF</a></h1>
+      
 
-    <script>
-      function alertSelect(){
-          alert("Please select the form you want before trying to download!");
-      }
-    </script>
+    <div id = "annotationsInput" style="margin-left: 10px; margin-top: 20%;">
+      <form action="/action_page.php">
+        <label for="fname">Annotations</label>
+        <input type="text" id="annote" name="annotations" placeholder="Your annotations..">
+      
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    </div>
+    
+
+    <div  class="image overlay" id = "bottom" style = "float: right">
+
+
     </div>
 
-    <div style="float: right; height: 500px; border-style: ridge; margin: 20px">
-      <div id="stl_contMain" style="width: 600px; height: 500px"></div>
-      <input type="file" id="lFile" name="lFile" onchange="stlLoad(this)" accept="*.*"> 
+    <div  class="overlay" id = "top" style = "float: right; left:50%; top:190px;">
+
+        <div id="stl_cont1" >
+        </div>
+
+        <div id="stl_cont2">
+        </div>
+
+        <div id="stl_cont3">
+        </div>
+
+        <div id="stl_cont4" >
+        </div>
     </div>
 
+    
+
+ 
 
 
-    <script src="stl_viewer.min.js"></script>
-    <script src="index.js"></script>
+
+
+
+ <script src="stl_viewer.min.js"></script>
+    <script src="fourSide.js"></script>
     <!--<button onclick="splitSTL()">splitSTL</button>-->
 
 
-    <div id="desText" style="width: 40%; margin-left: 10px; margin-top:300px;">
+
+    <div id="desText" style="width: 40%; margin-left: 10px">
+    <div id="saveResult" style="margin-left: 10px">
+        <button id="saveResultB" onclick="downloadPDF()">Download as PDF</button>
+      </div>
+      
       <h2>How to use PrinterForm</h2>
-          <h5 >
-        What if you could make high speed, low-resolution 3D printed parts with
-        no more hardware than a common paper printer? What if you could make a
+      <h5>
         With nothing more than a common copy printer and PrinterForm, you can
         produce high speed, low resolution printed objects. The process is
         simple.
