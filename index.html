@@ -37,6 +37,10 @@
 
     <div style="float: left; width: 500px; margin: 20px">
       <h1><a class="active" href="index.html">Upload</a></h1>
+
+      <label for="fname">Upload</label>
+        <input type="file" id="lFile" name="lFile" onchange="stlLoad(this)" placeholder="Upload" accept="*.*"> 
+
       <h1><a href="selectForm.html">Select Form</a></h1>
       <h1 onclick="alertSelect()"> <a>Download PDF<a/></h1>
 
@@ -49,7 +53,7 @@
 
     <div style="float: right; height: 500px; border-style: ridge; margin: 20px">
       <div id="stl_contMain" style="width: 600px; height: 500px"></div>
-      <input type="file" id="lFile" name="lFile" onchange="stlLoad(this)" accept="*.*"> 
+    
     </div>
 
 

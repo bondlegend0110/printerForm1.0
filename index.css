@@ -15,6 +15,12 @@ body{
     border-color: #d58570;
 }
 
+h5{
+    font-family:"HelveticaNeue-UltraLight";
+    font-weight: 300;
+    font-size: 15px;
+}
+
 #navBarLeft{
     float: left; 
     width: 500px; 
