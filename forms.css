@@ -22,15 +22,22 @@
 
 #top div{
   margin:0px;
-  height:180px;
-  width:612px;
+  height:25%;
+  width:400px;
 
+  
+}
+
+.withBorder{
   border-top: solid;
   border-bottom: solid;
   border-color: #d58570;
+  float: left;
 }
 
 input[type=text], select {
+  height:400px;
+  width: 500px;
   padding: 12px 20px;
   margin: 8px 0;
   border: 1px solid #ccc;
@@ -39,7 +46,7 @@ input[type=text], select {
 }
 
 input[type=submit] {
-  background-color: #d58570;
+  background-color: #d6001c;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -49,5 +56,5 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-  background-color: #d6001c;
+  background-color: #d58570;
 }

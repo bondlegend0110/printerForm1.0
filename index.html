@@ -36,11 +36,7 @@
 
 
     <div style="float: left; width: 500px; margin: 20px">
-      <h1><a class="active" href="index.html">Upload</a></h1>
-
-      <label for="fname">Upload</label>
-        <input type="file" id="lFile" name="lFile" onchange="stlLoad(this)" placeholder="Upload" accept="*.*"> 
-
+      <h1><a class="active" onclick="uploadFile()" >Upload</a></h1>
       <h1><a href="selectForm.html">Select Form</a></h1>
       <h1 onclick="alertSelect()"> <a>Download PDF<a/></h1>
 
@@ -104,6 +100,9 @@
       >.
     </h4>
 
-    <h6>Copyright 2021: Ian Gonsher, Tingyi Tan, and Chuchuan Wei</h4>
+    <h6>Copyright 2021: Ian Gonsher, Tingyi Tan</h4>
   </footer>
+
+
+  <input type="file" id="lFile" name="lFile" onchange="stlLoad(this)" placeholder="Upload" accept="*.*"> 
 </html>

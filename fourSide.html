@@ -33,40 +33,46 @@
 <body >
 
 
-    <div style="float: left; width: 500px; height:700px; margin: 20px">
+    <div id = "navBarLeft" style="float: left; width: 500px; height:700px; margin: 20px">
       <h1><a href="index.html">Upload</a></h1>
       <h1><a href="selectForm.html">Select Form</a></h1>
-      <h1><a class="active" href="curvedVolume.html">Download PDF</a></h1>
+      <h1><a class="active" onclick = "screenShot()">Download PDF</a></h1>
       
 
-    <div id = "annotationsInput" style="margin-left: 10px; margin-top: 20%;">
-      <form action="/action_page.php">
-        <label for="fname">Annotations</label>
-        <input type="text" id="annote" name="annotations" placeholder="Your annotations..">
-      
-        <input type="submit" value="Submit">
-      </form>
-    </div>
+        <div id = "annotationsInput" style="margin-left: 10px; margin-top: 20%;">
+        <form action="/action_page.php">
+        <h1>
+            <label for="annote">Annotations</label>
+            </h1>
+            
+
+            <textarea name="annote" cols="50" rows="10" placeholder="Your annotations.." style = "margin-top : 20px"></textarea>
+        
+            <input type="submit" value="Submit">
+        </form>
+        </div>
     </div>
     
 
-    <div  class="image overlay" id = "bottom" style = "float: right">
+    <div id = "printPreview" >
+        <div  class="image overlay" id = "bottom" style = "float: right">
 
 
-    </div>
-
-    <div  class="overlay" id = "top" style = "float: right; left:50%; top:190px;">
-
-        <div id="stl_cont1" >
         </div>
 
-        <div id="stl_cont2">
-        </div>
+        <div  class="overlay" id = "top" style = "float: right; left:50%; top:190px;">
 
-        <div id="stl_cont3">
-        </div>
+            <div id="stl_cont1" class = "withBorder">
+            </div>
 
-        <div id="stl_cont4" >
+            <div id="stl_cont2" class = "withBorder">
+            </div>
+
+            <div id="stl_cont3" class = "withBorder">
+            </div>
+
+            <div id="stl_cont4" class = "withBorder">
+            </div>
         </div>
     </div>
 
@@ -85,9 +91,6 @@
 
 
     <div id="desText" style="width: 40%; margin-left: 10px">
-    <div id="saveResult" style="margin-left: 10px">
-        <button id="saveResultB" onclick="downloadPDF()">Download as PDF</button>
-      </div>
       
       <h2>How to use PrinterForm</h2>
       <h5>

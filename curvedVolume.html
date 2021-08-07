@@ -33,41 +33,40 @@
 <body >
 
 
-    <div style="float: left; width: 500px; height:700px; margin: 20px">
+    <div id = "navBarLeft" style="float: left; width: 500px; height:700px; margin: 20px">
       <h1><a href="index.html">Upload</a></h1>
       <h1><a href="selectForm.html">Select Form</a></h1>
       <h1><a class="active" href="curvedVolume.html">Download PDF</a></h1>
       
 
-    <div id = "annotationsInput" style="margin-left: 10px; margin-top: 20%;">
-      <form action="/action_page.php">
-        <label for="fname">Annotations</label>
-        <input type="text" id="annote" name="annotations" placeholder="Your annotations..">
-      
-        <input type="submit" value="Submit">
-      </form>
-    </div>
+        <div id = "annotationsInput" style="margin-left: 10px; margin-top: 20%;">
+        <form action="/action_page.php">
+        <h1>
+            <label for="annote">Annotations</label>
+            </h1>
+            
+
+            <textarea name="annote" cols="50" rows="10" placeholder="Your annotations.." style = "margin-top : 20px"></textarea>
+        
+            <input type="submit" value="Submit">
+        </form>
+        </div>
     </div>
     
 
-    <div  class="image overlay" style = "width:700px; float: right">
+  <div  id="top" style = "left:40%; float: right">
+
+      <img id = "stl_contTop"/>
+      <img id = "stl_contButton"/>
+
+  </div>
+
+    <div  class="image overlay" style = "left:40%; float: right">
 
         <img id = "bottom"  src="CURVED_FORM_TEMPLATE.jpg" style = "width:700px;"/>
 
     </div>
 
-    <div  class="overlay" id = "top" style = "float: right; left:50%; top:190px;">
-      <div id="stl_contTop" class="row" style = "width:500px; height:400px;">
-      </div>
-
-      <div id="stl_contButton" class="row" style = "width:500px; height:400px;">
-      </div>
-      
-    </div>
-
-    
-
- 
 
 
 

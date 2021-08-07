@@ -17,3 +17,4 @@ stl_viewerButton.add_model ( {
     rotationy: 0,
     rotationz: 0,
 });
+

@@ -21,6 +21,14 @@ h5{
     font-size: 15px;
 }
 
+span{
+    font-family:"HelveticaNeue-UltraLight";
+    font-weight: 300;
+    font-size: 15px;
+}
+
+
+
 #navBarLeft{
     float: left; 
     width: 500px; 
@@ -155,4 +163,8 @@ h1 a.active {
     text-align:center;
     color: #d6001c;
     overflow: hidden;
+}
+
+#lFile{
+    visibility: hidden;
 }

@@ -36,3 +36,44 @@ stl_viewer4.add_model ( {
     rotationy: 0.5 * 3.14,
     rotationz: 0,
 });
+
+window.jsPDF = window.jspdf.jsPDF;
+
+function screenShot(){
+
+    //alert(document.getElementById("printPreview"));
+    var doc = new jsPDF();
+    
+    specialElementHandlers = {
+        // element with id of "bypass" - jQuery style selector
+        '#bypassme': function (element, renderer) {
+            // true = "handled elsewhere, bypass text extraction"
+            return false
+        }
+    };
+    // all coords and widths are in jsPDF instance's declared units
+    // 'inches' in this case
+
+    //alert(document.getElementById("printPreview"));
+
+    doc.html(document.body
+    , {
+        callback: function (doc) {
+          doc.save();
+        },
+     }
+     
+     );
+
+    var string = doc.output('datauristring');
+
+    var iframe = "<iframe width='100%' height='100%' src='" + string + "'></iframe>"
+    var x = window.open();
+    x.document.open();
+    x.document.write(iframe);
+    x.document.close();
+    //doc.save();
+
+    
+}
+
