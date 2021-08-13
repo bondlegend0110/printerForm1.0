@@ -1,11 +1,16 @@
-.overlay {
-  position: absolute;
+#printPreview{
+  visibility: hidden;
 }
 
+.overlay {
+  position: absolute;
+  z-index: 1;
+}
+  
 #bottom {
   position: absolute;
-  top: 150px;
-  left: 50%;
+  top: 80px;
+  left: 550px;
   background-color: none;
   border-color: #d58570;
   border-style: solid;
@@ -14,18 +19,21 @@
   padding:0px;
 }
 
-#top .overlay{
-  top: 0;
-  left: 0;
-  background-color: none;
+#top{
+  position: absolute;
+} 
+
+
+
+#stl_contTop {
+top:200px;
+  height:300px;
+  width:400px;
 }
 
-#top div{
-  margin:0px;
-  height:25%;
+#stl_contButton {
+  height:300px;
   width:400px;
-
-  
 }
 
 .withBorder{
@@ -45,7 +53,7 @@ input[type=text], select {
   box-sizing: border-box;
 }
 
-input[type=submit] {
+button {
   background-color: #d6001c;
   color: white;
   padding: 14px 20px;
@@ -55,6 +63,22 @@ input[type=submit] {
   cursor: pointer;
 }
 
-input[type=submit]:hover {
+button:hover {
   background-color: #d58570;
+}
+
+#annoDisplay {
+  position: absolute;
+  top: 80px;
+  left: 1000px;
+  background-color: none;
+  width: 200px; 
+  height: 792px; 
+  padding:0px;
+}
+
+#annoDisplay p{
+  position: absolute;
+  top: 70px;
+  transform: rotate(90deg);
 }

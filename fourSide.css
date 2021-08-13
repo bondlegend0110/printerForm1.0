@@ -44,7 +44,9 @@
     background-color: none;
   }
   
-  #top .stlView{
+ .stlView{
+    position: absolute;
+    top:0;
     margin:0px;
     height:150px;
     width:400px;
