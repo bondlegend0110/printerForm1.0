@@ -83,6 +83,6 @@ button:hover {
 
 #annoDisplay p{
   position: absolute;
-  top: 70px;
-  transform: rotate(90deg);
+  top: 30%;
+  left:120%;
 }
