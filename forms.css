@@ -5,17 +5,10 @@
   height:1000px;
 }
 
-.overlay {
-  position: absolute;
-}
-  
 #bottom {
   position: absolute;
-  top: 80px;
-  left: 550px;
+  top: 0px;
   background-color: none;
-  border-color: #d58570;
-  border-style: solid;
   width: 612px; 
   height: 792px; 
   padding:0px;
@@ -23,17 +16,26 @@
 
 #top{
   position: absolute;
+  left:55%; 
+  float: right;
+  top:40px;
 } 
 
-
+#top2{
+  position: absolute;
+  left:55%; 
+  float: right;
+  top:620px;
+} 
 
 #stl_contTop {
-top:200px;
+  top:200px;
   height:300px;
   width:400px;
 }
 
 #stl_contButton {
+  top:400px;
   height:300px;
   width:400px;
 }
@@ -71,8 +73,8 @@ button:hover {
 
 #annoDisplay {
   position: absolute;
-  top: 80px;
-  left: 1000px;
+  top: 200px;
+  left: 42%;
   background-color: none;
   width: 200px; 
   height: 792px; 

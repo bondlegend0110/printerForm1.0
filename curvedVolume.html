@@ -34,7 +34,7 @@
 <body onload = "loadBasic()">
 
 
-    <div id = "navBarLeft" style="float: left; width: 520px; height:700px; margin: 20px">
+    <div id = "navBarLeft" style="float: left; width: 500px; height:700px; margin: 20px">
       <h1><a id = "formLink" href="index.html">Select Form</a></h1>
       <h1><a id = "uploadLink" class="active" onclick="uploadFile()" >Upload STL</a></h1>
       <h1><a id = "downloadLink" onclick = "screenShot()">Download PDF</a></h1>
@@ -57,35 +57,27 @@
 
 
 
-<div class="new" id="printPreview" style ="float:right; width:700px;height:1000px" >
-       <div  id="top" style = "left:50%; float: right" class="overlay">
-
-          <div id="stl_contTop" ></div> 
-
-          <div id="stl_contButton"></div>
-
-      </div>
-        <div class="image overlay" id = "bottom" style = "float: right">
-         <!--<img id = "bottom"  src="CURVED_FORM_TEMPLATE.jpg" style = "width:700px;" />-->
+<div id="printPreview" >
+    <div class="image overlay" id = "bottom" style = "float: right">
+      <img id = "bottom"  src="CURVED_FORM_TEMPLATE.jpg" style = "width:612px;top:80px;" />
         
+    </div>
 
-        </div>
+    <div  id="top" >
 
+      <div id="stl_contTop"></div> 
+    </div>
 
-  <div  id="top" style = "left:50%; float: right">
-
-    <div id="stl_contTop"></div> 
-
-    <div id="stl_contButton" ></div>
-
-  </div>
-
+    <div  id="top2" >
+      <div id="stl_contButton" style = "top:400px;"></div>
+    </div>
 
 
-        <div class="overlay" id = "annoDisplay" style = "float: right;">
-            <p id = "annoDisplayText">This is the annotation</p>
+
+    <div class="overlay" id = "annoDisplay" style = "float: right;">
+      <p id = "annoDisplayText">This is the annotation</p>
             
-        </div>
+    </div>
   </div>
 
     <div id = "dummyDisplay" style="float: right; height: 500px; border-style: ridge; margin: 20px; left:50%;" class="overlay">
