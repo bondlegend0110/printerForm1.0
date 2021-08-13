@@ -9,8 +9,8 @@ window.jsPDF = window.jspdf.jsPDF;
 function screenShot() {
 
 
-    document.getElementById('printPreview').setAttribute("width", "800px");
-    document.getElementById('printPreview').setAttribute("height", "900px");
+    document.getElementById('output').setAttribute("width", "800px");
+    document.getElementById('output').setAttribute("height", "900px");
     
     if( document.getElementById("myCanvas") != null){
         var blank = document.getElementById("myCanvas");
@@ -73,8 +73,8 @@ function downloadPDF() {
 
     //setTimeout(() => { downloadPDF(); }, 200);
     document.getElementById("myCanvas").remove();
-    document.getElementById('printPreview').setAttribute("width", "0px");
-    document.getElementById('printPreview').setAttribute("height", "0px");
+    document.getElementById('output').setAttribute("width", "0px");
+    document.getElementById('output').setAttribute("height", "0px");
 };
 
 

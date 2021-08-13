@@ -1,44 +1,3 @@
-/*
-window.jsPDF = window.jspdf.jsPDF;
-
-function screenShot(){
-
-    //alert(document.getElementById("printPreview"));
-    var doc = new jsPDF();
-    
-    specialElementHandlers = {
-        // element with id of "bypass" - jQuery style selector
-        '#bypassme': function (element, renderer) {
-            // true = "handled elsewhere, bypass text extraction"
-            return false
-        }
-    };
-    // all coords and widths are in jsPDF instance's declared units
-    // 'inches' in this case
-
-    //alert(document.getElementById("printPreview"));
-
-    doc.html(document.getElementById("printPreview")
-    , {
-        callback: function (doc) {
-          doc.save();
-        },
-     }
-     
-     );
-
-    var string = doc.output('datauristring');
-
-    //var iframe = "<iframe width='100%' height='100%' src='" + string + "'></iframe>"
-    //var x = window.open();
-    //x.document.open();
-    //x.document.write(iframe);
-    //x.document.close();
-    //doc.save();
-
-    
-}
-*/
 
 
 
@@ -46,16 +5,16 @@ window.jsPDF = window.jspdf.jsPDF;
 
 function screenShot() {
 
-
-    document.getElementById('printPreview').setAttribute("width", "800px");
-    document.getElementById('printPreview').setAttribute("height", "900px");
     
-    if( document.getElementById("myCanvas") != null){
-        var blank = document.getElementById("myCanvas");
+    document.getElementById('output').setAttribute("width", "800px");
+    document.getElementById('output').setAttribute("height", "900px");
 
-        blank.remove();
+    var canvasOld = document.getElementById('myCanvas');
+    if(canvasOld != null){
+        canvasOld.remove();
     }
-    
+
+
     let div =
         document.getElementById('printPreview');
 
@@ -70,8 +29,7 @@ function screenShot() {
             document
             .getElementById('output')
             .appendChild(canvas);
-        })
-    
+        });
         setTimeout(() => { downloadPDF(); }, 2000);
 
         /*
@@ -87,9 +45,12 @@ function screenShot() {
 function downloadPDF() {
     // only jpeg is supported by jsPDF
 
-    //alert("Printing");
+    alert("Printing");
 
     var canvas = document.getElementById('myCanvas');
+
+
+    //alert(canvas);
 
     let width = canvas.width; 
     let height = canvas.height;
@@ -106,6 +67,7 @@ function downloadPDF() {
     //then we get the dimensions from the 'pdf' file itself
     //width = pdf.internal.pageSize.getWidth();
     //height = pdf.internal.pageSize.getHeight();
+    //alert(pdf);
     pdf.addImage(canvas, 'JPEG', 0, 0,width,height);
     pdf.save("download.pdf");
 
@@ -129,6 +91,7 @@ function uploadFile() {
 //no rotation on z for the six sides
 
 function stlLoad(files){
+
 
     var canvasList = document.getElementsByTagName("canvas");
 

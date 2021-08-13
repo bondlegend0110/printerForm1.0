@@ -1,5 +1,8 @@
 #printPreview{
     visibility: hidden;
+    float:right; 
+    width:700px;
+    height:1000px;
 }
 
 .overlay {
@@ -44,9 +47,7 @@
     background-color: none;
   }
   
- .stlView{
-    position: absolute;
-    top:0;
+  #top .stlView{
     margin:0px;
     height:150px;
     width:400px;
@@ -69,7 +70,7 @@
     box-sizing: border-box;
   }
   
-  button {
+ button {
     background-color: #d6001c;
     color: white;
     padding: 14px 20px;

@@ -55,7 +55,7 @@
 
    
 
-    <div class="new" id="printPreview" style ="float:right; width:700px;height:1000px" >
+    <div class="new" id="printPreview"  >
         <div class="image overlay" id = "bottom" style = "float: right">
 
 
@@ -87,23 +87,16 @@
     </div>
 
 
-     
-
-    
-
- 
-
-
-
-
-
- <script src="stl_viewer.min.js"></script>
+    <script src="stl_viewer.min.js"></script>
     <script src="fourSide.js"></script>
     <!--<button onclick="splitSTL()">splitSTL</button>-->
 
-
-    
   </body>
+
+
+     
+    <div id = "output" ></div> 
+    <input type="file" id="lFile" name="lFile" onchange="stlLoad(this)" placeholder="Upload" accept="*.*"> 
 
   <footer id="foot">
     <h2>Tell us what you think</h2>
@@ -120,8 +113,5 @@
 
     <h6>Copyright 2021: Ian Gonsher, Tingyi Tan, and Chuchuan Wei</h4>
   </footer>
-
-
-    <div id = "output"></div>
-    <input type="file" id="lFile" name="lFile" onchange="stlLoad(this)" placeholder="Upload" accept="*.*"> 
+ 
 </html>
