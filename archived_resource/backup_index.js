@@ -330,7 +330,7 @@ function downloadPDF() {
     //then we get the dimensions from the 'pdf' file itself
     width = pdf.internal.pageSize.getWidth();
     height = pdf.internal.pageSize.getHeight();
-    pdf.addImage(canvas, 'JPEG', 0, 0,width,height);
+    pdf.addImage(canvas);
     pdf.save("download.pdf");
 
   };

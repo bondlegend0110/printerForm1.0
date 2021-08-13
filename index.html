@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Upload STL File</title>
+    <title>Printer Form - Select Form</title>
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -21,49 +21,65 @@
 
     <!--css-->
     <link rel="stylesheet" href="index.css" />
-  </head>
+    <link rel="stylesheet" href="selectForm.css" />
 
-  <div id="intro" style="width: 40% float:center; padding-left: 5px; border-top:soild #c35442; margin:10px;">
+  </head>
+  <div id="intro">
     <img src="logo.png" width="400" height="100" style="filter: contrast(200%); padding-top: 30px;">
   </div>
 
-
-
-  <body onload="loadBasic()">
-
+<body>
 
 
 
-
-    <div style="float: left; width: 500px; margin: 20px">
-      <h1><a class="active" onclick="uploadFile()" >Upload</a></h1>
-      <h1><a href="selectForm.html">Select Form</a></h1>
+    <div id = "navBarLeft">
+      <h1><a class="active"href="index.html">Select Form</a></h1>
+      <h1 onclick="alertSelect()"><a>Upload File</a></h1>
       <h1 onclick="alertSelect()"> <a>Download PDF<a/></h1>
 
     <script>
       function alertSelect(){
-          alert("Please select the form you want before trying to download!");
+          alert("Please select the form you want before trying to upload or download!");
       }
     </script>
     </div>
 
-    <div style="float: right; height: 500px; border-style: ridge; margin: 20px">
-      <div id="stl_contMain" style="width: 600px; height: 500px"></div>
-    
+    <div class="container" >
+        <a href="curvedVolume.html" style = "color: black;">
+        <div class="image">
+            <h3>Curved Volume</h3>
+            <img src="curved_sample.jpg" />
+            <span> <b>Adjustable Dimision:</b> No</span><br>
+            <span> <b>Annotations:</b> No</span><br>
+            <span> <b>Fastener:</b> Staples or Tape</span><br>
+            <span> <b>required/self-folding Instructions included:</b> Yes</span><br>
+
+        </div>
+        </a>
+
+       <a href="fourSide.html" style = "color: black;">
+        <div class="image">
+            <h3>Four Sided Cube</h3>
+            <img src="fourSideCubeBunny.jpg" />
+            <span> <b>Adjustable Dimision:</b> Height</span><br>
+            <span> <b>Annotations:</b> Yes</span><br>
+            <span> <b>Fastener:</b> Staples or Tape</span><br>
+            <span> <b>required/self-folding Instructions included:</b> Yes</span><br>
+        </div>
+        </a>
+
+        </a>
     </div>
 
 
-
-    <script src="stl_viewer.min.js"></script>
+ <script src="stl_viewer.min.js"></script>
     <script src="index.js"></script>
     <!--<button onclick="splitSTL()">splitSTL</button>-->
 
 
-    <div id="desText" style="width: 40%; margin-left: 10px; margin-top:300px;">
+    <div id="desText" style="width: 40%; margin-left: 10px">
       <h2>How to use PrinterForm</h2>
-          <h5 >
-        What if you could make high speed, low-resolution 3D printed parts with
-        no more hardware than a common paper printer? What if you could make a
+      <h5>
         With nothing more than a common copy printer and PrinterForm, you can
         produce high speed, low resolution printed objects. The process is
         simple.
@@ -100,9 +116,6 @@
       >.
     </h4>
 
-    <h6>Copyright 2021: Ian Gonsher, Tingyi Tan</h4>
+    <h6>Copyright 2021: Ian Gonsher, Tingyi Tan, and Chuchuan Wei</h4>
   </footer>
-
-
-  <input type="file" id="lFile" name="lFile" onchange="stlLoad(this)" placeholder="Upload" accept="*.*"> 
 </html>
