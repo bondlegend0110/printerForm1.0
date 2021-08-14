@@ -75,7 +75,7 @@ button:hover {
 #annoDisplay {
   position: absolute;
   top: 200px;
-  left: 42%;
+  left: 0;
   background-color: none;
   width: 200px; 
   height: 792px; 
