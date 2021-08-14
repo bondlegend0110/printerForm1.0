@@ -59,16 +59,14 @@ function downloadPDF() {
     var pdf = null;
 
     //set the orientation
-    if(width > height){
-      pdf = new jsPDF('l', 'px', [width, height]);
-    }
-    else{
-      pdf = new jsPDF('p', 'px', [height, width]);
-    }
+
+    pdf = new jsPDF('p', 'px', [612*2, 800*2]);
     //then we get the dimensions from the 'pdf' file itself
     //width = pdf.internal.pageSize.getWidth();
     //height = pdf.internal.pageSize.getHeight();
     pdf.addImage(canvas, 'JPEG', 0, 0,width,height);
+
+    alert("width: " + width + " \n Height: " + height);
     pdf.save("download.pdf");
 
     //setTimeout(() => { downloadPDF(); }, 200);

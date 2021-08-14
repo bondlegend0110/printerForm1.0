@@ -34,7 +34,7 @@
 <body onload = "loadBasic()">
 
 
-    <div id = "navBarLeft" style="float: left; width: 500px; height:700px; margin: 20px">
+  <div id = "navBarLeft" style="float: left; width: 500px; height:700px; margin: 20px">
       <h1><a id = "formLink" href="index.html">Select Form</a></h1>
       <h1><a id = "uploadLink" class="active" onclick="uploadFile()" >Upload STL</a></h1>
       <h1><a id = "downloadLink" onclick = "screenShot()">Download PDF</a></h1>
@@ -51,17 +51,22 @@
         
             <button  onclick ="updateAnno()">Submit</button>
         </div>
+
+
+    <div id = "instructions">
+      <p>Remember to rotate the STL file so that the bottom of the STL touches the borders of the page before printing.</p>
+
+      <p>Once you have printed the PDF, roll edges into cone until lines align and matching dots overlap. Staple.</p>
     </div>
+  </div>
     
 
 
 
 
 <div id="printPreview" >
-    <div class="image overlay" id = "bottom" style = "float: right">
-      <img id = "bottom"  src="CURVED_FORM_TEMPLATE.jpg" style = "width:612px;top:80px;" />
-        
-    </div>
+      <img id = "bottom"  src="CURVED_FORM_TEMPLATE.jpg"/>
+
 
     <div  id="top" >
 
@@ -80,19 +85,12 @@
     </div>
   </div>
 
-    <div id = "dummyDisplay" style="float: right; height: 500px; border-style: ridge; margin: 20px; left:50%;" class="overlay">
+  <div id = "dummyDisplay" style="float: right; height: 500px; border-style: ridge; margin: 20px; left:50%;" class="overlay">
       <div id="stl_contMain" style="width: 600px; height: 500px"></div>
     
-    </div>
+  </div>
 
 
-
-<div id = "text">
-<p>Remember to rotate the STL file so that the bottom of the STL touches the borders of the page before printing.</p>
-
-<p>Once you have printed the PDF, roll edges into cone until lines align and matching dots overlap. Staple.
-</p>
-</div>
 
 
  <script src="stl_viewer.min.js" ></script>
