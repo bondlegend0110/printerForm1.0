@@ -7,6 +7,8 @@
 window.jsPDF = window.jspdf.jsPDF;
 
 function screenShot() {
+    document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 
 
     document.getElementById('output').setAttribute("width", "800px");
