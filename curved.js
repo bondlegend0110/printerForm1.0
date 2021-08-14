@@ -60,7 +60,7 @@ function downloadPDF() {
 
     //set the orientation
 
-    pdf = new jsPDF('p', 'px', [612*2, 800*2]);
+    pdf = new jsPDF('p', 'px', [620*2, 800*2]);
     //then we get the dimensions from the 'pdf' file itself
     //width = pdf.internal.pageSize.getWidth();
     //height = pdf.internal.pageSize.getHeight();

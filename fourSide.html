@@ -50,18 +50,53 @@
         
             <button  onclick ="updateAnno()">Submit</button>
         </div>
+
+        <div id = "changeDimision">
+            <label for="distanceLeft">Choose the distance form thr left:</label>
+            <select id="distanceLeft">
+                <option value="80px">80px</option>
+                <option value="100px">100px</option>
+                <option value="120px">120px</option>
+                <option value="140px">140px</option>
+                <option value="160px">160px</option>
+                <option value="180px">180px</option>
+                <option value="200px">200px</option>
+                <option value="220px">220px</option>
+                <option value="240px">240px</option>
+                <option value="260px">260px</option>
+            </select>
+            <br></br>
+            <label for="distanceLeft">Choose the width of the model:</label>
+            <select id="distanceRight">
+                <option value="80px">80px</option>
+                <option value="100px">100px</option>
+                <option value="120px">120px</option>
+                <option value="140px">140px</option>
+                <option value="160px">160px</option>
+                <option value="180px">180px</option>
+                <option value="200px">200px</option>
+                <option value="220px">220px</option>
+                <option value="240px">240px</option>
+                <option value="260px">260px</option>
+            </select>
+            <button  onclick ="updateDimision()">Change Dimision</button>
+        </div>
+
+        <div id = "instructions">
+            <p>Remember to rotate the STL file so that the bottom of the STL touches the borders of the page before printing.</p>
+
+            <p>Once you have printed the PDF, roll edges into cone until lines align and matching dots overlap. Staple.</p>
+        </div>
     </div>
     
 
    
 
-    <div class="new" id="printPreview"  >
-        <div class="image overlay" id = "bottom" style = "float: right">
+    <div class="new" id="printPreview" >
 
+        <img id = "bottom"  src="FOUR_SIDE_TEMPLATE.jpg"/>
 
-        </div>
-
-        <div  id = "top"  class="overlay" style = "left:50%;">
+        <div  id = "top">
 
             <div id="stl_cont1" class = "stlView withBorder">
             </div>
@@ -77,7 +112,7 @@
         </div>
 
         <div class="overlay withBorder" id = "annoDisplay" style = "float: right;">
-            <p id = "annoDisplayText">This is the annotation</p>
+            <p id = "annoDisplayText"></p>
         </div>
     </div>
 

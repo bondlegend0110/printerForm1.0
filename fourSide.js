@@ -57,16 +57,11 @@ function downloadPDF() {
 
     var pdf = null;
 
-    //set the orientation
-    if(width > height){
-      pdf = new jsPDF('l', 'px', [width, height]);
-    }
-    else{
-      pdf = new jsPDF('p', 'px', [height, width]);
-    }
+    pdf = new jsPDF('p', 'px', [620*2, 800*2]);
     //then we get the dimensions from the 'pdf' file itself
     //width = pdf.internal.pageSize.getWidth();
     //height = pdf.internal.pageSize.getHeight();
+
     //alert(pdf);
     pdf.addImage(canvas, 'JPEG', 0, 0,width,height);
     pdf.save("download.pdf");
@@ -101,44 +96,48 @@ function stlLoad(files){
 
     document.getElementById('printPreview').setAttribute("style", "visibility:visible");
 
+
+
+
     var stl_viewer1 = new StlViewer ( document.getElementById("stl_cont1") );
     var stl_viewer2 = new StlViewer ( document.getElementById("stl_cont2") );
     var stl_viewer3 = new StlViewer ( document.getElementById("stl_cont3") );
     var stl_viewer4 = new StlViewer ( document.getElementById("stl_cont4") );
 
 
-
     stl_viewer1.add_model ( {
         id: 1,
-        local_file:files.files[0],
+        local_file: files.files[0],
         rotationx: 0,
-        rotationy: 0.5 * 3.14,
+        rotationy: 0,
         rotationz: 0,
     });
 
     stl_viewer2.add_model ( {
         id: 1,
-        local_file:files.files[0],
-        rotationx: 0,
-        rotationy: 0.5 * 3.14,
+        local_file: files.files[0],
+        rotationx: -0.5 * 3.14,
+        rotationy: 0,
         rotationz: 0,
     });
-
+        
     stl_viewer3.add_model ( {
         id: 1,
-        local_file:files.files[0],
-        rotationx: 0,
-        rotationy: 0.5 * 3.14,
+        local_file: files.files[0],
+        rotationx: 3.14,
+        rotationy: 0,
         rotationz: 0,
     });
 
     stl_viewer4.add_model ( {
         id: 1,
-        local_file:files.files[0],
-        rotationx: 0,
-        rotationy: 0.5 * 3.14,
+        local_file: files.files[0],
+        rotationx: 0.5 * 3.14,
+        rotationy: 0,
         rotationz: 0,
     });
+    
+
 
     document.getElementById('downloadLink').setAttribute("class", "active");
 
@@ -148,7 +147,13 @@ function updateAnno(){
     //alert(document.getElementById("annoText").value);
     document.getElementById("annoDisplayText").innerText = document.getElementById("annoText").value;
     //alert(document.getElementById("annoDisplayText").innerText);
-    
+}
+
+function updateDimision(){
+    alert(document.getElementById("distanceLeft").value);
+    alert(document.getElementById("distanceRight").value);
+    document.getElementById('top').style.left= document.getElementById("distanceLeft").value;
+    document.getElementById('top').style.width= document.getElementById("distanceRight").value;
 }
 
 function loadBasic(){

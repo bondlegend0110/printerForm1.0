@@ -3,31 +3,31 @@
     float:right; 
     width:700px;
     height:1000px;
-}
-
-.overlay {
+    margin: 10px;
     position: absolute;
+    left:45%;
   }
-  
-  #bottom {
+
+#bottom {
     position: absolute;
-    top: 100px;
-    left: 50%;
     background-color: none;
-    border-color: #d58570;
-    border-style: solid;
-    width: 612px; 
     height: 792px; 
     padding:0px;
-  }
+    width:612px;
+}
+
+#top{
+    position: absolute;
+    float: right;
+    left:20%;
+    top:15px;
+  } 
 
   #annoDisplay {
     position: absolute;
     top: 100px;
-    left: 1040px;
+    left: 500px;
     background-color: none;
-    border-color: #d58570;
-    border-style: solid;
     width: 200px; 
     height: 792px; 
     padding:0px;
@@ -38,37 +38,15 @@
     top: 70px;
     transform: rotate(90deg);
   }
-  
 
-  #top .overlay{
-    float: right; 
-    top:10px;
-    left: 0;
-    background-color: none;
-  }
   
   #top .stlView{
     margin:0px;
     height:150px;
-    width:400px;
+    margin-bottom: 10px;
   }
   
-  .withBorder{
-    border-top: solid;
-    border-bottom: solid;
-    border-color: #d58570;
-    float: left;
-  }
-  
-  input[type=text], select {
-    height:400px;
-    width: 500px;
-    padding: 12px 20px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
+
   
  button {
     background-color: #d6001c;
@@ -82,4 +60,18 @@
   
   button:hover {
     background-color: #d58570;
+  }
+
+  #instructions{
+    float:left;
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+
+
+div#top {
+    border-color: #d6001c;
+    border-left-style: dashed;
+    border-right-style: dashed;
+    height: 75%;
   }
