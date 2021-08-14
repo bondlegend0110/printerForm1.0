@@ -87,6 +87,7 @@ button:hover {
   top: 30%;
   left:0;
   text-align: center;
+  width: 660px;
 }
 
 #instructions{
