@@ -126,7 +126,7 @@ function stlLoad(files){
 
 function updateAnno(){
     //alert(document.getElementById("annoText").value);
-    document.getElementById("annoDisplayText").innerText = document.getElementById("annoText").value;
+    document.getElementById("annoDisplay").innerText = document.getElementById("annoText").value;
     //alert(document.getElementById("annoDisplayText").innerText);
     
 }
@@ -137,3 +137,8 @@ function loadBasic(){
 
 }
 
+$( function() {
+    $( "#stl_contTop" ).draggable({ axis: "y" });
+    $( "#stl_contButton" ).draggable({ axis: "y" });
+    $( "#annoDisplay" ).draggable();
+  } );

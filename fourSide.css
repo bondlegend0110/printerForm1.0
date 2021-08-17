@@ -23,20 +23,15 @@
     top:15px;
   } 
 
-  #annoDisplay {
-    position: absolute;
-    top: 100px;
-    left: 500px;
-    background-color: none;
-    width: 200px; 
-    height: 792px; 
-    padding:0px;
-  }
 
-  #annoDisplay p{
-    position: absolute;
-    top: 70px;
+  #annoDisplay{
+    position: relative;
+    top: -60%;
+    right: -40%;
+    width: auto;
+    height: auto;
     transform: rotate(90deg);
+    text-align: center;
   }
 
   
@@ -70,8 +65,9 @@
 
 
 div#top {
-    border-color: #d6001c;
-    border-left-style: dashed;
-    border-right-style: dashed;
     height: 75%;
+    background-image: linear-gradient(#d6001c 55%, rgba(255,255,255,0) 0%), linear-gradient(#d6001c 55%, rgba(255,255,255,0) 0%);
+    background-position: right, left;
+    background-size: 2px 25px;
+    background-repeat: repeat-y, repeat-y;
   }

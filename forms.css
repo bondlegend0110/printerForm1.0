@@ -72,22 +72,13 @@ button:hover {
   background-color: #d58570;
 }
 
-#annoDisplay {
-  position: absolute;
-  top: 200px;
-  left: 0;
-  background-color: none;
-  width: 800px; 
-  height: 792px; 
-  padding:0px;
-}
 
-#annoDisplay p{
-  position: absolute;
-  top: 30%;
-  left:0;
+#annoDisplay{
+  position: relative;
+  top: 40%;
+  left: 0;
   text-align: center;
-  width: 660px;
+  width: auto;
 }
 
 #instructions{

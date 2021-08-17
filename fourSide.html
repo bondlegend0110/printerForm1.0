@@ -5,6 +5,7 @@
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <!-- bootstrap -->
     <script
@@ -52,8 +53,8 @@
         </div>
 
         <div id = "changeDimision">
-            <label for="distanceLeft">Choose the distance form thr left:</label>
-            <select id="distanceLeft">
+            <label for="distanceRight">Choose the width of the model:</label>
+            <select id="distanceRight" onchange ="updateDimision()">
                 <option value="80px">80px</option>
                 <option value="100px">100px</option>
                 <option value="120px">120px</option>
@@ -65,21 +66,6 @@
                 <option value="240px">240px</option>
                 <option value="260px">260px</option>
             </select>
-            <br></br>
-            <label for="distanceLeft">Choose the width of the model:</label>
-            <select id="distanceRight">
-                <option value="80px">80px</option>
-                <option value="100px">100px</option>
-                <option value="120px">120px</option>
-                <option value="140px">140px</option>
-                <option value="160px">160px</option>
-                <option value="180px">180px</option>
-                <option value="200px">200px</option>
-                <option value="220px">220px</option>
-                <option value="240px">240px</option>
-                <option value="260px">260px</option>
-            </select>
-            <button  onclick ="updateDimision()">Change Dimision</button>
         </div>
 
         <div id = "instructions">
@@ -107,16 +93,15 @@
 
             <div id="stl_cont4" class = "stlView withBorder">
             </div>
+
+            <p id = "annoDisplay"></p>
         </div>
 
-        <div class="overlay withBorder" id = "annoDisplay" style = "float: right;">
-            <p id = "annoDisplayText"></p>
-        </div>
+
     </div>
 
     <div id = "dummyDisplay" style="float: right; height: 500px; border-style: ridge; margin: 20px; left:50%;" class="overlay">
       <div id="stl_contMain" style="width: 600px; height: 500px"></div>
-    
     </div>
 
 
@@ -144,7 +129,7 @@
       >.
     </h4>
 
-    <h6>Copyright 2021: Ian Gonsher, Tingyi Tan, and Chuchuan Wei</h4>
+    <h6>Copyright 2021: Ian Gonsher, Tingyi Tan</h4>
   </footer>
  
 </html>

@@ -45,7 +45,7 @@ function screenShot() {
 function downloadPDF() {
     // only jpeg is supported by jsPDF
 
-    alert("Printing");
+    //alert("Printing");
 
     var canvas = document.getElementById('myCanvas');
 
@@ -145,14 +145,13 @@ function stlLoad(files){
 
 function updateAnno(){
     //alert(document.getElementById("annoText").value);
-    document.getElementById("annoDisplayText").innerText = document.getElementById("annoText").value;
+    document.getElementById("annoDisplay").innerText = document.getElementById("annoText").value;
     //alert(document.getElementById("annoDisplayText").innerText);
 }
 
 function updateDimision(){
-    alert(document.getElementById("distanceLeft").value);
-    alert(document.getElementById("distanceRight").value);
-    document.getElementById('top').style.left= document.getElementById("distanceLeft").value;
+    //alert(document.getElementById("distanceLeft").value);
+    //alert(document.getElementById("distanceRight").value);
     document.getElementById('top').style.width= document.getElementById("distanceRight").value;
 }
 
@@ -162,3 +161,7 @@ function loadBasic(){
 
 }
 
+$( function() {
+    $( "#top" ).draggable({ axis: "x" });
+    $( "#annoDisplay" ).draggable();
+  } );
