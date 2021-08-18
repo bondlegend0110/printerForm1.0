@@ -140,5 +140,5 @@ function loadBasic(){
 $( function() {
     $( "#stl_contTop" ).draggable({ axis: "y" });
     $( "#stl_contButton" ).draggable({ axis: "y" , containment: "#printPreview"});
-    $( "#annoDisplay" ).draggable({containment: "parent"});
+    $( "#annoDisplay" ).draggable({containment: "#printPreview"});
   } );
