@@ -1,4 +1,7 @@
-
+var stl_viewer1 ;
+var stl_viewer2 ;
+var stl_viewer3 ;
+var stl_viewer4 ;
 
 
 window.jsPDF = window.jspdf.jsPDF;
@@ -99,10 +102,10 @@ function stlLoad(files){
 
 
 
-    var stl_viewer1 = new StlViewer ( document.getElementById("stl_cont1") );
-    var stl_viewer2 = new StlViewer ( document.getElementById("stl_cont2") );
-    var stl_viewer3 = new StlViewer ( document.getElementById("stl_cont3") );
-    var stl_viewer4 = new StlViewer ( document.getElementById("stl_cont4") );
+    stl_viewer1 = new StlViewer ( document.getElementById("stl_cont1") );
+    stl_viewer2 = new StlViewer ( document.getElementById("stl_cont2") );
+    stl_viewer3 = new StlViewer ( document.getElementById("stl_cont3") );
+    stl_viewer4 = new StlViewer ( document.getElementById("stl_cont4") );
 
 
     stl_viewer1.add_model ( {
@@ -153,7 +156,12 @@ function updateDimision(){
     //alert(document.getElementById("distanceLeft").value);
     //alert(document.getElementById("distanceRight").value);
     document.getElementById('top').style.width= document.getElementById("distanceRight").value;
+    stl_viewer1.do_resize();
+    stl_viewer2.do_resize();
+    stl_viewer3.do_resize();
+    stl_viewer4.do_resize();
 }
+
 
 function loadBasic(){
     stl_viewerMain.remove_model(1);
@@ -162,6 +170,6 @@ function loadBasic(){
 }
 
 $( function() {
-    $( "#top" ).draggable({ axis: "x" });
-    $( "#annoDisplay" ).draggable();
+    $( "#top" ).draggable({ axis: "x" , containment: "parent"});
+    $( "#annoDisplay" ).draggable({containment: "parent"});
   } );
