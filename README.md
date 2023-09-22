@@ -12,5 +12,5 @@ Design Brief
 	* Buttons
 
 ## Acknowledgements
-Brown University \n
+Brown University \
 Alara Kalfazade, Vivian Li, Katherine Lynch, Zimu Niu,and José Sandoval
