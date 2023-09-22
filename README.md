@@ -4,15 +4,13 @@
 
 Design Brief
 
-##How to Video
-Video
+## How to Video
 
-##How to Contributes
-Step 1
+## How to Contributes
 
-##Know Issues
+## Know Issues
 	* Buttons
 
-##Acknowledgements
+## Acknowledgements
 Brown University 
 Alara Kalfazade, Vivian Li, Katherine Lynch, Zimu Niu,and José Sandoval
