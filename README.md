@@ -9,18 +9,20 @@ Design Brief
 ## How to Contribute
 ### node.js
 <ol type="1">
-<li> Use Git as version control. Feel free to watch this <a href="">  git tutorial video.<a>
+<li> Use Git as version control. Feel free to watch this <a href="https://youtu.be/RGOj5yH7evk?si=QypGPwuk3cKv-e3u">  git tutorial video.<a>
 	<ol type="A"> 
-		<li>Clone repo and create a new branch:<br/>
+		<li>Clone repo and create a new branch for your work:<br/>
 		
 	$ git checkout https://github.com/bondlegen0110/printerForm1.0 -b name_for_new_branch.
+ </li><li>
+	 If you are on a Mac, your git might not always update. Use this <a href="https://stackoverflow.com/a/60696298"> StackOverflow comment<a> to this <a href="https://stackoverflow.com/questions/8957862/how-to-upgrade-git-to-latest-version-on-macos"> StackOverflow discussion<a> to complete that process.
    </li></ol>
 </li>
  <li>
-	Make changes and test your code. You can begin with this <a href="https://youtu.be/W6NZfCO5SIk?si=v-P1Ij4MlzdtmunR">Video<a>, if you're not sure how to get started.	
+	To make changes and test your code. You can begin with this <a href="https://youtu.be/W6NZfCO5SIk?si=v-P1Ij4MlzdtmunR">Video<a>, if you're not sure how to get started.	
 	<ol type="A"> 
 		 <li><a href="https://nodejs.org/en">Node.js<a></li>
-		 <li><a href="https://code.visualstudio.com/">VSCode<a> Live Server Extension</li>
+		 <li><a href="https://code.visualstudio.com/">VSCode<a> <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">Live Server Extension<a></li>
 	</ol>
  </li>
 <li>
