@@ -7,13 +7,41 @@ var stl_viewerButton = new StlViewer ( document.getElementById("stl_contButton")
 var stl_viewerFront = new StlViewer ( document.getElementById("stl_contFront") );
 var stl_viewerBack = new StlViewer ( document.getElementById("stl_contBack") );
 
+function myFunction() {
+    document.getElementById("myCheck").click();
+}
 
 //no rotation on z for the six sides
 
 function stlLoad(files){
-    stl_viewerMain.remove_model(1);
-    stl_viewerMain.add_model({id:1, local_file:files.files[0],  animation:{delta:{rotationx:1,rotationy:0.5, msec:1000, loop:true}}});
+
+
+    var canvasList = document.getElementsByTagName("canvas");
+
+    for (var i = 0, len = canvasList.length; i < len; i++) {
+        canvasList[0].remove();
+    }
+
+
+    stl_viewerMain = new StlViewer ( document.getElementById("stl_contMain"));
+    stl_viewerRight = new StlViewer ( document.getElementById("stl_contRight") );
+    stl_viewerLeft = new StlViewer ( document.getElementById("stl_contLeft") );
+    stl_viewerTop = new StlViewer ( document.getElementById("stl_contTop") );
+    stl_viewerButton = new StlViewer ( document.getElementById("stl_contButton") );
+    stl_viewerFront = new StlViewer ( document.getElementById("stl_contFront") );
+    stl_viewerBack = new StlViewer ( document.getElementById("stl_contBack") );
+
+    stl_viewerMain.add_model(
+        {
+            id:1, 
+            local_file:files.files[0],
+            animation:{delta:{rotationx:1,rotationy:0.5, msec:1000, loop:true}}
+        }
+        );
+
     stl_viewerTop.remove_model(1);
+    
+
     stl_viewerTop.add_model ( {
         id: 1,
         local_file: files.files[0],
@@ -25,7 +53,6 @@ function stlLoad(files){
 
     
     
-    stl_viewerButton.remove_model(1);
     stl_viewerButton.add_model ( {
         id: 1,
         local_file: files.files[0],
@@ -36,10 +63,71 @@ function stlLoad(files){
 
 
     
-    stl_viewerFront.remove_model(1);
     stl_viewerFront.add_model ( {
         id: 1,
         local_file: files.files[0],
+        rotationx: 0,
+        rotationy: 0,
+        rotationz: 0,
+    });
+
+    
+    stl_viewerBack.add_model ( {
+        id: 1,
+        local_file: files.files[0],
+        rotationx: 3.14,
+        rotationy: 0,
+        rotationz: 0,
+    });
+
+    stl_viewerRight.add_model ( {
+        id: 1,
+        local_file: files.files[0],
+        rotationx: 0,
+        rotationy: -0.5 * 3.14,
+        rotationz: 0,
+    });
+
+    
+    stl_viewerLeft.add_model ( {
+        id: 1,
+        local_file: files.files[0],
+        rotationx: 0,
+        rotationy: 0.5 * 3.14,
+        rotationz: 0,
+    });
+}
+
+function loadBasic(){
+    stl_viewerMain.remove_model(1);
+    stl_viewerMain.add_model({id:1, filename:"Stanford_Bunny.stl",  animation:{delta:{rotationx:1,rotationy:0.5, msec:1000, loop:true}}});
+    stl_viewerTop.remove_model(1);
+    stl_viewerTop.add_model ( {
+        id: 1,
+        filename:"Stanford_Bunny.stl",
+        rotationx: 0.5 * 3.14,
+        rotationy: 0,
+        rotationz: 0,
+        auto_resize: true,
+    });
+
+    
+    
+    stl_viewerButton.remove_model(1);
+    stl_viewerButton.add_model ( {
+        id: 1,
+        filename:"Stanford_Bunny.stl",
+        rotationx: -0.5 * 3.14,
+        rotationy: 0,
+        rotationz: 0,
+    });
+
+
+    
+    stl_viewerFront.remove_model(1);
+    stl_viewerFront.add_model ( {
+        id: 1,
+        filename:"Stanford_Bunny.stl",
         rotationx: 0,
         rotationy: 0,
         rotationz: 0,
@@ -50,7 +138,7 @@ function stlLoad(files){
     stl_viewerBack.remove_model(1);
     stl_viewerBack.add_model ( {
         id: 1,
-        local_file: files.files[0],
+        filename:"Stanford_Bunny.stl",
         rotationx: 3.14,
         rotationy: 0,
         rotationz: 0,
@@ -60,7 +148,7 @@ function stlLoad(files){
     stl_viewerRight.remove_model(1);
     stl_viewerRight.add_model ( {
         id: 1,
-        local_file: files.files[0],
+        filename:"Stanford_Bunny.stl",
         rotationx: 0,
         rotationy: -0.5 * 3.14,
         rotationz: 0,
@@ -70,14 +158,11 @@ function stlLoad(files){
     stl_viewerLeft.remove_model(1);
     stl_viewerLeft.add_model ( {
         id: 1,
-        local_file: files.files[0],
+        filename:"Stanford_Bunny.stl",
         rotationx: 0,
         rotationy: 0.5 * 3.14,
         rotationz: 0,
     });
-
-
-
 }
 
 function splitSTL(files){
@@ -87,6 +172,22 @@ function splitSTL(files){
     resizing("stl_contLeft", 1, 2);
     resizing("stl_contFront", 1, 0);
     resizing("stl_contBack", 1, 0);
+
+
+    var canvasList = document.getElementsByTagName("canvas");
+
+    for (var i = 0, len = canvasList.length; i < len; i++) {
+        canvasList[0].remove();
+    }
+
+
+    stl_viewerMain = new StlViewer ( document.getElementById("stl_contMain"));
+    stl_viewerRight = new StlViewer ( document.getElementById("stl_contRight") );
+    stl_viewerLeft = new StlViewer ( document.getElementById("stl_contLeft") );
+    stl_viewerTop = new StlViewer ( document.getElementById("stl_contTop") );
+    stl_viewerButton = new StlViewer ( document.getElementById("stl_contButton") );
+    stl_viewerFront = new StlViewer ( document.getElementById("stl_contFront") );
+    stl_viewerBack = new StlViewer ( document.getElementById("stl_contBack") );
 
     stl_viewerTop.remove_model(1);
     stl_viewerTop.add_model ( {
@@ -174,10 +275,15 @@ function resizing(divID, dim1, dim2){ // for dim1 and dim2, 0 is xd, 1 is yd, 2 
 
 // END of stlView //////////////////////////////////////////////////////////////////
 
+window.jsPDF = window.jspdf.jsPDF;
 
 function takeshot() {
 
+    var blank = document.getElementById("blank");
 
+    blank.remove();
+
+    
     let div =
         document.getElementById('stlCube');
 
@@ -193,14 +299,21 @@ function takeshot() {
             .getElementById('output')
             .appendChild(canvas);
         })
+        
+
+        /*
+    html2canvas(document.querySelector("#stlCube")).then(canvas => {
+        document.body.appendChild(canvas)
+        });
+        */
 };
 
 
 
-window.jsPDF = window.jspdf.jsPDF
 
 function downloadPDF() {
     // only jpeg is supported by jsPDF
+
     var canvas = document.getElementById('myCanvas');
     var imgData = canvas.toDataURL("image/jpeg", 1.0);
 
@@ -217,8 +330,34 @@ function downloadPDF() {
     //then we get the dimensions from the 'pdf' file itself
     width = pdf.internal.pageSize.getWidth();
     height = pdf.internal.pageSize.getHeight();
-    pdf.addImage(canvas, 'JPEG', 0, 0,width,height);
+    pdf.addImage(canvas);
     pdf.save("download.pdf");
+
   };
 
+function alertUpload(){
+    alert("Please upload file before proceed");
+}
 
+
+
+
+/*
+  $(document).ready(function(){
+    var doc = new jsPDF();
+    var specialElementHandlers = {
+        '#editor': function (element, renderer) {
+            return true;
+        }
+    };
+    
+
+    $('#saveResultB').click(function () {
+        doc.fromHTML($('#stlCube').html(), 15, 15, {
+            'width': 170,
+                'elementHandlers': specialElementHandlers
+        });
+        doc.save('sample-file.pdf');
+    });
+  });
+  */
