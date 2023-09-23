@@ -17,7 +17,7 @@ Design Brief
    </li></ol>
 </li>
  <li>
-	Make changes and test your code. You can begin with this <a href="[https://nodejs.org/en](https://youtu.be/W6NZfCO5SIk?si=v-P1Ij4MlzdtmunR)">Video<a>, if you're not sure how to get started.	
+	Make changes and test your code. You can begin with this <a href="https://youtu.be/W6NZfCO5SIk?si=v-P1Ij4MlzdtmunR">Video<a>, if you're not sure how to get started.	
 	<ol type="A"> 
 		 <li><a href="https://nodejs.org/en">Node.js<a></li>
 		 <li><a href="https://code.visualstudio.com/">VSCode<a> Live Server Extension</li>
@@ -34,4 +34,4 @@ Design Brief
 
 ## Acknowledgements
 Brown University \
-Alara Kalfazade, Vivian Li, Katherine Lynch, Zimu Niu,and José Sandoval
+Alara Kalfazade, Vivian Li, Katherine Lynch, Zimu Niu, and José Sandoval
