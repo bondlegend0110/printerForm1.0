@@ -6,7 +6,12 @@ Design Brief
 
 ## How to Video
 
-## How to Contributes
+## How to Contribute
+### node.js
+	1. Clone repo and create a new branch: $ git checkout https://github.com/bondlegen0110/printerForm1.0 -b name_for_new_branch.
+	2. Make changes and test using [node.js](https://nodejs.org/en).
+	3. Submit a Pull Request with a comprehensive description of changes.
+  		
 
 ## Know Issues
 	* Buttons
