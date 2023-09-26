@@ -7,7 +7,7 @@ Design Brief
 ## How to Video
 
 ## How to Contribute
-### node.js
+### JavaScript
 <ol type="1">
 <li> Use Git as version control. Feel free to watch this <a href="https://youtu.be/RGOj5yH7evk?si=QypGPwuk3cKv-e3u">  git tutorial video.<a>
 	<ol type="A"> 
@@ -30,6 +30,13 @@ Design Brief
 </li>
 			 
 </ol>
+
+### Style Guide
+<ul>
+	    <li> <a href = "https://m3.material.io/">Google Material Design<a> </li>
+	    <li>  <a href = "https://webaim.org/resources/contrastchecker/"> WebAIM: Contrast Checekr<a></A></li>
+</ul>
+https://webaim.org/resources/contrastchecker/
 
 ## Know Issues
 * Buttons
