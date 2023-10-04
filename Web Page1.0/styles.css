@@ -1,31 +1,117 @@
-body {
-    font-family: Arial, sans-serif;
+*{
+    margin:0;
+    padding:0;
+    font-family: "Futura";  
+    box-sizing:border-box;
 }
 
-.navbar {
-    background-color: #333;
-    overflow: hidden;
+.container{
+    padding: 30px 10%;
 }
 
-.nav-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+/* navigation bar */
+.nav-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-.nav-list li {
-    float: left;
-}
-
-.nav-list li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
+/* logo/name */
+.name{
+    color: #404040;
     text-decoration: none;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
-.nav-list li a:hover {
-    background-color: #ddd;
-    color: black;
+/* menu items */
+nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 10px 20px;
+
 }
+
+/* each menu item */
+nav ul li a{
+    color: #404040;;
+    text-decoration: none;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    position: relative;
+}
+
+/* upload container */
+.upload-container{
+    margin-top: 10%;
+    height: 200px;
+    background-color: rgba(255, 224, 125, 0.20);  
+    border-radius: 30px; 
+    display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+
+
+.upload-button{
+    font-size: 18px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+text-align: center;
+  text-decoration: none;
+  display: inline-block;
+    cursor: pointer;
+    border: none;
+    border-radius: 30px;
+    background: #FFE07D;
+    width: 200px;
+    height: 60px;  
+    
+}
+
+#workflow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    background: #7072EC;
+}
+
+.work-item {
+    width: 20vw;
+    height: max-content;
+    margin-bottom: 2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.work-item-title {
+    color: white;
+}
+
+.work-item-pic {
+    width: 100%;
+    height: 20vw;
+    object-fit: cover;
+    border-radius: 2vw;
+}
+
+.work-item-text {
+    width: 90%;
+    /* height: 18vw; */
+    height: 12.5vw;
+    margin: 1vw;
+    text-align: left;
+    color: white;
+}
+
