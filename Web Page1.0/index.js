@@ -26,3 +26,11 @@ document.addEventListener("DOMContentLoaded", function() {
         localStorage.setItem('doNotShow', this.checked ? 'true' : 'false');
     });
 });
+
+document.getElementById('openUploadPopupBtn').addEventListener('click', function() {
+    document.getElementById('uploadPopup').style.display = 'block';
+});
+
+document.getElementById('closeUploadPopupBtn').addEventListener('click', function() {
+    document.getElementById('uploadPopup').style.display = 'none';
+});
