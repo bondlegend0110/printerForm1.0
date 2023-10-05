@@ -10,10 +10,22 @@
 </head>
 
 <body>
+    <!--Don't Show Again popup-->
+    <div id="DSApopup" class="popup">
+        <!-- Popup content -->
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <p>Welcome to our website! Learn how to use our site with our guide.</p>
+            <input type="checkbox" id="doNotShow">
+            <label for="doNotShow">Don't show this message again</label>
+        </div>
+    </div>
 
+    <!--Popup overlay-->
+    <div id="overlay" class="overlay"></div>       
+    
     <div id="header">
         <div class="container">
-
             <!--  navigation bar -->
             <nav class="nav-bar">
                 <!--  logo/name -->
