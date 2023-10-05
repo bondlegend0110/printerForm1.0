@@ -51,6 +51,32 @@ nav .fas{
     display:none;
 }
 
+
+/* Style the dropdown content container */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Style the dropdown links */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+/* Show the dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
 /* upload container */
 .upload-container{
     margin-top: 80px;
@@ -246,6 +272,4 @@ nav .fas{
     font-size: 20px;
     font-weight: 400;
 }
-
-
 
