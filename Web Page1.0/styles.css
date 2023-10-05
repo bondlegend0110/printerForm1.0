@@ -53,8 +53,8 @@ nav .fas{
 
 /* upload container */
 .upload-container{
-    margin-top: 7%;
-    margin-bottom: 7%;
+    margin-top: 80px;
+    margin-bottom: 80px;
     height: 200px;
     width: auto;
     background-color: rgba(255, 224, 125, 0.20);  
@@ -83,59 +83,67 @@ nav .fas{
     
 }
 
+.workflow-instructions{
+    color: #fff;
+    text-decoration: none;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
 #workflow {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    /* justify-content: space-between; */
     align-items: center;
     flex-wrap: wrap;
-    width: 100%;
-    background: #7072EC;
+    /* width: 100%; */
+    /* background: #7072EC; */
 }
 
 .work-item {
-    margin-top: 5%;
+    margin-top: 20px;
+    margin-bottom: 20px;
     width: 300px;
     height: max-content;
-    margin-bottom: 2vw;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .work-item-title {
-    margin-bottom: 5%;
+    margin-bottom: 10px;
     color: #FFF;
     font-size: 22px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+    font-weight: 400;
 }
 
+
 .work-item-pic {
-    width: 100%;
+    width: 70%;
     height: auto;
+    background-color: #FFF;
     /* height: 20vw; */
-    /* object-fit: cover; */
+    object-fit: cover;
     border-radius: 30px;
 }
 
 .work-item-text {
-    width: 90%;
-    height: 18vw;
-    height: 12.5vw;
-    margin: 1vw;
-    text-align: left;
+    width: 65%;
+    /* height: 12.5vw; */
+    height:60px;
+    margin-top: 10px;
     color: white;
     text-align: center;
-    font-size: 24px;
-    font-style: normal;
+    font-size: 18px;
     font-weight: 400;
-    line-height: normal;
 }
+
 .gallery{
-    margin-top: 2%;
-    margin-bottom: 5%;
+    margin-top: 40px;
+    margin-bottom: 20px;
 }
 
 .title{
@@ -169,6 +177,11 @@ nav .fas{
     vertical-align: middle;
     border-radius: 0px;
   }
+
+.about{
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
 
 .about-text{
     margin-top: 2%;
