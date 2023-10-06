@@ -34,7 +34,16 @@ document.getElementById('openUploadPopupBtn').addEventListener('click', function
 
 //JavaScript for the Upload Popup buttons
 //Open Directory Button
-    //TODO Open Directory Button Functionality
+document.getElementById('openDirectoryBtn').addEventListener('click', function() {
+    document.getElementById("fileInput").click();
+    //document.getElementById('uploadLink').setAttribute("class", "");
+    //TODO: Add Feature: Use the Default Bunny
+    document.getElementById('fileInput').addEventListener('change', function(e) {
+        const selectedFile = e.target.files[0];
+        console.log('Selected file:', selectedFile);
+    });
+});
+
 //Back Button
 document.getElementById('closeUploadPopupBtn').addEventListener('click', function() {
     document.getElementById('uploadPopup').style.display = 'none';
