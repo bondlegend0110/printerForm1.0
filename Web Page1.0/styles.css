@@ -92,6 +92,7 @@ nav .fas{
 }
 
 
+/*TODO fix the upload styles so that the popup style and the home screen room*/
 
 .upload-button{
     font-size: 18px;
@@ -108,6 +109,46 @@ nav .fas{
     width: 200px;
     height: 60px;  
     
+}
+.close-button {
+    position: absolute
+}
+
+/*TODO fix the botton styles*/
+.back-button{
+    color: #FFF;
+    font-family: Futura;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    background: #7072EC;
+    width: 90px;
+    height: 45px;
+}
+
+.next-button{
+    color: #FFF;
+    font-family: Futura;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    background: #FF664F;
+    width: 90px;
+    height: 45px;
 }
 
 .workflow-instructions{
