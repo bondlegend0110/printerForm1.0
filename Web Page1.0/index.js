@@ -27,10 +27,54 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+//Start page Button
 document.getElementById('openUploadPopupBtn').addEventListener('click', function() {
     document.getElementById('uploadPopup').style.display = 'block';
 });
 
+//JavaScript for the Upload Popup buttons
+//Open Directory Button
+    //TODO Open Directory Button Functionality
+//Back Button
 document.getElementById('closeUploadPopupBtn').addEventListener('click', function() {
     document.getElementById('uploadPopup').style.display = 'none';
+});
+//Next Button
+document.getElementById('nextUploadPopupBtn').addEventListener('click', function() {
+    document.getElementById('uploadPopup').style.display = 'none';
+    document.getElementById('previewPopup').style.display = 'block';
+    //TODO Next Button Functionality
+});
+
+//JavaScript for the Preview button
+//Close Button
+document.getElementById('closePreviewPopupBtn').addEventListener('click', function() {
+    document.getElementById('previewPopup').style.display = 'none';
+});
+//Back Button
+document.getElementById('backPreviewPopupBtn').addEventListener('click', function() {
+    document.getElementById('previewPopup').style.display = 'none';
+    document.getElementById('uploadPopup').style.display = 'block';
+});
+//Next Button
+document.getElementById('nextPreviewPopupBtn').addEventListener('click', function() {
+    document.getElementById('previewPopup').style.display = 'none';
+    document.getElementById('formSelectionPopup').style.display = 'block';
+});
+
+//JavaScript for the Form Selection buttons
+
+//Close Button
+document.getElementById('closeFormSelectionPopupBtn').addEventListener('click', function() {
+    document.getElementById('formSelectionPopup').style.display = 'none';
+});
+//Back Button
+document.getElementById('backFormSelectionPopupBtn').addEventListener('click', function() {
+    document.getElementById('formSelectionPopup').style.display = 'none';
+    document.getElementById('previewPopup').style.display = 'block';
+});
+//Next Button
+document.getElementById('nextFormSelectionPopupBtn').addEventListener('click', function() {
+    document.getElementById('formSelectionPopup').style.display = 'none';
+    //TODO connect to Edit Page
 });
