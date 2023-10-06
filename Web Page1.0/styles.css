@@ -151,6 +151,16 @@ nav .fas{
     height: 45px;
 }
 
+/*curve picture*/
+.background-templates{
+    position: absolute;
+    background-color: none;
+    height: 100px; 
+    padding:10px;
+    width: 100px;
+  }
+
+
 .workflow-instructions{
     color: #fff;
     text-decoration: none;
