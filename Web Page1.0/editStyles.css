@@ -1,0 +1,86 @@
+.editor-container {
+    display: flex;
+    justify-content: center;
+}
+
+.grid-container {
+    display: grid;
+    width: 500px;
+    height: 620px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    border: 1px solid #ccc;
+    background-image:
+        linear-gradient(to right, grey 1px, transparent 1px),
+        linear-gradient(to bottom, grey 1px, transparent 1px);
+    background-size: 20% 14.28%;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.grid-control {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 200px;
+    height: 60px;
+    background-color: rgba(112, 114, 236, 0.20);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+label {
+    margin-right: 10px;
+}
+
+.magnification-input-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+input[type=range]{
+    width: auto;
+}
+
+#magnification-value {
+    float: right;
+    width: 2.5em;
+    margin-right: 10px;
+    background-color: white;
+}
+
+/*TODO fix the upload styles so that the popup style and the home screen room*/
+
+.download-button {
+    color: #FFF;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    background: #FF664F;
+    height: 60px;
+}
+
+#openDownloadPopupBtn {
+    width: 100px;
+    height: 60px;
+}
+
+#nextDownloadPopupBtn {
+    width: 150px;
+    height: 45px;
+}
