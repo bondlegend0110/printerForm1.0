@@ -3,9 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editor - PrinterForm</title>
+    <title>Edit - PrinterForm</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="editStyles.css">
 </head>
 <body>
+
+    <!--Download Preview Popup-->
+    <div id="downloadPopup" class="popup">
+        <div class="popup-content">
+            <!--TOOD Fix Close-->
+            <span id="closeDownloadPopupBtn" class="close-button">&times;</span>
+            <div id="download-preview-container" class="background-container">
+                <p>Print Preview</p>
+            </div>
+            <div>
+                <button id="backDownloadPopupBtn" class="back-button" type="button">BACK</button>
+                <button id="nextDownloadPopupBtn"  class="download-button" type="button">DOWNLOAD</button>
+            </div>
+        </div>
+    </div>
+
+    <!--Popup overlay-->
+    <div id="overlay" class="overlay"></div>       
     
+    <div id="header">
+        <div class="container">
+            <!--  navigation bar -->
+            <nav class="nav-bar">
+                <!--  logo/name -->
+                <a class="name" href="./index.html">Printer Form</a>
+                <!--  menu items -->
+                <ul id="menu">
+                    <li><a href="#">How To</a></li>
+                    <li class="menu-item dropdown">
+                        <a href="./resource.html" class="dropbtn">Resources</a>
+                        <div class="dropdown-content">
+                            <a href="#">TinkerCAD</a>
+                            <a href="#">Lesson Plans</a>
+                        </div>
+                    </li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="./about.html">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="editor-container">
+        <div class="grid-container"></div>
+        <div class="controls">
+            <div class="grid-control">
+                <label for="paper-size">Paper Size: </label>
+                <select id="paper-size" name="paper-size">
+                  <option value="a4">A4</option>
+                  <option value="a3">A3</option>
+                  <option value="letter">Letter</option>
+                  <option value="legal">Legal</option>
+                </select>
+              </div>
+              <div class="grid-control">
+                <div class="magnification-input-wrapper">
+                    <label for="magnification">Magnification: </label>
+                    <input id="magnification-value" type="text" value="1.0">
+                </div>
+                <input type="range" id="magnification" name="magnification" min="0.1" max="2" step="0.1" value="1">
+              </div>
+              <div class="grid-control">
+                <label for="line-color">Line Color: </label>
+                <select id="line-color" name="line-color">
+                  <option value="red">Red</option>
+                  <option value="green">Green</option>
+                  <option value="blue">Blue</option>
+                  <option value="black">Black</option>
+                </select>
+              </div>
+              <div class="grid-control">
+                <label for="model-color">Model Color: </label>
+                <select id="model-color" name="model-color">
+                  <option value="white">White</option>
+                  <option value="gray">Gray</option>
+                  <option value="yellow">Yellow</option>
+                  <option value="brown">Brown</option>
+                </select>
+              </div>
+            <button id = "openDownloadPopupBtn" class="download-button" type="button">
+                PRINT<br>
+                PREVIEW
+            </button>
+        </div>
+    </div>
+
+    <div class="gallery">
+        <div class="container">
+            <h1 class="title">OTHER FORMS</h1>
+            <ul class="image-gallery">
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/curved_sample 1.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/fourSideCubeBunny 1.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/curved_sample 1.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/curved_sample 1.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/curved_sample 1.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/curved_sample 1.png" alt="" />
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="about">
+        <div class="container">
+            <h1 class="title">About</h1>
+            <h2 class="about-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
+                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </h2>
+            <a href="about.html"><button class="read-more-button">Read More</button></a>
+        </div>
+    </div>
+
+    <!--TODO: Make Footer?-->
+    <div id="footer">
+        <div class="container">
+
+            <div class="footer-nav-container">
+                <ul class="footer-nav" style="text-align:center;">
+                    <li><a href="#">How To</a></li>
+                    <h1>|</h1>
+                    <li><a href="./resource.html">Resources</a></li>
+                    <h1>|</h1>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <h1>|</h1>
+                    <li><a href="./about.html">About</a></li>
+                </ul>
+
+                <ul class="footer-nav" style="text-align:center;">
+                    <li><a href="mailto:email@brown.edu">email@brown.edu</a></li>
+                    <h1>|</h1>
+                    <li><a href="googlesurveylink.com">Feedback Form</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <script src="edit.js"></script>
 </body>
 </html>

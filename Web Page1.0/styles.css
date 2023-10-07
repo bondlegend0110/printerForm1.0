@@ -78,11 +78,10 @@ nav .fas{
 }
 
 
-/* upload container */
-.upload-container{
+/* background container */
+.background-container{
     margin-top: 80px;
     margin-bottom: 80px;
-    height: 200px;
     width: auto;
     background-color: rgba(255, 224, 125, 0.20);  
     border-radius: 30px; 
@@ -91,6 +90,26 @@ nav .fas{
     align-items: center; 
 }
 
+/* upload container */
+#upload-container{
+    height: 200px;
+}
+
+/* upload container */
+#open-directory-container{
+    height: 200px;
+
+}
+#upload-preview-container{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    height: 500px;
+}
+#download-preview-container{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    height: 500px;
+}
 
 /*TODO fix the upload styles so that the popup style and the home screen room*/
 
@@ -111,7 +130,7 @@ nav .fas{
     
 }
 .close-button {
-    position: absolute
+    padding: 10px;
 }
 
 /*TODO fix the botton styles*/

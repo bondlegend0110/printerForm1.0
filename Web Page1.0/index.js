@@ -125,5 +125,6 @@ document.getElementById('backFormSelectionPopupBtn').addEventListener('click', f
 //Next Button
 document.getElementById('nextFormSelectionPopupBtn').addEventListener('click', function() {
     document.getElementById('formSelectionPopup').style.display = 'none';
-    //TODO connect to Edit Page
+    // Navigate to the desired HTML file
+    window.location.href = './edit.html';
 });
