@@ -76,11 +76,28 @@ nav .fas{
     display: block;
 }
 
+/* our mission box */
+.text-container{
+    background-color: #F5F5F5; 
+    /* height: 250px; */
+    width: auto;
+    margin-top: 3%;
+}
+
+.mission-text{
+    padding: 6%;
+    text-align: center;
+    font-size: 22px;
+    font-style: normal;
+    line-height: normal;
+    color:#404040;
+}
+
 /* team gallery */
 
 .title{
     color:#404040;
-    font-size: 36px;
+    font-size: 28px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
