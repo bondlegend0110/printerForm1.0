@@ -72,6 +72,24 @@ document.getElementById('nextPreviewPopupBtn').addEventListener('click', functio
 });
 
 //JavaScript for the Form Selection buttons
+var forms = document.querySelectorAll('.fs-item');
+
+forms.forEach(function (item) {
+    item.addEventListener('dblclick', function() {
+
+        if (!item.classList.contains('selected')) {
+            forms.forEach(function (el) {
+                el.classList.remove('selected');
+            });
+            item.classList.add('selected');
+        } else {
+            item.classList.remove('selected');
+        }
+    });
+});
+
+
+
 
 //Close Button
 document.getElementById('closeFormSelectionPopupBtn').addEventListener('click', function() {
