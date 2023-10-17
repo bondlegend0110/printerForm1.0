@@ -10,11 +10,14 @@
     <!-- Include from the CDN -->
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
 
+    <!--jsPDF-->
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+
     <title>Home - Printer Form</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body onload = "loadBasic()">
     <!--Don't Show Again popup-->
     <div id="DSApopup" class="popup">
         <!-- Popup content -->
@@ -47,7 +50,6 @@
             <span id="closePreviewPopupBtn" class="close-button">&times;</span>
             <!-- upload button/div-->
             <div id="upload-preview-container" class="background-container">
-                <p>Preview Popup</p>
             </div>
             <div>
                 
@@ -96,7 +98,25 @@
                 </ul>
                 
             </nav>
-
+            <div id="printPreview" >
+                <img id = "background-template"  src="./pictures/templates/CURVED_FORM_TEMPLATE.jpg"/>
+            
+                <div  id="top" class="stl_display">
+                    <div id="stl_contTop" class="stl_cont"></div> 
+                </div>
+            
+                <div  id="top2" class="stl_display">
+                    <div id="stl_contButton" class="stl_cont"></div>
+                </div>
+                
+                <p id = "annoDisplay"></p>
+                
+            </div>
+    
+            <div id = "dummyDisplay" class="stl_display">
+                <div id="stl_contMain" class="stl_cont"></div>
+                
+            </div>
             <!-- upload button/div-->
             <div id="upload-container"class="background-container">
                 <button class="upload-button" id = "openUploadPopupBtn" type="button">UPLOAD</button>
