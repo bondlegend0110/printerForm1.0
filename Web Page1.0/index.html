@@ -26,11 +26,11 @@
         <div class="popup-content">
             <!-- upload button/div-->
             <div id="open-directory-container" class="background-container">
-                <button id="openDirectoryBtn"  class="upload-button" type="button">UPLOAD</button>
+                <button id="openDirectoryBtn" class="upload-button" type="button">UPLOAD</button>
             </div>
             <div>
                 <button id="closeUploadPopupBtn" class="back-button" type="button">BACK</button>
-                <button id="nextUploadPopupBtn"  class="next-button" type="button">NEXT</button>
+                <button id="nextUploadPopupBtn" class="next-button" type="button">NEXT</button>
             </div>
         </div>
     </div>
@@ -46,7 +46,7 @@
             </div>
             <div>
                 <button id="backPreviewPopupBtn" class="back-button" type="button">BACK</button>
-                <button id="nextPreviewPopupBtn"  class="next-button" type="button">NEXT</button>
+                <button id="nextPreviewPopupBtn" class="next-button" type="button">NEXT</button>
             </div>
         </div>
     </div>
@@ -59,23 +59,24 @@
             <p>Form Selection</p>
             <div>
                 <button id="backFormSelectionPopupBtn" class="back-button" type="button">BACK</button>
-                <button id="nextFormSelectionPopupBtn"  class="next-button" type="button">NEXT</button>
+                <button id="nextFormSelectionPopupBtn" class="next-button" type="button">NEXT</button>
             </div>
         </div>
     </div>
 
     <!--Popup overlay-->
-    <div id="overlay" class="overlay"></div>       
-    
+    <div id="overlay" class="overlay"></div>
+
     <div id="header">
         <div class="container">
             <!--  navigation bar -->
             <nav class="nav-bar">
                 <!--  logo/name -->
-                <a href="./index.html"><img class="logo" src="./pictures/start page/LOGOTYPE_fall2023.png" alt="Printerform logo"></a>
+                <a href="./index.html"><img class="logo" src="./pictures/start page/LOGOTYPE_fall2023.png"
+                        alt="Printerform logo"></a>
                 <!--  menu items -->
                 <ul id="menu">
-                    <li><a href="#">How To</a></li>
+                    <li><a href="how-to.html">How To</a></li>
                     <li class="menu-item dropdown">
                         <a href="./resource.html" class="dropbtn">Resources</a>
                         <div class="dropdown-content">
@@ -85,12 +86,12 @@
                     </li>
                     <li><a href="gallery.html">Gallery</a></li>
                     <li><a href="./about.html">About</a></li>
-                </ul> 
+                </ul>
             </nav>
 
             <!-- upload button/div-->
-            <div id="upload-container"class="background-container">
-                <button class="upload-button" id = "openUploadPopupBtn" type="button">UPLOAD</button>
+            <div id="upload-container" class="background-container">
+                <button class="upload-button" id="openUploadPopupBtn" type="button">UPLOAD</button>
             </div>
 
         </div>
@@ -98,25 +99,25 @@
 
     <div class="container" style="background: #7072EC;">
         <h2 class="workflow-instructions">Instructions</h2>
-    <div id="workflow">
-        <div class="work-item">
-            <h2 class="work-item-title">Upload</h2>
-            <img class="work-item-pic" src="./pictures/start page/upload.png" />
-            <p class="work-item-text">Upload any .STL file.</p>
-        </div>
-        <div class="work-item">
-            <h2 class="work-item-title">Modify</h2>
-            <img class="work-item-pic" src="./pictures/start page/modify.png" />
-            <p class="work-item-text">Modify your selections to best fit the shape of your file.</p>
-        </div>
-        <div class="work-item">
-            <h2 class="work-item-title">Download</h2>
-            <img class="work-item-pic" src="./pictures/start page/download.png" />
-            <p class="work-item-text">Download your .PDF to print.</p>
+        <div id="workflow">
+            <div class="work-item">
+                <h2 class="work-item-title">Upload</h2>
+                <img class="work-item-pic" src="./pictures/start page/upload.png" />
+                <p class="work-item-text">Upload any .STL file.</p>
+            </div>
+            <div class="work-item">
+                <h2 class="work-item-title">Modify</h2>
+                <img class="work-item-pic" src="./pictures/start page/modify.png" />
+                <p class="work-item-text">Modify your selections to best fit the shape of your file.</p>
+            </div>
+            <div class="work-item">
+                <h2 class="work-item-title">Download</h2>
+                <img class="work-item-pic" src="./pictures/start page/download.png" />
+                <p class="work-item-text">Download your .PDF to print.</p>
+            </div>
         </div>
     </div>
-    </div>
-    
+
 
 
     <div class="gallery">
@@ -148,11 +149,10 @@
     <div class="about">
         <div class="container">
             <h1 class="title">About</h1>
-            <h2 class="about-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </h2>
+            <p class="about-text">Printerform allows anyone to utilize 
+                common materials like an inkjet or laser printer and 8.5” x 11” 
+                paper to produce high speed, low resolution 3D objects.
+            </p>
             <a href="about.html"><button class="read-more-button">Read More</button></a>
         </div>
     </div>
@@ -190,5 +190,6 @@
 
     <script src="index.js"></script>
 </body>
-    <input type="file" id="fileInput" name="fileInput" onchange="stlLoad(this)" placeholder="Upload" accept="*.*"> 
+<input type="file" id="fileInput" name="fileInput" onchange="stlLoad(this)" placeholder="Upload" accept="*.*">
+
 </html>
