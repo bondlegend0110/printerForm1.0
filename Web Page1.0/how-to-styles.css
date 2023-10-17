@@ -77,8 +77,26 @@ nav .fas{
     display: block;
 }
 
-/* instructions container */
 
+/* video walkthrough container */
+.video-title{
+    color:#404040;
+    font-size: 18px;
+    font-style: normal;
+    line-height: normal;
+    text-align: center;
+    margin-bottom: 3%;
+}
+.video-container{
+    display:flex;
+}
+iframe{
+    align:center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* instructions container */
 .title{
     color:#404040;
     /* color:#6E6969; */
