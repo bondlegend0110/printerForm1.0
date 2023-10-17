@@ -36,13 +36,15 @@ Design Brief
 	    <li> <a href = "https://m3.material.io/">Google Material Design<a> </li>
 	    <li>  <a href = "https://webaim.org/resources/contrastchecker/"> WebAIM: Contrast Checekr<a></A></li>
 </ul>
-https://webaim.org/resources/contrastchecker/
 
-## Know Issues
+### Know Issues
 * Buttons
 
 ## Acknowledgements
 Brown University \
 Alara Kalfazade, Vivian Li, Katherine Lynch, Zimu Niu, and José Sandoval
-###PrinterForm
+### PrinterForm
 Harry Tan
+### Additional Projects
+<a href = "https://www.jsdelivr.com/package/npm/html2canvas">html2canvas<a> 
+<a href = "https://www.viewstl.com/plugin/">viewstl<a> <a href = "https://github.com/omrips/viewstl">omrips<a> 
