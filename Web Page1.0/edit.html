@@ -3,11 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--upload-->
+    <script src="https://kit.fontawesome.com/67e5d0119e.js" crossorigin="anonymous"></script>
+
+    <!-- Include from the CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
+
+    <!--jsPDF-->
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+
     <title>Edit - PrinterForm</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="editStyles.css">
 </head>
-<body>
+
+<body onload = "loadBasic()">
 
     <!--Download Preview Popup-->
     <div id="downloadPopup" class="popup">
@@ -19,7 +29,7 @@
             </div>
             <div>
                 <button id="backDownloadPopupBtn" class="back-button" type="button">BACK</button>
-                <button id="nextDownloadPopupBtn"  class="download-button" type="button">DOWNLOAD</button>
+                <button id="downloadPDFbtn"  class="download-button" type="button">DOWNLOAD</button>
             </div>
         </div>
     </div>
@@ -53,7 +63,25 @@
     </div>
 
     <div class="editor-container">
-        <div class="grid-container"></div>
+        <div id="printPreview" >
+            <img id = "background-template"  src="./pictures/templates/CURVED_FORM_TEMPLATE.jpg"/>
+        
+            <div  id="top" class="stl_display">
+              <div id="stl_contTop" class="stl_cont"></div> 
+            </div>
+        
+            <div  id="top2" class="stl_display">
+              <div id="stl_contButton" class="stl_cont"></div>
+            </div>
+            
+            <p id = "annoDisplay"></p>
+            
+          </div>
+
+          <div id = "dummyDisplay" class="stl_display">
+            <div id="stl_contMain" class="stl_cont"></div>
+          
+        </div>
         <div class="controls">
             <div class="grid-control">
                 <label for="paper-size">Paper Size: </label>
@@ -164,7 +192,7 @@
 
 
 
-
+    <script src="./viewstl/stl_viewer.min.js"></script>
     <script src="edit.js"></script>
 </body>
 </html>

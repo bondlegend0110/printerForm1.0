@@ -35,16 +35,15 @@ document.getElementById('openUploadPopupBtn').addEventListener('click', function
 //JavaScript for the Upload Popup buttons
 //Open Directory Button
 document.getElementById('openDirectoryBtn').addEventListener('click', function() {
-    document.getElementById("fileInput").click();
-    //document.getElementById('uploadLink').setAttribute("class", "");
-    //TODO: Add Feature: Use the Default Bunny
-    document.getElementById('fileInput').addEventListener('change', function(e) {
-        const selectedFile = e.target.files[0];
-        console.log('Selected file:', selectedFile);
-    });
+    uploadFile();
 });
 
-
+function uploadFile() {
+    document.getElementById("lFile").click();
+    //document.getElementById('uploadLink').setAttribute("class", "");
+    document.getElementById("dummyDisplay").remove();
+    
+}
 
 function stlLoad(files){
 
@@ -76,10 +75,7 @@ function stlLoad(files){
         rotationz: 0,
     });
 
-    document.getElementById('downloadLink').setAttribute("class", "active");
-
 }
-
 
 
 
@@ -128,3 +124,9 @@ document.getElementById('nextFormSelectionPopupBtn').addEventListener('click', f
     // Navigate to the desired HTML file
     window.location.href = './edit.html';
 });
+
+$( function() {
+    $( "#stl_contTop" ).draggable({ axis: "y" });
+    $( "#stl_contButton" ).draggable({ axis: "y" , containment: "#printPreview"});
+    $( "#annoDisplay" ).draggable({containment: "#printPreview"});
+  } );
