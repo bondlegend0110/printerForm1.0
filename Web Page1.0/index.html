@@ -10,9 +10,6 @@
     <!-- Include from the CDN -->
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
 
-    <!--jsPDF-->
-    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-
     <title>Home - Printer Form</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -53,20 +50,7 @@
                 <p>Preview Popup</p>
             </div>
             <div>
-                <div id="printPreview" >
-                    <img id = "background-template"  src="./pictures/templates/CURVED_FORM_TEMPLATE.jpg"/>
                 
-                    <div  id="top" >
-                      <div id="stl_contTop"></div> 
-                    </div>
-                
-                    <div  id="top2" >
-                      <div id="stl_contButton" ></div>
-                    </div>
-                    
-                    <p id = "annoDisplay"></p>
-                    
-                  </div>
                 <button id="backPreviewPopupBtn" class="back-button" type="button">BACK</button>
                 <button id="nextPreviewPopupBtn"  class="next-button" type="button">NEXT</button>
             </div>
@@ -212,7 +196,7 @@
 
 
 
-    <script src="stl_viewer.min.js"></script>
+    <script src="./viewstl/stl_viewer.min.js"></script>
     <script src="index.js"></script>
 </body>
     <input type="file" id="fileInput" name="fileInput" onchange="stlLoad(this)" placeholder="Upload" accept="*.*"> 
