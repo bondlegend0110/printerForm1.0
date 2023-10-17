@@ -13,32 +13,20 @@
     <!--jsPDF-->
     <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
 
-    <title>Home - Printer Form</title>
+    <title>Preview - Printer Form</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
-    <!--Don't Show Again popup-->
-    <div id="DSApopup" class="popup">
-        <!-- Popup content -->
+<body onload = "loadBasic()">
+    <!--Form Selection Popup-->
+    <div id="formSelectionPopup" class="popup">
         <div class="popup-content">
-            <span class="close">&times;</span>
-            <p>Welcome to our website! Learn how to use our site with our guide.</p>
-            <input type="checkbox" id="doNotShow">
-            <label for="doNotShow">Don't show this message again</label>
-        </div>
-    </div>
-
-    <!--Upload Popup-->
-    <div id="uploadPopup" class="popup">
-        <div class="popup-content">
-            <!-- upload button/div-->
-            <div id="open-directory-container" class="background-container">
-                <button id="openDirectoryBtn"  class="upload-button" type="button">UPLOAD</button>
-            </div>
+            <!--TOOD Fix Close-->
+            <span id="closeFormSelectionPopupBtn" class="close-button">&times;</span>
+            <p>Form Selection</p>
             <div>
-                <button id="closeUploadPopupBtn" class="back-button" type="button">BACK</button>
-                <button id="nextUploadPopupBtn"  class="next-button" type="button">NEXT</button>
+                <button id="backFormSelectionPopupBtn" class="back-button" type="button">BACK</button>
+                <button id="nextFormSelectionPopupBtn"  class="next-button" type="button">NEXT</button>
             </div>
         </div>
     </div>
@@ -69,11 +57,32 @@
                 </ul>
                 
             </nav>
-            <!-- upload button/div-->
-            <div id="upload-container"class="background-container">
-                <button class="upload-button" id = "openUploadPopupBtn" type="button">UPLOAD</button>
+            <!-- preview/div-->
+            <div id="preview-container"class="background-container">
+                <div id="printPreview" >
+                    <img id = "background-template"  src="./pictures/templates/CURVED_FORM_TEMPLATE.jpg"/>
+                
+                    <div  id="top" class="stl_display">
+                        <div id="stl_contTop" class="stl_cont"></div> 
+                    </div>
+                
+                    <div  id="top2" class="stl_display">
+                        <div id="stl_contButton" class="stl_cont"></div>
+                    </div>
+                    
+                    <p id = "annoDisplay"></p>
+                    
+                </div>
+        
+                <div id = "dummyDisplay" class="stl_display">
+                    <div id="stl_contMain" class="stl_cont"></div>
+                    
+                </div>
             </div>
-
+            <div>
+                <button id="backPreviewBtn" class="back-button" type="button">BACK</button>
+                <button id="nextPreviewBtn"  class="next-button" type="button">NEXT</button>
+            </div>
         </div>
     </div>
 
@@ -169,7 +178,7 @@
 
 
     <script src="./viewstl/stl_viewer.min.js"></script>
-    <script src="index.js"></script>
+    <script src="preview.js"></script>
 </body>
     <input type="file" id="fileInput" name="fileInput" onchange="stlLoad(this)" placeholder="Upload" accept="*.*"> 
 </html>
