@@ -130,7 +130,14 @@ nav .fas{
     padding: 10px;
 }
 
+
 /*TODO fix the botton styles*/
+.bottom-buttons{
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+}
+
 .back-button{
     color: #FFF;
     font-family: Futura;
@@ -208,10 +215,10 @@ nav .fas{
 .popup {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
+    top: 0; /* half of width */
+    left: 0; /* half of height */
     z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
+    /*padding-top: 100px; /* Location of the box */
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
@@ -222,10 +229,85 @@ nav .fas{
 /* Popup Content */
 .popup-content {
     background-color: #fefefe;
-    margin: auto;
+    margin: 2vh auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+}
+
+/* Form Selection Popup*/
+#fs-popup-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#closeFormSelectionPopupBtn{
+    align-self: flex-start;
+}
+#fs-title{
+    align-self: flex-start;
+    margin-left: 5vw;
+}
+
+#fs-content-container{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 90%;
+    height: 55vh;
+    margin-top: 2vw;
+    margin-bottom: 5vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 1vw 0;
+}
+
+.fs-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 22%;
+    height: 50vh;
+    background: #7072EC;
+    border-radius: 5%;
+    margin: 2vh;
+}
+
+.fs-item:hover  {
+    -webkit-transform:scale(1.02); /* or some other value */
+    transform:scale(1.02);
+}
+
+.selected{
+    border: 0.5vw solid black;
+}
+
+
+.fs-pic{
+    width: 80%;
+    height: 30vh;
+    background-color: #FFF;
+    object-fit: cover;
+    border-radius: 5%;
+    margin-top: 10%;
+    margin-bottom: 3vh;
+}
+
+.fs-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    width: 80%;
+}
+
+.fs-text-item{
+    color: white;
 }
 
 /* The Close Button */
