@@ -39,6 +39,7 @@ nav ul li{
 /* each menu item */
 nav ul li a{
     color: #404040;;
+    /* color:#6E6969; */
     text-decoration: none;
     font-size: 22px;
     font-style: normal;
@@ -76,93 +77,136 @@ nav .fas{
     display: block;
 }
 
-/* our mission box */
-.text-container{
-    background-color: #F5F5F5; 
-    /* height: 250px; */
-    width: auto;
-    margin-top: 3%;
-}
-
-.mission-text{
-    padding: 6%;
-    text-align: center;
-    font-size: 22px;
-    font-style: normal;
-    line-height: normal;
-    color:#404040;
-}
-
-/* team gallery */
+/* instructions container */
 
 .title{
     color:#404040;
+    /* color:#6E6969; */
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    /* text-align: center; */
+}
+
+.text-container{
+    margin-top: 8%;
+}
+
+.text-sub-container{
+    margin-bottom:4%;
+}
+
+.instructions-sub-title{
+    color:#404040;
+    /* color:#6E6969; */
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.instructions-text{
+    color:#404040;
+    /* color:#6E6969; */
+    margin-top: 2%;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+
+/* workflow/ howto with pics box */
+.workflow-instructions{
+    color: #fff;
+    text-decoration: none;
     font-size: 28px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    text-align: center;
 }
 
-.team-list{
-    margin-top: 3%;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    /* justify-content: center; */
-    align-items: center;
+#workflow {
     display: flex;
-    gap: 5%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    /* justify-content: space-between; */
+    align-items: center;
+    flex-wrap: wrap;
     /* width: 100%; */
-    /* margin: auto; */
 }
 
-.card{
+.work-item {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 300px;
+    height: max-content;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    text-align: left;
-    height: 600px;
-    width: 350px;
-    background-color: #7072EC;
-    margin-bottom: 25px;
-    line-height: 25px;
+    align-items: center;
 }
 
-.team-pic{
-    /* border-radius: 20px; */
-    margin: 5%;
-    width: auto;
-    height: 320px;
+.work-item-title {
+    margin-bottom: 10px;
+    color: #FFF;
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.work-item-pic {
+    width: 70%;
+    height: auto;
+    background-color: #FFF;
+    /* height: 20vw; */
     object-fit: cover;
+    border-radius: 30px;
 }
 
-.name{
-    margin-left:5%;
-    color:#fff;
-    font-size: 16px;
-    font-style: normal;
+.work-item-text {
+    width: 65%;
+    /* height: 12.5vw; */
+    height:60px;
+    margin-top: 10px;
+    color: white;
+    text-align: center;
+    font-size: 18px;
     font-weight: 400;
-    line-height: normal;
 }
 
-.card-text{
-    margin-left: 5%;
-    margin-right:5%;
-    margin-top:3%;
-    margin-bottom:5%;
-    color:#fff;
-    font-size: 14px;
-    font-style: normal;
+/* additional examples */
+
+.additional-examples-text{
+    color:#404040;
+    /* color:#6E6969; */
+    margin-top: 5%;
+    font-size: 18px;
     font-weight: 400;
-    line-height: normal;
 }
 
+.image-gallery {
+    margin-top:5%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    list-style-type: none;
+    /* align-items:stretch; */
+  }
+
+.image-gallery > li {
+    flex-basis: 200px; 
+    /* width: 350px; */
+}
+
+.image-gallery li img {
+    object-fit: cover;
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    border-radius: 0px;
+}
 
 
 /* footer */
 #footer{
     background-color: #7072EC;
-    margin-top: 30px;
+    margin-top: 60px;
 }
 
 .footer-nav-container{
