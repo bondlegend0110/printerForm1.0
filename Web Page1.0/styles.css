@@ -1,7 +1,7 @@
 *{
     margin:0;
     padding:0;
-    font-family: "Futura";  
+    font-family: "Helvetica Neue","Helvetica","Arial",sans-serif; 
     box-sizing:border-box;
 }
 
@@ -19,13 +19,10 @@
 }
 
 /* logo/name */
-.name{
-    color: #404040;
-    text-decoration: none;
-    font-size: 28px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+.logo{
+    width: 50%;
+    height: auto;
+    display:block;
 }
 
 /* menu items */
@@ -277,6 +274,7 @@ nav .fas{
     font-size: 28px;
     font-style: normal;
     font-weight: 400;
+    /* font-weight: 700; this is what I pushed*/
     line-height: normal;
 }
 
@@ -301,7 +299,7 @@ nav .fas{
     height: auto;
     vertical-align: middle;
     border-radius: 0px;
-  }
+}
 
 .about{
     margin-top: 40px;
@@ -351,7 +349,6 @@ nav .fas{
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-
 }
 
 .footer-nav li{
