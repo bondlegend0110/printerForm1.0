@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--upload-->
+    <script src="https://kit.fontawesome.com/67e5d0119e.js" crossorigin="anonymous"></script>
+
+    <!-- Include from the CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
+
+    <!--jsPDF-->
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+
+    <title>Preview - Printer Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body onload = "loadBasic()">
+        <!--Form Selection Popup-->
+        <div id="formSelectionPopup" class="popup">
+            <div class="popup-content" id="fs-popup-container">
+                <!--TOOD Fix Close-->
+                <span id="closeFormSelectionPopupBtn" class="close-button">&times;</span>
+                <h2 id="fs-title">Form Selection</h2>
+                <div id="fs-content-container">
+                    <div id="fs-curvedvolume" class="fs-item">
+                        <img class="fs-pic"src="./pictures/start page/curved_sample 1.png" alt="" />
+                        <div class="fs-text">
+                            <h3 class="fs-text-item">Curved Volume</h3>
+                            <p class="fs-text-item">information</p>
+                        </div>
+                    </div>
+                    <div id="fs-foursidedcube" class="fs-item">
+                        <img class="fs-pic"src="./pictures/start page/fourSideCubeBunny 1.png" alt="" />
+                        <div class="fs-text">
+                            <h3 class="fs-text-item">Four-Sided Cube</h3>
+                            <p class="fs-text-item">information</p>
+                        </div>
+                    </div>
+                    <div id="fs-3" class="fs-item">
+                        <img class="fs-pic"src="./pictures/start page/curved_sample 1.png" alt="" />
+                        <div class="fs-text">
+                            <h3 class="fs-text-item">Form Name</h3>
+                            <p class="fs-text-item">information</p>
+                        </div>
+                    </div>
+                    <div class="fs-item">
+                        <img class="fs-pic"src="./pictures/start page/curved_sample 1.png" alt="" />
+                        <div class="fs-text">
+                            <h3 class="fs-text-item">Form Name</h3>
+                            <p class="fs-text-item">information</p>
+                        </div>
+                    </div>
+                    <div class="fs-item">
+                        <img class="fs-pic"src="./pictures/start page/curved_sample 1.png" alt="" />
+                        <div class="fs-text">
+                            <h3 class="fs-text-item">Form Name</h3>
+                            <p class="fs-text-item">information</p>
+                        </div>
+                    </div>
+                    <div class="fs-item">
+                        <img class="fs-pic"src="./pictures/start page/curved_sample 1.png" alt="" />
+                        <div class="fs-text">
+                            <h3 class="fs-text-item">Form Name</h3>
+                            <p class="fs-text-item">information</p>
+                        </div>
+                    </div>
+                    <div class="fs-item">
+                        <img class="fs-pic"src="./pictures/start page/curved_sample 1.png" alt="" />
+                        <div class="fs-text">
+                            <h3 class="fs-text-item">Form Name</h3>
+                            <p class="fs-text-item">information</p>
+                        </div>
+                    </div>
+                    <div class="fs-item">
+                        <img class="fs-pic"src="./pictures/start page/curved_sample 1.png" alt="" />
+                        <div class="fs-text">
+                            <h3 class="fs-text-item">Form Name</h3>
+                            <p class="fs-text-item">information</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-buttons">
+                    <button id="backFormSelectionPopupBtn" class="back-button" type="button">BACK</button>
+                    <button id="nextFormSelectionPopupBtn"  class="next-button" type="button">NEXT</button>
+                </div>
+            </div>
+        </div>
+
+    <!--Popup overlay-->
+    <div id="overlay" class="overlay"></div>       
+    
+    <div id="header">
+        <div class="container">
+            <!--  navigation bar -->
+            <nav class="nav-bar">
+                <!--  logo/name -->
+                <a class="name" href="./index.html">Printer Form</a>
+                <!--  menu items -->
+                <ul id="menu">
+                    <li><a href="#">How To</a></li>
+                    <li class="menu-item dropdown">
+                        <a href="./resource.html" class="dropbtn">Resources</a>
+                        <div class="dropdown-content">
+                            <a href="#">TinkerCAD</a>
+                            <a href="#">Lesson Plans</a>
+                        </div>
+                    </li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="./about.html">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    
+                </ul>
+                
+            </nav>
+            <!-- preview/div-->
+            <div id="preview-container"class="background-container">
+                <div id="printPreview" >
+                    <img id = "background-template"  src="./pictures/templates/CURVED_FORM_TEMPLATE.jpg"/>
+                
+                    <div  id="top" class="stl_display">
+                        <div id="stl_contTop" class="stl_cont"></div> 
+                    </div>
+                
+                    <div  id="top2" class="stl_display">
+                        <div id="stl_contButton" class="stl_cont"></div>
+                    </div>
+                    
+                    <p id = "annoDisplay"></p>
+                    
+                </div>
+        
+                <div id = "dummyDisplay" class="stl_display">
+                    <div id="stl_contMain" class="stl_cont"></div>
+                    
+                </div>
+            </div>
+            <div>
+                <button id="backPreviewBtn" class="back-button" type="button">BACK</button>
+                <button id="nextPreviewBtn"  class="next-button" type="button">NEXT</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="background: #7072EC;">
+        <h2 class="workflow-instructions">Instructions</h2>
+    <div id="workflow">
+        <div class="work-item">
+            <h2 class="work-item-title">Upload</h2>
+            <img class="work-item-pic" src="./pictures/start page/upload.png" />
+            <p class="work-item-text">Upload any .STL file.</p>
+        </div>
+        <div class="work-item">
+            <h2 class="work-item-title">Modify</h2>
+            <img class="work-item-pic" src="./pictures/start page/modify.png" />
+            <p class="work-item-text">Modify your selections to best fit the shape of your file.</p>
+        </div>
+        <div class="work-item">
+            <h2 class="work-item-title">Download</h2>
+            <img class="work-item-pic" src="./pictures/start page/download.png" />
+            <p class="work-item-text">Download your .PDF to print.</p>
+        </div>
+    </div>
+    </div>
+    
+
+
+    <div class="gallery">
+        <div class="container">
+            <h1 class="title">Gallery</h1>
+            <ul class="image-gallery">
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/curved_sample 1.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/fourSideCubeBunny 1.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/curved_sample 1.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/curved_sample 1.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/curved_sample 1.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/curved_sample 1.png" alt="" />
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="about">
+        <div class="container">
+            <h1 class="title">About</h1>
+            <h2 class="about-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
+                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </h2>
+            <a href="about.html"><button class="read-more-button">Read More</button></a>
+        </div>
+    </div>
+
+    <!--TODO: Make Footer?-->
+    <div id="footer">
+        <div class="container">
+
+            <div class="footer-nav-container">
+                <ul class="footer-nav" style="text-align:center;">
+                    <li><a href="#">How To</a></li>
+                    <h1>|</h1>
+                    <li><a href="./resource.html">Resources</a></li>
+                    <h1>|</h1>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <h1>|</h1>
+                    <li><a href="./about.html">About</a></li>
+                </ul>
+
+                <ul class="footer-nav" style="text-align:center;">
+                    <li><a href="mailto:email@brown.edu">email@brown.edu</a></li>
+                    <h1>|</h1>
+                    <li><a href="googlesurveylink.com">Feedback Form</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <script src="./viewstl/stl_viewer.min.js"></script>
+    <script src="preview.js"></script>
+</body>
+    <input type="file" id="fileInput" name="fileInput" onchange="stlLoad(this)" placeholder="Upload" accept="*.*"> 
+</html>
