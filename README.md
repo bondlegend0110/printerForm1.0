@@ -41,7 +41,8 @@ Design Brief
 * Buttons
 
 ## Acknowledgements
-Brown University \
+### Brown University
+Professor Ian Gonsher \
 Alara Kalfazade, Vivian Li, Katherine Lynch, Zimu Niu, and José Sandoval
 ### PrinterForm
 Harry Tan
