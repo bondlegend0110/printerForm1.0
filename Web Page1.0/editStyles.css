@@ -80,7 +80,7 @@ input[type=range]{
     height: 60px;
 }
 
-#nextDownloadPopupBtn {
+#downloadPDFbtn {
     width: 150px;
     height: 45px;
 }
