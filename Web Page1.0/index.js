@@ -1,4 +1,3 @@
-var stl_viewerMain = new StlViewer ( document.getElementById("stl_contMain"));
 var popup = document.getElementById('DSApopup');
 
 // Get the <span> element that closes the modal
@@ -26,6 +25,10 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('doNotShow').addEventListener('change', function() {
         localStorage.setItem('doNotShow', this.checked ? 'true' : 'false');
     });
+    if (sessionStorage.getItem('showUploadPopup') === 'true') {
+        document.getElementById('uploadPopup').style.display = 'block';
+        sessionStorage.removeItem('showUploadPopup');
+    }
 });
 
 //Start page Button
@@ -48,48 +51,28 @@ document.getElementById('closeUploadPopupBtn').addEventListener('click', functio
 //Next Button
 document.getElementById('nextUploadPopupBtn').addEventListener('click', function() {
     document.getElementById('uploadPopup').style.display = 'none';
-    document.getElementById('previewPopup').style.display = 'block';
-    //TODO Next Button Functionality
-});
-
-//JavaScript for the Preview button
-//Close Button
-document.getElementById('closePreviewPopupBtn').addEventListener('click', function() {
-    document.getElementById('previewPopup').style.display = 'none';
-});
-//Back Button
-document.getElementById('backPreviewPopupBtn').addEventListener('click', function() {
-    document.getElementById('previewPopup').style.display = 'none';
-    document.getElementById('uploadPopup').style.display = 'block';
-});
-//Next Button
-document.getElementById('nextPreviewPopupBtn').addEventListener('click', function() {
-    document.getElementById('previewPopup').style.display = 'none';
-    document.getElementById('formSelectionPopup').style.display = 'block';
+    window.location.href = './preview.html';
 });
 
 //JavaScript for the Form Selection buttons
+var forms = document.querySelectorAll('.fs-item');
 
-//Close Button
-document.getElementById('closeFormSelectionPopupBtn').addEventListener('click', function() {
-    document.getElementById('formSelectionPopup').style.display = 'none';
+forms.forEach(function (item) {
+    item.addEventListener('dblclick', function() {
+
+        if (!item.classList.contains('selected')) {
+            forms.forEach(function (el) {
+                el.classList.remove('selected');
+            });
+            item.classList.add('selected');
+        } else {
+            item.classList.remove('selected');
+        }
+    });
 });
-//Back Button
-document.getElementById('backFormSelectionPopupBtn').addEventListener('click', function() {
-    document.getElementById('formSelectionPopup').style.display = 'none';
-    document.getElementById('previewPopup').style.display = 'block';
-});
-//Next Button
-document.getElementById('nextFormSelectionPopupBtn').addEventListener('click', function() {
-    document.getElementById('formSelectionPopup').style.display = 'none';
-    // Navigate to the desired HTML file
-    window.location.href = './edit.html';
-});
 
-
-
-//Canvas code 
-
+//STL upload code
+//uploadFile
 function uploadFile() {
     document.getElementById("lFile").click();
     //document.getElementById('uploadLink').setAttribute("class", "");
@@ -98,7 +81,6 @@ function uploadFile() {
 }
 
 //no rotation on z for the six sides
-
 function stlLoad(files){
 
     var canvasList = document.getElementsByTagName("canvas");
