@@ -4,7 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--upload-->
     <script src="https://kit.fontawesome.com/67e5d0119e.js" crossorigin="anonymous"></script>
+
+    <!-- Include from the CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
+
+    <!--jsPDF-->
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+
     <title>Home - Printer Form</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -28,42 +36,12 @@
             <div id="open-directory-container" class="background-container">
                 <button id="openDirectoryBtn" class="upload-button" type="button">UPLOAD</button>
             </div>
-            <div>
+            <div class="bottom-buttons">
                 <button id="closeUploadPopupBtn" class="back-button" type="button">BACK</button>
                 <button id="nextUploadPopupBtn" class="next-button" type="button">NEXT</button>
             </div>
         </div>
     </div>
-
-    <!--Preview Popup-->
-    <div id="previewPopup" class="popup">
-        <div class="popup-content">
-            <!--TOOD Fix Close-->
-            <span id="closePreviewPopupBtn" class="close-button">&times;</span>
-            <!-- upload button/div-->
-            <div id="upload-preview-container" class="background-container">
-                <p>Preview Popup</p>
-            </div>
-            <div>
-                <button id="backPreviewPopupBtn" class="back-button" type="button">BACK</button>
-                <button id="nextPreviewPopupBtn" class="next-button" type="button">NEXT</button>
-            </div>
-        </div>
-    </div>
-
-    <!--Form Selection Popup-->
-    <div id="formSelectionPopup" class="popup">
-        <div class="popup-content">
-            <!--TOOD Fix Close-->
-            <span id="closeFormSelectionPopupBtn" class="close-button">&times;</span>
-            <p>Form Selection</p>
-            <div>
-                <button id="backFormSelectionPopupBtn" class="back-button" type="button">BACK</button>
-                <button id="nextFormSelectionPopupBtn" class="next-button" type="button">NEXT</button>
-            </div>
-        </div>
-    </div>
-
     <!--Popup overlay-->
     <div id="overlay" class="overlay"></div>
 
@@ -88,7 +66,6 @@
                     <li><a href="./about.html">About</a></li>
                 </ul>
             </nav>
-
             <!-- upload button/div-->
             <div id="upload-container" class="background-container">
                 <button class="upload-button" id="openUploadPopupBtn" type="button">UPLOAD</button>
@@ -187,7 +164,7 @@
 
 
 
-
+    <script src="./viewstl/stl_viewer.min.js"></script>
     <script src="index.js"></script>
 </body>
 <input type="file" id="fileInput" name="fileInput" onchange="stlLoad(this)" placeholder="Upload" accept="*.*">
