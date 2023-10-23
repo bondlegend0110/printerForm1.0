@@ -190,14 +190,6 @@ iframe{
 
 /* additional examples */
 
-.additional-examples-text{
-    color:#404040;
-    /* color:#6E6969; */
-    margin-top: 5%;
-    font-size: 18px;
-    font-weight: 400;
-}
-
 .image-gallery {
     margin-top:5%;
     display: flex;
@@ -218,6 +210,23 @@ iframe{
     height: auto;
     vertical-align: middle;
     border-radius: 0px;
+}
+
+.view-more-button{
+    margin-top: 2%;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    border-radius: 30px;
+    background: #FFE07D;
+    width: 120px;
+    height: 40px;  
 }
 
 
