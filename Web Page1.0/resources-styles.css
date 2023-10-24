@@ -114,10 +114,11 @@ nav .fas{
 
 .education-img-container{
     display: flex;
+    gap:10px;
 }
 
 
-/* workflow/ howto with pics box */
+/* 3d files container */
 .workflow-text{
     color:#fff;
     margin-top: 2%;
@@ -126,20 +127,20 @@ nav .fas{
 }
 
 #workflow {
+    margin-top: 5%;
+    margin-bottom: 5%;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    /* justify-content: space-between; */
+    /* justify-content: space-evenly; */
+    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    /* width: 100%; */
 }
 
 .item {
     margin-top: 20px;
     margin-bottom: 20px;
-    width: 300px;
-    height: max-content;
+    /* width: 300px; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -148,17 +149,46 @@ nav .fas{
 .item-title {
     margin-bottom: 10px;
     color: #FFF;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 400;
 }
 
 .item-pic {
-    width: 70%;
+    width: 100%;
     height: auto;
-    background-color: #FFF;
-    /* height: 20vw; */
     object-fit: cover;
-    border-radius: 30px;
+
+}
+
+/* activities and lesson plans */
+.image-gallery {
+    margin-top:5%;
+    display: flex;
+    gap: 10px;
+    list-style-type: none;
+    flex-wrap: wrap;
+    /* align-items:stretch; */
+  }
+
+.image-gallery-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.image-gallery-item{
+    cursor: pointer;
+    width: 200px;
+}
+
+.image-gallery-item img {
+    object-fit: cover;
+    /* max-width: 100%; */
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+    border-radius: 0px;
 }
 
 
