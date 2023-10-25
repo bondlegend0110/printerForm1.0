@@ -80,6 +80,7 @@ nav .fas{
     margin-top: 80px;
     margin-bottom: 80px;
     width: auto;
+    padding: 30px;
     background-color: rgba(255, 224, 125, 0.20);  
     border-radius: 30px; 
     display: flex;
@@ -87,9 +88,28 @@ nav .fas{
     align-items: center; 
 }
 
+#fileNameDisplay{
+    border: none;             /* Remove the border */
+    background: none;         /* Remove the background */
+    outline: none;            /* Remove the focus outline */
+    cursor: default;          /* Use the default cursor instead of the text selection cursor */
+    width: 120px;              /* Adjust width as needed, auto will make it fit content */
+    color: inherit;           /* Inherit text color from parent, can be set to any desired color */
+    font-family: inherit;     /* Inherit font family from parent */
+    font-size: inherit;       /* Inherit font size from parent */
+    pointer-events: none;     /* Prevent any mouse interactions */}
+
 /* upload container */
 #upload-container{
-    height: 200px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#reopenFileDirectoryBtn{
+    display: none;
+    border-radius: 10px;
+    width: 90px;
+    height: 45px;
 }
 
 /* upload container */
@@ -97,13 +117,21 @@ nav .fas{
     height: 200px;
 
 }
+
+#other-forms{
+    display: none;
+}
+
+#preview-container{
+    display: none;
+}
+
 #upload-preview-container{
     margin-top: 40px;
     margin-bottom: 40px;
     height: 500px;
 }
 #printPreview{
-    visibility: hidden;
     float:right; 
     width:70px;
     height:100px;
@@ -121,10 +149,21 @@ nav .fas{
     width: 600px; 
     height: 500px
 }
-#download-preview-container{
+
+.bottom-controls{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+#download-container{
+    display: none;
     margin-top: 40px;
     margin-bottom: 40px;
     height: 500px;
+}
+.file-input-wrapper{
+    padding: 30px;
 }
 
 /*TODO fix the upload styles so that the popup style and the home screen room*/
@@ -175,7 +214,7 @@ nav .fas{
     height: 45px;
 }
 
-.next-button{
+.next-button, .download-button{
     color: #FFF;
     font-family: Futura;
     font-size: 18px;
@@ -193,8 +232,16 @@ nav .fas{
     height: 45px;
 }
 
+/*TODO fix the upload styles so that the popup style and the home screen room*/
+
+.big-button {
+    padding: 10px;
+    width: auto;
+    height: auto;
+}
+
 /*curve picture*/
-.background-templates{
+#background-template{
     position: absolute;
     background-color: none;
     height: 100px; 

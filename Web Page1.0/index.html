@@ -15,9 +15,10 @@
 
     <title>Home - Printer Form</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="EditStyles.css">
 </head>
 
-<body>
+<body onload="loadBasic()">
     <!--Don't Show Again popup-->
     <div id="DSApopup" class="popup">
         <!-- Popup content -->
@@ -28,20 +29,92 @@
             <label for="doNotShow">Don't show this message again</label>
         </div>
     </div>
-
-    <!--Upload Popup-->
-    <div id="uploadPopup" class="popup">
-        <div class="popup-content">
-            <!-- upload button/div-->
-            <div id="open-directory-container" class="background-container">
-                <button id="openDirectoryBtn" class="upload-button" type="button">UPLOAD</button>
+    <!--Form Selection Popup-->
+    <div id="formSelectionPopup" class="popup">
+        <div class="popup-content" id="fs-popup-container">
+            <!--TOOD Fix Close-->
+            <span id="closeFormSelectionPopupBtn" class="close-button">&times;</span>
+            <h2 id="fs-title">Form Selection</h2>
+            <div id="fs-content-container">
+                <div id="fs-curvedvolume" class="fs-item">
+                    <img class="fs-pic"src="./pictures/start page/curved_sample 1.png" alt="" />
+                    <div class="fs-text">
+                        <h3 class="fs-text-item">Curved Volume</h3>
+                        <p class="fs-text-item">information</p>
+                    </div>
+                </div>
+                <div id="fs-foursidedcube" class="fs-item">
+                    <img class="fs-pic"src="./pictures/start page/fourSideCubeBunny 1.png" alt="" />
+                    <div class="fs-text">
+                        <h3 class="fs-text-item">Four-Sided Cube</h3>
+                        <p class="fs-text-item">information</p>
+                    </div>
+                </div>
+                <div id="fs-3" class="fs-item">
+                    <img class="fs-pic"src="./pictures/start page/curved_sample 1.png" alt="" />
+                    <div class="fs-text">
+                        <h3 class="fs-text-item">Form Name</h3>
+                        <p class="fs-text-item">information</p>
+                    </div>
+                </div>
+                <div class="fs-item">
+                    <img class="fs-pic"src="./pictures/start page/curved_sample 1.png" alt="" />
+                    <div class="fs-text">
+                        <h3 class="fs-text-item">Form Name</h3>
+                        <p class="fs-text-item">information</p>
+                    </div>
+                </div>
+                <div class="fs-item">
+                    <img class="fs-pic"src="./pictures/start page/curved_sample 1.png" alt="" />
+                    <div class="fs-text">
+                        <h3 class="fs-text-item">Form Name</h3>
+                        <p class="fs-text-item">information</p>
+                    </div>
+                </div>
+                <div class="fs-item">
+                    <img class="fs-pic"src="./pictures/start page/curved_sample 1.png" alt="" />
+                    <div class="fs-text">
+                        <h3 class="fs-text-item">Form Name</h3>
+                        <p class="fs-text-item">information</p>
+                    </div>
+                </div>
+                <div class="fs-item">
+                    <img class="fs-pic"src="./pictures/start page/curved_sample 1.png" alt="" />
+                    <div class="fs-text">
+                        <h3 class="fs-text-item">Form Name</h3>
+                        <p class="fs-text-item">information</p>
+                    </div>
+                </div>
+                <div class="fs-item">
+                    <img class="fs-pic"src="./pictures/start page/curved_sample 1.png" alt="" />
+                    <div class="fs-text">
+                        <h3 class="fs-text-item">Form Name</h3>
+                        <p class="fs-text-item">information</p>
+                    </div>
+                </div>
             </div>
             <div class="bottom-buttons">
-                <button id="closeUploadPopupBtn" class="back-button" type="button">BACK</button>
-                <button id="nextUploadPopupBtn" class="next-button" type="button">NEXT</button>
+                <button id="backFormSelectionPopupBtn" class="back-button" type="button">BACK</button>
+                <button id="nextFormSelectionPopupBtn"  class="next-button" type="button">NEXT</button>
             </div>
         </div>
     </div>
+
+    <!--Download Preview Popup-->
+    <div id="downloadPopup" class="popup">
+        <div class="popup-content">
+            <!--TOOD Fix Close-->
+            <span id="closeDownloadPopupBtn" class="close-button">&times;</span>
+            <div id="print-preview-container" class="background-container">
+                <p>Print Preview</p>
+            </div>
+            <div>
+                <button id="backDownloadPopupBtn" class="back-button" type="button">BACK</button>
+                <button id="downloadPDFbtn"  class="download-button" type="button">DOWNLOAD</button>
+            </div>
+        </div>
+    </div>
+
     <!--Popup overlay-->
     <div id="overlay" class="overlay"></div>
 
@@ -66,15 +139,128 @@
                     <li><a href="./about.html">About</a></li>
                 </ul>
             </nav>
+
             <!-- upload button/div-->
             <div id="upload-container" class="background-container">
-                <button class="upload-button" id="openUploadPopupBtn" type="button">UPLOAD</button>
+                <div class ="item-swtich">
+                    <button class="upload-button" id="openFileDirectoryBtn" type="button">UPLOAD</button>
+                    <div id="printPreview" >                    
+                        <div  id="top" class="stl_display">
+                            <div id="stl_preview" class="stl_cont"></div> 
+                        </div>
+                        
+                        <p id = "annoDisplay"></p>
+                        
+                    </div>
+            
+                    <div id = "dummyDisplay" class="stl_display">
+                        <div id="stl_contMain" class="stl_cont"></div>
+                        
+                    </div>
+                </div>
+                <div id="start-controls" class ="bottom-controls">
+                    <button class="upload-button big-button" id="reopenFileDirectoryBtn" type="button">REUPLOAD</button>
+                    <div class="file-input-wrapper">
+                        <label for="file">Current File: </label>
+                        <input id="fileNameDisplay" type="text" value="No file chosen." readonly>
+                    </div>
+                    <button id="nextStartPageBtn" class="next-button" type="button"> NEXT </button>
+                </div>
+            </div>
+            
+            <!-- preview section/div-->
+            <div id ="download-container">
+                <div class="editor-container">
+                    <div id="printPreview" >                    
+                        <div  id="rigth" class="stl_display">
+                        <div id="stl_view1" class="stl_cont"></div> 
+                        </div>
+                    
+                        <div  id="left" class="stl_display">
+                        <div id="stl_view2" class="stl_cont"></div>
+                        </div>
+                        
+                    </div>
+        
+                    <div id = "dummyDisplay" class="stl_display">
+                        <div id="stl_contMain" class="stl_cont"></div>
+                    
+                    </div>
+                    <div class="editor-container-controls">
+                        <div class="grid-control">
+                            <label for="paper-size">Paper Size: </label>
+                            <select id="paper-size" name="paper-size">
+                            <option value="a4">A4</option>
+                            <option value="a3">A3</option>
+                            <option value="letter">Letter</option>
+                            <option value="legal">Legal</option>
+                            </select>
+                        </div>
+                        <div class="grid-control">
+                            <div class="magnification-input-wrapper">
+                                <label for="magnification">Magnification: </label>
+                                <input id="magnification-value" type="text" value="1.0">
+                            </div>
+                            <input type="range" id="magnification" name="magnification" min="0.1" max="2" step="0.1" value="1">
+                        </div>
+                        <div class="grid-control">
+                            <label for="line-color">Line Color: </label>
+                            <select id="line-color" name="line-color">
+                            <option value="red">Red</option>
+                            <option value="green">Green</option>
+                            <option value="blue">Blue</option>
+                            <option value="black">Black</option>
+                            </select>
+                        </div>
+                        <div class="grid-control">
+                            <label for="model-color">Model Color: </label>
+                            <select id="model-color" name="model-color">
+                            <option value="white">White</option>
+                            <option value="gray">Gray</option>
+                            <option value="yellow">Yellow</option>
+                            <option value="brown">Brown</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div id="edit-controls" class ="bottom-controls">
+                    <button id="backEditPageBtn" class="back-button" type="button">BACK</button>
+                    <button id = "openDownloadPopupBtn" class="download-button big-button" type="button"> PRINT </button>
+                </div>
             </div>
 
         </div>
     </div>
 
-    <div class="container" style="background: #7072EC;">
+
+    <div id = "other-forms" class="gallery">
+        <div class="container">
+            <h1 class="title">OTHER FORMS</h1>
+            <ul class="image-gallery">
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/curved_sample 1.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/fourSideCubeBunny 1.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/curved_sample 1.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/curved_sample 1.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/curved_sample 1.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/curved_sample 1.png" alt="" />
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div id = "instructions" class="container" style="background: #7072EC;">
         <h2 class="workflow-instructions">Instructions</h2>
         <div id="workflow">
             <div class="work-item">
@@ -95,9 +281,7 @@
         </div>
     </div>
 
-
-
-    <div class="gallery">
+    <div id = "public-gallery" class="gallery">
         <div class="container">
             <h1 class="title">Gallery</h1>
             <ul class="image-gallery">
@@ -123,6 +307,7 @@
         </div>
     </div>
 
+
     <div class="about">
         <div class="container">
             <h1 class="title">About</h1>
@@ -133,6 +318,7 @@
             <a href="about.html"><button class="read-more-button">Read More</button></a>
         </div>
     </div>
+
 
     <!--TODO: Make Footer?-->
     <div id="footer">
@@ -161,12 +347,11 @@
     </div>
 
 
-
-
-
     <script src="./viewstl/stl_viewer.min.js"></script>
+    <script src="viewer.js"></script>
+    <script src = "edit.js"></script>
     <script src="index.js"></script>
 </body>
-<input type="file" id="fileInput" name="fileInput" onchange="stlLoad(this)" placeholder="Upload" accept="*.*">
+<input type="file" id="fileInput" onchange="inputChange(this)" placeholder="Upload" accept="*.*">
 
 </html>

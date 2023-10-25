@@ -16,7 +16,7 @@
     background-size: 20% 14.28%;
 }
 
-.controls {
+.editor-container-controls {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -57,27 +57,14 @@ input[type=range]{
     background-color: white;
 }
 
+#printPreview{
+    display: block;
+}
+
 /*TODO fix the upload styles so that the popup style and the home screen room*/
 
 .download-button {
-    color: #FFF;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    border: none;
-    border-radius: 10px;
     background: #FF664F;
-    height: 60px;
-}
-
-#openDownloadPopupBtn {
-    width: 100px;
-    height: 60px;
 }
 
 #downloadPDFbtn {
