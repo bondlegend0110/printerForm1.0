@@ -1,6 +1,17 @@
 var stl_viewerMain = new StlViewer ( document.getElementById("stl_contMain"));
 
 //Edit page Buttons
+document.getElementById('backEditPageBtn').addEventListener('click', function() {
+    //open popup
+    document.getElementById('formSelectionPopup').style.display = 'block';
+    //add to page
+    document.getElementById('upload-container').style.display = 'block';
+    document.getElementById('instructions').style.display = 'block';
+    document.getElementById('public-gallery').style.display = 'block';
+    //remove from page
+    document.getElementById('download-container').style.display = 'none';
+    document.getElementById('other-forms').style.display = 'none';    
+});
 document.getElementById('openDownloadPopupBtn').addEventListener('click', function() {
     document.getElementById('downloadPopup').style.display = 'block';
 });
@@ -39,12 +50,7 @@ document.getElementById('downloadPDFbtn').addEventListener('click', function() {
 
 
 
-
-
-
-
-
-
+//Download PDF Code
 window.jsPDF = window.jspdf.jsPDF;
 
 function screenShot() {
@@ -117,15 +123,3 @@ function downloadPDF() {
     document.getElementById('output').setAttribute("width", "0px");
     document.getElementById('output').setAttribute("height", "0px");
 };
-
-function loadBasic(){
-    stl_viewerMain.remove_model(1);
-    stl_viewerMain.add_model({id:1, filename:"Stanford_Bunny.stl",  animation:{delta:{rotationx:1,rotationy:0.5, msec:1000, loop:true}}});
-
-}
-
-// $( function() {
-//     $( "#stl_contTop" ).draggable({ axis: "y" });
-//     $( "#stl_contButton" ).draggable({ axis: "y" , containment: "#printPreview"});
-//     $( "#annoDisplay" ).draggable({containment: "#printPreview"});
-//   } );
