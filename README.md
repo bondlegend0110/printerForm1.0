@@ -48,4 +48,5 @@ Alara Kalfazade, Vivian Li, Katherine Lynch, Zimu Niu, and José Sandoval
 Harry Tan
 ### Additional Projects
 <a href = "https://www.jsdelivr.com/package/npm/html2canvas">html2canvas<a> \
-<a href = "https://www.viewstl.com/plugin/">viewstl<a> <a href = "https://github.com/omrips/viewstl">omrips<a> 
+<a href = "https://github.com/parallax/jsPDF">jsPDF<a> \
+<a href = "https://www.viewstl.com/plugin/">viewstl<a> - <a href = "https://github.com/omrips/viewstl">omrips<a> 
