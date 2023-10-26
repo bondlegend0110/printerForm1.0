@@ -54,6 +54,16 @@ document.getElementById('nextUploadPopupBtn').addEventListener('click', function
     window.location.href = './preview.html';
 });
 
+//Feedback Tab Star rating
+var stars = document.querySelectorAll('.fa-star');
+
+// TODO: ADD FUNCTIONALITY WHERE CHECKING K-th star automatically checks all i = 1~kth star
+stars.forEach(function (item){
+    item.addEventListener('click', function(){
+        item.classList.toggle('star-checked');
+    });
+});
+
 //JavaScript for the Form Selection buttons
 var forms = document.querySelectorAll('.fs-item');
 

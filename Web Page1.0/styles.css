@@ -87,6 +87,92 @@ nav .fas{
     align-items: center; 
 }
 
+/* Feedback slide-out */
+.toggle{
+    -webkit-transition: all 0.15s ease-out 0;
+    -moz-transition: all 0.15s ease-out 0;
+    transition: all 0.45s ease-out 0;
+    position:fixed;
+    top: 40vh;
+    left: 0;
+    z-index: 1;
+    cursor: pointer;
+    width: fit-content;
+}
+#slide {
+    display: none;
+}
+
+#fb-tab{
+    writing-mode: vertical-lr;
+    text-orientation:sideways;
+    width: fit-content;
+    padding: 1vw 0.7vw;
+    background-color: #000;
+    color: white;
+    border-top-right-radius: 10%;
+    border-bottom-right-radius: 10%;
+
+}
+
+#fb-form{
+    position: fixed;
+    top: 37vh;
+    left: -300px; /* == -1* width, toggle-left [below]*/
+    -webkit-transition: all 0.15s ease-out 0;
+    -moz-transition: all 0.15s ease-out 0;
+    transition: all 0.15s ease-out 0;
+    width: 300px; /* == -1* left, toggle-left [below]*/
+    height: 30vh;
+    padding: 1vw;
+    background: black; 
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-top-right-radius: 3%;
+    border-bottom-right-radius: 3%;
+}
+
+.sidebar a:hover {
+    color: rgba(0, 0, 0, 0.61); 
+}
+  
+#slide:checked + .fb-container .sidebar {
+    left: 0px;
+}
+  
+#slide:checked + .fb-container .toggle {
+    left: 300px; /*== fb-form width*/
+}
+
+.star-checked {
+    color: #FFE07D;
+}
+
+#star-rating {
+    height: max-content;
+    width: max-content;
+}
+#fb-survey-btn {
+    border-radius: 10px;
+    background: #FF664F;
+    width: 90px;
+    height: 50px;
+    padding: 2px;
+    color: white;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+}
+
 /* upload container */
 #upload-container{
     height: 200px;
