@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How To - PrinterForm</title>
     <link rel="stylesheet" href="how-to-styles.css">
+    <link rel="stylesheet" href="shared-styles.css">
+    <script src="shared-script.js"></script>
 </head>
 
 <body>
@@ -31,6 +33,34 @@
                     <li><a href="./about.html">About</a></li>
                 </ul>
             </nav>
+        </div>
+    </div>
+    
+    <!--Feedback Tab-->
+    <input type="checkbox" id="slide" name="" value="" />
+    <div class="fb-container">
+        <label for="slide" class="toggle"><div id="fb-tab">Feedback</div></label>
+        <div class="sidebar" id="fb-form" >
+            <h3>Printerform Experience:</h3>
+            <iframe name="hiddenFrame" class="hide"></iframe>
+            <form id="fb-user-inputs-form" method="POST" target="hiddenFrame" action="https://script.google.com/macros/s/AKfycbxzzbnYd8Oy2uJ9FNa_CgAR_ukJbMPbcnWoSo8ohP2AZK55SQ_fEptRvLw0aJOvCHL6/exec">
+                <div id="fb-user-inputs-items">
+                    <div id="select-role">
+                        <label for="role" class="required">Your are a...</label>
+                        <select name="role" id="role" required >
+                        <option value="" selected="selected" disabled="true">--Please Select --</option>
+                        <option value="student">Student</option>
+                        <option value="educator">Educator</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="text-input">Share your thoughts:</label>
+                        <textarea id="text-input" name="text-input"></textarea>
+                    </div>
+                </div>
+                <input type="button" id="fb-submit-btn" value="Submit" onclick="submitForm()">
+            </form>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScCbfCI4AGwUjoJ6NzdIvLrkpYKWgth8RgtbY9oTs-fHyMbQw/viewform" target="_blank"><button id="fb-survey-btn">Take Our Full Survey</button></a>    
         </div>
     </div>
 
