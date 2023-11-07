@@ -172,14 +172,12 @@ iframe{
     width: 70%;
     height: auto;
     background-color: #FFF;
-    /* height: 20vw; */
     object-fit: cover;
     border-radius: 30px;
 }
 
 .work-item-text {
     width: 65%;
-    /* height: 12.5vw; */
     height:60px;
     margin-top: 10px;
     color: white;

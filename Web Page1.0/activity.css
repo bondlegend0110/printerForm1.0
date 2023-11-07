@@ -78,7 +78,7 @@ nav .fas{
 }
 
 
-/* education resources container */
+/* activity brief box */
 .title{
     color:#404040;
     /* color:#6E6969; */
@@ -93,18 +93,59 @@ nav .fas{
     margin-top: 8%;
 }
 
+.activity-text-sub-container{
+    margin-bottom:4%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.activity-sub-title{
+    display: flex;
+    color:#404040;
+    width:30%;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.activity-text{
+    display: flex;
+    color:#404040;
+    width:65%;
+    margin-left:5%;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.tool-logos{
+    display: flex;
+    width:65%;
+    margin-left:5%;
+}
+
+.item-pic{
+    width: 60%;
+    margin:0;
+}
+
+/* instructions */
+
 .text-sub-container{
     margin-bottom:4%;
 }
 
-.education-sub-title{
+.text-sub-container a{
+    text-decoration: none;
+    
+}
+
+.instructions-sub-title{
     color:#404040;
     /* color:#6E6969; */
     font-weight: 600;
     font-size: 18px;
 }
 
-.education-text{
+.instructions-text{
     color:#404040;
     /* color:#6E6969; */
     margin-top: 2%;
@@ -112,83 +153,31 @@ nav .fas{
     font-weight: 400;
 }
 
-.education-img-container{
-    display: flex;
-    gap:10px;
-}
+/* reference images */
 
-
-/* 3d files container */
-.workflow-text{
-    color:#fff;
-    margin-top: 2%;
-    font-size: 18px;
-    font-weight: 400;
-}
-
-#workflow {
-    margin-top: 5%;
-    margin-bottom: 5%;
-    display: flex;
-    flex-direction: row;
-    /* justify-content: space-evenly; */
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.item {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    /* width: 300px; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.item-title {
-    margin-bottom: 10px;
-    color: #FFF;
-    font-size: 18px;
-    font-weight: 400;
-}
-
-.item-pic {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
-/* activities and lesson plans */
 .image-gallery {
     margin-top:5%;
     display: flex;
+    justify-content: space-between;
     gap: 10px;
     list-style-type: none;
-    flex-wrap: wrap;
     /* align-items:stretch; */
   }
 
-.image-gallery-row{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: space-between;
+.image-gallery > li {
+    flex-basis: 200px; 
+    /* width: 350px; */
 }
 
-.image-gallery-item{
-    cursor: pointer;
-    width: 200px;
-}
-
-.image-gallery-item img {
+.image-gallery li img {
     object-fit: cover;
-    /* max-width: 100%; */
-    width: 100%;
+    max-width: 100%;
     height: auto;
     vertical-align: middle;
     border-radius: 0px;
 }
+
+
 
 /* footer */
 #footer{
