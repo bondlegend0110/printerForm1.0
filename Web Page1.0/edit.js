@@ -1,16 +1,18 @@
 var stl_viewerMain = new StlViewer ( document.getElementById("stl_contMain"));
+var pdfName = "";
+var finalCanvas;
 
 //Edit page Buttons
 document.getElementById('backEditPageBtn').addEventListener('click', function() {
     //open popup
     document.getElementById('formSelectionPopup').style.display = 'block';
     //add to page
-    document.getElementById('upload-container').style.display = 'block';
     document.getElementById('instructions').style.display = 'block';
     document.getElementById('public-gallery').style.display = 'block';
-    //remove from page
-    document.getElementById('download-container').style.display = 'none';
-    document.getElementById('other-forms').style.display = 'none';    
+    document.getElementById('start_buttons').style.display = 'block';
+
+    document.getElementById('other-forms').style.display = 'none';
+    document.getElementById('edit_buttons').style.display = 'none';
 });
 document.getElementById('openDownloadPopupBtn').addEventListener('click', function() {
     document.getElementById('downloadPopup').style.display = 'block';
@@ -45,81 +47,100 @@ document.getElementById('backDownloadPopupBtn').addEventListener('click', functi
 
 //Download Button
 document.getElementById('downloadPDFbtn').addEventListener('click', function() {
-    screenShot();
+    downloadAsPDF(finalCanvas);
 });
 
+function captureElement(elementId) {
+    return new Promise((resolve, reject) => {
+        const element = document.getElementById(elementId);
+        if (element) {
+            html2canvas(element).then(canvas => {
+                resolve(canvas);
+            });
+        } else {
+            reject(`Element with id ${elementId} not found`);
+        }
+    });
+}
+
+function combineImagesOnTemplate(backgroundTemplateSrc, images, positions, templateWidth, imgWidthPx, imgHeightPx) {
+    return new Promise((resolve, reject) => {
+        // Load the background template image
+        let template = new Image();
+        template.onload = () => {
+            let canvas = document.createElement('canvas');
+            canvas.width = templateWidth;
+            canvas.height = templateWidth/imgWidthPx*imgHeightPx;
+            let ctx = canvas.getContext('2d');
+
+            ctx.drawImage(template, 0, 0, canvas.width, canvas.height);
+
+            // Draw and rotate each canvas on the template
+            images.forEach((imgCanvas, index) => {
+                let pos = positions[index];
+                ctx.save();
+                ctx.translate(pos.x + imgCanvas.width / 2, pos.y + imgCanvas.height / 2);
+                ctx.rotate(pos.rotation * Math.PI / 180);
+                ctx.drawImage(imgCanvas, -imgCanvas.width / 2, -imgCanvas.height / 2, pos.width, pos.height);
+                ctx.restore();
+            });
+
+            resolve(canvas);
+        };
+        template.onerror = reject;
+        template.src = backgroundTemplateSrc; // Set the path to your template image
+    });
+}
+
+function displayFinalProduct(canvas, targetDivId) {
+    const targetDiv = document.getElementById(targetDivId);
+    if (targetDiv) {
+        targetDiv.innerHTML = ''; // Clear any existing content
+        targetDiv.appendChild(canvas); // Add the canvas to the div
+    } else {
+        console.error('Target div not found');
+    }
+}
 
 
-//Download PDF Code
+async function createAndDisplayPDF(pdfNameString) {
+    try {
+        const capturedElements = await Promise.all([
+            captureElement('stl_view1'),
+            captureElement('stl_view2'),
+            captureElement('stl_view3'),
+            captureElement('stl_view4')
+        ]);
+
+        const positions = [
+            { x: 0, y: 0, rotation: 0 }, 
+            { x: 20, y: 20, width: 20, height: 20, rotation: 0 },
+            { x: 40, y: 40, width: 20, height: 20, rotation: 0 },
+            { x: 60, y: 60, width: 20, height: 20, rotation: 0 }
+        ];
+        // Specify which image to rotate and the angle
+        const rotateIndex = 0; // Rotate the first image
+        const rotateAngle = 45; // Rotate by 45 degrees
+
+        finalCanvas = await combineImagesOnTemplate('./pictures/templates/CURVED_FORM_TEMPLATE.jpg', capturedElements, positions, 600, 2511, 3323);
+
+        // Display the final product
+        displayFinalProduct(finalCanvas,"print-preview-container");
+
+        pdfName = pdfNameString;
+    } catch (error) {
+        console.error('Error creating PDF:', error);
+    }
+}
 window.jsPDF = window.jspdf.jsPDF;
 
-function screenShot() {
-    document.body.scrollTop = 0; // For Safari
-  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+function downloadAsPDF(canvas) {
+    const pdf = new jsPDF({
+        orientation: 'landscape',
+        unit: 'px',
+        format: [canvas.width, canvas.height]
+    });
 
-
-    // document.getElementById('output').setAttribute("width", "800px");
-    // document.getElementById('output').setAttribute("height", "900px");
-    
-    if( document.getElementById("myCanvas") != null){
-        var blank = document.getElementById("myCanvas");
-
-        blank.remove();
-    }
-    
-    let div =
-        document.getElementById('printPreview');
-
-    // Use the html2canvas
-    // function to take a screenshot
-    // and append it
-    // to the output div
-    html2canvas(div).then(
-        
-        function (canvas) {
-            canvas.setAttribute("id", "myCanvas");
-            document
-            .getElementById('output')
-            .appendChild(canvas);
-        })
-    
-        setTimeout(() => { downloadPDF(); }, 2000);
-
-        /*
-    html2canvas(document.querySelector("#stlCube")).then(canvas => {
-        document.body.appendChild(canvas)
-        });
-        */
-};
-
-
-
-
-function downloadPDF() {
-    // only jpeg is supported by jsPDF
-
-    //alert("Printing");
-
-    var canvas = document.getElementById('myCanvas');
-
-    let width = canvas.width; 
-    let height = canvas.height;
-
-    var pdf = null;
-
-    //set the orientation
-
-    pdf = new jsPDF('p', 'px', [620*2, 800*2]);
-    //then we get the dimensions from the 'pdf' file itself
-    //width = pdf.internal.pageSize.getWidth();
-    //height = pdf.internal.pageSize.getHeight();
-    pdf.addImage(canvas, 'JPEG', 0, 0,width,height);
-
-    alert("width: " + width + " \n Height: " + height);
-    pdf.save("download.pdf");
-
-    //setTimeout(() => { downloadPDF(); }, 200);
-    document.getElementById("myCanvas").remove();
-    document.getElementById('output').setAttribute("width", "0px");
-    document.getElementById('output').setAttribute("height", "0px");
-};
+    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, canvas.width, canvas.height);
+    pdf.save(pdfName);
+}

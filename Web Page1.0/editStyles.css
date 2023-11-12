@@ -16,12 +16,23 @@
     background-size: 20% 14.28%;
 }
 
-.editor-container-controls {
+#start_buttons{
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
+}
+
+.editor-container-controls {
+    flex-direction: column;
     margin-left: 10px;
+}
+
+#form_controls {
+    display: none;
+}
+
+#edit_buttons{
+    display: none;
 }
 
 .grid-control {
@@ -55,10 +66,6 @@ input[type=range]{
     width: 2.5em;
     margin-right: 10px;
     background-color: white;
-}
-
-#printPreview{
-    display: block;
 }
 
 /*TODO fix the upload styles so that the popup style and the home screen room*/

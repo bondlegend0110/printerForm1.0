@@ -77,8 +77,8 @@ nav .fas{
 
 /* background container */
 .background-container{
-    margin-top: 80px;
-    margin-bottom: 80px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     width: auto;
     padding: 30px;
     background-color: rgba(255, 224, 125, 0.20);  
@@ -100,9 +100,27 @@ nav .fas{
     pointer-events: none;     /* Prevent any mouse interactions */}
 
 /* upload container */
+#directory-container{
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
+}
+
+#upload-directory_container{
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
+}
+#open-directory_container{
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
+}
+
 #upload-container{
     flex-direction: column;
     justify-content: center;
+    height: fit-content;
 }
 
 #reopenFileDirectoryBtn{
@@ -114,30 +132,32 @@ nav .fas{
 
 /* upload container */
 #open-directory-container{
+    display: flex;
     height: 200px;
-
 }
 
 #other-forms{
     display: none;
 }
 
-#preview-container{
-    display: none;
+.item-swtich{
+    float: right;
+    height: fit-content;}
+
+#printPreview{
+    width:700px;
+    height: fit-content;
+    margin: 10px;
 }
 
-#upload-preview-container{
-    margin-top: 40px;
-    margin-bottom: 40px;
-    height: 500px;
-}
-#printPreview{
-    float:right; 
-    width:70px;
-    height:100px;
+.canvases{
+    display: flex;
+    flex-direction: row;
+    width:700px;
+    height: fit-content;
     margin: 10px;
-    left:45%;
 }
+
 #dummyDisplay{
     width:70px;
     height:100px;
@@ -147,17 +167,21 @@ nav .fas{
 }
 .stl_contMain{
     width: 600px; 
-    height: 500px
+    height: 500px;
 }
 
-.bottom-controls{
-    display: flex;
-    justify-content: center;
-    align-items: center; 
+.stl_cont{
+    width: 400px; 
+    height: 400px;
+    background-color: #ffffff; /*TODO automate color change for screenshot*/
+}
+
+.stl_display{
+    height: fit-content;
 }
 
 #download-container{
-    display: none;
+    /*display: none;*/
     margin-top: 40px;
     margin-bottom: 40px;
     height: 500px;
