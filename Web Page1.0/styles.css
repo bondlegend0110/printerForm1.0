@@ -87,6 +87,146 @@ nav .fas{
     align-items: center; 
 }
 
+/* Feedback slide-out */
+.toggle{
+    -webkit-transition: all 0.15s ease-out 0;
+    -moz-transition: all 0.15s ease-out 0;
+    transition: all 0.45s ease-out 0;
+    position:fixed;
+    top: 40vh;
+    left: 0;
+    cursor: pointer;
+    width: fit-content;
+}
+#slide {
+    display: none;
+}
+
+#fb-tab{
+    writing-mode: vertical-lr;
+    text-orientation:sideways;
+    width: fit-content;
+    padding: 1vw 0.7vw;
+    background-color: #000;
+    color: white;
+    border-top-right-radius: 10%;
+    border-bottom-right-radius: 10%;
+
+}
+
+#fb-form{
+    position: fixed;
+    top: 28vh;
+    left: -300px; /* == -1* width, toggle-left [below]*/
+    -webkit-transition: all 0.15s ease-out 0;
+    -moz-transition: all 0.15s ease-out 0;
+    transition: all 0.15s ease-out 0;
+    width: 300px; /* == -1* left, toggle-left [below]*/
+    height: 60vh;
+    padding: 1vw;
+    background: black; 
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-top-right-radius: 3%;
+    border-bottom-right-radius: 3%;
+}
+
+.sidebar a:hover {
+    color: rgba(0, 0, 0, 0.61); 
+}
+  
+#slide:checked + .fb-container .sidebar {
+    left: 0px;
+}
+  
+#slide:checked + .fb-container .toggle {
+    left: 300px; /*== fb-form width*/
+}
+
+
+
+#fb-user-inputs-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 90%;
+}
+
+#fb-user-inputs-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: max-content;
+    margin: 2vh 0.5vw;
+}
+
+#select-role {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 2vh;
+}
+
+#role {
+    border: 1px solid white;
+    border-bottom-left-radius: 3%;
+    border-bottom-right-radius: 3%;
+}
+
+
+#text-input {
+    margin-top: 1vh;
+    width: 100%;
+    border-radius: 3%;
+    height: 20vh;
+    padding: 0.3vw;
+    font-size: 14px;
+}
+
+#fb-survey-btn {
+    border-radius: 1vh;
+    background: #FF664F;
+    height: 5vh;
+    padding: 0 1vw;
+    color: white;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    margin-bottom: 2vh;
+}
+
+#fb-submit-btn {
+    border-radius: 1vh;
+    background: #7072EC;
+    height: 4vh;
+    padding: 0 1vw;
+    color: white;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    margin-bottom: 2vh;
+}
+
+.hide {
+    position:absolute; 
+    top:-1px; 
+    left:-1px; 
+    width:1px; 
+    height:1px;
+}
 /* upload container */
 #upload-container{
     height: 200px;
@@ -101,6 +241,25 @@ nav .fas{
     margin-top: 40px;
     margin-bottom: 40px;
     height: 500px;
+}
+#printPreview{
+    visibility: hidden;
+    float:right; 
+    width:70px;
+    height:100px;
+    margin: 10px;
+    left:45%;
+}
+#dummyDisplay{
+    width:70px;
+    height:100px;
+    border-style: ridge; 
+    margin: 20px; 
+    left:50%;
+}
+.stl_contMain{
+    width: 600px; 
+    height: 500px
 }
 #download-preview-container{
     margin-top: 40px;
@@ -173,6 +332,16 @@ nav .fas{
     width: 90px;
     height: 45px;
 }
+
+/*curve picture*/
+.background-templates{
+    position: absolute;
+    background-color: none;
+    height: 100px; 
+    padding:10px;
+    width: 100px;
+  }
+
 
 .workflow-instructions{
     color: #fff;
