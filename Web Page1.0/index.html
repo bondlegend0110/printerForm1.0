@@ -15,11 +15,12 @@
 
     <title>Home - Printer Form</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="EditStyles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="shared-styles.css">
 </head>
 
-<body>
+<body onload>
     <!--Don't Show Again popup-->
     <div id="DSApopup" class="popup">
         <!-- Popup content -->
@@ -31,19 +32,6 @@
         </div>
     </div>
 
-    <!--Upload Popup-->
-    <div id="uploadPopup" class="popup">
-        <div class="popup-content">
-            <!-- upload button/div-->
-            <div id="open-directory-container" class="background-container">
-                <button id="openDirectoryBtn" class="upload-button" type="button">UPLOAD</button>
-            </div>
-            <div class="bottom-buttons">
-                <button id="closeUploadPopupBtn" class="back-button" type="button">BACK</button>
-                <button id="nextUploadPopupBtn" class="next-button" type="button">NEXT</button>
-            </div>
-        </div>
-    </div>
     <!--Popup overlay-->
     <div id="overlay" class="overlay"></div>
 
@@ -68,11 +56,38 @@
                     <li><a href="./about.html">About</a></li>
                 </ul>
             </nav>
+
             <!-- upload button/div-->
-            <div id="upload-container" class="background-container">
-                <button class="upload-button" id="openUploadPopupBtn" type="button">UPLOAD</button>
+            <div id="upload-directory_container" class="background-container">
+                <button id="uploadBtn" class="upload-button"  type="button">START</button>
             </div>
 
+        </div>
+    </div>
+
+    <div id = "other-forms" class="gallery">
+        <div class="container">
+            <h1 class="title">OTHER FORMS</h1>
+            <ul class="image-gallery">
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/curved_sample 1.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/fourSideCubeBunny 1.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/curved_sample 1.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/curved_sample 1.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/curved_sample 1.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/start page/curved_sample 1.png" alt="" />
+                </li>
+            </ul>
         </div>
     </div>
 
@@ -105,7 +120,7 @@
         </div>
     </div>
 
-    <div class="container" style="background: #7072EC;">
+    <div id = "instructions" class="container" style="background: #7072EC;">
         <h2 class="workflow-instructions">Instructions</h2>
         <div id="workflow">
             <div class="work-item">
@@ -126,9 +141,7 @@
         </div>
     </div>
 
-
-
-    <div class="gallery">
+    <div id = "public-gallery" class="gallery">
         <div class="container">
             <h1 class="title">Gallery</h1>
             <ul class="image-gallery">
@@ -154,6 +167,7 @@
         </div>
     </div>
 
+
     <div class="about">
         <div class="container">
             <h1 class="title">About</h1>
@@ -164,6 +178,7 @@
             <a href="./about.html"><button class="read-more-button">Read More</button></a>
         </div>
     </div>
+
 
     <!--TODO: Make Footer?-->
     <div id="footer">
@@ -192,12 +207,7 @@
     </div>
 
 
-
-
-
     <script src="./viewstl/stl_viewer.min.js"></script>
     <script src="index.js"></script>
 </body>
-<input type="file" id="fileInput" name="fileInput" onchange="stlLoad(this)" placeholder="Upload" accept="*.*">
-
 </html>
