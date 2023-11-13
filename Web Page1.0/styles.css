@@ -77,9 +77,10 @@ nav .fas{
 
 /* background container */
 .background-container{
-    margin-top: 80px;
-    margin-bottom: 80px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     width: auto;
+    padding: 30px;
     background-color: rgba(255, 224, 125, 0.20);  
     border-radius: 30px; 
     display: flex;
@@ -227,29 +228,76 @@ nav .fas{
     width:1px; 
     height:1px;
 }
+#fileNameDisplay{
+    border: none;             /* Remove the border */
+    background: none;         /* Remove the background */
+    outline: none;            /* Remove the focus outline */
+    cursor: default;          /* Use the default cursor instead of the text selection cursor */
+    width: 120px;              /* Adjust width as needed, auto will make it fit content */
+    color: inherit;           /* Inherit text color from parent, can be set to any desired color */
+    font-family: inherit;     /* Inherit font family from parent */
+    font-size: inherit;       /* Inherit font size from parent */
+    pointer-events: none;     /* Prevent any mouse interactions */}
+
 /* upload container */
+#directory-container{
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
+}
+
+#upload-directory_container{
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
+}
+#open-directory_container{
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
+}
+
 #upload-container{
-    height: 200px;
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
+}
+
+#reopenFileDirectoryBtn{
+    display: none;
+    border-radius: 10px;
+    width: 90px;
+    height: 45px;
 }
 
 /* upload container */
 #open-directory-container{
+    display: flex;
     height: 200px;
+}
 
+#other-forms{
+    display: none;
 }
-#upload-preview-container{
-    margin-top: 40px;
-    margin-bottom: 40px;
-    height: 500px;
-}
+
+.item-swtich{
+    float: right;
+    height: fit-content;}
+
 #printPreview{
-    visibility: hidden;
-    float:right; 
-    width:70px;
-    height:100px;
+    width:700px;
+    height: fit-content;
     margin: 10px;
-    left:45%;
 }
+
+.canvases{
+    display: flex;
+    flex-direction: row;
+    width:700px;
+    height: fit-content;
+    margin: 10px;
+}
+
 #dummyDisplay{
     width:70px;
     height:100px;
@@ -259,12 +307,27 @@ nav .fas{
 }
 .stl_contMain{
     width: 600px; 
-    height: 500px
+    height: 500px;
 }
-#download-preview-container{
+
+.stl_cont{
+    width: 400px; 
+    height: 400px;
+    background-color: #ffffff; /*TODO automate color change for screenshot*/
+}
+
+.stl_display{
+    height: fit-content;
+}
+
+#download-container{
+    /*display: none;*/
     margin-top: 40px;
     margin-bottom: 40px;
     height: 500px;
+}
+.file-input-wrapper{
+    padding: 30px;
 }
 
 /*TODO fix the upload styles so that the popup style and the home screen room*/
@@ -315,7 +378,7 @@ nav .fas{
     height: 45px;
 }
 
-.next-button{
+.next-button, .download-button{
     color: #FFF;
     font-family: Futura;
     font-size: 18px;
@@ -333,8 +396,16 @@ nav .fas{
     height: 45px;
 }
 
+/*TODO fix the upload styles so that the popup style and the home screen room*/
+
+.big-button {
+    padding: 10px;
+    width: auto;
+    height: auto;
+}
+
 /*curve picture*/
-.background-templates{
+#background-template{
     position: absolute;
     background-color: none;
     height: 100px; 
