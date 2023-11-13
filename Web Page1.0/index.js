@@ -54,6 +54,14 @@ document.getElementById('nextUploadPopupBtn').addEventListener('click', function
     window.location.href = './preview.html';
 });
 
+// User Feeback Form 
+function submitForm() {
+    var frm = document.getElementById("fb-user-inputs-form");
+    frm.submit();
+    frm.reset();
+    return false;
+}
+
 //JavaScript for the Form Selection buttons
 var forms = document.querySelectorAll('.fs-item');
 
