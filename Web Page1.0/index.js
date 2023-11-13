@@ -25,6 +25,10 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('doNotShow').addEventListener('change', function() {
         localStorage.setItem('doNotShow', this.checked ? 'true' : 'false');
     });
+    if (sessionStorage.getItem('showUploadPopup') === 'true') {
+        document.getElementById('uploadPopup').style.display = 'block';
+        sessionStorage.removeItem('showUploadPopup');
+    }
 });
 
 //Start page Button
@@ -35,14 +39,10 @@ document.getElementById('openUploadPopupBtn').addEventListener('click', function
 //JavaScript for the Upload Popup buttons
 //Open Directory Button
 document.getElementById('openDirectoryBtn').addEventListener('click', function() {
-    document.getElementById("fileInput").click();
-    //document.getElementById('uploadLink').setAttribute("class", "");
-    //TODO: Add Feature: Use the Default Bunny
-    document.getElementById('fileInput').addEventListener('change', function(e) {
-        const selectedFile = e.target.files[0];
-        console.log('Selected file:', selectedFile);
-    });
+    uploadFile();
 });
+
+
 
 //Back Button
 document.getElementById('closeUploadPopupBtn').addEventListener('click', function() {
@@ -51,25 +51,16 @@ document.getElementById('closeUploadPopupBtn').addEventListener('click', functio
 //Next Button
 document.getElementById('nextUploadPopupBtn').addEventListener('click', function() {
     document.getElementById('uploadPopup').style.display = 'none';
-    document.getElementById('previewPopup').style.display = 'block';
-    //TODO Next Button Functionality
+    window.location.href = './preview.html';
 });
 
-//JavaScript for the Preview button
-//Close Button
-document.getElementById('closePreviewPopupBtn').addEventListener('click', function() {
-    document.getElementById('previewPopup').style.display = 'none';
-});
-//Back Button
-document.getElementById('backPreviewPopupBtn').addEventListener('click', function() {
-    document.getElementById('previewPopup').style.display = 'none';
-    document.getElementById('uploadPopup').style.display = 'block';
-});
-//Next Button
-document.getElementById('nextPreviewPopupBtn').addEventListener('click', function() {
-    document.getElementById('previewPopup').style.display = 'none';
-    document.getElementById('formSelectionPopup').style.display = 'block';
-});
+// User Feeback Form 
+function submitForm() {
+    var frm = document.getElementById("fb-user-inputs-form");
+    frm.submit();
+    frm.reset();
+    return false;
+}
 
 //JavaScript for the Form Selection buttons
 var forms = document.querySelectorAll('.fs-item');
@@ -88,21 +79,52 @@ forms.forEach(function (item) {
     });
 });
 
+//STL upload code
+//uploadFile
+function uploadFile() {
+    document.getElementById("lFile").click();
+    //document.getElementById('uploadLink').setAttribute("class", "");
+    document.getElementById("dummyDisplay").remove();
+    
+}
 
+//no rotation on z for the six sides
+function stlLoad(files){
 
+    var canvasList = document.getElementsByTagName("canvas");
 
-//Close Button
-document.getElementById('closeFormSelectionPopupBtn').addEventListener('click', function() {
-    document.getElementById('formSelectionPopup').style.display = 'none';
-});
-//Back Button
-document.getElementById('backFormSelectionPopupBtn').addEventListener('click', function() {
-    document.getElementById('formSelectionPopup').style.display = 'none';
-    document.getElementById('previewPopup').style.display = 'block';
-});
-//Next Button
-document.getElementById('nextFormSelectionPopupBtn').addEventListener('click', function() {
-    document.getElementById('formSelectionPopup').style.display = 'none';
-    // Navigate to the desired HTML file
-    window.location.href = './edit.html';
-});
+    for (var i = 0, len = canvasList.length; i < len; i++) {
+        canvasList[0].remove();
+    }
+
+    document.getElementById('printPreview').setAttribute("style", "visibility:visible");
+
+    var stl_viewerTop = new StlViewer ( document.getElementById("stl_contTop") );
+    var stl_viewerButton = new StlViewer ( document.getElementById("stl_contButton") );
+
+    stl_viewerTop.add_model ( {
+        id: 1,
+        local_file:files.files[0],
+        rotationx: 0.5 * 3.14,
+        rotationy: 0,
+        rotationz: 0,
+        auto_resize: true,
+    });
+
+    stl_viewerButton.add_model ( {
+        id: 1,
+        local_file:files.files[0],
+        rotationx: -0.5 * 3.14,
+        rotationy: 0,
+        rotationz: 0,
+    });
+
+    document.getElementById('downloadLink').setAttribute("class", "active");
+
+}
+
+function loadBasic(){
+    stl_viewerMain.remove_model(1);
+    stl_viewerMain.add_model({id:1, filename:"Stanford_Bunny.stl", animation:{delta:{rotationx:1,rotationy:0.5, msec:1000, loop:true}}});
+
+}
