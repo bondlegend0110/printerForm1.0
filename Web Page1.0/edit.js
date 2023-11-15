@@ -108,15 +108,12 @@ async function createAndDisplayPDF(pdfNameString) {
         const capturedElements = await Promise.all([
             captureElement('stl_view1'),
             captureElement('stl_view2'),
-            captureElement('stl_view3'),
-            captureElement('stl_view4')
         ]);
 
         const positions = [
-            { x: 0, y: 0, rotation: 0 }, 
-            { x: 20, y: 20, width: 20, height: 20, rotation: 0 },
-            { x: 40, y: 40, width: 20, height: 20, rotation: 0 },
-            { x: 60, y: 60, width: 20, height: 20, rotation: 0 }
+            { x: 100, y: 100, width: 200, height: 200,  rotation: 0 }, 
+            { x: 400, y: 400, width: 200, height: 200, rotation: 0 },
+
         ];
         // Specify which image to rotate and the angle
         const rotateIndex = 0; // Rotate the first image
