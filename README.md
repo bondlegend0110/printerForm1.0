@@ -27,6 +27,9 @@ Design Brief
  </li>
 <li>
 	Submit a Pull Request with a comprehensive description of changes.
+	<ol type="A"> 
+		 <li><a href="https://docs.google.com/document/d/1ORvXPYW_FAwmhf8_7hahYguXC84k0sJorORwPwLtiro/">GitHub Basic Commands<a></li>
+	</ol>
 </li>
 			 
 </ol>
