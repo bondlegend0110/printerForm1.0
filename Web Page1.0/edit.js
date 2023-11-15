@@ -1,4 +1,3 @@
-var stl_viewerMain = new StlViewer ( document.getElementById("stl_contMain"));
 var pdfName = "";
 var finalCanvas;
 
@@ -9,7 +8,7 @@ document.getElementById('backEditPageBtn').addEventListener('click', function() 
     //add to page
     document.getElementById('instructions').style.display = 'block';
     document.getElementById('public-gallery').style.display = 'block';
-    document.getElementById('start_buttons').style.display = 'block';
+    document.getElementById('start_controls').style.display = 'block';
 
     document.getElementById('other-forms').style.display = 'none';
     document.getElementById('edit_buttons').style.display = 'none';
@@ -18,8 +17,9 @@ document.getElementById('openDownloadPopupBtn').addEventListener('click', functi
     document.getElementById('downloadPopup').style.display = 'block';
 });
 
+//magnification slider and value
 document.getElementById('magnification').addEventListener('input', function() {
-document.getElementById('magnification-value').value = this.value;
+    document.getElementById('magnification-value').value = this.value;
 });
   
 document.getElementById('magnification-value').addEventListener('input', function() {
@@ -31,6 +31,66 @@ if(!isNaN(value) && value >= 0.1 && value <= 2) {
     alert('Please enter a value between 0.1 and 2');
 }
 });  
+
+//rotationX slider and value
+document.getElementById('rotationX').addEventListener('input', function() {
+    document.getElementById('rotation-x-value').value = this.value;
+});
+  
+document.getElementById('rotation-x-value').addEventListener('input', function() {
+const value = parseFloat(this.value);
+if(!isNaN(value) && value >= 0.1 && value <= 2) {
+    document.getElementById('rotationX').value = value;
+} else {
+    // Handle invalid input if necessary
+    alert('Please enter a value between 0.1 and 2');
+}
+});  
+
+//rotationX slider and value
+document.getElementById('rotationY').addEventListener('input', function() {
+    document.getElementById('rotation-y-value').value = this.value;
+});
+  
+document.getElementById('rotation-y-value').addEventListener('input', function() {
+const value = parseFloat(this.value);
+if(!isNaN(value) && value >= 0.1 && value <= 2) {
+    document.getElementById('rotationY').value = value;
+} else {
+    // Handle invalid input if necessary
+    alert('Please enter a value between 0.1 and 2');
+}
+});  
+
+//rotationX slider and value
+document.getElementById('rotationZ').addEventListener('input', function() {
+    document.getElementById('rotation-z-value').value = this.value;
+});
+  
+document.getElementById('rotation-z-value').addEventListener('input', function() {
+const value = parseFloat(this.value);
+if(!isNaN(value) && value >= 0.1 && value <= 2) {
+    document.getElementById('rotationZ').value = value;
+} else {
+    // Handle invalid input if necessary
+    alert('Please enter a value between 0.1 and 2');
+}
+});  
+
+// checkbox
+document.getElementById('displayPose').addEventListener('change', function() {
+    if(this.checked) {
+        stlViewRotate(
+            [[1,1,0],
+            [1,1,0],
+            [1,1,0],
+            [1,1,0]
+        ]);
+    } else {
+        // Code to handle the checkbox being unchecked
+        stlViewZero([1,1,1,1]);
+    }
+});
 
 
 
@@ -107,20 +167,13 @@ async function createAndDisplayPDF(pdfNameString) {
     try {
         const capturedElements = await Promise.all([
             captureElement('stl_view1'),
-            captureElement('stl_view2'),
-            captureElement('stl_view3'),
-            captureElement('stl_view4')
+            captureElement('stl_view2')
         ]);
 
         const positions = [
-            { x: 0, y: 0, rotation: 0 }, 
-            { x: 20, y: 20, width: 20, height: 20, rotation: 0 },
-            { x: 40, y: 40, width: 20, height: 20, rotation: 0 },
-            { x: 60, y: 60, width: 20, height: 20, rotation: 0 }
+            { x: 0, y: 0, width: 200, height: 200, rotation: 0 }, 
+            { x: 200, y: 200, width: 200, height: 200, rotation: 0 }
         ];
-        // Specify which image to rotate and the angle
-        const rotateIndex = 0; // Rotate the first image
-        const rotateAngle = 45; // Rotate by 45 degrees
 
         finalCanvas = await combineImagesOnTemplate('./pictures/templates/CURVED_FORM_TEMPLATE.jpg', capturedElements, positions, 600, 2511, 3323);
 

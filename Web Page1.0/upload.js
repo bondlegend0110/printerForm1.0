@@ -1,4 +1,3 @@
-var stl_viewerMain = new StlViewer ( document.getElementById("stl_contMain"));
 var pdfName = "";
 
 document.getElementById('openFileDirectoryBtn').addEventListener('click', function() {
@@ -11,8 +10,8 @@ document.getElementById('reopenFileDirectoryBtn').addEventListener('click', func
 
 //Next Button
 document.getElementById('nextStartPageBtn').addEventListener('click', function() {
-    createAndDisplayPDF(pdfName);
     //TODO Change to incorporate form selection
+    createAndDisplayPDF(pdfName);
     document.getElementById('downloadPopup').style.display = 'block';
 });
 
@@ -21,7 +20,6 @@ document.getElementById('nextStartPageBtn').addEventListener('click', function()
 function uploadFile() {
     document.getElementById("fileInput").click();
     document.getElementById("open-directory_container").remove();  
-    document.getElementById("dummyDisplay").remove();    
 }
 
 function inputChange (files){
@@ -70,7 +68,7 @@ document.getElementById('nextFormSelectionPopupBtn').addEventListener('click', f
     //remove from page    
     document.getElementById('instructions').style.display = 'none';
     document.getElementById('public-gallery').style.display = 'none';
-    document.getElementById('start_buttons').style.display = 'none';
+    document.getElementById('start_controls').style.display = 'none';
 
     //add to page
     document.getElementById('other-forms').style.display = 'block';

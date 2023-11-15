@@ -27,10 +27,6 @@
     margin-left: 10px;
 }
 
-#form_controls {
-    display: none;
-}
-
 #edit_buttons{
     display: none;
 }
@@ -61,7 +57,11 @@ input[type=range]{
     width: auto;
 }
 
-#magnification-value {
+input[type='checkbox'] {
+    margin-right: 5px;
+}
+
+.input-value {
     float: right;
     width: 2.5em;
     margin-right: 10px;

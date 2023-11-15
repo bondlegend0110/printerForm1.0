@@ -285,11 +285,34 @@ nav .fas{
     height: fit-content;}
 
 #printPreview{
-    width:700px;
-    height: fit-content;
-    margin: 10px;
+    display: flex;
+    flex-direction: row;
 }
 
+#form_controls{
+    display: flex;
+    flex-direction: column; /* Stack image and label vertically */
+    justify-content: center; /* Vertically center content */
+    align-items: center; /* Horizontally center content */
+}
+
+.carousel{
+    display: flex;
+    flex-direction: row;
+    position:relative;
+    width:500px;
+    height:500px;
+    margin: auto;
+    overflow: hidden;
+    overflow-x: auto; /* Allow horizontal scrolling */
+}
+  
+.slide {
+    width: 400px;
+    height: 400px;
+    margin: 50px;
+    flex: 0 0 auto;
+}
 .canvases{
     display: flex;
     flex-direction: row;
