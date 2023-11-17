@@ -8,10 +8,10 @@ document.getElementById('backEditPageBtn').addEventListener('click', function() 
     //add to page
     document.getElementById('instructions').style.display = 'block';
     document.getElementById('public-gallery').style.display = 'block';
-    document.getElementById('start_controls').style.display = 'block';
+    document.getElementById('start-controls').style.display = 'block';
 
     document.getElementById('other-forms').style.display = 'none';
-    document.getElementById('edit_buttons').style.display = 'none';
+    document.getElementById('edit-buttons').style.display = 'none';
 });
 document.getElementById('openDownloadPopupBtn').addEventListener('click', function() {
     document.getElementById('downloadPopup').style.display = 'block';
