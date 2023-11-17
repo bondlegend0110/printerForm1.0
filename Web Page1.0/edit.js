@@ -1,7 +1,7 @@
 var pdfName = "";
 var finalCanvas;
 
-//Edit page Buttons
+// Buttons
 document.getElementById('backEditPageBtn').addEventListener('click', function() {
     //open popup
     document.getElementById('formSelectionPopup').style.display = 'block';
@@ -16,82 +16,6 @@ document.getElementById('backEditPageBtn').addEventListener('click', function() 
 document.getElementById('openDownloadPopupBtn').addEventListener('click', function() {
     document.getElementById('downloadPopup').style.display = 'block';
 });
-
-//magnification slider and value
-document.getElementById('magnification').addEventListener('input', function() {
-    document.getElementById('magnification-value').value = this.value;
-});
-  
-document.getElementById('magnification-value').addEventListener('input', function() {
-const value = parseFloat(this.value);
-if(!isNaN(value) && value >= 0.1 && value <= 2) {
-    document.getElementById('magnification').value = value;
-} else {
-    // Handle invalid input if necessary
-    alert('Please enter a value between 0.1 and 2');
-}
-});  
-
-//rotationX slider and value
-document.getElementById('rotationX').addEventListener('input', function() {
-    document.getElementById('rotation-x-value').value = this.value;
-});
-  
-document.getElementById('rotation-x-value').addEventListener('input', function() {
-const value = parseFloat(this.value);
-if(!isNaN(value) && value >= 0.1 && value <= 2) {
-    document.getElementById('rotationX').value = value;
-} else {
-    // Handle invalid input if necessary
-    alert('Please enter a value between 0.1 and 2');
-}
-});  
-
-//rotationX slider and value
-document.getElementById('rotationY').addEventListener('input', function() {
-    document.getElementById('rotation-y-value').value = this.value;
-});
-  
-document.getElementById('rotation-y-value').addEventListener('input', function() {
-const value = parseFloat(this.value);
-if(!isNaN(value) && value >= 0.1 && value <= 2) {
-    document.getElementById('rotationY').value = value;
-} else {
-    // Handle invalid input if necessary
-    alert('Please enter a value between 0.1 and 2');
-}
-});  
-
-//rotationX slider and value
-document.getElementById('rotationZ').addEventListener('input', function() {
-    document.getElementById('rotation-z-value').value = this.value;
-});
-  
-document.getElementById('rotation-z-value').addEventListener('input', function() {
-const value = parseFloat(this.value);
-if(!isNaN(value) && value >= 0.1 && value <= 2) {
-    document.getElementById('rotationZ').value = value;
-} else {
-    // Handle invalid input if necessary
-    alert('Please enter a value between 0.1 and 2');
-}
-});  
-
-// checkbox
-document.getElementById('displayPose').addEventListener('change', function() {
-    if(this.checked) {
-        stlViewRotate(
-            [[1,1,0],
-            [1,1,0],
-            [1,1,0],
-            [1,1,0]
-        ]);
-    } else {
-        // Code to handle the checkbox being unchecked
-        stlViewZero([1,1,1,1]);
-    }
-});
-
 
 
 //JavaScript for the Print Preview Popup buttons
