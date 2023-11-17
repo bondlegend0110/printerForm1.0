@@ -111,13 +111,10 @@ async function createAndDisplayPDF(pdfNameString) {
         ]);
 
         const positions = [
-            { x: 100, y: 100, width: 200, height: 200,  rotation: 0 }, 
-            { x: 400, y: 400, width: 200, height: 200, rotation: 0 },
+            { x: 95, y: 0, width: 390, height: 390,  rotation: 180 }, 
+            { x: 105, y: 400, width: 390, height: 390, rotation: 0 },
 
         ];
-        // Specify which image to rotate and the angle
-        const rotateIndex = 0; // Rotate the first image
-        const rotateAngle = 45; // Rotate by 45 degrees
 
         finalCanvas = await combineImagesOnTemplate('./pictures/templates/CURVED_FORM_TEMPLATE.jpg', capturedElements, positions, 600, 2511, 3323);
 

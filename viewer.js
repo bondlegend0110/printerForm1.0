@@ -12,9 +12,9 @@ function stlLoadCurve(file){
     stl_viewer_front.add_model ( {
         id: 1,
         local_file:file,
-        rotationx:-0.4 * 3.14,
+        rotationx:-0.5 * 3.14,
         rotationy: 0,
-        rotationz: -0.15 * 3.14,
+        rotationz: 0,
         auto_resize: true,
     });
     stl_viewer_front.set_auto_resize(true);
@@ -23,9 +23,9 @@ function stlLoadCurve(file){
     stl_viewer_back.add_model ( {
         id: 2,
         local_file:file,
-        rotationx: 0.4 * 3.14,
+        rotationx: 0.5 * 3.14,
         rotationy: 0,
-        rotationz: -0.15 * 3.14,
+        rotationz: 0,
         auto_resize: true,
     });
     
