@@ -16,7 +16,7 @@
     background-size: 20% 14.28%;
 }
 
-#start_buttons{
+#start-buttons{
     display: flex;
     justify-content: center;
     align-items: center; 
@@ -27,7 +27,11 @@
     margin-left: 10px;
 }
 
-#edit_buttons{
+#edit-controls{
+    display: none;
+}
+
+#formControlsPreview{
     display: none;
 }
 

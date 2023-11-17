@@ -148,97 +148,116 @@
                         <button id="openFileDirectoryBtn" class="upload-button"  type="button">UPLOAD</button>
                     </div>
                     <div id="printPreview">
-                        <div id="stlPreviews" class="carousel">
-                            <div  id="front_canvases" class="stl_display slide">
-                                <h4>Front View </h4>
-                                <div id="stl_view1" class="stl_cont stl_curve "></div> 
+                        <div class="carousel">
+                            <div id="stlPreviews" class="carousel-view">
+                                <div class="carousel-horses">
+                                    <div  id="front_canvases" class="stl_display slide">
+                                        <h4>Front View </h4>
+                                        <div id="stl_view1" class="stl_cont stl_curve "></div> 
+                                    </div>
+                                
+                                    <div  id="left_canvas" class="stl_display slide">
+                                        <h4>Back View</h4>
+                                        <div id="stl_view2" class="stl_cont stl_curve "></div>
+                                    </div>
+                                    <div  id="right_canvas" class="stl_display slide">
+                                        <h4>Right View</h4>
+                                        <div id="stl_view3" class="stl_cont stl_curve "></div> 
+                                    </div>
+                                
+                                    <div  id="left_canvas" class="stl_display slide">
+                                        <h4>Left View</h4>
+                                        <div id="stl_view4" class="stl_cont tl_curve "></div>
+                                    </div> 
+                                </div>
                             </div>
-                        
-                            <div  id="left_canvas" class="stl_display slide">
-                                <h4>Back View</h4>
-                                <div id="stl_view2" class="stl_cont stl_curve "></div>
+                            <div id="slide-controls" class="carousel-horses carousel-base">
+                                <!-- Navigation Previous View Buttons -->
+                                <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+                                <!-- Text Indicators -->
+                                <div class="indicators">
+                                    <button class="indicator" onclick="showSlides(0)">FRONT</button>
+                                    <button class="indicator" onclick="showSlides(1)">BACK</button>
+                                    <button class="indicator" onclick="showSlides(2)">RIGHT</button>
+                                    <button class="indicator" onclick="showSlides(3)">LEFT</button>
+                                </div>
+                                <!-- Navigation Next View Buttons -->
+                                <button class="next" onclick="moveSlide(1)">&#10095;</button>
                             </div>
-                            <div  id="right_canvas" class="stl_display slide">
-                                <h4>Right View</h4>
-                                <div id="stl_view3" class="stl_cont stl_curve "></div> 
-                            </div>
-                        
-                            <div  id="left_canvas" class="stl_display slide">
-                                <h4>Left View</h4>
-                                <div id="stl_view4" class="stl_cont tl_curve "></div>
-                            </div> 
                         </div>
-                        <div id = "form_controls" class="editor-container-controls">
-                            <!-- TODO Add Paper Size when pertinent
-                            <div class="grid-control">
-                                <label for="paper-size">Paper Size: </label>
-                                <select id="paper-size" name="paper-size">
-                                    <option value="letter">Letter</option>
-                                    <option value="a4">A4</option>
-                                    <option value="a3">A3</option>
-                                    <option value="legal">Legal</option>
-                                </select>
-                            </div> -->
-                            <div class="grid-control">
-                                <div class="magnification-input-wrapper">
-                                    <label for="magnification">Magnification: </label>
-                                    <input id="magnification-value" class="input-value" type="text" value="1.0">
+                        <div id = "formControlsPreview">
+                            <div id = "formControls" class="editor-container-controls">
+                                <!-- TODO Add Paper Size when pertinent
+                                <div class="grid-control">
+                                    <label for="paper-size">Paper Size: </label>
+                                    <select id="paper-size" name="paper-size">
+                                        <option value="letter">Letter</option>
+                                        <option value="a4">A4</option>
+                                        <option value="a3">A3</option>
+                                        <option value="legal">Legal</option>
+                                    </select>
+                                </div> -->
+                                <div class="grid-control">
+                                    <div class="magnification-input-wrapper">
+                                        <label for="magnification">Magnification: </label>
+                                        <input id="magnification-value" class="input-value" type="text" value="1.0">
+                                    </div>
+                                    <input type="range" id="magnification" name="magnification" min="0.1" max="2" step="0.1" value="1">
                                 </div>
-                                <input type="range" id="magnification" name="magnification" min="0.1" max="2" step="0.1" value="1">
-                            </div>
-                            <div class="grid-control">
-                                <div class="rotation-input-wrapper">
-                                    <label for="rotationX">Rotation X-Axis: </label>
-                                    <input id="rotation-x-value" class="input-value" type="text" value="1.0">
+                                <div class="grid-control">
+                                    <div class="rotation-input-wrapper">
+                                        <label for="rotationX">Rotation X-Axis: </label>
+                                        <input id="rotation-x-value" class="input-value" type="text" value="1.0">
+                                    </div>
+                                    <input type="range" id="rotationX" name="rotationX" min="0.1" max="2" step="0.1" value="1">
                                 </div>
-                                <input type="range" id="rotationX" name="rotationX" min="0.1" max="2" step="0.1" value="1">
-                            </div>
-                            <div class="grid-control">
-                                <div class="rotation-input-wrapper">
-                                    <label for="rotationY">Rotation Y-Axis: </label>
-                                    <input id="rotation-y-value" class="input-value" type="text" value="1.0">
+                                <div class="grid-control">
+                                    <div class="rotation-input-wrapper">
+                                        <label for="rotationY">Rotation Y-Axis: </label>
+                                        <input id="rotation-y-value" class="input-value" type="text" value="1.0">
+                                    </div>
+                                    <input type="range" id="rotationY" name="rotationY" min="0.1" max="2" step="0.1" value="1">
                                 </div>
-                                <input type="range" id="rotationY" name="rotationY" min="0.1" max="2" step="0.1" value="1">
-                            </div>
-                            <div class="grid-control">
-                                <div class="rotation-input-wrapper">
-                                    <label for="rotationZ">Rotation Z-Axis: </label>
-                                    <input id="rotation-z-value" class="input-value" type="text" value="1.0">
+                                <div class="grid-control">
+                                    <div class="rotation-input-wrapper">
+                                        <label for="rotationZ">Rotation Z-Axis: </label>
+                                        <input id="rotation-z-value" class="input-value" type="text" value="1.0">
+                                    </div>
+                                    <input type="range" id="rotationZ" name="rotationZ" min="0.1" max="2" step="0.1" value="1">
                                 </div>
-                                <input type="range" id="rotationZ" name="rotationZ" min="0.1" max="2" step="0.1" value="1">
-                            </div>
-                            
-                            <div class="grid-control">
-                                <label for="displayPose">Display Pose
-                                    <input type="checkbox" id="displayPose" name="displayPose">
-                                </label>
-                            </div>                            
-
-                            <!-- TODO Add Line Color when pertinent
-                            <div class="grid-control">
-                                <label for="line-color">Line Color: </label>
-                                <select id="line-color" name="line-color">
-                                    <option value="red">Red</option>
-                                    <option value="green">Green</option>
-                                    <option value="blue">Blue</option>
-                                    <option value="black">Black</option>
-                                </select>
-                            </div> -->
-                            <div class="grid-control">
-                                <label for="model-color">Model Color: </label>
-                                <select id="model-color" name="model-color">
-                                    <option value="white">White</option>
-                                    <option value="gray">Gray</option>
-                                    <option value="yellow">Yellow</option>
-                                    <option value="brown">Brown</option>
-                                </select>
+                                
+                                <div class="grid-control">
+                                    <label for="displayPose">Display Pose
+                                        <input type="checkbox" id="displayPose" name="displayPose">
+                                    </label>
+                                </div>                            
+    
+                                <!-- TODO Add Line Color when pertinent
+                                <div class="grid-control">
+                                    <label for="line-color">Line Color: </label>
+                                    <select id="line-color" name="line-color">
+                                        <option value="red">Red</option>
+                                        <option value="green">Green</option>
+                                        <option value="blue">Blue</option>
+                                        <option value="black">Black</option>
+                                    </select>
+                                </div> -->
+                                <div class="grid-control">
+                                    <label for="model-color">Model Color: </label>
+                                    <select id="model-color" name="model-color">
+                                        <option value="white">White</option>
+                                        <option value="gray">Gray</option>
+                                        <option value="yellow">Yellow</option>
+                                        <option value="brown">Brown</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div id="control-swtich">
-                        <div id="start_controls">
-                            <div id="start_buttons" class ="bottom_buttons">
+                    <div id="control-switch">
+                        <div id="start-controls">
+                            <div id="start-buttons" class ="bottom-buttons">
                                 <button class="upload-button big-button" id="reopenFileDirectoryBtn" type="button">REUPLOAD</button>
                                 <div class="file-input-wrapper">
                                     <label for="file">Current File: </label>
@@ -247,8 +266,8 @@
                                 <button id="nextStartPageBtn" class="next-button" type="button"> NEXT </button>
                             </div>
                         </div>
-                        <div id="edit_controls">
-                            <div id="edit_buttons" class ="bottom_buttons">
+                        <div id="edit-controls">
+                            <div id="edit-buttons" class ="bottom-buttons">
                                 <button id="backEditPageBtn" class="back-button" type="button">BACK</button>
                                 <button id = "openDownloadPopupBtn" class="download-button big-button" type="button"> PRINT </button>
                             </div>

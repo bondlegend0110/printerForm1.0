@@ -1,4 +1,5 @@
 var pdfName = "";
+var currentHorseXBasePosition = 0;
 
 document.getElementById('openFileDirectoryBtn').addEventListener('click', function() {
     uploadFile();
@@ -48,6 +49,36 @@ function inputChange (files){
     //change the apperance of the upload section.
 }
 
+let slideIndex = 0;
+const slideWidth = 500; // Width of each slide
+const slideContainer = document.querySelector('.carousel-view');
+const slides = document.getElementsByClassName("slide");
+
+// Initial setup
+showSlides(slideIndex);
+
+// Event listener for scroll event
+slideContainer.addEventListener('scroll', function() {
+  const scrollLeft = slideContainer.scrollLeft;
+  slideIndex = Math.round(scrollLeft / slideWidth);
+});
+
+function moveSlide(n) {
+  slideIndex += n;
+  if (slideIndex >= slides.length) { slideIndex = 0; }
+  if (slideIndex < 0) { slideIndex = slides.length - 1; }
+
+  slideContainer.scrollTo({
+    left: slideWidth * slideIndex,
+    behavior: 'smooth'
+  });
+}
+
+function showSlides(n) {
+  slideContainer.scrollLeft = slideWidth * n;
+}
+
+
 
 
 //JavaScript for the Form Selection buttons
@@ -68,11 +99,11 @@ document.getElementById('nextFormSelectionPopupBtn').addEventListener('click', f
     //remove from page    
     document.getElementById('instructions').style.display = 'none';
     document.getElementById('public-gallery').style.display = 'none';
-    document.getElementById('start_controls').style.display = 'none';
+    document.getElementById('start-controls').style.display = 'none';
 
     //add to page
     document.getElementById('other-forms').style.display = 'block';
-    document.getElementById('edit_buttons').style.display = 'block';
+    document.getElementById('edit-buttons').style.display = 'block';
 
     
 });
