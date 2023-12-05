@@ -27,8 +27,7 @@ function stlLoadCurve(file){
         local_file:file,
         rotationx:-0.5 * 3.142,
         rotationy: 0,
-        rotationz: 0,
-        auto_resize: true,
+        rotationz: 0
     });
     stl_viewer_front.set_auto_resize(true);
 
@@ -38,8 +37,7 @@ function stlLoadCurve(file){
         local_file:file,
         rotationx: 0.5 * 3.142,
         rotationy: 1 * 3.142,
-        rotationz: 0,
-        auto_resize: true,
+        rotationz: 0
     });
     
      stl_viewer_right = new StlViewer ( document.getElementById("stl_view3"));
@@ -48,8 +46,7 @@ function stlLoadCurve(file){
         local_file:file,
         rotationx:-0.5 * 3.142,
         rotationy: 0,
-        rotationz:-0.5 * 3.142,
-        auto_resize: true,
+        rotationz:-0.5 * 3.142
     });
 
     stl_viewer_left = new StlViewer ( document.getElementById("stl_view4"));
@@ -58,8 +55,7 @@ function stlLoadCurve(file){
         local_file:file,
         rotationx:-0.5 * 3.142,
         rotationy: 0,
-        rotationz: 0.5 * 3.142,
-        auto_resize: true,
+        rotationz: 0.5 * 3.142
     });
 
 }
@@ -79,11 +75,11 @@ function stlViewSetRotation(a){
     stl_viewer_front.rotate(0,a[0][0]-b[0][0],a[0][1]-b[0][1],a[0][2]-b[0][2]);
     stl_viewer_back.rotate(0,-a[1][0]-b[1][0],a[1][1]-b[1][1],a[1][2]-b[1][2]);
     stl_viewer_left.rotate(0,-a[2][0]-b[2][0],a[2][1]-b[2][1],a[2][2]-b[3][2]);
-    stl_viewer_right.rotate(0,a[3][1]-b[3][1],-a[3][0]-b[3][0],a[3][2]-b[2][2]);
+    stl_viewer_right.rotate(0,a[3][0]-b[3][0],-a[3][1]-b[3][1],a[3][2]-b[2][2]);
     b[0]=a[0];
     b[1]=[-a[1][0],a[1][1],a[1][2]];
     b[2]=[-a[2][0],a[2][1],a[2][2]];
-    b[3]=[a[3][1],-a[3][0],a[3][2]];
+    b[3]=[a[3][0],-a[3][1],a[3][2]];
 }
 
 function stlViewZoom(value){
@@ -97,7 +93,7 @@ function stlViewZoom(value){
 document.getElementById('magnification').addEventListener('input', function() {
     const value = parseFloat(this.value);
     stlViewZoom(this.value);
-    document.getElementById('magnification-value').value = this.value;//doesn't work
+    document.getElementById('magnification-value').value = this.value;
 });
   
 document.getElementById('magnification-value').addEventListener('keypress', function() {
@@ -105,7 +101,7 @@ document.getElementById('magnification-value').addEventListener('keypress', func
         const value = parseFloat(this.value);
         if(!isNaN(value) && value >= 0.1 && value <= 2) {
             stlViewZoom(value);
-            document.getElementById('magnification').value = value; //doesn't work
+            document.getElementById('magnification').value = value;
         } else {
             // Handle invalid input if necessary
             alert('Please enter a value between 0.1 and 2');
@@ -120,8 +116,8 @@ document.getElementById('rotationX').addEventListener('input', function() {
     stlViewSetRotation(
         [[this.value,b[0][1],b[0][2]],
         [this.value,b[1][1],b[1][2]],
-        [this.value,b[2][1],b[2][2]],
-        [this.value,b[3][1],b[3][2]]]
+        [b[2][0],this.value,b[2][2]],
+        [b[3][0],this.value,b[3][2]]]
     );
 });
   
@@ -132,8 +128,8 @@ if(value >= -2 && value <= 2) {
     stlViewSetRotation(
         [[value,b[0][1],b[0][2]],
         [value,b[1][1],b[1][2]],
-        [value,b[2][1],b[2][2]],
-        [value,b[3][1],b[3][2]]]
+        [b[2][0],value,b[2][2]],
+        [b[3][0],value,b[3][2]]]
     );
 } else {
     // Handle invalid input if necessary
@@ -147,8 +143,8 @@ document.getElementById('rotationY').addEventListener('input', function() {
     stlViewSetRotation(
         [[b[0][0],this.value,b[0][2]],
         [b[1][0],this.value,b[1][2]],
-        [b[2][0],this.value,b[2][2]],
-        [b[3][0],this.value,b[3][2]]]
+        [this.value,b[2][1],b[2][2]],
+        [this.value,b[3][1],b[3][2]]]
     );
 });
   
@@ -159,8 +155,8 @@ if(value >= -2 && value <= 2) {
     stlViewSetRotation(
         [[b[0][0],value,b[0][2]],
         [b[1][0],value,b[1][2]],
-        [b[2][0],value,b[2][2]],
-        [b[3][0],value,b[3][2]]]
+        [value,b[2][1],b[2][2]],
+        [value,b[3][1],b[3][2]]]
     );
 } else {
     // Handle invalid input if necessary
@@ -210,8 +206,8 @@ document.getElementById('displayPose').addEventListener('click', function() {
     stlViewSetRotation(
         [[0.1 *3.142,0,-0.15 * 3.142],
         [0.1 *3.142,0,-0.15 * 3.142],
-        [0.1 *3.142,0,-0.15 * 3.142],
-        [0.1 *3.142,0,-0.15 * 3.142]
+        [-0.1 *3.1420,0,-0.15 * 3.142],
+        [0.1 *3.1420,0,-0.15 * 3.142]
     ]);
 });
 
