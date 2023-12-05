@@ -57,6 +57,10 @@ label {
     width: 100%;
 }
 
+.magnification-class{
+    display: none;
+} 
+
 input[type=range]{
     width: auto;
 }
