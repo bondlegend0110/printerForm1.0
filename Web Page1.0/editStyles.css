@@ -35,6 +35,12 @@
     display: none;
 }
 
+#formControlsPreview{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .grid-control {
     display: flex;
     flex-direction: column;
@@ -57,10 +63,6 @@ label {
     width: 100%;
 }
 
-.magnification-class{
-    display: none;
-} 
-
 input[type=range]{
     width: auto;
 }
@@ -76,6 +78,20 @@ input[type='checkbox'] {
     background-color: white;
 }
 
+.indicator{
+    background: rgba(112, 114, 236, 0.20);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+}
+
 /*TODO fix the upload styles so that the popup style and the home screen room*/
 
 .download-button {
@@ -86,3 +102,4 @@ input[type='checkbox'] {
     width: 150px;
     height: 45px;
 }
+
