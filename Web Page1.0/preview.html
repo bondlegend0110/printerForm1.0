@@ -14,6 +14,7 @@
     <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
 
     <title>Preview - Printer Form</title>
+    <link rel="stylesheet" href="shared-styles.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -108,7 +109,7 @@
                             <a href="#">Lesson Plans</a>
                         </div>
                     </li>
-                    <li><a href="gallery.html">Gallery</a></li>
+                    <li class = "gallery gallery-nav"><a href="./gallery.html">Gallery</a></li>
                     <li><a href="./about.html">About</a></li>
                     <li><a href="#">Contact</a></li>
                     
@@ -187,6 +188,39 @@
         </div>
     </div>
 
+
+    <!--Feedback Tab-->
+    <input type="checkbox" id="slide" name="" value="" />
+    <div class="fb-container">
+        <label for="slide" class="toggle"><div id="fb-tab">Feedback</div></label>
+        <div class="sidebar" id="fb-form" >
+            <h3>Printerform Experience:</h3>
+            <iframe name="hiddenFrame" class="hide"></iframe>
+            <form id="fb-user-inputs-form" method="POST" target="hiddenFrame" action="https://script.google.com/macros/s/AKfycbxzzbnYd8Oy2uJ9FNa_CgAR_ukJbMPbcnWoSo8ohP2AZK55SQ_fEptRvLw0aJOvCHL6/exec">
+                <div id="fb-user-inputs-items">
+                    <div id="select-role">
+                        <label for="role" class="required">Your are a...</label>
+                        <select name="role" id="role" required >
+                        <option value="" selected="selected" disabled="true">--Please Select --</option>
+                        <option value="student">Student</option>
+                        <option value="educator">Educator</option>
+                        <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="text-input">Share your thoughts:</label>
+                        <textarea id="text-input" name="text-input"></textarea>
+                    </div>
+                </div>
+                <input type="button" id="fb-submit-btn" value="Submit" onclick="submitForm()">
+            </form>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScCbfCI4AGwUjoJ6NzdIvLrkpYKWgth8RgtbY9oTs-fHyMbQw/viewform" target="_blank"><button id="fb-survey-btn">Take Our Full Survey</button></a>
+            
+        </div>
+    </div>
+
+    
+
     <!--TODO: Make Footer?-->
     <div id="footer">
         <div class="container">
@@ -197,8 +231,8 @@
                     <h1>|</h1>
                     <li><a href="./resource.html">Resources</a></li>
                     <h1>|</h1>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <h1>|</h1>
+                    <li class = "gallery gallery-nav"><a href="./gallery.html">Gallery</a></li>
+                        <h1 class = "gallery gallery-nav">|</h1>
                     <li><a href="./about.html">About</a></li>
                 </ul>
 

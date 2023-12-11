@@ -69,12 +69,6 @@ nav .fas{
     text-align: left;
 }
 
-/* Show the dropdown on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-
 /* background container */
 .background-container{
     margin-top: 40px;
@@ -386,9 +380,10 @@ background-color: #bbb;
 /*TODO fix the upload styles so that the popup style and the home screen room*/
 
 .upload-button{
-    font-size: 18px;
+    color:#FFFFFF;
+    font-size: 36px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     line-height: normal;
     text-align: center;
     text-decoration: none;
@@ -396,10 +391,10 @@ background-color: #bbb;
     cursor: pointer;
     border: none;
     border-radius: 30px;
-    background: #FFE07D;
-    width: 200px;
-    height: 60px;  
-    
+    background: #FF664F;
+    width: 400px;
+    height: 100px;  
+
 }
 .close-button {
     padding: 10px;

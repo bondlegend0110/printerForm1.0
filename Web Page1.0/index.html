@@ -15,7 +15,7 @@
 
     <title>Home - Printer Form</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="EditStyles.css">
+    <link rel="stylesheet" href="editStyles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="shared-styles.css">
 </head>
@@ -52,7 +52,7 @@
                             <a href="#">Lesson Plans</a>
                         </div>
                     </li>
-                    <li><a href="gallery.html">Gallery</a></li>
+                    <li class = "gallery gallery-nav"><a href="./gallery.html">Gallery</a></li>
                     <li><a href="./about.html">About</a></li>
                 </ul>
             </nav>
@@ -106,6 +106,7 @@
                         <option value="" selected="selected" disabled="true">--Please Select --</option>
                         <option value="student">Student</option>
                         <option value="educator">Educator</option>
+                        <option value="other">Other</option>
                         </select>
                     </div>
                     <div>
@@ -190,15 +191,15 @@
                     <h1>|</h1>
                     <li><a href="./resource.html">Resources</a></li>
                     <h1>|</h1>
-                    <li><a href="./gallery.html">Gallery</a></li>
-                    <h1>|</h1>
+                    <li class = "gallery gallery-nav"><a href="./gallery.html">Gallery</a></li>
+                        <h1 class = "gallery gallery-nav">|</h1>
                     <li><a href="./about.html">About</a></li>
                 </ul>
 
                 <ul class="footer-nav" style="text-align:center;">
-                    <li><a href="mailto:email@brown.edu">email@brown.edu</a></li>
+                    <li><a href="mailto:printerform1@gmail.com">printerform1@gmail.com</a></li>
                     <h1>|</h1>
-                    <li><a href="googlesurveylink.com">Feedback Form</a></li>
+                    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScCbfCI4AGwUjoJ6NzdIvLrkpYKWgth8RgtbY9oTs-fHyMbQw/viewform" target="_blank">Feedback Form</a></li>
                 </ul>
             </div>
 
@@ -206,8 +207,6 @@
 
     </div>
 
-
-    <script src="./viewstl/stl_viewer.min.js"></script>
     <script src="index.js"></script>
 </body>
 </html>

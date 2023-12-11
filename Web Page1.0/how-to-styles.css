@@ -72,11 +72,6 @@ nav .fas{
     text-align: left;
 }
 
-/* Show the dropdown on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
 
 /* video walkthrough container */
 .video-title{

@@ -5,9 +5,11 @@
     box-sizing:border-box;
 }
 
+
 .container{
     padding: 30px 10%;
 }
+
 
 /* navigation bar */
 .nav-bar{
@@ -18,6 +20,8 @@
 }
 
 
+
+
 /* logo */
 .logo{
     width: 50%;
@@ -25,16 +29,20 @@
     display:block;
 }
 
+
 /* menu items */
 nav ul{
 }
+
 
 nav ul li{
     display: inline-block;
     list-style: none;
     margin: 10px 20px;
 
+
 }
+
 
 /* each menu item */
 nav ul li a{
@@ -49,9 +57,12 @@ nav ul li a{
 }
 
 
+
+
 nav .fas{
     display:none;
 }
+
 
 /* Style the dropdown content container */
 .dropdown-content {
@@ -63,6 +74,7 @@ nav .fas{
     z-index: 1;
 }
 
+
 /* Style the dropdown links */
 .dropdown-content a {
     color: black;
@@ -72,10 +84,7 @@ nav .fas{
     text-align: left;
 }
 
-/* Show the dropdown on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
-}
+
 
 
 /* education resources container */
@@ -89,13 +98,16 @@ nav .fas{
     /* text-align: center; */
 }
 
+
 .text-container{
     margin-top: 8%;
 }
 
+
 .text-sub-container{
     margin-bottom:4%;
 }
+
 
 .education-sub-title{
     color:#404040;
@@ -103,6 +115,7 @@ nav .fas{
     font-weight: 600;
     font-size: 18px;
 }
+
 
 .education-text{
     color:#404040;
@@ -112,10 +125,13 @@ nav .fas{
     font-weight: 400;
 }
 
+
 .education-img-container{
     display: flex;
     gap:10px;
 }
+
+
 
 
 /* 3d files container */
@@ -125,6 +141,7 @@ nav .fas{
     font-size: 18px;
     font-weight: 400;
 }
+
 
 #workflow {
     margin-top: 5%;
@@ -137,6 +154,7 @@ nav .fas{
     flex-wrap: wrap;
 }
 
+
 .item {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -146,6 +164,7 @@ nav .fas{
     align-items: center;
 }
 
+
 .item-title {
     margin-bottom: 10px;
     color: #FFF;
@@ -153,33 +172,44 @@ nav .fas{
     font-weight: 400;
 }
 
+
 .item-pic {
     width: 100%;
     height: auto;
     object-fit: cover;
 }
 
+
 /* activities and lesson plans */
 .image-gallery {
+    /* When there is only 2 sets of activities and lessons, remove the padding when you add more */
+    /* padding-left: 220px;
+    padding-right:220px;  */
+    justify-content: center;
     margin-top:5%;
     display: flex;
     gap: 10px;
     list-style-type: none;
     flex-wrap: wrap;
-    /* align-items:stretch; */
   }
+
 
 .image-gallery-row{
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: space-between;
+    /* flex-basis: 0px;  */
 }
+
+
+
 
 .image-gallery-item{
     cursor: pointer;
     width: 200px;
 }
+
 
 .image-gallery-item img {
     object-fit: cover;
@@ -190,16 +220,19 @@ nav .fas{
     border-radius: 0px;
 }
 
+
 /* footer */
 #footer{
     background-color: #7072EC;
     margin-top: 60px;
 }
 
+
 .footer-nav-container{
     display: block;
     align-items: center;
 }
+
 
 .footer-nav{
     /* display: block; */
@@ -209,9 +242,11 @@ nav .fas{
     flex-wrap: wrap;
 }
 
+
 .footer-nav li{
     list-style: none;
 }
+
 
 .footer-nav a{
     display: inline-block;
@@ -220,6 +255,7 @@ nav .fas{
     font-size: 20px;
     text-decoration: none;
 }
+
 
 .footer-nav h1{
     color:#fff;
