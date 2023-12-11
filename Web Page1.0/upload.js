@@ -20,6 +20,7 @@ document.getElementById('nextStartPageBtn').addEventListener('click', function()
 //uploadFile
 function uploadFile() {
     document.getElementById("fileInput").click();
+    document.getElementById('reopenFileDirectoryBtn').style.display = 'block';
     document.getElementById("open-directory_container").remove();  
 }
 
@@ -45,7 +46,6 @@ function inputChange (files){
     //take the full path (value of files which is the text input) 
     //and the take only the last segment(which should be the file name). 
     document.getElementById('fileNameDisplay').value = fileName;
-    document.getElementById('reopenFileDirectoryBtn').style.display = 'block';
     //change the apperance of the upload section.
 }
 

@@ -5,9 +5,11 @@
     box-sizing:border-box;
 }
 
+
 .container{
     padding: 30px 10%;
 }
+
 
 /* navigation bar */
 .nav-bar{
@@ -18,6 +20,8 @@
 }
 
 
+
+
 /* logo */
 .logo{
     width: 50%;
@@ -25,16 +29,20 @@
     display:block;
 }
 
+
 /* menu items */
 nav ul{
 }
+
 
 nav ul li{
     display: inline-block;
     list-style: none;
     margin: 10px 20px;
 
+
 }
+
 
 /* each menu item */
 nav ul li a{
@@ -49,9 +57,12 @@ nav ul li a{
 }
 
 
+
+
 nav .fas{
     display:none;
 }
+
 
 /* Style the dropdown content container */
 .dropdown-content {
@@ -63,6 +74,7 @@ nav .fas{
     z-index: 1;
 }
 
+
 /* Style the dropdown links */
 .dropdown-content a {
     color: black;
@@ -72,10 +84,7 @@ nav .fas{
     text-align: left;
 }
 
-/* Show the dropdown on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
-}
+
 
 
 /* activity brief box */
@@ -89,15 +98,18 @@ nav .fas{
     /* text-align: center; */
 }
 
+
 .text-container{
     margin-top: 8%;
 }
+
 
 .activity-text-sub-container{
     margin-bottom:4%;
     display: flex;
     flex-wrap: wrap;
 }
+
 
 .activity-sub-title{
     display: flex;
@@ -106,6 +118,7 @@ nav .fas{
     font-weight: 600;
     font-size: 18px;
 }
+
 
 .activity-text{
     display: flex;
@@ -116,27 +129,34 @@ nav .fas{
     font-weight: 400;
 }
 
+
 .tool-logos{
     display: flex;
     width:65%;
     margin-left:5%;
 }
 
+
 .item-pic{
     width: 60%;
     margin:0;
 }
 
+
 /* instructions */
+
 
 .text-sub-container{
     margin-bottom:4%;
 }
 
+
 .text-sub-container a{
     text-decoration: none;
-    
+
+
 }
+
 
 .instructions-sub-title{
     color:#404040;
@@ -144,6 +164,7 @@ nav .fas{
     font-weight: 600;
     font-size: 18px;
 }
+
 
 .instructions-text{
     color:#404040;
@@ -153,7 +174,9 @@ nav .fas{
     font-weight: 400;
 }
 
+
 /* reference images */
+
 
 .image-gallery {
     margin-top:5%;
@@ -164,10 +187,12 @@ nav .fas{
     /* align-items:stretch; */
   }
 
+
 .image-gallery > li {
     flex-basis: 200px; 
     /* width: 350px; */
 }
+
 
 .image-gallery li img {
     object-fit: cover;
@@ -179,16 +204,21 @@ nav .fas{
 
 
 
+
+
+
 /* footer */
 #footer{
     background-color: #7072EC;
     margin-top: 60px;
 }
 
+
 .footer-nav-container{
     display: block;
     align-items: center;
 }
+
 
 .footer-nav{
     /* display: block; */
@@ -198,9 +228,11 @@ nav .fas{
     flex-wrap: wrap;
 }
 
+
 .footer-nav li{
     list-style: none;
 }
+
 
 .footer-nav a{
     display: inline-block;
@@ -209,6 +241,7 @@ nav .fas{
     font-size: 20px;
     text-decoration: none;
 }
+
 
 .footer-nav h1{
     color:#fff;

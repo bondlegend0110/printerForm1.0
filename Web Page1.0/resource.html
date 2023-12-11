@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resources - PrinterForm</title>
+    <link rel="stylesheet" href="shared-styles.css">
     <link rel="stylesheet" href="resources-styles.css">
 </head>
 
@@ -26,7 +27,7 @@
                             <a href="#">Lesson Plans</a>
                         </div>
                     </li>
-                    <li><a href="./gallery.html">Gallery</a></li>
+                    <li class = "gallery gallery-nav"><a href="./gallery.html">Gallery</a></li>
                     <li><a href="./about.html">About</a></li>
                 </ul>
             </nav>
@@ -35,21 +36,18 @@
 
     <!-- education resources container -->
     <div id="education-resources">
-        <div class="container" style="margin:30px 10%; margin-bottom: 0; background: #F1F1FD;">
+        <div class="container" style="margin-top:40px; margin-bottom: 0; background: #F1F1FD;">
             <h1 class="title">Education Resources</h1>
             <div class="text-container">
                 <div class="text-sub-container">
                     <h2 class="education-sub-title">Using PrinterForm in the Classroom </h2>
-                    <p class="education-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-                        id est laborum.
-                    </p>
+                    <p class="education-text">With a focus on making 3D printing accessible through 2D printers, we have provided activities and lesson plans
+                        that introduce students to PrinterForm. Teachers can integrate our activities and lesson plans into their curriculum, guiding students on how 
+                        to use PrinterForm in the classroom. This section serves as a detailed guide, providing step-by-step instructions on utilizing PrinterForm to create 3D forms using 2D printers. 
+                    </p> 
                 </div>
 
-                <div class="education-img-container">
+                <div class="education-img-container  incomplete-lesson">
                     <img class="education-img-1" style="display:flex; height: 50%; width: 35%;"
                         src="./pictures/start page/image.png" />
                     <img class="education-img-2" style="display:flex; height: 50%; width: 35%;"
@@ -97,29 +95,24 @@
         </div>
     </div>
 
-    <!-- additional examples container -->
-    <div id="additional-examples">
-        <div class="container" style="margin:30px 10%; margin-top: 0; background: #F1F1FD;">
+    <!-- Activities and Lesson Plans container -->
+    <div id="activities-and-lesson-plans">
+        <div class="container" style="margin-bottom:40px; margin-top: 0; background: #F1F1FD;">
             <h2 class="education-sub-title">Activities and Lesson Plans</h2>
-            <p class="education-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-                id est laborum.
+            <p class="education-text">Here are the activities and lesson plans that can be exercised in the clasroom using PrinterForm. These lessons aim to introduce students to the fundamental concepts in a fun and engaging way. 
             </p>
             <div class="image-gallery">
                 <div class="image-gallery-row">
                     <a class="image-gallery-item" href="./activity-a.html">
                         <img src="./pictures/start page/ActivityA.png" alt="" />
                     </a>
-                    <a class="image-gallery-item">
+                    <a class="image-gallery-item" href="./activity-a.html">
                         <img src="./pictures/start page/ActivityB.png" alt="" />
                     </a>
-                    <a class="image-gallery-item">
+                    <a class="image-gallery-item incomplete-lesson">
                         <img src="./pictures/start page/ActivityC.png" alt="" />
                     </a>
-                    <a class="image-gallery-item">
+                    <a class="image-gallery-item incomplete-lesson">
                         <img src="./pictures/start page/ActivityD.png" alt="" />
                     </a>
                 </div>
@@ -128,13 +121,13 @@
                     <a class="image-gallery-item" href="./lesson-a.html">
                         <img src="./pictures/start page/LessonA.png" alt="" />
                     </a>
-                    <a class="image-gallery-item">
+                    <a class="image-gallery-item" href="./lesson-a.html">
                         <img src="./pictures/start page/LessonB.png" alt="" />
                     </a>
-                    <a class="image-gallery-item">
+                    <a class="image-gallery-item incomplete-lesson">
                         <img src="./pictures/start page/LessonC.png" alt="" />
                     </a>
-                    <a class="image-gallery-item">
+                    <a class="image-gallery-item incomplete-lesson">
                         <img src="./pictures/start page/LessonD.png" alt="" />
                     </a>
                 </div>
@@ -143,7 +136,7 @@
     </div>
 
     <!-- Additional Engagement  -->
-    <div class="additional-engagement ">
+    <!-- <div class="additional-engagement ">
         <div class="container">
             <h1 class="title">Additional Engagement </h1>
             <p class="education-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -160,9 +153,38 @@
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
             </p>
         </div>
+    </div> -->
+
+    <!--Feedback Tab-->
+    <input type="checkbox" id="slide" name="" value="" />
+    <div class="fb-container">
+        <label for="slide" class="toggle"><div id="fb-tab">Feedback</div></label>
+        <div class="sidebar" id="fb-form" >
+            <h3>Printerform Experience:</h3>
+            <iframe name="hiddenFrame" class="hide"></iframe>
+            <form id="fb-user-inputs-form" method="POST" target="hiddenFrame" action="https://script.google.com/macros/s/AKfycbxzzbnYd8Oy2uJ9FNa_CgAR_ukJbMPbcnWoSo8ohP2AZK55SQ_fEptRvLw0aJOvCHL6/exec">
+                <div id="fb-user-inputs-items">
+                    <div id="select-role">
+                        <label for="role" class="required">Your are a...</label>
+                        <select name="role" id="role" required >
+                        <option value="" selected="selected" disabled="true">--Please Select --</option>
+                        <option value="student">Student</option>
+                        <option value="educator">Educator</option>
+                        <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="text-input">Share your thoughts:</label>
+                        <textarea id="text-input" name="text-input"></textarea>
+                    </div>
+                </div>
+                <input type="button" id="fb-submit-btn" value="Submit" onclick="submitForm()">
+            </form>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScCbfCI4AGwUjoJ6NzdIvLrkpYKWgth8RgtbY9oTs-fHyMbQw/viewform" target="_blank"><button id="fb-survey-btn">Take Our Full Survey</button></a>
+            
+        </div>
     </div>
-
-
+    
 
     <!--Footer-->
     <div id="footer">
@@ -174,15 +196,16 @@
                     <h1>|</h1>
                     <li><a href="./resource.html">Resources</a></li>
                     <h1>|</h1>
-                    <li><a href="./gallery.html">Gallery</a></li>
-                    <h1>|</h1>
+                    <li class = "gallery gallery-nav"><a href="./gallery.html">Gallery</a></li>
+                        <h1 class = "gallery gallery-nav">|</h1>
+                    <li><a href="./about.html">About</a></li>
                     <li><a href="./about.html">About</a></li>
                 </ul>
 
                 <ul class="footer-nav" style="text-align:center;">
-                    <li><a href="mailto:email@brown.edu">email@brown.edu</a></li>
+                    <li><a href="mailto:printerform1@gmail.com">printerform1@gmail.com</a></li>
                     <h1>|</h1>
-                    <li><a href="googlesurveylink.com">Feedback Form</a></li>
+                    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScCbfCI4AGwUjoJ6NzdIvLrkpYKWgth8RgtbY9oTs-fHyMbQw/viewform" target="_blank">Feedback Form</a></li>
                 </ul>
             </div>
 

@@ -13,6 +13,16 @@
     display: none;
 }
 
+/* turn on the galleries and the about sections if you would like */
+.gallery, .about, .dropdown-content, .incomplete-lesson, .reference-images, #video{
+    display: none;
+}
+
+/* Show the dropdown on hover */
+/* .dropdown:hover .dropdown-content {
+    display: block;
+} */
+
 #fb-tab{
     writing-mode: vertical-lr;
     text-orientation:sideways;

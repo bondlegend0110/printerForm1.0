@@ -71,11 +71,6 @@ nav .fas{
     text-align: left;
 }
 
-/* Show the dropdown on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
 /* our mission box */
 .text-container{
     background-color: #F5F5F5; 
@@ -108,8 +103,8 @@ nav .fas{
 .team-list{
     margin-top: 3%;
     flex-wrap: wrap;
-    justify-content: space-between;
-    /* justify-content: center; */
+ /* justify-content: space-between; */
+    justify-content: center;
     align-items: center;
     display: flex;
     gap: 5%;
@@ -124,6 +119,7 @@ nav .fas{
     text-align: left;
     height: 600px;
     width: 350px;
+    min-width: 320px;
     background-color: #7072EC;
     margin-bottom: 25px;
     line-height: 25px;
