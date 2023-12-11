@@ -90,25 +90,25 @@ function stlViewZoom(value){
 }
 
 //magnification slider and value
-document.getElementById('magnification').addEventListener('input', function() {
-    const value = parseFloat(this.value);
-    stlViewZoom(this.value);
-    document.getElementById('magnification-value').value = this.value;
-});
+// document.getElementById('magnification').addEventListener('input', function() {
+//     const value = parseFloat(this.value);
+//     stlViewZoom(this.value);
+//     document.getElementById('magnification-value').value = this.value;
+// });
   
-document.getElementById('magnification-value').addEventListener('keypress', function() {
-    if(event.key == 'Enter'){
-        const value = parseFloat(this.value);
-        if(!isNaN(value) && value >= 0.1 && value <= 2) {
-            stlViewZoom(value);
-            document.getElementById('magnification').value = value;
-        } else {
-            // Handle invalid input if necessary
-            alert('Please enter a value between 0.1 and 2');
-        }
-    }
+// document.getElementById('magnification-value').addEventListener('keypress', function() {
+//     if(event.key == 'Enter'){
+//         const value = parseFloat(this.value);
+//         if(!isNaN(value) && value >= 0.1 && value <= 2) {
+//             stlViewZoom(value);
+//             document.getElementById('magnification').value = value;
+//         } else {
+//             // Handle invalid input if necessary
+//             alert('Please enter a value between 0.1 and 2');
+//         }
+//     }
 
-});  
+// });  
 
 //rotationX slider and value
 document.getElementById('rotationX').addEventListener('input', function() {
