@@ -14,7 +14,7 @@
 }
 
 /* turn on the galleries and the about sections if you would like */
-.gallery, .about, .dropdown-content, .incomplete-lesson, .reference-images, #video{
+.gallery, .about, .dropdown-content, .incomplete-lesson, .reference-images, #video, #education-resources{
     display: none;
 }
 
