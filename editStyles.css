@@ -16,7 +16,7 @@
     background-size: 20% 14.28%;
 }
 
-#start_buttons{
+#start-buttons{
     display: flex;
     justify-content: center;
     align-items: center; 
@@ -27,12 +27,18 @@
     margin-left: 10px;
 }
 
-#form_controls {
+#edit-controls{
     display: none;
 }
 
-#edit_buttons{
+.controlPreview{
     display: none;
+}
+
+#formControlsPreview{
+    display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .grid-control {
@@ -61,11 +67,29 @@ input[type=range]{
     width: auto;
 }
 
-#magnification-value {
+input[type='checkbox'] {
+    margin-right: 5px;
+}
+
+.input-value {
     float: right;
     width: 2.5em;
     margin-right: 10px;
     background-color: white;
+}
+
+.indicator{
+    background: rgba(112, 114, 236, 0.20);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
 }
 
 /*TODO fix the upload styles so that the popup style and the home screen room*/
@@ -78,3 +102,4 @@ input[type=range]{
     width: 150px;
     height: 45px;
 }
+

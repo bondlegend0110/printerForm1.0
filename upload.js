@@ -1,5 +1,5 @@
-var stl_viewerMain = new StlViewer ( document.getElementById("stl_contMain"));
 var pdfName = "";
+var currentHorseXBasePosition = 0;
 
 document.getElementById('openFileDirectoryBtn').addEventListener('click', function() {
     uploadFile();
@@ -11,8 +11,8 @@ document.getElementById('reopenFileDirectoryBtn').addEventListener('click', func
 
 //Next Button
 document.getElementById('nextStartPageBtn').addEventListener('click', function() {
-    createAndDisplayPDF(pdfName);
     //TODO Change to incorporate form selection
+    createAndDisplayPDF(pdfName);
     document.getElementById('downloadPopup').style.display = 'block';
 });
 
@@ -20,8 +20,8 @@ document.getElementById('nextStartPageBtn').addEventListener('click', function()
 //uploadFile
 function uploadFile() {
     document.getElementById("fileInput").click();
-    document.getElementById("open-directory_container").remove();  
-    document.getElementById("dummyDisplay").remove();    
+    document.getElementById('reopenFileDirectoryBtn').style.display = 'block';
+    document.getElementById("open-directory_container").style.display = 'none';  
 }
 
 function inputChange (files){
@@ -46,9 +46,38 @@ function inputChange (files){
     //take the full path (value of files which is the text input) 
     //and the take only the last segment(which should be the file name). 
     document.getElementById('fileNameDisplay').value = fileName;
-
     //change the apperance of the upload section.
 }
+
+let slideIndex = 0;
+const slideWidth = 500; // Width of each slide
+const slideContainer = document.querySelector('.carousel-view');
+const slides = document.getElementsByClassName("slide");
+
+// Initial setup
+showSlides(slideIndex);
+
+// Event listener for scroll event
+slideContainer.addEventListener('scroll', function() {
+  const scrollLeft = slideContainer.scrollLeft;
+  slideIndex = Math.round(scrollLeft / slideWidth);
+});
+
+function moveSlide(n) {
+  slideIndex += n;
+  if (slideIndex >= slides.length) { slideIndex = 0; }
+  if (slideIndex < 0) { slideIndex = slides.length - 1; }
+
+  slideContainer.scrollTo({
+    left: slideWidth * slideIndex,
+    behavior: 'smooth'
+  });
+}
+
+function showSlides(n) {
+  slideContainer.scrollLeft = slideWidth * n;
+}
+
 
 
 
@@ -70,11 +99,11 @@ document.getElementById('nextFormSelectionPopupBtn').addEventListener('click', f
     //remove from page    
     document.getElementById('instructions').style.display = 'none';
     document.getElementById('public-gallery').style.display = 'none';
-    document.getElementById('start_buttons').style.display = 'none';
+    document.getElementById('start-controls').style.display = 'none';
 
     //add to page
     document.getElementById('other-forms').style.display = 'block';
-    document.getElementById('edit_buttons').style.display = 'block';
+    document.getElementById('edit-buttons').style.display = 'block';
 
     
 });

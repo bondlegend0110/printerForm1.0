@@ -69,12 +69,6 @@ nav .fas{
     text-align: left;
 }
 
-/* Show the dropdown on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-
 /* background container */
 .background-container{
     margin-top: 40px;
@@ -266,7 +260,7 @@ nav .fas{
 #reopenFileDirectoryBtn{
     display: none;
     border-radius: 10px;
-    width: 90px;
+    width: 120px;
     height: 45px;
 }
 
@@ -285,9 +279,62 @@ nav .fas{
     height: fit-content;}
 
 #printPreview{
-    width:700px;
-    height: fit-content;
-    margin: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+#form_controls{
+    display: flex;
+    flex-direction: column; /* Stack image and label vertically */
+    justify-content: center; /* Vertically center content */
+    align-items: center; /* Horizontally center content */
+}
+
+.carousel-view{
+    position:relative;
+    width:500px;
+    height:500px;
+    margin: auto;
+    overflow: hidden;
+    overflow-x: auto; /* Allow horizontal scrolling */
+}
+.carousel-horses{
+    display: flex;
+    flex-direction: row;
+}
+
+.carousel-base{
+    justify-content: center; /* Vertically center content */
+    align-items: center; /* Horizontally center content */
+}
+  
+.slide {
+    width: 400px;
+    height: 400px;
+    margin: 50px;
+    flex: 0 0 auto;
+}
+
+/* Style for Text Indicators */
+.indicators {
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+.indicator {
+cursor: pointer;
+display: inline-block;
+margin: 0 5px;
+padding: 5px;
+font-size: 16px;
+color: #333;
+background-color: #eee;
+border-radius: 5px;
+transition: background-color 0.6s ease;
+}
+
+.indicator:hover, .indicator.active {
+background-color: #bbb;
 }
 
 .canvases{
@@ -333,9 +380,10 @@ nav .fas{
 /*TODO fix the upload styles so that the popup style and the home screen room*/
 
 .upload-button{
-    font-size: 18px;
+    color:#FFFFFF;
+    font-size: 36px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     line-height: normal;
     text-align: center;
     text-decoration: none;
@@ -343,10 +391,10 @@ nav .fas{
     cursor: pointer;
     border: none;
     border-radius: 30px;
-    background: #FFE07D;
-    width: 200px;
-    height: 60px;  
-    
+    background: #FF664F;
+    width: 400px;
+    height: 100px;  
+
 }
 .close-button {
     padding: 10px;

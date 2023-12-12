@@ -1,37 +1,21 @@
-var stl_viewerMain = new StlViewer ( document.getElementById("stl_contMain"));
 var pdfName = "";
 var finalCanvas;
 
-//Edit page Buttons
+// Buttons
 document.getElementById('backEditPageBtn').addEventListener('click', function() {
     //open popup
     document.getElementById('formSelectionPopup').style.display = 'block';
     //add to page
     document.getElementById('instructions').style.display = 'block';
     document.getElementById('public-gallery').style.display = 'block';
-    document.getElementById('start_buttons').style.display = 'block';
+    document.getElementById('start-controls').style.display = 'block';
 
     document.getElementById('other-forms').style.display = 'none';
-    document.getElementById('edit_buttons').style.display = 'none';
+    document.getElementById('edit-buttons').style.display = 'none';
 });
 document.getElementById('openDownloadPopupBtn').addEventListener('click', function() {
     document.getElementById('downloadPopup').style.display = 'block';
 });
-
-document.getElementById('magnification').addEventListener('input', function() {
-document.getElementById('magnification-value').value = this.value;
-});
-  
-document.getElementById('magnification-value').addEventListener('input', function() {
-const value = parseFloat(this.value);
-if(!isNaN(value) && value >= 0.1 && value <= 2) {
-    document.getElementById('magnification').value = value;
-} else {
-    // Handle invalid input if necessary
-    alert('Please enter a value between 0.1 and 2');
-}
-});  
-
 
 
 //JavaScript for the Print Preview Popup buttons
@@ -107,13 +91,12 @@ async function createAndDisplayPDF(pdfNameString) {
     try {
         const capturedElements = await Promise.all([
             captureElement('stl_view1'),
-            captureElement('stl_view2'),
+            captureElement('stl_view2')
         ]);
 
         const positions = [
-            { x: 95, y: 0, width: 390, height: 390,  rotation: 180 }, 
             { x: 105, y: 400, width: 390, height: 390, rotation: 0 },
-
+            { x: -305, y: -400, width: 390, height: 390,  rotation: 180 }, 
         ];
 
         finalCanvas = await combineImagesOnTemplate('./pictures/templates/CURVED_FORM_TEMPLATE.jpg', capturedElements, positions, 600, 2511, 3323);
