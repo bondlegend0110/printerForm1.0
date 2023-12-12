@@ -21,7 +21,7 @@ document.getElementById('nextStartPageBtn').addEventListener('click', function()
 function uploadFile() {
     document.getElementById("fileInput").click();
     document.getElementById('reopenFileDirectoryBtn').style.display = 'block';
-    document.getElementById("open-directory_container").remove();  
+    document.getElementById("open-directory_container").style.display = 'none';  
 }
 
 function inputChange (files){
