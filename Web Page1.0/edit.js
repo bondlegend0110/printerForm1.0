@@ -95,8 +95,8 @@ async function createAndDisplayPDF(pdfNameString) {
         ]);
 
         const positions = [
-            { x: 0, y: 0, width: 200, height: 200, rotation: 0 }, 
-            { x: 200, y: 200, width: 200, height: 200, rotation: 0 }
+            { x: 105, y: 400, width: 390, height: 390, rotation: 0 },
+            { x: -305, y: -400, width: 390, height: 390,  rotation: 180 }, 
         ];
 
         finalCanvas = await combineImagesOnTemplate('./pictures/templates/CURVED_FORM_TEMPLATE.jpg', capturedElements, positions, 600, 2511, 3323);
