@@ -569,6 +569,7 @@ background-color: #bbb;
 .fs-item:hover  {
     -webkit-transform:scale(1.02); /* or some other value */
     transform:scale(1.02);
+    cursor: pointer;
 }
 
 .selected{
