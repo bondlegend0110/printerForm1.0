@@ -1,23 +1,6 @@
 var pdfName = "";
 var finalCanvas;
 
-// Buttons
-document.getElementById('backEditPageBtn').addEventListener('click', function() {
-    //open popup
-    document.getElementById('formSelectionPopup').style.display = 'block';
-    //add to page
-    document.getElementById('instructions').style.display = 'block';
-    document.getElementById('public-gallery').style.display = 'block';
-    document.getElementById('start-controls').style.display = 'block';
-
-    document.getElementById('other-forms').style.display = 'none';
-    document.getElementById('edit-buttons').style.display = 'none';
-});
-document.getElementById('openDownloadPopupBtn').addEventListener('click', function() {
-    document.getElementById('downloadPopup').style.display = 'block';
-});
-
-
 //JavaScript for the Print Preview Popup buttons
 //Close Button
 document.getElementById('closeDownloadPopupBtn').addEventListener('click', function() {

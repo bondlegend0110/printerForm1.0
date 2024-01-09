@@ -13,7 +13,7 @@ document.getElementById('reopenFileDirectoryBtn').addEventListener('click', func
 document.getElementById('nextStartPageBtn').addEventListener('click', function() {
     //TODO Change to incorporate form selection
     createAndDisplayPDF(pdfName);
-    document.getElementById('downloadPopup').style.display = 'block';
+    document.getElementById('formSelectionPopup').style.display = 'block';
 });
 
 //STL upload code
@@ -99,12 +99,9 @@ document.getElementById('nextFormSelectionPopupBtn').addEventListener('click', f
     //remove from page    
     document.getElementById('instructions').style.display = 'none';
     document.getElementById('public-gallery').style.display = 'none';
-    document.getElementById('start-controls').style.display = 'none';
 
     //add to page
-    document.getElementById('other-forms').style.display = 'block';
-    document.getElementById('edit-buttons').style.display = 'block';
-
+    document.getElementById('downloadPopup').style.display = 'block';
     
 });
 
