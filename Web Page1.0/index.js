@@ -17,6 +17,7 @@ window.onclick = function(event) {
 
 // When the page loads
 // Check localStorage and show modal if needed
+//TODO:  Don't Show Again
 // document.addEventListener("DOMContentLoaded", function() {
 //     if (localStorage.getItem('doNotShow') !== 'true') {
 //         popup.style.display = 'block';
