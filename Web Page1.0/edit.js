@@ -70,19 +70,15 @@ function displayFinalProduct(canvas, targetDivId) {
 }
 
 
-async function createAndDisplayPDF(pdfNameString) {
+async function createAndDisplayPDF(pdfNameString, item) {
     try {
-        const capturedElements = await Promise.all([
-            captureElement('stl_view1'),
-            captureElement('stl_view2')
-        ]);
+        const itemElement = item.customElementInstance;
+        const capturedElements = await Promise.all(itemElement.viewArray);
+        const positions = itemElement.viewPositions;
 
-        const positions = [
-            { x: 105, y: 400, width: 390, height: 390, rotation: 0 },
-            { x: -305, y: -400, width: 390, height: 390,  rotation: 180 }, 
-        ];
-
-        finalCanvas = await combineImagesOnTemplate('./pictures/templates/CURVED_FORM_TEMPLATE.jpg', capturedElements, positions, 600, 2511, 3323);
+        finalCanvas = await combineImagesOnTemplate('./pictures/templates/CURVED_FORM_TEMPLATE.jpg', ['stl_view1','stl_view2'],
+        [{x: 105, y: 400, width: 390, height: 390, rotation: 0 },
+            { x: -305, y: -400, width: 390, height: 390,  rotation: 180 }], 600, 2511, 3323);
 
         // Display the final product
         displayFinalProduct(finalCanvas,"print-preview-container");

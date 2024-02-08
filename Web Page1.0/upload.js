@@ -1,6 +1,19 @@
 var pdfName = "";
 var currentHorseXBasePosition = 0;
 
+/* This is a description of the backend architecture
+- Upload 
+    - upload.js: takes in the 3D model file and processes them into HTML elements.
+- Form selection 
+    - upload.js: Dictates how the HTML elements will be recorded and placed.
+- Preview popup
+    - edit.js: Compiled the HTML elements into one PDF.
+    - createAndDisplayPDF
+    - 
+*/
+
+
+
 document.getElementById('openFileDirectoryBtn').addEventListener('click', function() {
     uploadFile();
 });
@@ -12,7 +25,11 @@ document.getElementById('reopenFileDirectoryBtn').addEventListener('click', func
 //Next Button
 document.getElementById('nextStartPageBtn').addEventListener('click', function() {
     //TODO Change to incorporate form selection
-    createAndDisplayPDF(pdfName);
+    const selected = document.getElementsByClassName('selected').item(0)
+    if (selected!=null){
+        console.log(selected);
+        createAndDisplayPDF(pdfName,selected);
+    }
     document.getElementById('formSelectionPopup').style.display = 'block';
 });
 
@@ -78,24 +95,6 @@ function showSlides(n) {
   slideContainer.scrollLeft = slideWidth * n;
 }
 
-//JavaScript for the Form Selection buttons
-//Selection
-var forms = document.querySelectorAll('.fs-item');
-
-forms.forEach(function (item) {
-    item.addEventListener('dblclick', function() {
-
-        if (!item.classList.contains('selected')) {
-            forms.forEach(function (el) {
-                el.classList.remove('selected');
-            });
-            item.classList.add('selected');
-        } else {
-            item.classList.remove('selected');
-        }
-    });
-});
-
 //Close Button
 document.getElementById('closeFormSelectionPopupBtn').addEventListener('click', function() {
     document.getElementById('formSelectionPopup').style.display = 'none';
@@ -121,10 +120,10 @@ document.getElementById('nextFormSelectionPopupBtn').addEventListener('click', f
 
 //JavaScript for the Form Selection buttons
 var forms = document.querySelectorAll('.fs-item');
+var itemIsSelected = false;
 
 forms.forEach(function (item) {
-    item.addEventListener('dblclick', function() {
-
+    item.addEventListener('click', function() {
         if (!item.classList.contains('selected')) {
             forms.forEach(function (el) {
                 el.classList.remove('selected');
@@ -135,3 +134,29 @@ forms.forEach(function (item) {
         }
     });
 });
+
+
+class ModelForm {
+    constructor(element, viewArray, viewPositions){
+        this.element = element;
+        this.viewArray = viewArray;
+        this.viewPositions = viewPositions;
+    }
+}
+
+//Input the formating parameters of each form.
+var fsCurvedvolumeElement = new ModelForm(document.getElementById('fs-curvedvolume'),   
+        ['stl_view1','stl_view2'],
+        [{x: 105, y: 400, width: 390, height: 390, rotation: 0 },
+            { x: -305, y: -400, width: 390, height: 390,  rotation: 180 }]);
+document.getElementById('fs-curvedvolume').customElementInstance = fsCurvedvolumeElement;
+var fsFoursidedcubeElement = new ModelForm(document.getElementById('fs-foursidedcube'),   
+        ['stl_view1','stl_view2'],
+        [{x: 105, y: 400, width: 390, height: 390, rotation: 0 },
+            { x: -305, y: -400, width: 390, height: 390,  rotation: 180 }]);
+document.getElementById('fs-foursidedcube').customElementInstance = fsFoursidedcubeElement;
+var fs3Element = new ModelForm(document.getElementById('fs-3'),   
+        ['stl_view1','stl_view2'],
+        [{x: 105, y: 400, width: 390, height: 390, rotation: 0 },
+            { x: -305, y: -400, width: 390, height: 390,  rotation: 180 }]);
+document.getElementById('fs-3').customElementInstance = fs3Element;
