@@ -1,0 +1,16 @@
+# Our security address
+Contact: mailto:printerform1@gmail.com
+
+# Our security policy
+Policy: https://printerform.com/security-policy.html
+
+# A little less than a year
+Expires: 2025-03-05T16:59:00.000Z
+
+# Brown University and our team use English as our primary language 
+# but feel to reach out in your native lanugauge 
+# as we have many different languages spoken on campus
+Preferred-Languages: en
+
+# This file
+Canonical: https://printerform.com/.well-known/security.txt
