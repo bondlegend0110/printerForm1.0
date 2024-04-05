@@ -93,9 +93,6 @@ nav .fas{
     cursor: pointer;
     width: fit-content;
 }
-#slide {
-    display: none;
-}
 
 #fb-tab{
     writing-mode: vertical-lr;
@@ -292,8 +289,6 @@ nav .fas{
 
 .carousel-view{
     position:relative;
-    width:500px;
-    height:500px;
     margin: auto;
     overflow: hidden;
     overflow-x: auto; /* Allow horizontal scrolling */
@@ -352,18 +347,36 @@ background-color: #bbb;
     margin: 20px; 
     left:50%;
 }
-.stl_contMain{
-    width: 600px; 
-    height: 500px;
-}
 
 .stl_cont{
-    width: 400px; 
-    height: 400px;
     background-color: #ffffff; /*TODO automate color change for screenshot*/
 }
 
-.stl_display{
+/* Base size */
+.stl_cont, .carousel-view {
+    width: 700px; /* Default size */
+    height: 700px; /* Adjust as needed */
+}
+  
+  /* For tablets */
+@media (max-width: 768px) {
+    .stl_cont, .carousel-view {
+        width: 450px;
+        height: 450px; /* Adjust based on your preference */
+    }
+}
+
+/* For mobile phones */
+@media (max-width: 480px) {
+    .stl_cont, .carousel-view {
+        width: 250px;
+        height: 250px; /* Adjust based on your preference */
+    }
+}
+  
+
+.stl_display, .slide{
+    width: fit-content;
     height: fit-content;
 }
 
@@ -559,7 +572,8 @@ background-color: #bbb;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 22%;
+    width: 18%; /*4: 18%, 3: 22%*/
+    /*adjusts the width of the items and in turn how many will be displayed*/
     height: 50vh;
     background: #7072EC;
     border-radius: 5%;

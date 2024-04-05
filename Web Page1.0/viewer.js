@@ -40,7 +40,7 @@ function stlLoadCurve(file){
         rotationz: 0
     });
     
-     stl_viewer_right = new StlViewer ( document.getElementById("stl_view3"));
+    stl_viewer_right = new StlViewer ( document.getElementById("stl_view3"));
     stl_viewer_right.add_model ( {
         id: 0,
         local_file:file,
@@ -58,6 +58,23 @@ function stlLoadCurve(file){
         rotationz: 0.5 * 3.142
     });
 
+    stl_viewer_top = new StlViewer ( document.getElementById("stl_view5"));
+    stl_viewer_top.add_model ( {
+        id: 0,
+        local_file:file,
+        rotationx: 0,
+        rotationy: 0,
+        rotationz: 0
+    });
+
+    stl_viewer_bottom = new StlViewer ( document.getElementById("stl_view6"));
+    stl_viewer_bottom.add_model ( {
+        id: 0,
+        local_file:file,
+        rotationx: 0,
+        rotationy: 1 * 3.142,
+        rotationz: 0
+    });
 }
 
 function stlViewRotate(x,y,z){
