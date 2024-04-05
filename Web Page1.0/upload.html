@@ -38,30 +38,34 @@
             <h2 id="fs-title">Form Selection</h2>
             <div id="fs-content-container">
                 <div id="fs-curvedvolume" class="fs-item">
-                    <img class="fs-pic"src="./pictures/start page/curved_sample 1.png" alt="" />
+                    <img class="fs-pic"src="./pictures/start page/curved_sample 1.png" 
+                    alt="Sample of the curved volume form. Displaying a rabit stl." />
                     <div class="fs-text">
                         <h3 class="fs-text-item">Curved Volume</h3>
                         <p class="fs-text-item">information</p>
                     </div>
                 </div>
                 <div id="fs-foursidedcube" class="fs-item">
-                    <img class="fs-pic"src="./pictures/start page/fourSideCubeBunny 1.png" alt="" />
+                    <img class="fs-pic"src="./pictures/start page/fourSideCubeBunny 1.png" 
+                    alt="Sample of the four sided cube form. Displaying a rabit stl." />
                     <div class="fs-text">
                         <h3 class="fs-text-item">Four-Sided Cube</h3>
                         <p class="fs-text-item">information</p>
                     </div>
                 </div>
-                <div id="fs-3" class="fs-item">
-                    <img class="fs-pic"src="./pictures/start page/curved_sample 1.png" alt="" />
+                <div id="fs-sixsidedcube"  class="fs-item">
+                    <img class="fs-pic"src="./pictures/start page/curved_sample 1.png" 
+                    alt="Sample of the six sided cube form. Displaying a _ stl."/>
                     <div class="fs-text">
-                        <h3 class="fs-text-item">Form Name</h3>
+                        <h3 class="fs-text-item">Six-Sided Cube</h3>
                         <p class="fs-text-item">information</p>
                     </div>
                 </div>
-                <div class="fs-item">
-                    <img class="fs-pic"src="./pictures/start page/curved_sample 1.png" alt="" />
+                <div id="fs-cylinderelement" class="fs-item">
+                    <img class="fs-pic"src="./pictures/start page/curved_sample 1.png" 
+                    alt="Sample of the six sided cube form. Displaying a _ stl."/>
                     <div class="fs-text">
-                        <h3 class="fs-text-item">Form Name</h3>
+                        <h3 class="fs-text-item">Cylinder</h3>
                         <p class="fs-text-item">information</p>
                     </div>
                 </div>
@@ -154,12 +158,12 @@
                     <div class="carousel">
                         <div id="stlPreviews" class="carousel-view">
                             <div class="carousel-horses">
-                                <div  id="front_canvases" class="stl_display slide">
+                                <div  id="front_canvas" class="stl_display slide">
                                     <h4>Front View </h4>
                                     <div id="stl_view1" class="stl_cont stl_curve "></div> 
                                 </div>
                             
-                                <div  id="left_canvas" class="stl_display slide">
+                                <div  id="back_canvas" class="stl_display slide">
                                     <h4>Back View</h4>
                                     <div id="stl_view2" class="stl_cont stl_curve "></div>
                                 </div>
@@ -170,8 +174,16 @@
                             
                                 <div  id="left_canvas" class="stl_display slide">
                                     <h4>Left View</h4>
-                                    <div id="stl_view4" class="stl_cont tl_curve "></div>
+                                    <div id="stl_view4" class="stl_cont stl_curve "></div>
                                 </div> 
+                                <div  id="top_canvas" class="stl_display slide">
+                                    <h4>Top View</h4>
+                                    <div id="stl_view5" class="stl_cont stl_curve "></div>
+                                </div>
+                                <div  id="bottom_canvas" class="stl_display slide">
+                                    <h4>Right View</h4>
+                                    <div id="stl_view6" class="stl_cont stl_curve "></div>
+                                </div>
                             </div>
                         </div>
                         <div id="slide-controls" class="carousel-horses carousel-base">
@@ -183,6 +195,8 @@
                                 <button class="indicator" onclick="showSlides(1)">BACK</button>
                                 <button class="indicator" onclick="showSlides(2)">RIGHT</button>
                                 <button class="indicator" onclick="showSlides(3)">LEFT</button>
+                                <button class="indicator" onclick="showSlides(4)">TOP</button>
+                                <button class="indicator" onclick="showSlides(5)">BOTTOM</button>
                             </div>
                             <!-- Navigation Next View Buttons -->
                             <button class="indicator" onclick="moveSlide(1)">&#10095;</button>

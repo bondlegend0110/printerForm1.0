@@ -10,25 +10,14 @@ document.getElementById('closeDownloadPopupBtn').addEventListener('click', funct
 //Back Button
 document.getElementById('backDownloadPopupBtn').addEventListener('click', function() {
     document.getElementById('downloadPopup').style.display = 'none';
+
+    document.getElementById('formSelectionPopup').style.display = 'block';
 });
 
 //Download Button
 document.getElementById('downloadPDFbtn').addEventListener('click', function() {
     downloadAsPDF(finalCanvas);
 });
-
-function captureElement(elementId) {
-    return new Promise((resolve, reject) => {
-        const element = document.getElementById(elementId);
-        if (element) {
-            html2canvas(element).then(canvas => {
-                resolve(canvas);
-            });
-        } else {
-            reject(`Element with id ${elementId} not found`);
-        }
-    });
-}
 
 function combineImagesOnTemplate(backgroundTemplateSrc, images, positions, templateWidth, imgWidthPx, imgHeightPx) {
     return new Promise((resolve, reject) => {
@@ -70,15 +59,16 @@ function displayFinalProduct(canvas, targetDivId) {
 }
 
 
+
 async function createAndDisplayPDF(pdfNameString, item) {
     try {
-        const itemElement = item.customElementInstance;
-        const capturedElements = await Promise.all(itemElement.viewArray);
+        itemTest = item;
+        itemElement = item.customElementInstance;
+        const capturedElements = itemElement.generateObjects(itemElement);
         const positions = itemElement.viewPositions;
 
-        finalCanvas = await combineImagesOnTemplate('./pictures/templates/CURVED_FORM_TEMPLATE.jpg', ['stl_view1','stl_view2'],
-        [{x: 105, y: 400, width: 390, height: 390, rotation: 0 },
-            { x: -305, y: -400, width: 390, height: 390,  rotation: 180 }], 600, 2511, 3323);
+        finalCanvas = await combineImagesOnTemplate(itemElement.template,capturedElements,
+        positions, 600, 2511, 3323);
 
         // Display the final product
         displayFinalProduct(finalCanvas,"print-preview-container");
