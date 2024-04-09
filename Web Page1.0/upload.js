@@ -125,7 +125,7 @@ document.getElementById('nextFormSelectionPopupBtn').addEventListener('click', f
     document.getElementById('formSelectionPopup').style.display = 'none';
 
     const selected = document.getElementsByClassName('selected').item(0);
-    console.log(selected);
+    //console.log(selected);
     if (selected!=null){
         createAndDisplayPDF(pdfName,selected);
     } else {
@@ -165,65 +165,41 @@ class ModelForm {
     }
 }
 
-function captureElement(elementId) {
-    return new Promise((resolve, reject) => {
-        const element = document.getElementById(elementId);
-        if (element) {
-            html2canvas(element).then(canvas => {
-                resolve(canvas);
-            });
-        } else {
-            reject(`Element with id ${elementId} not found`);
-        }
-    });
-}
-
-async function captureElementLoop(itemElement) {
-    let promises = []; // Use let for variables that will be reassigned, and an array to hold promises
-    itemElement.viewArray.forEach (elementId =>  {
-        // Push the promise returned by captureElement into the promises array
-        promises.push(captureElement(elementId));
-    });
-    return await Promise.all(promises); // Return the array of promises
-}
 
 //Input the formating parameters of each form.
 document.getElementById('fs-curvedvolume').customElementInstance =
 new ModelForm(document.getElementById('fs-curvedvolume'),   
     //front, back
     ['stl_view1','stl_view2'],
-    [   {x: 105, y: 300, width: 400, height: 400, rotation: 0 },
-        {x:-305, y:-300, width: 400, height: 400, rotation: 180}
+    [   {x: 105, y: 400, width: 400, height: 400, rotation: 0 },
+        {x: 0, y: 0, width: 400, height: 400, rotation: 1 }
     ], 
-    './pictures/templates/CURVED_FORM_TEMPLATE.jpg',
-    captureElementLoop
+    './pictures/templates/CURVED_FORM_TEMPLATE.jpg'
 );
 
 document.getElementById('fs-foursidedcube').customElementInstance = 
 new ModelForm(document.getElementById('fs-foursidedcube'),   
     ['stl_view1','stl_view2','stl_view3','stl_view4'],
-    [   {x: 105, y: 200, width: 400, height: 400, rotation: 0},
-        {x: 105, y:  50, width: 400, height: 400, rotation: 0},
-        {x: 105, y:-150, width: 400, height: 400, rotation: 0},
-        {x: 105, y:-300, width: 400, height: 400, rotation: 0}
+    [   {x: 105, y: 400, width: 400, height: 400, rotation: 0},
+        {x: 105, y: 150, width: 400, height: 400, rotation: 0},
+        {x: 105, y: -50, width: 400, height: 400, rotation: 0},
+        {x: 105, y:-150, width: 400, height: 400, rotation: 0}
     ], 
-    './pictures/templates/FOUR_SIDE_TEMPLATE.jpg',
-    captureElementLoop
+    './pictures/templates/FOUR_SIDE_TEMPLATE.jpg'
 );
 
 document.getElementById('fs-sixsidedcube').customElementInstance =
 new ModelForm(document.getElementById('fs-sixsidedcube'),   
     //top,front,bottom,back,right,left
-    ['stl_view5','stl_view1','stl_view6','stl_view2','stl_view3','stl_view4']
-    [/*top*/    {x: 105, y: 200, width: 200, height: 400, rotation: 0},
-    /*front*/   {x: 105, y:  50, width: 200, height: 400, rotation: 0},
-    /*bottom*/  {x: 105, y:-150, width: 200, height: 400, rotation: 0},
-    /*back*/    {x: 105, y:-300, width: 200, height: 400, rotation: 0},
-    /*left*/    {x:   5, y:  50, width: 200, height: 400, rotation: 0},
-    /*right*/   {x: 205, y:  50, width: 200, height: 400, rotation: 0}
+    ['stl_view5','stl_view1','stl_view6','stl_view2','stl_view3','stl_view4'],
+    [/*top*/    {x: 105, y: 400, width: 200, height: 200, rotation: 0},
+    /*front*/   {x: 105, y: 150, width: 200, height: 200, rotation: 0},
+    /*bottom*/  {x: 105, y: -50, width: 200, height: 200, rotation: 0},
+    /*back*/    {x: 105, y:-150, width: 200, height: 200, rotation: 0},
+    /*left*/    {x:   5, y: 150, width: 200, height: 200, rotation: 0},
+    /*right*/   {x: 205, y: 150, width: 200, height: 200, rotation: 0}
     ], 
-    './pictures/templates/FOUR_SIDE_TEMPLATE.jpg',
-    captureElementLoop
+    './pictures/templates/FOUR_SIDE_TEMPLATE.jpg'
 );
 
 
@@ -259,6 +235,5 @@ document.getElementById('fs-cylinderelement').customElementInstance =
 new ModelForm(document.getElementById('fs-cylinderelement'),   
     /*front*/ ['stl_view1'], 
     [/*back*/ {x: 105, y:-300, width: 200, height: 200, rotation: 0}], 
-    './pictures/templates/FOUR_SIDE_TEMPLATE.jpg',
-    generateObjectsCylinder
+    './pictures/templates/FOUR_SIDE_TEMPLATE.jpg'
 );
