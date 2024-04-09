@@ -32,11 +32,12 @@ function combineImagesOnTemplate(backgroundTemplateSrc, images, positions, templ
             ctx.drawImage(template, 0, 0, canvas.width, canvas.height);
 
             // Draw and rotate each canvas on the template
+            console.log(images);
             images.forEach((imgCanvas, index) => {
                 let pos = positions[index];
                 ctx.save();
                 ctx.translate(pos.x + imgCanvas.width / 2, pos.y + imgCanvas.height / 2);
-                ctx.rotate(pos.rotation * Math.PI / 180);
+                ctx.rotate(pos.rotation);
                 ctx.drawImage(imgCanvas, -imgCanvas.width / 2, -imgCanvas.height / 2, pos.width, pos.height);
                 ctx.restore();
             });
@@ -58,18 +59,33 @@ function displayFinalProduct(canvas, targetDivId) {
     }
 }
 
-
+function captureElement(elementId) {
+    return new Promise((resolve, reject) => {
+        const element = document.getElementById(elementId);
+        if (element) {
+            html2canvas(element).then(canvas => {
+                resolve(canvas);
+            });
+        } else {
+            reject(`Element with id ${elementId} not found`);
+        }
+    });
+}
 
 async function createAndDisplayPDF(pdfNameString, item) {
     try {
-        itemTest = item;
         itemElement = item.customElementInstance;
-        const capturedElements = itemElement.generateObjects(itemElement);
+        let promises = []; // Use let for variables that will be reassigned, and an array to hold promises
+        itemElement.viewArray.forEach (elementId =>  {
+            // Push the promise returned by captureElement into the promises array
+            promises.push(captureElement(elementId));
+        });
+        //const capturedElements = itemElement.generateObjects(itemElement);
         const positions = itemElement.viewPositions;
+        const capturedElements = await Promise.all(promises);
 
-        finalCanvas = await combineImagesOnTemplate(itemElement.template,capturedElements,
-        positions, 600, 2511, 3323);
-
+        finalCanvas = await combineImagesOnTemplate(itemElement.template, capturedElements, positions, 600, 2511, 3323);
+        
         // Display the final product
         displayFinalProduct(finalCanvas,"print-preview-container");
 
