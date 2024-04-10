@@ -172,7 +172,7 @@ new ModelForm(document.getElementById('fs-curvedvolume'),
     //front, back
     ['stl_view1','stl_view2'],
     [   {x: 105, y: 400, width: 400, height: 400, rotation: 0 },
-        {x: 0, y: 0, width: 400, height: 400, rotation: 1 }
+        {x: -100, y: 0, width: 400, height: 400, rotation: 180 }
     ], 
     './pictures/templates/CURVED_FORM_TEMPLATE.jpg'
 );
@@ -180,10 +180,10 @@ new ModelForm(document.getElementById('fs-curvedvolume'),
 document.getElementById('fs-foursidedcube').customElementInstance = 
 new ModelForm(document.getElementById('fs-foursidedcube'),   
     ['stl_view1','stl_view2','stl_view3','stl_view4'],
-    [   {x: 105, y: 400, width: 400, height: 400, rotation: 0},
-        {x: 105, y: 150, width: 400, height: 400, rotation: 0},
-        {x: 105, y: -50, width: 400, height: 400, rotation: 0},
-        {x: 105, y:-150, width: 400, height: 400, rotation: 0}
+    [   {x: 105, y: 400, width: 300, height: 300, rotation: 0},
+        {x: 105, y: 150, width: 300, height: 300, rotation: 0},
+        {x: 105, y: -50, width: 300, height: 300, rotation: 0},
+        {x: 105, y:-150, width: 300, height: 400, rotation: 0}
     ], 
     './pictures/templates/FOUR_SIDE_TEMPLATE.jpg'
 );
