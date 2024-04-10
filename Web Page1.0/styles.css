@@ -572,7 +572,7 @@ background-color: #bbb;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 18%; /*4: 18%, 3: 22%*/
+    width: 22%; /*4: 18%, 3: 22%*/
     /*adjusts the width of the items and in turn how many will be displayed*/
     height: 50vh;
     background: #7072EC;

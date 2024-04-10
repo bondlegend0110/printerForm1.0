@@ -32,15 +32,21 @@ function combineImagesOnTemplate(backgroundTemplateSrc, images, positions, templ
             ctx.drawImage(template, 0, 0, canvas.width, canvas.height);
 
             // Draw and rotate each canvas on the template
-            console.log(images);
             images.forEach((imgCanvas, index) => {
-                let pos = positions[index];
-                ctx.save();
-                ctx.translate(pos.x + imgCanvas.width / 2, pos.y + imgCanvas.height / 2);
-                ctx.rotate(pos.rotation);
-                ctx.drawImage(imgCanvas, -imgCanvas.width / 2, -imgCanvas.height / 2, pos.width, pos.height);
-                ctx.restore();
-            });
+            pos = positions[index];
+            ctx.save();
+
+            // Move context to position for rotation
+            ctx.translate(pos.width / 2, pos.height / 2);
+            // Rotate (position is also changed)
+            ctx.rotate((pos.rotation * Math.PI) / 180);
+            // Move context back to origin 
+            ctx.translate( - pos.width / 2,  - pos.height / 2);
+            // Draw image
+            ctx.drawImage(imgCanvas, pos.x, pos.y, pos.width, pos.height);
+
+            ctx.restore();
+        });
 
             resolve(canvas);
         };
