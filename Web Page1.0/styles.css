@@ -212,6 +212,12 @@ nav .fas{
     margin-bottom: 2vh;
 }
 
+#IntroVideoV2{
+    display: flex;
+    justify-content: center; /* Ensures the video is centered horizontally in the container */
+}
+
+
 .hide {
     position:absolute; 
     top:-1px; 
