@@ -190,22 +190,22 @@ new ModelForm(document.getElementById('fs-foursidedcube'),
     './pictures/templates/FOUR_SIDE_TEMPLATE.jpg'
 );
 
-// document.getElementById('fs-sixsidedcube').customElementInstance =
-// new ModelForm(document.getElementById('fs-sixsidedcube'),   
-//     //top,front,bottom,back,right,left
-//     ['stl_view5','stl_view1','stl_view6','stl_view2','stl_view3','stl_view4'],
-//     [/*top*/    {x: 205, y:   0, width: 190, height: 190, rotation: 0},
-//     /*front*/   {x: 205, y: 200, width: 190, height: 190, rotation: 0},
-//     /*bottom*/  {x:-205, y:-400, width: 190, height: 190, rotation: 180},
-//     /*back*/    {x:-205, y:-600, width: 190, height: 190, rotation: 180},
-//     /*left*/    {x: 405, y: 200, width: 190, height: 190, rotation: 0},
-//     /*right*/   {x:   5, y: 200, width: 190, height: 190, rotation: 0}
-//     ], 
-//     './pictures/templates/SIX_SIDE_TEMPLATE.jpg'
-// );
+document.getElementById('fs-sixsidedfourflapscube').customElementInstance =
+new ModelForm(document.getElementById('fs-sixsidedfourflapscube'),   
+    //top,front,bottom,back,right,left
+    ['stl_view5','stl_view1','stl_view6','stl_view2','stl_view3','stl_view4'],
+    [/*top*/    {x: 205, y:   0, width: 190, height: 190, rotation: 0},
+    /*front*/   {x: 205, y: 200, width: 190, height: 190, rotation: 0},
+    /*bottom*/  {x:-205, y:-400, width: 190, height: 190, rotation: 180},
+    /*back*/    {x:-205, y:-600, width: 190, height: 190, rotation: 180},
+    /*left*/    {x: 405, y: 200, width: 190, height: 190, rotation: 0},
+    /*right*/   {x:   5, y: 200, width: 190, height: 190, rotation: 0}
+    ], 
+    './pictures/templates/SIX_SIDE_TEMPLATE.jpg'
+);
 
-document.getElementById('fs-sixsidedcube').customElementInstance =
-new ModelForm(document.getElementById('fs-sixsidedcube'),   
+document.getElementById('fs-sixsidedtwoflapscube').customElementInstance =
+new ModelForm(document.getElementById('fs-sixsidedtwoflapscube'),   
     //top,front,bottom,back,right,left
     ['stl_view5','stl_view1','stl_view6','stl_view2','stl_view3','stl_view4'],
     [/*top*/    {x: 205, y: 600, width: 190, height: 190, rotation: 0},
