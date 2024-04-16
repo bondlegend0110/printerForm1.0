@@ -18,15 +18,15 @@ window.onclick = function(event) {
 // When the page loads
 // Check localStorage and show modal if needed
 //TODO:  Don't Show Again
-// document.addEventListener("DOMContentLoaded", function() {
-//     if (localStorage.getItem('doNotShow') !== 'true') {
-//         popup.style.display = 'block';
-//     }
-//     // Handle "Don't Show Again" checkbox
-//     document.getElementById('doNotShow').addEventListener('change', function() {
-//         localStorage.setItem('doNotShow', this.checked ? 'true' : 'false');
-//     });
-// });
+document.addEventListener("DOMContentLoaded", function() {
+    if (localStorage.getItem('doNotShow') !== 'true') {
+        popup.style.display = 'block';
+    }
+    // Handle "Don't Show Again" checkbox
+    document.getElementById('doNotShow').addEventListener('change', function() {
+        localStorage.setItem('doNotShow', this.checked ? 'true' : 'false');
+    });
+});
 
 
 //start_page Buttons
