@@ -109,6 +109,6 @@ function downloadAsPDF(canvas) {
         format: [canvas.width, canvas.height]
     });
 
-    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, canvas.width, canvas.height);
+    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, canvas.height, canvas.width);
     pdf.save(pdfName);
 }
