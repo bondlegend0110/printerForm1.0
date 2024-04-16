@@ -29,7 +29,7 @@ window.onclick = function(event) {
 // });
 
 
-//Start page Buttons
+//start_page Buttons
 document.getElementById('uploadBtn').addEventListener('click', function() {
     window.location.href = './upload.html';
     uploadFile();
