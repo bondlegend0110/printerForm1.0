@@ -180,29 +180,43 @@ new ModelForm(document.getElementById('fs-curvedvolume'),
 document.getElementById('fs-foursidedcube').customElementInstance = 
 new ModelForm(document.getElementById('fs-foursidedcube'),   
     ['stl_view1','stl_view2','stl_view3','stl_view4'],
-    [   {x: 105, y: 400, width: 300, height: 300, rotation: 0},
-        {x: 105, y: 150, width: 300, height: 300, rotation: 0},
-        {x: 105, y: -50, width: 300, height: 300, rotation: 0},
-        {x: 105, y:-150, width: 300, height: 400, rotation: 0}
+    [   
+        {y: 200, x:-280, width: 150, height: 150, rotation: 270}, 
+        {y: 200, x: -650, width: 150, height: 150, rotation: 270},
+        {y: 200, x: -110, width: 150, height: 150, rotation: 270},
+        {y: 200, x: -450, width: 150, height: 150, rotation: 270}
+        
     ], 
     './pictures/templates/FOUR_SIDE_TEMPLATE.jpg'
 );
+
+// document.getElementById('fs-sixsidedcube').customElementInstance =
+// new ModelForm(document.getElementById('fs-sixsidedcube'),   
+//     //top,front,bottom,back,right,left
+//     ['stl_view5','stl_view1','stl_view6','stl_view2','stl_view3','stl_view4'],
+//     [/*top*/    {x: 205, y:   0, width: 190, height: 190, rotation: 0},
+//     /*front*/   {x: 205, y: 200, width: 190, height: 190, rotation: 0},
+//     /*bottom*/  {x:-205, y:-400, width: 190, height: 190, rotation: 180},
+//     /*back*/    {x:-205, y:-600, width: 190, height: 190, rotation: 180},
+//     /*left*/    {x: 405, y: 200, width: 190, height: 190, rotation: 0},
+//     /*right*/   {x:   5, y: 200, width: 190, height: 190, rotation: 0}
+//     ], 
+//     './pictures/templates/SIX_SIDE_TEMPLATE.jpg'
+// );
 
 document.getElementById('fs-sixsidedcube').customElementInstance =
 new ModelForm(document.getElementById('fs-sixsidedcube'),   
     //top,front,bottom,back,right,left
     ['stl_view5','stl_view1','stl_view6','stl_view2','stl_view3','stl_view4'],
-    [/*top*/    {x: 105, y: 400, width: 200, height: 200, rotation: 0},
-    /*front*/   {x: 105, y: 150, width: 200, height: 200, rotation: 0},
-    /*bottom*/  {x: 105, y: -50, width: 200, height: 200, rotation: 0},
-    /*back*/    {x: 105, y:-150, width: 200, height: 200, rotation: 0},
-    /*left*/    {x:   5, y: 150, width: 200, height: 200, rotation: 0},
-    /*right*/   {x: 205, y: 150, width: 200, height: 200, rotation: 0}
+    [/*top*/    {x: 205, y: 600, width: 190, height: 190, rotation: 0},
+    /*front*/   {x: 205, y:   0, width: 190, height: 190, rotation: 0},
+    /*bottom*/  {x:-205, y:-200, width: 190, height: 190, rotation: 180},
+    /*back*/    {x:-205, y:-400, width: 190, height: 190, rotation: 180},
+    /*left*/    {x: 405, y:   0, width: 190, height: 190, rotation: 0},
+    /*right*/   {x:   5, y:   0, width: 190, height: 190, rotation: 0}
     ], 
-    './pictures/templates/FOUR_SIDE_TEMPLATE.jpg'
+    './pictures/templates/SIX_SIDE_TEMPLATE1.jpg'
 );
-
-
 
 // The function to add elements to the viewArray
 function addElementsUntilYReachesTarget(itemElement, yChange, targetY) {
