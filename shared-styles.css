@@ -14,7 +14,7 @@
 }
 
 /* turn on the galleries and the about sections if you would like */
-.gallery, .about, .dropdown-content, .incomplete-lesson, .reference-images, #video, #education-resources{
+.gallery, .about, .dropdown-content, .incomplete-lesson, .reference-images, #video{
     display: none;
 }
 
@@ -56,7 +56,8 @@
 }
 
 .sidebar a:hover {
-    color: rgba(0, 0, 0, 0.61); 
+    color: rgba(0, 0, 0, 0.61);
+    cursor: pointer;
 }
   
 #slide:checked + .fb-container .sidebar {
