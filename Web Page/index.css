@@ -124,7 +124,7 @@ a:visited {
   .topnav a:hover {
     background-color: #363635;
     color: white;
-    
+    cursor: pointer;
   }
   
   /* Add a color to the active/current link */
