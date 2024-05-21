@@ -1,23 +1,6 @@
 var pdfName = "";
 var finalCanvas;
 
-// Buttons
-document.getElementById('backEditPageBtn').addEventListener('click', function() {
-    //open popup
-    document.getElementById('formSelectionPopup').style.display = 'block';
-    //add to page
-    document.getElementById('instructions').style.display = 'block';
-    document.getElementById('public-gallery').style.display = 'block';
-    document.getElementById('start-controls').style.display = 'block';
-
-    document.getElementById('other-forms').style.display = 'none';
-    document.getElementById('edit-buttons').style.display = 'none';
-});
-document.getElementById('openDownloadPopupBtn').addEventListener('click', function() {
-    document.getElementById('downloadPopup').style.display = 'block';
-});
-
-
 //JavaScript for the Print Preview Popup buttons
 //Close Button
 document.getElementById('closeDownloadPopupBtn').addEventListener('click', function() {
@@ -27,25 +10,14 @@ document.getElementById('closeDownloadPopupBtn').addEventListener('click', funct
 //Back Button
 document.getElementById('backDownloadPopupBtn').addEventListener('click', function() {
     document.getElementById('downloadPopup').style.display = 'none';
+
+    document.getElementById('formSelectionPopup').style.display = 'block';
 });
 
 //Download Button
 document.getElementById('downloadPDFbtn').addEventListener('click', function() {
     downloadAsPDF(finalCanvas);
 });
-
-function captureElement(elementId) {
-    return new Promise((resolve, reject) => {
-        const element = document.getElementById(elementId);
-        if (element) {
-            html2canvas(element).then(canvas => {
-                resolve(canvas);
-            });
-        } else {
-            reject(`Element with id ${elementId} not found`);
-        }
-    });
-}
 
 function combineImagesOnTemplate(backgroundTemplateSrc, images, positions, templateWidth, imgWidthPx, imgHeightPx) {
     return new Promise((resolve, reject) => {
@@ -61,13 +33,20 @@ function combineImagesOnTemplate(backgroundTemplateSrc, images, positions, templ
 
             // Draw and rotate each canvas on the template
             images.forEach((imgCanvas, index) => {
-                let pos = positions[index];
-                ctx.save();
-                ctx.translate(pos.x + imgCanvas.width / 2, pos.y + imgCanvas.height / 2);
-                ctx.rotate(pos.rotation * Math.PI / 180);
-                ctx.drawImage(imgCanvas, -imgCanvas.width / 2, -imgCanvas.height / 2, pos.width, pos.height);
-                ctx.restore();
-            });
+            pos = positions[index];
+            ctx.save();
+
+            // Move context to position for rotation
+            ctx.translate(pos.width / 2, pos.height / 2);
+            // Rotate (position is also changed)
+            ctx.rotate((pos.rotation * Math.PI) / 180);
+            // Move context back to origin 
+            ctx.translate( - pos.width / 2,  - pos.height / 2);
+            // Draw image
+            ctx.drawImage(imgCanvas, pos.x, pos.y, pos.width, pos.height);
+
+            ctx.restore();
+        });
 
             resolve(canvas);
         };
@@ -86,21 +65,33 @@ function displayFinalProduct(canvas, targetDivId) {
     }
 }
 
+function captureElement(elementId) {
+    return new Promise((resolve, reject) => {
+        const element = document.getElementById(elementId);
+        if (element) {
+            html2canvas(element).then(canvas => {
+                resolve(canvas);
+            });
+        } else {
+            reject(`Element with id ${elementId} not found`);
+        }
+    });
+}
 
-async function createAndDisplayPDF(pdfNameString) {
+async function createAndDisplayPDF(pdfNameString, item) {
     try {
-        const capturedElements = await Promise.all([
-            captureElement('stl_view1'),
-            captureElement('stl_view2')
-        ]);
+        itemElement = item.customElementInstance;
+        let promises = []; // Use let for variables that will be reassigned, and an array to hold promises
+        itemElement.viewArray.forEach (elementId =>  {
+            // Push the promise returned by captureElement into the promises array
+            promises.push(captureElement(elementId));
+        });
+        //const capturedElements = itemElement.generateObjects(itemElement);
+        const positions = itemElement.viewPositions;
+        const capturedElements = await Promise.all(promises);
 
-        const positions = [
-            { x: 105, y: 400, width: 390, height: 390, rotation: 0 },
-            { x: -305, y: -400, width: 390, height: 390,  rotation: 180 }, 
-        ];
-
-        finalCanvas = await combineImagesOnTemplate('./pictures/templates/CURVED_FORM_TEMPLATE.jpg', capturedElements, positions, 600, 2511, 3323);
-
+        finalCanvas = await combineImagesOnTemplate(itemElement.template, capturedElements, positions, 600, 2511, 3323);
+        
         // Display the final product
         displayFinalProduct(finalCanvas,"print-preview-container");
 
@@ -118,6 +109,6 @@ function downloadAsPDF(canvas) {
         format: [canvas.width, canvas.height]
     });
 
-    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, canvas.width, canvas.height);
+    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, canvas.height, canvas.width);
     pdf.save(pdfName);
 }

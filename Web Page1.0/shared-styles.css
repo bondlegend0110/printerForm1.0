@@ -56,7 +56,8 @@
 }
 
 .sidebar a:hover {
-    color: rgba(0, 0, 0, 0.61); 
+    color: rgba(0, 0, 0, 0.61);
+    cursor: pointer;
 }
   
 #slide:checked + .fb-container .sidebar {
