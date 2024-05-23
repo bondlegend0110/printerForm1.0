@@ -1,7 +1,7 @@
 const Footer = () => {
     return (
-        <div className="bg-purple-500 w-full h-5">
-
+        <div className="flex items-center justify-center bg-purple-500 w-full min-h-48">
+            <h1>FOOTER AREA</h1>
         </div>
     );
 };
