@@ -1,15 +1,43 @@
 "use client";
 
-import { ChangeEvent, CSSProperties, useRef, useState } from "react";
-import { ModelProps, ModelRef, StlViewer } from "react-stl-viewer";
-import { ColorChangeHandler, ColorResult, SwatchesPicker } from "react-color";
-import { Quaternion } from "three";
+import { ChangeEvent, RefObject, useRef, useState } from "react";
+import { ModelRef, StlViewer } from "react-stl-viewer";
+import { ColorResult, SwatchesPicker } from "react-color";
+import { Euler, Quaternion } from "three";
+
+type AxisRotationSelectorProps = {
+    axis: "X" | "Y" | "Z",
+    modelRef: RefObject<ModelRef>,
+    axisRotationToQuaternion: (rotation: number, modelQuaternion: Quaternion) => Quaternion
+}
+
+const AxisRotationSelector = ({ axis, modelRef, axisRotationToQuaternion }: AxisRotationSelectorProps) => {
+    const handleAxisRotationChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const multiplier = (parseFloat(e.currentTarget.value) - 50) / 50;
+        const rotation = multiplier * (Math.PI / 2);
+
+        if (!modelRef.current) return;
+        const { model } = modelRef.current;
+
+        model.setRotationFromQuaternion(axisRotationToQuaternion(rotation, model.quaternion));
+    };
+
+    return (
+        <div className="bg-orange-400 p-2 rounded-sm">
+            <p>Rotation {axis}-Axis</p>
+            <input type="range" className="w-full" onChange={handleAxisRotationChange} />
+        </div>
+    );
+};
 
 const Upload = () => {
     const [displayedFileName, setDisplayedFileName] = useState<string>();
     const [modelUrl, setModelUrl] = useState<string>();
     const [modelColor, setModelColor] = useState<string>("#D9D9D9");
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const [x, setX] = useState(0);
+    const [y, setY] = useState(0);
+    const [z, setZ] = useState(0);
 
     const stlLoadCurve = (file: File) => {
         setModelUrl(URL.createObjectURL(file))
@@ -38,31 +66,49 @@ const Upload = () => {
     }
 
     const modelRef = useRef<ModelRef>(null);
+    console.log("mult", new Quaternion(0.3826834, 0, 0, 0.9238795).multiply(new Quaternion(0, 0.3826834, 0, 0.9238795)))
 
-    const stlViewSetRotation = (quaternion: Quaternion) => {
-        // TODO: Understand how quaternion rotation works to get manual rotation to work
-        // stl_viewer_front.rotate(0,a[0][0]-b[0][0],a[0][1]-b[0][1],a[0][2]-b[0][2]);
-        // stl_viewer_back.rotate(0,-a[1][0]-b[1][0],a[1][1]-b[1][1],a[1][2]-b[1][2]);
-        // stl_viewer_left.rotate(0,-a[2][0]-b[2][0],a[2][1]-b[2][1],a[2][2]-b[3][2]);
-        // stl_viewer_right.rotate(0,a[3][0]-b[3][0],-a[3][1]-b[3][1],a[3][2]-b[2][2]);
-        // b[0]=a[0];
-        // b[1]=[-a[1][0],a[1][1],a[1][2]];
-        // b[2]=[-a[2][0],a[2][1],a[2][2]];
-        // b[3]=[a[3][0],-a[3][1],a[3][2]];
+    const rotationsToQuaternion = (xRotation: number, yRotation: number, zRotation: number): Quaternion => {
+        const xQuaternion = new Quaternion(Math.sin(xRotation / 2), 0, 0, Math.cos(xRotation / 2));
+        const yQuaternion = new Quaternion(0, Math.sin(yRotation / 2), 0, Math.cos(yRotation / 2));
+        const zQuaternion = new Quaternion(0, 0, Math.sin(zRotation / 2), Math.cos(zRotation / 2));
+
+        return xQuaternion.multiply(yQuaternion).multiply(zQuaternion).normalize();
     }
 
     const handleXAxisRotationChange = (e: ChangeEvent<HTMLInputElement>) => {
         const multiplier = (parseFloat(e.currentTarget.value) - 50) / 50;
-        const rotation = Math.sign(multiplier) * (1 / 50) * (Math.PI / 2);
-        console.log(rotation);
+        const rotation = multiplier * (Math.PI / 2);
 
         if (!modelRef.current) return;
         const { model } = modelRef.current;
-        model.rotateX(rotation);
 
-        console.log(model.quaternion)
+        model.rotation.x = rotation;
+        // model.setRotationFromQuaternion(rotationsToQuaternion(rotation, y, z));
     }
-    console.log(modelRef.current?.model.quaternion)
+
+    const handleYAxisRotationChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const multiplier = (parseFloat(e.currentTarget.value) - 50) / 50;
+        const rotation = multiplier * (Math.PI / 2);
+
+        if (!modelRef.current) return;
+        const { model } = modelRef.current;
+
+        model.rotation.y = rotation;
+    }
+
+    const handleZAxisRotationChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const multiplier = (parseFloat(e.currentTarget.value) - 50) / 50;
+        const rotation = multiplier * (Math.PI / 2);
+
+        setZ(rotation);
+
+        if (!modelRef.current) return;
+        const { model } = modelRef.current;
+        model.geometry.center();
+
+        model.setRotationFromEuler(new Euler(x, y, rotation))
+    }
 
     return (
         <div className="min-h-screen w-full bg-emerald-700 flex flex-col  justify-center p-5">
@@ -82,12 +128,12 @@ const Upload = () => {
                                 color: modelColor,
                             }}
                             orbitControls
-                            shadows
+                            // shadows
                             url={modelUrl}
                         />
                     )}
                 </div>
-                <div className="flex-shrink-0">
+                <div className="flex flex-col flex-shrink-0 gap-y-5">
                     <div className="bg-blue-400">
                         <p>Model Color:</p>
                         <SwatchesPicker
@@ -96,9 +142,34 @@ const Upload = () => {
                             onChange={handleModelColorChange}
                         />
                     </div>
-                    <div className="bg-red-400">
-                        <p>Rotation X-Axis</p>
-                        <input type="range" className="w-full" onChange={handleXAxisRotationChange} />
+                    <div className="flex flex-col gap-y-2">
+                        <AxisRotationSelector
+                            axis="X"
+                            modelRef={modelRef}
+                            axisRotationToQuaternion={(rotation, { y, z }) => new Quaternion(Math.sin(rotation / 2), y, z, Math.cos(rotation / 2))}
+                        />
+                        <AxisRotationSelector
+                            axis="Y"
+                            modelRef={modelRef}
+                            axisRotationToQuaternion={(rotation, { x, z }) => new Quaternion(x, Math.sin(rotation / 2), z, Math.cos(rotation / 2))}
+                        />
+                        <AxisRotationSelector
+                            axis="Z"
+                            modelRef={modelRef}
+                            axisRotationToQuaternion={(rotation, { x, y }) => new Quaternion(x, y, Math.sin(rotation / 2), Math.cos(rotation / 2))}
+                        />
+                        <div className="bg-green-400 p-2 rounded-sm">
+                            <p>Rotation X-Axis</p>
+                            <input type="range" className="w-full" onChange={handleXAxisRotationChange} />
+                        </div>
+                        <div className="bg-green-400 p-2 rounded-sm">
+                            <p>Rotation Y-Axis</p>
+                            <input type="range" className="w-full" onChange={handleYAxisRotationChange} />
+                        </div>
+                        <div className="bg-green-400 p-2 rounded-sm">
+                            <p>Rotation Z-Axis</p>
+                            <input type="range" className="w-full" onChange={handleZAxisRotationChange} />
+                        </div>
                     </div>
                 </div>
             </div>
