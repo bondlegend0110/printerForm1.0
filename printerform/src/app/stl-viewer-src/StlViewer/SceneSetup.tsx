@@ -12,7 +12,7 @@ import OrbitControls from './SceneElements/OrbitControls'
 const INITIAL_LATITUDE = Math.PI / 8
 const INITIAL_LONGITUDE = -Math.PI / 8
 const CAMERA_POSITION_DISTANCE_FACTOR = 3
-const LIGHT_DISTANCE = 100
+const LIGHT_DISTANCE = 350
 const FLOOR_DISTANCE = 0.4
 const BACKGROUND = new Color('white')
 
