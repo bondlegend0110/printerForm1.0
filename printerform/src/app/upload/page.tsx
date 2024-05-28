@@ -99,10 +99,16 @@ const Upload = () => {
         setModelColor(color.hex);
     }
 
+    const handleReupload = (e: ChangeEvent<HTMLInputElement>) => {
+        if (!e.currentTarget.files) return;
+
+        onFileSelect(e.currentTarget.files[0]);
+    }
+
     const modelRef = useRef<ModelRef>(null);
 
     return (
-        <div className="min-h-screen w-full bg-emerald-700 flex flex-col  justify-center p-5 md:p-12 lg:p-24">
+        <div className="min-h-screen w-full bg-emerald-700 flex flex-col gap-y-5 justify-center p-5 md:p-12 lg:p-24">
             <p>File Name: {displayedFileName}</p>
             {!modelUrl && <DragDropFileUpload onFileSelect={onFileSelect} />}
 
@@ -149,6 +155,13 @@ const Upload = () => {
                         </div>
                     </div>
                 </div>
+            )}
+
+            {modelUrl && (
+                <label className="rounded-sm bg-purple-700 w-min cursor-pointer p-5" htmlFor="file-reupload-input">
+                    <input className="hidden" type="file" id="file-reupload-input" onChange={handleReupload} />
+                    Reupload
+                </label>
             )}
         </div>
     );
