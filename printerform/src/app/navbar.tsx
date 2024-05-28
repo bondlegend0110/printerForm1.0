@@ -19,7 +19,7 @@ export const Navbar = () => {
     const pathname = usePathname();
 
     return (
-        <div className="w-full fixed flex items-center justify-between p-5 bg-red-500">
+        <div className="w-full fixed flex items-center justify-between p-5 bg-red-500 z-50">
             <Link href="/">
                 <p>Printer Form (Logo here eventually)</p>
             </Link>
