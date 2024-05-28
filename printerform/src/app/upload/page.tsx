@@ -159,7 +159,7 @@ const Upload = () => {
 
             {modelUrl && (
                 <label className="rounded-sm bg-purple-700 w-min cursor-pointer p-5" htmlFor="file-reupload-input">
-                    <input className="hidden" type="file" id="file-reupload-input" onChange={handleReupload} />
+                    <input className="hidden" type="file" id="file-reupload-input" accept=".stl" onChange={handleReupload} />
                     Reupload
                 </label>
             )}
