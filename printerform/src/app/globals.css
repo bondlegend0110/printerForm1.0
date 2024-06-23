@@ -30,4 +30,20 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  html {
+    @apply text-xs;
+  }
+
+  h1 {
+    @apply text-xl;
+  }
+
+  h2 {
+    @apply text-lg;
+  }
+
+  h3, h4, h5 {
+    @apply text-base;
+  }
 }
