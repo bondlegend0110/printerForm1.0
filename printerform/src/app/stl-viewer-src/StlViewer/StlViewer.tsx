@@ -1,14 +1,14 @@
-import React, { HTMLProps } from 'react'
-import { Canvas } from '@react-three/fiber'
-import SceneSetup, { SceneSetupProps } from './SceneSetup'
-import ErrorBoundary from './ErrorBoundary'
-import { PCFSoftShadowMap } from 'three'
+import React, { HTMLProps } from 'react';
+import { Canvas } from '@react-three/fiber';
+import SceneSetup, { SceneSetupProps } from './SceneSetup';
+import ErrorBoundary from './ErrorBoundary';
+import { PCFSoftShadowMap } from 'three';
 
-type DivProps = Omit<HTMLProps<HTMLDivElement>, 'color' | 'onError'>
+type DivProps = Omit<HTMLProps<HTMLDivElement>, 'color' | 'onError'>;
 
 export interface StlViewerProps extends DivProps, SceneSetupProps {
-    onError?: (err: Error) => void
-    canvasId?: string
+    onError?: (err: Error) => void;
+    canvasId?: string;
 }
 
 const StlViewer: React.FC<StlViewerProps> = (
@@ -25,6 +25,8 @@ const StlViewer: React.FC<StlViewerProps> = (
         shadows,
         objectRespectsFloor,
         showAxes,
+        showAxisGizmo,
+        showGrid,
         orbitControls,
         cameraInitialPosition,
         ...otherProps
@@ -40,9 +42,11 @@ const StlViewer: React.FC<StlViewerProps> = (
         shadows,
         objectRespectsFloor,
         showAxes,
+        showAxisGizmo,
+        showGrid,
         orbitControls,
         cameraInitialPosition
-    }
+    };
 
     return (
         <div {...otherProps}>
@@ -64,7 +68,7 @@ const StlViewer: React.FC<StlViewerProps> = (
                 </React.Suspense>
             </ErrorBoundary>
         </div>
-    )
-}
+    );
+};
 
-export default StlViewer
+export default StlViewer;
