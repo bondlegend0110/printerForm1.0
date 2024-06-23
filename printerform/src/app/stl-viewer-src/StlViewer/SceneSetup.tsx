@@ -9,10 +9,11 @@ import Lights from './SceneElements/Lights';
 import Camera, { CameraPosition, polarToCartesian } from './SceneElements/Camera';
 import OrbitControls from './SceneElements/OrbitControls';
 import type { RootState } from '@react-three/fiber';
+import { Environment, GizmoHelper, GizmoViewport, Grid, TransformControls } from '@react-three/drei';
 
 const INITIAL_LATITUDE = Math.PI / 8;
 const INITIAL_LONGITUDE = -Math.PI / 8;
-const CAMERA_POSITION_DISTANCE_FACTOR = 3;
+const CAMERA_POSITION_DISTANCE_FACTOR = 1;
 const LIGHT_DISTANCE = 350;
 const FLOOR_DISTANCE = 0.4;
 const BACKGROUND = new Color('white');
@@ -58,6 +59,8 @@ export interface SceneSetupProps {
     shadows?: boolean;
     objectRespectsFloor?: boolean;
     showAxes?: boolean;
+    showAxisGizmo?: boolean;
+    showGrid?: boolean;
     orbitControls?: boolean;
     onFinishLoading?: (ev: ModelDimensions) => any;
     cameraProps?: CameraProps;
@@ -72,6 +75,8 @@ const SceneSetup: React.FC<SceneSetupProps> = (
         shadows = false,
         objectRespectsFloor = true,
         showAxes = false,
+        showAxisGizmo = false,
+        showGrid = false,
         orbitControls = false,
         onFinishLoading = () => { },
         cameraInitialPosition: {
@@ -201,6 +206,23 @@ const SceneSetup: React.FC<SceneSetupProps> = (
         0
     ];
 
+    // const { gridSize, ...gridConfig } = useControls({
+    //     gridSize: [10.5, 10.5],
+    //     cellSize: { value: 0.6, min: 0, max: 10, step: 0.1 },
+    //     cellThickness: { value: 1, min: 0, max: 5, step: 0.1 },
+    //     cellColor: '#6f6f6f',
+    //     sectionSize: { value: 3.3, min: 0, max: 10, step: 0.1 },
+    //     sectionThickness: { value: 1.5, min: 0, max: 5, step: 0.1 },
+    //     sectionColor: '#9d4b4b',
+    //     fadeDistance: { value: 25, min: 0, max: 100, step: 1 },
+    //     fadeStrength: { value: 1, min: 0, max: 1, step: 0.1 },
+    //     followCamera: false,
+    //     infiniteGrid: true
+    //   })
+
+    const GRID_SECTION_SIZE = 30;
+    const CELLS_IN_GRID_SECTION = 5;
+
     return (
         <>
             <scene background={BACKGROUND} />
@@ -220,21 +242,56 @@ const SceneSetup: React.FC<SceneSetupProps> = (
                 materialProps={{ color }}
                 onLoaded={onLoaded}
             />
-            <Floor
+            <Environment preset="city" />
+            {showGrid && (
+                <Grid
+                    rotation={[Math.PI / 2, 0, 0]}
+                    position={[0, 0, 0]}
+                    cellSize={GRID_SECTION_SIZE / CELLS_IN_GRID_SECTION}
+                    cellThickness={1}
+                    cellColor="#6f6f6f"
+                    sectionSize={GRID_SECTION_SIZE}
+                    sectionThickness={1.25}
+                    sectionColor={'#e0dede'}
+                    fadeDistance={1000}
+                    fadeStrength={10}
+                    // cellColor={'#f2f2f2'}
+                    followCamera={false}
+                    infiniteGrid={true}
+                    args={[10, 10]}
+                />
+            )}
+            {/* <Floor
                 width={gridWidth ?? gridLength}
                 length={gridLength ?? gridWidth}
                 visible={sceneReady}
                 noShadow={!shadows}
                 offset={FLOOR_DISTANCE}
-            />
+            /> */}
             <Lights
                 distance={LIGHT_DISTANCE}
                 offsetX={modelPosition[0]}
                 offsetY={modelPosition[1]}
             />
+            {showAxisGizmo && (
+                <GizmoHelper alignment="bottom-right" margin={[80, 80]}>
+                    <GizmoViewport axisColors={['#9d4b4b', '#2f7f4f', '#3b5b9d']} labelColor="white" />
+                </GizmoHelper>
+            )}
             {sceneReady && orbitControls && <OrbitControls onOrbitChange={onOrbitChange} target={modelCenter} />}
         </>
     );
 };
 
 export default SceneSetup;
+
+// cellSize: 0.6
+// cellThickness: 1
+// cellColor: "#6f6f6f"
+// sectionSize: 3.3
+// sectionThickness: 1.5
+// sectionColor: "#9d4b4b"
+// fadeDistance: 25
+// fadeStrength: 1
+// followCamera: false
+// infiniteGrid: true

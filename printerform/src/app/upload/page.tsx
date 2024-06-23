@@ -271,19 +271,9 @@ const Upload = () => {
                             <button
                                 className="flex h-full items-center justify-center p-5 bg-blue-900 cursor-pointer"
                                 onClick={(e) => {
-                                    e.preventDefault();
+                                    if (!reuploadInputRef.current) return;
 
-                                    showModal(
-                                        <PromptModal
-                                            title="Model Reupload"
-                                            bodyText="Are you sure you would like to reupload a new model?"
-                                            onConfirm={() => {
-                                                if (!reuploadInputRef.current) return;
-
-                                                reuploadInputRef.current.click();
-                                            }}
-                                        />
-                                    );
+                                    reuploadInputRef.current.click();
                                 }}
                             >
                                 Reupload
@@ -340,7 +330,7 @@ const Upload = () => {
                                         objectRespectsFloor={false}
                                         url={previewModelUrl as string}
                                     />
-                                    <p className="absolute top-2 left-2">PRINCIPAL FRONT VIEW</p>
+                                    <p className="absolute top-2 left-2">PRINCIPAL VIEW <span className="text-blue-500 font-bold">WIP</span></p>
                                 </div>
                             </div>
 
@@ -377,6 +367,8 @@ const Upload = () => {
                                         }
                                     }}
                                     shadows
+                                    showAxisGizmo
+                                    showGrid
                                     objectRespectsFloor={false}
                                     orbitControls
                                     url={modelUrl}
