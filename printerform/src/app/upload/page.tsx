@@ -1,18 +1,11 @@
 "use client";
 
-import { ChangeEvent, DragEvent, PropsWithChildren, RefObject, useRef, useState } from "react";
+import { ChangeEvent, DragEvent, PropsWithChildren, RefObject, useEffect, useRef, useState } from "react";
 import { ModelRef, StlViewer } from "../stl-viewer-src";
 import { ChromePicker, ColorChangeHandler, ColorResult } from "react-color";
 import Link from "next/link";
 import type { CameraRef } from "../stl-viewer-src";
 import { ModalContainer, ModalProvider, PromptModal, useModals } from "../Modals";
-
-type AxisType = "x" | "y" | "z";
-
-type AxisRotationSelectorProps = {
-    axis: AxisType,
-    modelRefs: RefObject<ModelRef>[];
-};
 
 type DragDropFileUploadProps = {
     onFileSelect: (file: File) => void;
@@ -90,12 +83,45 @@ const DragDropFileUpload = ({
     );
 };
 
-const AxisRotationSelector = ({ axis, modelRefs }: AxisRotationSelectorProps) => {
-    const handleAxisRotationChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const multiplier = (parseFloat(e.currentTarget.value) - 50) / 50;
-        const ROTATION_RANGE = 2 * Math.PI;
-        const rotation = multiplier * (ROTATION_RANGE / 2);
+type AxisType = "x" | "y" | "z";
 
+type AxisRotationSelectorProps = {
+    axis: AxisType;
+    modelRefs: RefObject<ModelRef>[];
+    modelUrl: string;
+};
+
+const AxisRotationSelector = ({ axis, modelRefs, modelUrl }: AxisRotationSelectorProps) => {
+    const [resetButtonShown, setResetButtonShown] = useState(false);
+    const FULL_ROTATION_RANGE = 2 * Math.PI;
+    const BISECTED_ROTATION_RANGE = FULL_ROTATION_RANGE / 2;
+
+    const degreesToRadians = (degrees: number) => degrees * (Math.PI / 180);
+    const radiansToDegrees = (radians: number) => radians * (180 / Math.PI);
+
+    const SLIDER_MIN = radiansToDegrees(-BISECTED_ROTATION_RANGE);
+    const SLIDER_MAX = radiansToDegrees(BISECTED_ROTATION_RANGE);
+
+    useEffect(() => {
+        updateInputs(0);
+    }, [modelUrl]);
+
+    const updateInputs = (rotation: number) => {
+        if (sliderRef.current) {
+            const percent = (rotation + BISECTED_ROTATION_RANGE) / FULL_ROTATION_RANGE;
+            const sliderValue = SLIDER_MIN + percent * (SLIDER_MAX - SLIDER_MIN);
+
+            sliderRef.current.value = sliderValue.toString();
+        }
+
+        if (numberInputRef.current) {
+            numberInputRef.current.value = `${radiansToDegrees(rotation).toFixed(2).toString()}\u00b0`;
+        }
+
+        setResetButtonShown(Math.abs(rotation) > Number.EPSILON);
+    };
+
+    const applyRotation = (rotation: number) => {
         for (const modelRef of modelRefs) {
             if (!modelRef.current) return;
 
@@ -103,12 +129,64 @@ const AxisRotationSelector = ({ axis, modelRefs }: AxisRotationSelectorProps) =>
 
             model.rotation[axis] = rotation;
         }
+
+        updateInputs(rotation);
     };
 
+    const onSliderChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const multiplier = parseFloat(e.currentTarget.value) / radiansToDegrees(BISECTED_ROTATION_RANGE);
+        const rotation = multiplier * BISECTED_ROTATION_RANGE;
+
+        applyRotation(rotation);
+    };
+
+    const onNumberInput = (input: string) => {
+        const numberInput = parseFloat(input);
+
+        if (Number.isNaN(numberInput)) return;
+
+        const rotation = degreesToRadians(numberInput);
+
+        if (Math.abs(rotation) > BISECTED_ROTATION_RANGE) return;
+
+        applyRotation(rotation);
+    };
+
+    const sliderRef = useRef<HTMLInputElement>(null);
+    const numberInputRef = useRef<HTMLInputElement>(null);
+
     return (
-        <div>
-            <p>{axis.toUpperCase()}-Axis Rotation</p>
-            <input type="range" className="w-full" onChange={handleAxisRotationChange} />
+        <div className="flex flex-col gap-y-2">
+            <div className="flex flex-row items-center justify-between">
+                <p>{axis.toUpperCase()}-Axis Rotation</p>
+
+                {resetButtonShown && (
+                    <button
+                        className="font-semibold text-[#808080] transition duration-100 hover:text-red-500"
+                        onClick={() => applyRotation(0)}
+                    >
+                        RESET
+                    </button>
+                )}
+            </div>
+            <div className="flex flex-row gap-x-2">
+                <input type="range" className="w-full" min={SLIDER_MIN} max={SLIDER_MAX} onChange={onSliderChange} ref={sliderRef} />
+                <input
+                    className="text-white text-center w-16 bg-[#1e1e1e] outline-none"
+                    onClick={(e) => {
+                        e.currentTarget.value = e.currentTarget.value.replace('\u00b0', '');
+                        e.currentTarget.select();
+                    }}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            onNumberInput(e.currentTarget.value);
+                            e.currentTarget.blur();
+                        }
+                    }}
+                    onBlur={(e) => onNumberInput(e.currentTarget.value)}
+                    ref={numberInputRef}
+                />
+            </div>
         </div>
     );
 };
@@ -120,6 +198,14 @@ const Upload = () => {
     const [modelColor, setModelColor] = useState("#8E2929");
     const [colorPickerOpen, setColorPickerOpen] = useState(false);
 
+    const modelRef = useRef<ModelRef>(null);
+    const previewModelRef = useRef<ModelRef>(null);
+
+    const cameraRef = useRef<CameraRef>(null);
+    const previewCameraRef = useRef<CameraRef>(null);
+
+    const reuploadInputRef = useRef<HTMLInputElement>(null);
+
     const { showModal } = useModals();
 
     const stlLoadCurve = (file: File) => {
@@ -128,8 +214,18 @@ const Upload = () => {
     };
 
     const onFileSelect = (file: File) => {
-        setProjectFilename(`printerForm-${file.name}.pdf`);
+        const defaultExportFileName = `printerForm-${file.name}.pdf`;
+        setProjectFilename(defaultExportFileName);
+        document.title = defaultExportFileName;
+
         stlLoadCurve(file);
+
+        if (modelRef.current && previewModelRef.current) {
+            for (const axis of ['x', 'y', 'z']) {
+                previewModelRef.current.model.rotation[axis as AxisType] = 0;
+                modelRef.current.model.rotation[axis as AxisType] = 0;
+            }
+        }
     };
 
     const handleModelColorChange: ColorChangeHandler = (color: ColorResult, e) => {
@@ -141,14 +237,6 @@ const Upload = () => {
 
         onFileSelect(e.currentTarget.files[0]);
     };
-
-    const modelRef = useRef<ModelRef>(null);
-    const previewModelRef = useRef<ModelRef>(null);
-
-    const cameraRef = useRef<CameraRef>(null);
-    const previewCameraRef = useRef<CameraRef>(null);
-
-    const reuploadInputRef = useRef<HTMLInputElement>(null);
 
     return (
         <>
@@ -163,7 +251,7 @@ const Upload = () => {
 
                     {modelUrl && (
                         <input
-                            className="text-white text-center grow bg-transparent px-3 outline-none overflow-ellipsis pointer-events-auto"
+                            className="text-white text-center grow bg-transparent px-3 outline-none overflow-ellipsis"
                             type="text"
                             spellCheck={false}
                             value={projectFilename}
@@ -219,7 +307,7 @@ const Upload = () => {
 
                 <div className="bg-[#1E1E1E] flex w-full h-full flex-col justify-center">
                     {!modelUrl && (
-                        <div className="m-10 h-full">
+                        <div className="m-12 h-full">
                             <DragDropFileUpload
                                 className="flex w-full h-full items-center justify-center cursor-pointer rounded-lg border-dashed border-2 transition duration-200"
                                 dragActiveClassName="bg-[#262626] border-blue-500"
@@ -252,7 +340,7 @@ const Upload = () => {
                                         objectRespectsFloor={false}
                                         url={previewModelUrl as string}
                                     />
-                                    <p className="absolute top-2 left-2">PRINCIPLE FRONT VIEW</p>
+                                    <p className="absolute top-2 left-2">PRINCIPAL FRONT VIEW</p>
                                 </div>
                             </div>
 
@@ -330,18 +418,21 @@ const Upload = () => {
                                             )}
                                         </div>
                                     </div>
-                                    <div className="flex flex-col p-4 gap-y-2">
+                                    <div className="flex flex-col p-4 gap-y-6">
                                         <AxisRotationSelector
                                             axis="x"
                                             modelRefs={[modelRef, previewModelRef]}
+                                            modelUrl={modelUrl}
                                         />
                                         <AxisRotationSelector
                                             axis="y"
                                             modelRefs={[modelRef, previewModelRef]}
+                                            modelUrl={modelUrl}
                                         />
                                         <AxisRotationSelector
                                             axis="z"
                                             modelRefs={[modelRef, previewModelRef]}
+                                            modelUrl={modelUrl}
                                         />
                                     </div>
                                 </div>
