@@ -1,8 +1,8 @@
 "use client";
 
-import { ChangeEvent, DragEvent, RefObject, useRef, useState } from "react";
+import { ChangeEvent, DragEvent, PropsWithChildren, RefObject, useRef, useState } from "react";
 import { ModelRef, StlViewer } from "../stl-viewer-src";
-import { ChromePicker, ColorChangeHandler, ColorResult, SwatchesPicker } from "react-color";
+import { ChromePicker, ColorChangeHandler, ColorResult } from "react-color";
 import Link from "next/link";
 import type { CameraRef } from "../stl-viewer-src";
 import { ModalContainer, ModalProvider, PromptModal, useModals } from "../Modals";
@@ -16,9 +16,20 @@ type AxisRotationSelectorProps = {
 
 type DragDropFileUploadProps = {
     onFileSelect: (file: File) => void;
+    onlyAcceptDraggedFiles?: boolean;
+    className?: string;
+    dragActiveClassName?: string;
+    dragInactiveClassName?: string;
 };
 
-const DragDropFileUpload = ({ onFileSelect }: DragDropFileUploadProps) => {
+const DragDropFileUpload = ({
+    onFileSelect,
+    className,
+    onlyAcceptDraggedFiles,
+    dragActiveClassName,
+    dragInactiveClassName,
+    children
+}: PropsWithChildren<DragDropFileUploadProps>) => {
     const [dragActive, setDragActive] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -50,18 +61,32 @@ const DragDropFileUpload = ({ onFileSelect }: DragDropFileUploadProps) => {
     };
 
     return (
-        <label htmlFor="input-file-upload">
+        <>
             <div
-                className={`flex grow w-full h-full items-center justify-center cursor-pointer rounded-lg border-dashed border-4 transition duration-200 ${dragActive ? "bg-gray-200 border-blue-500" : "bg-gray-100 border-gray-500"}`}
-                onDrop={handleFileDrop}
+                className={`w-full h-full ${dragActive ? dragActiveClassName : dragInactiveClassName} ${className}`}
                 onDragOver={handleFileDrag}
                 onDragEnter={handleFileDrag}
                 onDragLeave={handleFileDrag}
+                onDrop={handleFileDrop}
+                onClick={() => fileInputRef.current?.click()}
             >
-                <input className="hidden" ref={fileInputRef} type="file" id="input-file-upload" onChange={handleFileInputChange} tabIndex={-1} accept=".stl" />
-                <p className="text-black">Drag files here</p>
+                {children}
             </div>
-        </label>
+            <input
+                className="hidden"
+                ref={fileInputRef}
+                type="file"
+                id="input-file-upload"
+                onChange={handleFileInputChange}
+                tabIndex={-1}
+                accept=".stl"
+                onClick={(e) => {
+                    if (onlyAcceptDraggedFiles) {
+                        e.preventDefault();
+                    }
+                }}
+            />
+        </ >
     );
 };
 
@@ -95,7 +120,7 @@ const Upload = () => {
     const [modelColor, setModelColor] = useState("#8E2929");
     const [colorPickerOpen, setColorPickerOpen] = useState(false);
 
-    const modals = useModals();
+    const { showModal } = useModals();
 
     const stlLoadCurve = (file: File) => {
         setModelUrl(URL.createObjectURL(file));
@@ -128,7 +153,7 @@ const Upload = () => {
     return (
         <>
             <ModalContainer />
-            <div className="flex flex-col min-h-screen w-full" onClick={() => {
+            <div className="flex flex-col h-screen w-full" onClick={() => {
                 setColorPickerOpen(false);
             }}>
                 <div className="relative flex flex-row items-center justify-between bg-[#2c2c2c] h-12">
@@ -136,20 +161,22 @@ const Upload = () => {
                         Home
                     </Link>
 
-                    <input
-                        className="text-white text-center grow bg-transparent px-3 outline-none overflow-ellipsis pointer-events-auto"
-                        type="text"
-                        spellCheck={false}
-                        value={projectFilename}
-                        onFocus={(e) => e.currentTarget.select()}
-                        onChange={(e) => {
-                            const newFilename = e.currentTarget.value;
-                            setProjectFilename(newFilename);
-                        }}
-                        onBlur={(e) => {
-                            document.title = e.currentTarget.value;
-                        }}
-                    />
+                    {modelUrl && (
+                        <input
+                            className="text-white text-center grow bg-transparent px-3 outline-none overflow-ellipsis pointer-events-auto"
+                            type="text"
+                            spellCheck={false}
+                            value={projectFilename}
+                            onFocus={(e) => e.currentTarget.select()}
+                            onChange={(e) => {
+                                const newFilename = e.currentTarget.value;
+                                setProjectFilename(newFilename);
+                            }}
+                            onBlur={(e) => {
+                                document.title = e.currentTarget.value;
+                            }}
+                        />
+                    )}
 
                     {modelUrl && (
                         <div className="flex flex-row h-full">
@@ -158,14 +185,13 @@ const Upload = () => {
                                 onClick={(e) => {
                                     e.preventDefault();
 
-                                    modals.showModal(
+                                    showModal(
                                         <PromptModal
                                             title="Model Reupload"
                                             bodyText="Are you sure you would like to reupload a new model?"
                                             onConfirm={() => {
                                                 if (!reuploadInputRef.current) return;
 
-                                                console.log('click');
                                                 reuploadInputRef.current.click();
                                             }}
                                         />
@@ -191,8 +217,19 @@ const Upload = () => {
                     )}
                 </div>
 
-                <div className="grow bg-emerald-700 flex h-full flex-col justify-center">
-                    {!modelUrl && <DragDropFileUpload onFileSelect={onFileSelect} />}
+                <div className="bg-[#1E1E1E] flex w-full h-full flex-col justify-center">
+                    {!modelUrl && (
+                        <div className="m-10 h-full">
+                            <DragDropFileUpload
+                                className="flex w-full h-full items-center justify-center cursor-pointer rounded-lg border-dashed border-2 transition duration-200"
+                                dragActiveClassName="bg-[#262626] border-blue-500"
+                                dragInactiveClassName="bg-[#2c2c2c] border-gray-500"
+                                onFileSelect={onFileSelect}
+                            >
+                                <p className="text-white">Drag/select STL model file here</p>
+                            </DragDropFileUpload>
+                        </div>
+                    )}
 
                     {modelUrl && (
                         <div className="relative flex grow flex-row w-full bg-[#2c2c2c]">
@@ -218,13 +255,23 @@ const Upload = () => {
                                     <p className="absolute top-2 left-2">PRINCIPLE FRONT VIEW</p>
                                 </div>
                             </div>
-                            <div className="relative grow">
+
+                            <DragDropFileUpload
+                                onFileSelect={(file) => {
+                                    showModal(
+                                        <PromptModal
+                                            title="Model Reupload"
+                                            bodyText={`Are you sure you would like to replace the current model with "${file.name}"?`}
+                                            onConfirm={() => onFileSelect(file)}
+                                        />
+                                    );
+                                }}
+                                className="relative grow transition duration-200"
+                                dragActiveClassName="after:content-[''] after:absolute after:inset-0 after:shadow-[inset_0_0_20px_#006bff] after:pointer-events-none"
+                                onlyAcceptDraggedFiles
+                            >
                                 <StlViewer
-                                    style={{
-                                        position: "absolute",
-                                        inset: "0",
-                                        backgroundColor: "#1E1E1E"
-                                    }}
+                                    className="absolute inset-0 bg-[#1E1E1E]"
                                     modelProps={{
                                         ref: modelRef,
                                         color: modelColor,
@@ -246,7 +293,8 @@ const Upload = () => {
                                     orbitControls
                                     url={modelUrl}
                                 />
-                            </div>
+                            </DragDropFileUpload>
+
                             <div className="flex flex-col flex-shrink-0 min-w-72">
                                 <div className="divide-y divide-[#444444] border-y border-[#444444]">
                                     <div className="p-4 gap-y-4 flex flex-col">
