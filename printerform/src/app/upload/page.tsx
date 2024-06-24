@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, DragEvent, PropsWithChildren, RefObject, useEffect, useRef, useState } from "react";
+import { ChangeEvent, DragEvent, MutableRefObject, PropsWithChildren, PropsWithRef, RefObject, forwardRef, useCallback, useEffect, useRef, useState } from "react";
 import { ModelRef, StlViewer } from "../stl-viewer-src";
 import { ChromePicker, ColorChangeHandler, ColorResult } from "react-color";
 import Link from "next/link";
@@ -91,8 +91,12 @@ type AxisRotationSelectorProps = {
     modelUrl: string;
 };
 
-const AxisRotationSelector = ({ axis, modelRefs, modelUrl }: AxisRotationSelectorProps) => {
+const AxisRotationSelector = forwardRef<AxisRotationSelectorRef, AxisRotationSelectorProps>(({ axis, modelRefs, modelUrl }, ref) => {
     const [resetButtonShown, setResetButtonShown] = useState(false);
+
+    const sliderRef = useRef<HTMLInputElement>(null);
+    const numberInputRef = useRef<HTMLInputElement>(null);
+
     const FULL_ROTATION_RANGE = 2 * Math.PI;
     const BISECTED_ROTATION_RANGE = FULL_ROTATION_RANGE / 2;
 
@@ -103,10 +107,16 @@ const AxisRotationSelector = ({ axis, modelRefs, modelUrl }: AxisRotationSelecto
     const SLIDER_MAX = radiansToDegrees(BISECTED_ROTATION_RANGE);
 
     useEffect(() => {
+        if (!ref) return;
+
+        (ref as MutableRefObject<AxisRotationSelectorRef | null>).current = { updateInputs };
+    }, []);
+
+    useEffect(() => {
         updateInputs(0);
     }, [modelUrl]);
 
-    const updateInputs = (rotation: number) => {
+    const updateInputs = useCallback((rotation: number) => {
         if (sliderRef.current) {
             const percent = (rotation + BISECTED_ROTATION_RANGE) / FULL_ROTATION_RANGE;
             const sliderValue = SLIDER_MIN + percent * (SLIDER_MAX - SLIDER_MIN);
@@ -119,7 +129,7 @@ const AxisRotationSelector = ({ axis, modelRefs, modelUrl }: AxisRotationSelecto
         }
 
         setResetButtonShown(Math.abs(rotation) > Number.EPSILON);
-    };
+    }, [sliderRef.current, numberInputRef.current, setResetButtonShown]);
 
     const applyRotation = (rotation: number) => {
         for (const modelRef of modelRefs) {
@@ -151,9 +161,6 @@ const AxisRotationSelector = ({ axis, modelRefs, modelUrl }: AxisRotationSelecto
 
         applyRotation(rotation);
     };
-
-    const sliderRef = useRef<HTMLInputElement>(null);
-    const numberInputRef = useRef<HTMLInputElement>(null);
 
     return (
         <div className="flex flex-col gap-y-2">
@@ -189,6 +196,10 @@ const AxisRotationSelector = ({ axis, modelRefs, modelUrl }: AxisRotationSelecto
             </div>
         </div>
     );
+});
+
+type AxisRotationSelectorRef = {
+    updateInputs: (rotation: number) => void;
 };
 
 const Upload = () => {
@@ -197,6 +208,8 @@ const Upload = () => {
     const [previewModelUrl, setPreviewModelUrl] = useState<string>();
     const [modelColor, setModelColor] = useState("#8E2929");
     const [colorPickerOpen, setColorPickerOpen] = useState(false);
+    const [rotationGizmoShown, setRotationGizmoShown] = useState(false);
+
 
     const modelRef = useRef<ModelRef>(null);
     const previewModelRef = useRef<ModelRef>(null);
@@ -205,6 +218,16 @@ const Upload = () => {
     const previewCameraRef = useRef<CameraRef>(null);
 
     const reuploadInputRef = useRef<HTMLInputElement>(null);
+
+    const xRef = useRef<AxisRotationSelectorRef>(null);
+    const yRef = useRef<AxisRotationSelectorRef>(null);
+    const zRef = useRef<AxisRotationSelectorRef>(null);
+
+    const rotationSelectorRefs: { [key in AxisType]: RefObject<AxisRotationSelectorRef> } = {
+        "x": xRef,
+        "y": yRef,
+        "z": zRef,
+    };
 
     const { showModal } = useModals();
 
@@ -226,6 +249,8 @@ const Upload = () => {
                 modelRef.current.model.rotation[axis as AxisType] = 0;
             }
         }
+
+        setRotationGizmoShown(false);
     };
 
     const handleModelColorChange: ColorChangeHandler = (color: ColorResult, e) => {
@@ -238,12 +263,26 @@ const Upload = () => {
         onFileSelect(e.currentTarget.files[0]);
     };
 
+    useEffect(() => {
+        const globalKeyDown = (e: KeyboardEvent) => {
+            if (e.key.toUpperCase() === "R") {
+                setRotationGizmoShown(old => !old);
+            }
+        };
+
+        document.addEventListener("keydown", globalKeyDown);
+
+        return () => document.removeEventListener("keydown", globalKeyDown);
+    }, []);
+
     return (
         <>
             <ModalContainer />
-            <div className="flex flex-col h-screen w-full" onClick={() => {
-                setColorPickerOpen(false);
-            }}>
+            <div className="flex flex-col h-screen w-full"
+                onClick={() => {
+                    setColorPickerOpen(false);
+                }}
+            >
                 <div className="relative flex flex-row items-center justify-between bg-[#2c2c2c] h-12">
                     <Link className="flex h-full items-center justify-center bg-red-500 p-5" href="/">
                         Home
@@ -360,15 +399,27 @@ const Upload = () => {
                                     }}
                                     cameraProps={{
                                         ref: cameraRef,
-                                        onOrbitChange: () => {
-                                            if (!cameraRef.current || !previewCameraRef.current) return;
+                                    }}
+                                    onOrbitChange={() => {
+                                        if (!cameraRef.current || !previewCameraRef.current) return;
 
-                                            previewCameraRef.current.camera.copy(cameraRef.current.camera);
+                                        previewCameraRef.current.camera.copy(cameraRef.current.camera);
+                                    }}
+                                    onRotationControlChange={(rotation) => {
+                                        for (const [axis, axisRotationSelectorRef] of Object.entries(rotationSelectorRefs)) {
+                                            if (!axisRotationSelectorRef.current) {
+                                                console.log("skipping " + axis);
+                                                console.log(axisRotationSelectorRef);
+                                                continue;
+                                            }
+
+                                            axisRotationSelectorRef.current.updateInputs(rotation[axis as AxisType]);
                                         }
                                     }}
                                     shadows
                                     showAxisGizmo
                                     showGrid
+                                    showRotationGizmo={rotationGizmoShown}
                                     objectRespectsFloor={false}
                                     orbitControls
                                     url={modelUrl}
@@ -415,16 +466,19 @@ const Upload = () => {
                                             axis="x"
                                             modelRefs={[modelRef, previewModelRef]}
                                             modelUrl={modelUrl}
+                                            ref={xRef}
                                         />
                                         <AxisRotationSelector
                                             axis="y"
                                             modelRefs={[modelRef, previewModelRef]}
                                             modelUrl={modelUrl}
+                                            ref={yRef}
                                         />
                                         <AxisRotationSelector
                                             axis="z"
                                             modelRefs={[modelRef, previewModelRef]}
                                             modelUrl={modelUrl}
+                                            ref={zRef}
                                         />
                                     </div>
                                 </div>

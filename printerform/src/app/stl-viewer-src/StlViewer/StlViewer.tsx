@@ -21,6 +21,8 @@ const StlViewer: React.FC<StlViewerProps> = (
         onError,
         extraHeaders,
         onFinishLoading,
+        onOrbitChange,
+        onRotationControlChange,
         canvasId,
         shadows,
         objectRespectsFloor,
@@ -28,6 +30,7 @@ const StlViewer: React.FC<StlViewerProps> = (
         showAxisGizmo,
         showGrid,
         orbitControls,
+        showRotationGizmo,
         cameraInitialPosition,
         ...otherProps
     }
@@ -39,12 +42,15 @@ const StlViewer: React.FC<StlViewerProps> = (
         floorProps,
         extraHeaders,
         onFinishLoading,
+        onOrbitChange,
+        onRotationControlChange,
         shadows,
         objectRespectsFloor,
         showAxes,
         showAxisGizmo,
         showGrid,
         orbitControls,
+        showRotationGizmo,
         cameraInitialPosition
     };
 

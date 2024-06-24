@@ -1,7 +1,7 @@
-import React, { CSSProperties, useEffect, useMemo, useState } from 'react';
+import React, { CSSProperties, useEffect, useMemo, useRef, useState } from 'react';
 import { useFrame, useLoader, useThree } from '@react-three/fiber';
 import { STLLoader } from 'three-stdlib/loaders/STLLoader';
-import { Box3, BufferGeometry, Color, Group, Mesh } from 'three';
+import { Box3, BufferGeometry, Color, Euler, Group, Mesh, Object3D, Object3DEventMap } from 'three';
 import { STLExporter } from './exporters/STLExporter';
 import Model3D, { ModelDimensions } from './SceneElements/Model3D';
 import Floor from './SceneElements/Floor';
@@ -9,7 +9,9 @@ import Lights from './SceneElements/Lights';
 import Camera, { CameraPosition, polarToCartesian } from './SceneElements/Camera';
 import OrbitControls from './SceneElements/OrbitControls';
 import type { RootState } from '@react-three/fiber';
-import { Environment, GizmoHelper, GizmoViewport, Grid, TransformControls } from '@react-three/drei';
+import { Environment, GizmoHelper, GizmoViewport, Grid, TransformControls, TransformControlsProps } from '@react-three/drei';
+import { OrbitControls as DreiOrbitControls } from "@react-three/drei";
+import { TransformControls as TransformControlsImpl } from 'three-stdlib';
 
 const INITIAL_LATITUDE = Math.PI / 8;
 const INITIAL_LONGITUDE = -Math.PI / 8;
@@ -30,7 +32,6 @@ export type CameraRef = {
 
 export interface CameraProps {
     ref?: { current?: null | CameraRef; };
-    onOrbitChange?: () => void;
     initialPosition?: CameraPosition;
 }
 
@@ -62,7 +63,10 @@ export interface SceneSetupProps {
     showAxisGizmo?: boolean;
     showGrid?: boolean;
     orbitControls?: boolean;
+    showRotationGizmo?: boolean;
     onFinishLoading?: (ev: ModelDimensions) => any;
+    onOrbitChange?: () => void;
+    onRotationControlChange?: (rotation: Euler) => void;
     cameraProps?: CameraProps;
     modelProps?: ModelProps;
     floorProps?: FloorProps;
@@ -78,7 +82,10 @@ const SceneSetup: React.FC<SceneSetupProps> = (
         showAxisGizmo = false,
         showGrid = false,
         orbitControls = false,
+        showRotationGizmo = false,
         onFinishLoading = () => { },
+        onOrbitChange,
+        onRotationControlChange,
         cameraInitialPosition: {
             latitude: deprecatedLatitude,
             longitude: deprecatedLongitude,
@@ -86,7 +93,6 @@ const SceneSetup: React.FC<SceneSetupProps> = (
         } = {},
         cameraProps: {
             ref: cameraRef,
-            onOrbitChange,
             initialPosition: {
                 latitude = INITIAL_LATITUDE,
                 longitude = INITIAL_LONGITUDE,
@@ -206,22 +212,14 @@ const SceneSetup: React.FC<SceneSetupProps> = (
         0
     ];
 
-    // const { gridSize, ...gridConfig } = useControls({
-    //     gridSize: [10.5, 10.5],
-    //     cellSize: { value: 0.6, min: 0, max: 10, step: 0.1 },
-    //     cellThickness: { value: 1, min: 0, max: 5, step: 0.1 },
-    //     cellColor: '#6f6f6f',
-    //     sectionSize: { value: 3.3, min: 0, max: 10, step: 0.1 },
-    //     sectionThickness: { value: 1.5, min: 0, max: 5, step: 0.1 },
-    //     sectionColor: '#9d4b4b',
-    //     fadeDistance: { value: 25, min: 0, max: 100, step: 1 },
-    //     fadeStrength: { value: 1, min: 0, max: 1, step: 0.1 },
-    //     followCamera: false,
-    //     infiniteGrid: true
-    //   })
-
     const GRID_SECTION_SIZE = 30;
     const CELLS_IN_GRID_SECTION = 5;
+
+    const scene = useThree((state) => state.scene);
+
+    const orbitControlRef = useRef<typeof OrbitControls>(null);
+
+    const transformControlRef = useRef(null);
 
     return (
         <>
@@ -231,6 +229,7 @@ const SceneSetup: React.FC<SceneSetupProps> = (
                 initialPosition={cameraInitialPosition}
                 center={modelCenter}
             />}
+
             <Model3D
                 name={'group'}
                 meshProps={{ name: 'mesh' }}
@@ -242,7 +241,7 @@ const SceneSetup: React.FC<SceneSetupProps> = (
                 materialProps={{ color }}
                 onLoaded={onLoaded}
             />
-            <Environment preset="city" />
+
             {showGrid && (
                 <Grid
                     rotation={[Math.PI / 2, 0, 0]}
@@ -273,25 +272,29 @@ const SceneSetup: React.FC<SceneSetupProps> = (
                 offsetX={modelPosition[0]}
                 offsetY={modelPosition[1]}
             />
-            {showAxisGizmo && (
+
+            {sceneReady && showAxisGizmo && (
                 <GizmoHelper alignment="bottom-right" margin={[80, 80]}>
                     <GizmoViewport axisColors={['#9d4b4b', '#2f7f4f', '#3b5b9d']} labelColor="white" />
                 </GizmoHelper>
             )}
-            {sceneReady && orbitControls && <OrbitControls onOrbitChange={onOrbitChange} target={modelCenter} />}
+
+            {sceneReady && orbitControls && <DreiOrbitControls makeDefault onChange={onOrbitChange} target={modelCenter} dampingFactor={0.2} />}
+            {sceneReady && showRotationGizmo &&
+                <TransformControls
+                    ref={transformControlRef}
+                    mode="rotate"
+                    onObjectChange={(e) => {
+                        if (transformControlRef.current) {
+                            console.log(transformControlRef.current.object);
+                            onRotationControlChange?.(transformControlRef.current.object.rotation as Euler);
+                        }
+                    }}
+                    object={scene.getObjectByName("group")}
+                />
+            }
         </>
     );
 };
 
 export default SceneSetup;
-
-// cellSize: 0.6
-// cellThickness: 1
-// cellColor: "#6f6f6f"
-// sectionSize: 3.3
-// sectionThickness: 1.5
-// sectionColor: "#9d4b4b"
-// fadeDistance: 25
-// fadeStrength: 1
-// followCamera: false
-// infiniteGrid: true
