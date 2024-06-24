@@ -129,7 +129,7 @@ const AxisRotationSelector = forwardRef<AxisRotationSelectorRef, AxisRotationSel
         }
 
         setResetButtonShown(Math.abs(rotation) > Number.EPSILON);
-    }, [sliderRef.current, numberInputRef.current, setResetButtonShown]);
+    }, [setResetButtonShown]);
 
     const applyRotation = (rotation: number) => {
         for (const modelRef of modelRefs) {
@@ -137,7 +137,9 @@ const AxisRotationSelector = forwardRef<AxisRotationSelectorRef, AxisRotationSel
 
             const { model } = modelRef.current;
 
+            console.log("old", model.rotation);
             model.rotation[axis] = rotation;
+            console.log("new", model.rotation);
         }
 
         updateInputs(rotation);
@@ -176,8 +178,15 @@ const AxisRotationSelector = forwardRef<AxisRotationSelectorRef, AxisRotationSel
                     </button>
                 )}
             </div>
-            <div className="flex flex-row gap-x-2">
-                <input type="range" className="w-full" min={SLIDER_MIN} max={SLIDER_MAX} onChange={onSliderChange} ref={sliderRef} />
+            <div className="flex flex-row gap-x-2 items-center">
+                <input
+                    type="range"
+                    className="w-full h-1 bg-[#1e1e1e] rounded-lg appearance-none cursor-pointer"
+                    min={SLIDER_MIN}
+                    max={SLIDER_MAX}
+                    onChange={onSliderChange}
+                    ref={sliderRef}
+                />
                 <input
                     className="text-white text-center w-16 bg-[#1e1e1e] outline-none"
                     onClick={(e) => {
