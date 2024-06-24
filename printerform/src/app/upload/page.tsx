@@ -388,7 +388,7 @@ const Upload = () => {
                                 onlyAcceptDraggedFiles
                             >
                                 <StlViewer
-                                    className="absolute inset-0 bg-[#1E1E1E]"
+                                    className="absolute inset-0 bg-[#1E1E1E] cursor-grab active:cursor-grabbing"
                                     modelProps={{
                                         ref: modelRef,
                                         color: modelColor,
