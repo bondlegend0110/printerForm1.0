@@ -11,7 +11,6 @@ import OrbitControls from './SceneElements/OrbitControls';
 import type { RootState } from '@react-three/fiber';
 import { Environment, GizmoHelper, GizmoViewport, Grid, TransformControls, TransformControlsProps } from '@react-three/drei';
 import { OrbitControls as DreiOrbitControls } from "@react-three/drei";
-import { TransformControls as TransformControlsImpl } from 'three-stdlib';
 
 const INITIAL_LATITUDE = Math.PI / 8;
 const INITIAL_LONGITUDE = -Math.PI / 8;
@@ -217,8 +216,6 @@ const SceneSetup: React.FC<SceneSetupProps> = (
 
     const scene = useThree((state) => state.scene);
 
-    const orbitControlRef = useRef<typeof OrbitControls>(null);
-
     const transformControlRef = useRef(null);
 
     return (
@@ -286,11 +283,10 @@ const SceneSetup: React.FC<SceneSetupProps> = (
                     mode="rotate"
                     onObjectChange={(e) => {
                         if (transformControlRef.current) {
-                            console.log(transformControlRef.current.object);
-                            onRotationControlChange?.(transformControlRef.current.object.rotation as Euler);
+                            onRotationControlChange?.((transformControlRef.current as { object: Object3D; }).object.rotation as Euler);
                         }
                     }}
-                    object={scene.getObjectByName("group")}
+                    object={scene.getObjectByName("mesh")}
                 />
             }
         </>
