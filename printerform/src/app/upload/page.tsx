@@ -15,8 +15,8 @@ const Upload = () => {
     const [modelUrl, setModelUrl] = useState<string>();
     const [previewModelUrl, setPreviewModelUrl] = useState<string>();
     const [modelColor, setModelColor] = useState("#8E2929");
-
     const [rotationGizmoShown, setRotationGizmoShown] = useState(false);
+
 
     const modelRef = useRef<ModelRef>(null);
     const previewModelRef = useRef<ModelRef>(null);
@@ -24,8 +24,8 @@ const Upload = () => {
     const cameraRef = useRef<CameraRef>(null);
     const previewCameraRef = useRef<CameraRef>(null);
 
-
     const toolbarRef = useRef<PropertiesControlPanelRef>(null);
+
 
     const { showModal } = useModals();
 
