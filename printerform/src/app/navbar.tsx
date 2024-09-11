@@ -18,7 +18,10 @@ const NavbarItem = ({ text, href }: NavbarItemProps) => {
 export const Navbar = () => {
     const pathname = usePathname();
 
-    if (pathname === "/upload") return null;
+    const EXCLUDED_PATHNAMES = ['/upload', '/export'];
+    if (EXCLUDED_PATHNAMES.some(excludedPathname => pathname === excludedPathname)) {
+        return null;
+    }
 
     return (
         <div className="w-full fixed flex items-center justify-between p-5 bg-red-500 z-50">
