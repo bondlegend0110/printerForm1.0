@@ -58,7 +58,6 @@ class PrintableFactory {
     private scene: THREE.Scene;
     private camera: THREE.Camera;
     private renderer: THREE.WebGLRenderer;
-    private count: number;
 
     constructor(modelInfo: ModelInfo) {
         this.modelInfo = modelInfo;
@@ -67,8 +66,6 @@ class PrintableFactory {
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight);
         this.renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
-
-        this.count = 0;
     }
 
     public async initializeRenderEnvironment() {
@@ -77,29 +74,9 @@ class PrintableFactory {
         this.createLights(350, this.cameraOffsetsFromModelDimensions(this.modelDimensions));
         this.configureCamera(this.modelDimensions);
 
-        // this.configureRenderer(animate.bind(this));
         this.configureRenderer(null);
 
-        // const controls = new OrbitControls(this.camera, this.renderer.domElement);
-
-        // document.body.appendChild(this.renderer.domElement);
-        // this.scene.add(new THREE.AxesHelper(50));
-
-        this.renderer.domElement.addEventListener('click', () => {
-            this.count += 1;
-            this.positionCamera(this.camera, this.modelDimensions, { phi: Math.PI / 2, theta: this.count * Math.PI / 20, radius: this.appropriateCameraDistance(this.modelDimensions) });
-
-            // this.positionCamera(this.camera, this.modelDimensions, { latitude: 0, longitude: -Math.PI + this.count * Math.PI / 20, distance: this.appropriateCameraDistance(this.modelDimensions) });
-            this.renderer.render(this.scene, this.camera);
-        });
-
         this.renderer.render(this.scene, this.camera);
-        // window.location.href = this.renderer.domElement.toDataURL().replace('image/png', 'image/octet-stream');
-
-        function animate(this: PrintableFactory) {
-            // controls.update();
-            this.renderer.render(this.scene, this.camera);
-        };
     }
 
     private appropriateCameraDistance(modelDimensions: ModelDimensions): number {
@@ -146,7 +123,6 @@ class PrintableFactory {
 
                 const slice = new Uint8Array(sliceWidth * sliceHeight * 4);
                 rendererContext.readPixels(sampleHorizontalOffset, 0, sliceWidth, sliceHeight, rendererContext.RGBA, rendererContext.UNSIGNED_BYTE, slice);
-                // window.location.href = this.renderer.domElement.toDataURL().replace('image/png', 'image/octet-stream');
 
                 const sliceData = new ImageData(sliceWidth, sliceHeight);
 
@@ -170,55 +146,21 @@ class PrintableFactory {
 
         doChunk();
 
-        // for (let i = 0; i < NUM_SLICES; i++) {
-        //     const sliceWidth = this.renderer.domElement.width / NUM_SLICES;
-        //     const sampleHorizontalOffset = this.renderer.domElement.width / 2 - sliceWidth / 2;
-        //     const sliceHeight = this.renderer.domElement.height;
-
-        //     this.positionCamera(this.camera, this.modelDimensions, { phi: Math.PI / 2, theta: i * (2 * Math.PI) / NUM_SLICES, radius: this.appropriateCameraDistance(this.modelDimensions) });
-        //     // this.positionCamera(this.camera, this.modelDimensions, { phi: Math.PI / 2, theta: -Math.PI + i * Math.PI / NUM_SLICES, radius: this.appropriateCameraDistance(this.modelDimensions) });
-        //     // this.positionCamera(this.camera, this.modelDimensions, { latitude: 0, longitude: -Math.PI + i * Math.PI / NUM_SLICES, distance: this.appropriateCameraDistance(this.modelDimensions) });
-
-        //     this.scene.background = new THREE.Color(0xffffff);
-        //     this.scene.background.setHex(Math.random() * 0xffffff);
-        //     this.renderer.render(this.scene, this.camera);
-
-        //     const rendererContext = this.renderer.domElement.getContext('webgl2');
-        //     if (rendererContext === null) {
-        //         return;
-        //     }
-
-        //     const slice = new Uint8Array(sliceWidth * sliceHeight * 4);
-        //     rendererContext.readPixels(sampleHorizontalOffset, 0, sliceWidth, sliceHeight, rendererContext.RGBA, rendererContext.UNSIGNED_BYTE, slice);
-        //     // window.location.href = this.renderer.domElement.toDataURL().replace('image/png', 'image/octet-stream');
-
-        //     const sliceData = new ImageData(sliceWidth, sliceHeight);
-
-        //     slice.forEach((pixelValue, i) => sliceData.data[i] = pixelValue);
-
-        //     outputContext.putImageData(sliceData, i * sliceWidth, 0);
-
-        //     loadingCallback((i + 1) / NUM_SLICES);
-        // }
-
         document.body.appendChild(outputCanvas);
     }
 
     private positionCamera(camera: THREE.Camera, modelDimensions: ModelDimensions, position: SphericalCoordinate) {
-        const center = [modelDimensions.width / 2, modelDimensions.length / 2, 0];
+        // const center = [modelDimensions.width / 2, modelDimensions.length / 2, 0];
+        const center = [0, 0, 0];
         const coords = sphericalToCartesian(position);
 
-        // TODO
-        // console.log('coords', coords);
-        // console.log('center', center);
         // console.log('camera pos', coords[0] + center[0], coords[1] + center[1], coords[2] + center[2]);
 
-        camera.position.set(coords[0], coords[1], coords[2]);
-        // camera.position.set(coords[0] + center[0], coords[1] + center[1], coords[2] + center[2]);
+        // camera.position.set(coords[0], coords[1], coords[2]);
+        camera.position.set(coords[0] + center[0], coords[1] + center[1], coords[2] + center[2]);
 
         // FIXME TODO THIS WAS THE GODDAMN FIX WHAT IN THE HELL OMG ITS BECAUSE THE 'center' IS NOT ACTUALLY THE DAMN CENTER ITS LITERALLY JUST THE ORIGIN
-        camera.lookAt(0, 0, 0);
-        // camera.lookAt(new THREE.Vector3().fromArray(center));
+        camera.lookAt(center[0], center[1], center[2]);
     }
 
     private configureCamera(modelDimensions: ModelDimensions) {
@@ -229,7 +171,7 @@ class PrintableFactory {
         //     longitude: 0,
         //     distance: modelDimensions.boundingRadius
         // });
-        this.positionCamera(this.camera, this.modelDimensions, { phi: Math.PI / 2, theta: -Math.PI, radius: this.appropriateCameraDistance(this.modelDimensions) });
+        this.positionCamera(this.camera, modelDimensions, { phi: Math.PI / 2, theta: -Math.PI, radius: this.appropriateCameraDistance(modelDimensions) });
 
         // this.positionCamera(this.camera, modelDimensions, { latitude: 0, longitude: -Math.PI, distance: this.appropriateCameraDistance(this.modelDimensions) });
     }
