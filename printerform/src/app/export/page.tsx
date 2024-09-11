@@ -52,6 +52,12 @@ function sphericalToCartesian(spherical: SphericalCoordinate): [number, number, 
     ];
 }
 
+enum ProjectionKind {
+    REVOLVED,
+    FOUR_SIDED_CUBE,
+    SIX_SIDED_CUBE
+}
+
 class PrintableFactory {
     private modelInfo: ModelInfo;
     private modelDimensions: ModelDimensions;
@@ -81,6 +87,23 @@ class PrintableFactory {
 
     private appropriateCameraDistance(modelDimensions: ModelDimensions): number {
         return Math.max(modelDimensions.height, modelDimensions.length, modelDimensions.width);
+    }
+
+    public producePrintable(projectionKind: ProjectionKind, loadingCallback: (percentComplete: number) => any, onComplete: () => any) {
+        switch (projectionKind) {
+            case ProjectionKind.REVOLVED:
+                this.produceRevolvedPrintable(loadingCallback, onComplete);
+                return;
+            case ProjectionKind.FOUR_SIDED_CUBE:
+                this.produceRevolvedPrintable(loadingCallback, onComplete);
+                return;
+            case ProjectionKind.SIX_SIDED_CUBE:
+                this.produceRevolvedPrintable(loadingCallback, onComplete);
+                return;
+            default:
+                throw new Error(`Invalid projection kind provided: ${projectionKind}. Available options are ${Object.keys(ProjectionKind)}`);
+
+        }
     }
 
     public produceRevolvedPrintable(loadingCallback: (percentComplete: number) => any, onComplete: () => any) {
@@ -249,39 +272,29 @@ class PrintableFactory {
     }
 }
 
-enum ProjectionKind {
-    REVOLVED,
-    FOUR_SIDED_CUBE,
-    SIX_SIDED_CUBE
-}
-
 type ProjectionSelection = {
     key: ProjectionKind;
     previewThumbnailImgSrc: string;
     projectionTitle: string;
     projectionDescription: string;
-    produceProjection: (factory: PrintableFactory, loadingCallback: (percentComplete: number) => any, onComplete: () => any) => any;
 };
 
 const ALL_PROJECTIONS: ProjectionSelection[] = [
     {
         key: ProjectionKind.REVOLVED,
         previewThumbnailImgSrc: "https://picsum.photos/500",
-        produceProjection: (factory: PrintableFactory, loadingCallback: (percentComplete: number) => any, onComplete: () => any) => factory.produceRevolvedPrintable(loadingCallback, onComplete),
         projectionDescription: "Best for objects with cylindrical symmetry",
         projectionTitle: "Revolved Projection"
     },
     {
         key: ProjectionKind.FOUR_SIDED_CUBE,
         previewThumbnailImgSrc: "https://picsum.photos/500",
-        produceProjection: (factory: PrintableFactory, loadingCallback: (percentComplete: number) => any, onComplete: () => any) => factory.produceRevolvedPrintable(loadingCallback, onComplete),
         projectionDescription: "Suits a variety of geometries well",
         projectionTitle: "Four Sided Cube Projection"
     },
     {
         key: ProjectionKind.SIX_SIDED_CUBE,
         previewThumbnailImgSrc: "https://picsum.photos/500",
-        produceProjection: (factory: PrintableFactory, loadingCallback: (percentComplete: number) => any, onComplete: () => any) => factory.produceRevolvedPrintable(loadingCallback, onComplete),
         projectionDescription: "Suits a variety of geometries well",
         projectionTitle: "Six Sided Cube Projection"
     },
@@ -298,7 +311,7 @@ const Export = () => {
     const runQueuedProjections = (printableFactory: PrintableFactory, queuedProjections: ProjectionSelection[]) => {
         const projectionSelection = queuedProjections[0];
 
-        projectionSelection.produceProjection(printableFactory, (percentComplete) => {
+        printableFactory.producePrintable(projectionSelection.key, (percentComplete) => {
             if (!loadingBarRef.current) {
                 return;
             }
@@ -313,7 +326,8 @@ const Export = () => {
             if (shrunkProjectionQueue.length > 0) {
                 runQueuedProjections(printableFactory, shrunkProjectionQueue);
             }
-        });
+        }
+        );
     };
 
     const handleProjectionDownload = async () => {
