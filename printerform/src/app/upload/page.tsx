@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ModelRef, StlViewer } from "../stl-viewer-src";
 import type { CameraRef } from "../stl-viewer-src";
 import { ModalContainer, ModalProvider, PromptModal, useModals } from "../Modals";
@@ -16,7 +16,6 @@ const Upload = () => {
     const [previewModelUrl, setPreviewModelUrl] = useState<string>();
     const [modelColor, setModelColor] = useState("#8E2929");
     const [rotationGizmoShown, setRotationGizmoShown] = useState(false);
-
 
     const modelRef = useRef<ModelRef>(null);
     const previewModelRef = useRef<ModelRef>(null);
@@ -49,10 +48,17 @@ const Upload = () => {
             }
         }
 
-        toolbarRef.current?.updateRotations(new Euler())
+        toolbarRef.current?.updateRotations(new Euler());
 
         setRotationGizmoShown(false);
     };
+
+    const exportQuery = useMemo(() => {
+        return {
+            modelUrl: modelUrl,
+            modelColor: modelColor,
+        };
+    }, [modelUrl, modelColor]);
 
     useEffect(() => {
         const globalKeyDown = (e: KeyboardEvent) => {
@@ -81,6 +87,7 @@ const Upload = () => {
                         set: setProjectFilename
                     }}
                     onFileSelect={onFileSelect}
+                    exportQuery={exportQuery}
                 />
 
                 <div className="bg-[#1E1E1E] flex w-full h-full flex-col justify-center">

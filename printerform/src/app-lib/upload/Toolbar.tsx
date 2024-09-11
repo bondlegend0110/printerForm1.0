@@ -1,16 +1,18 @@
-import Link from "next/link"
+import Link from "next/link";
 import { ChangeEvent, Dispatch, SetStateAction, useRef } from "react";
+import { UrlObject } from "url";
 
 type ToolbarProps = {
     projectFilename: {
         value: string | undefined,
-        set: Dispatch<SetStateAction<string | undefined>>
+        set: Dispatch<SetStateAction<string | undefined>>;
     };
     modelLoaded: boolean;
-    onFileSelect: (file: File) => void
-}
+    onFileSelect: (file: File) => void;
+    exportQuery: UrlObject['query'];
+};
 
-const Toolbar = ({ projectFilename, modelLoaded, onFileSelect }: ToolbarProps) => {
+const Toolbar = ({ projectFilename, modelLoaded, onFileSelect, exportQuery }: ToolbarProps) => {
     const reuploadInputRef = useRef<HTMLInputElement>(null);
 
     const handleReupload = (e: ChangeEvent<HTMLInputElement>) => {
@@ -54,14 +56,20 @@ const Toolbar = ({ projectFilename, modelLoaded, onFileSelect }: ToolbarProps) =
                             onChange={handleReupload}
                         />
 
-                        <button className="flex h-full items-center justify-center p-5 bg-blue-700 cursor-pointer">
+                        <Link
+                            href={{
+                                pathname: "/export",
+                                query: exportQuery
+                            }}
+                            className="flex h-full items-center justify-center p-5 bg-blue-700 cursor-pointer"
+                        >
                             Export
-                        </button>
+                        </Link>
                     </div>
                 </>
             )}
         </div>
-    )
-}
+    );
+};
 
 export default Toolbar;
