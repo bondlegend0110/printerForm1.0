@@ -111,8 +111,6 @@ const Resources = () => {
           </p>
           <div className="flex justify-center space-x-4 mt-6">
             <div className="flex space-x-4">
-              {" "}
-              {/* Container for gray boxes */}
               <div className="flex flex-col items-center">
                 <div className="w-80 h-80 bg-gray-300 flex-shrink-0"></div>
                 <a
