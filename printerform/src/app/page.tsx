@@ -3,26 +3,31 @@ import "../app/globals.css";
 
 const Home = () => {
   return (
-    <main className="flex flex-col min-h-screen w-full items-center justify-center p-24 bg-[#fffffe] text-black gap-[120px]">
-      <section className="flex w-full">
-        <section className="pr-[120px] justify-center flex flex-col">
-          <b>
-            {" "}
-            <h1 className="sora-font text-9xl pb-[8px] text-purple-600">
-              PrinterForm
-            </h1>{" "}
-          </b>
-          <p className="text-2xl">Short tagline for PrinterForm</p>
-        </section>
-        <section className="max-w-1/3 rounded">
+    <main className="flex flex-col min-h-screen w-full items-center justify-center  bg-[#fffffe] text-black gap-[120px]">
+      <section className="flex w-full h-[100px] relative">
+        <section className="w-screen justify-center flex flex-col">
           <video
             autoPlay
             className="w-full rounded drop-shadow"
             src="/IntroVideoV2.mp4"
           ></video>
+          {/* <b>
+            {" "}
+            <h1 className="sora-font text-9xl pb-[8px] text-purple-600">
+              PrinterForm
+            </h1>{" "}
+          </b>
+          <p className="text-2xl">Short tagline for PrinterForm</p> */}
         </section>
+        {/* <section className="max-w-1/3 rounded">
+          <video
+            autoPlay
+            className="w-full rounded drop-shadow"
+            src="/IntroVideoV2.mp4"
+          ></video>
+        </section> */}
       </section>
-      <section className="flex flex-col items-center">
+      <section className="flex flex-col items-center pt-[300px] px-[24px] pb-[24px]">
         <h2 className="text-7xl pb-[30px]">Mission</h2>
         <section className="flex">
           <div className="w-[12%] bg-green-400 h-[200px] rounded mr-[60px]"></div>
