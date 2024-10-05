@@ -26,17 +26,17 @@ export const Navbar = () => {
   }
 
   return (
-    <div className="w-full fixed flex items-center justify-between px-12 py-8 z-50 text-black">
+    <nav className="w-full fixed flex items-center justify-between px-12 pb-12 pt-8 z-50 text-black bg-[#e2edff] opacity-90">
       <Link href="/">
         <p>Printer Form (Logo here eventually)</p>
       </Link>
-      <div className="flex items-center space-x-10">
+      <div className="flex items-center space-x-10 ">
         {pathname !== "/" && <NavbarItem text="Home" href="/" />}
         <NavbarItem text="How To" href="how-to" />
         <NavbarItem text="Resources" href="resources" />
         <NavbarItem text="About" href="about" />
         <NavbarItem text="Upload" href="upload" />
       </div>
-    </div>
+    </nav>
   );
 };
