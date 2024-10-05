@@ -13,7 +13,7 @@ const Footer = () => {
   }
 
   return (
-    <div className="flex items-center justify-between px-[24px] bg-[#eeeeee] w-full min-h-48 text-black">
+    <div className="flex items-center justify-between px-[24px] bg-[#ffffff] w-full min-h-40 text-black ">
       <div>logo</div>
       <div>right side</div>
     </div>
