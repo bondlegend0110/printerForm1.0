@@ -62,7 +62,7 @@ body {
   h5 {
     @apply text-base;
   }
-} */
+}
 /* Tailwind base imports */
 @tailwind base;
 @tailwind components;
