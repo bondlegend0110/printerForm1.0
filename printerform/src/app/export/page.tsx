@@ -7,6 +7,7 @@ import { OrbitControls } from "three/examples/jsm/Addons.js";
 import { CameraPosition } from "../stl-viewer-src/StlViewer/SceneElements/Camera";
 import { ModelDimensions } from "../stl-viewer-src";
 import { string } from "three/examples/jsm/nodes/Nodes.js";
+import { jsPDF } from 'jspdf';
 
 type ModelInfo = {
     modelUrl: string,
@@ -95,7 +96,7 @@ class PrintableFactory {
                 this.produceRevolvedPrintable(loadingCallback, onComplete);
                 return;
             case ProjectionKind.FOUR_SIDED_CUBE:
-                this.produceRevolvedPrintable(loadingCallback, onComplete);
+                this.produceCubedPrintable(loadingCallback, onComplete);
                 return;
             case ProjectionKind.SIX_SIDED_CUBE:
                 this.produceRevolvedPrintable(loadingCallback, onComplete);
@@ -171,6 +172,125 @@ class PrintableFactory {
 
         document.body.appendChild(outputCanvas);
     }
+
+    //xinyu 4 side cube
+    public produceCubedPrintable(loadingCallback: (percentComplete: number) => any, onComplete: () => any) {
+        const NUM_VIEWS = 4; // Front, left, back, right
+    
+        const A4_WIDTH_MM = 297; // A4 paper width in mm (landscape)
+        const A4_HEIGHT_MM = 210; // A4 paper height in mm (landscape)
+        const MM_TO_PX = 3.7795275591; // Conversion from mm to pixels (72 DPI)
+    
+        const pdf = new jsPDF({
+            orientation: 'landscape',
+            unit: 'mm',
+            format: 'a4'
+        });
+    
+        // Calculate A4 paper size in pixels
+        const A4_WIDTH_PX = Math.floor(A4_WIDTH_MM * MM_TO_PX);
+        const A4_HEIGHT_PX = Math.floor(A4_HEIGHT_MM * MM_TO_PX);
+    
+        // Set the canvas size to A4 dimensions in pixels
+        const outputCanvas = document.createElement('canvas');
+        outputCanvas.width = A4_WIDTH_PX;
+        outputCanvas.height = A4_HEIGHT_PX;
+        
+        const outputContext = outputCanvas.getContext('2d');
+        if (outputContext === null) {
+            return;
+        }
+    
+        const MAX_TIME_PER_CHUNK = 10;
+        let index = 0;
+    
+        // Define camera angles for front, left, back, and right views (90-degree increments)
+        const cameraAngles = [
+            0,               // Front (theta = 0)
+            Math.PI / 2,     // Left (theta = 90 degrees)
+            Math.PI,         // Back (theta = 180 degrees)
+            3 * Math.PI / 2  // Right (theta = 270 degrees)
+        ];
+    
+        const doChunk = () => {
+            const startTime = new Date().getTime();
+            while (index < NUM_VIEWS && (new Date().getTime() - startTime <= MAX_TIME_PER_CHUNK)) {
+                const viewWidth = this.renderer.domElement.width;
+                const viewHeight = this.renderer.domElement.height;
+    
+                // Position camera at each of the 4 angles
+                this.positionCamera(this.camera, this.modelDimensions, {
+                    phi: Math.PI / 2,  // Keep phi fixed at 90 degrees (horizontal plane)
+                    theta: cameraAngles[index],  // Use specific theta values for front, left, back, right
+                    radius: this.appropriateCameraDistance(this.modelDimensions)
+                });
+    
+                this.renderer.render(this.scene, this.camera);
+    
+                const rendererContext = this.renderer.domElement.getContext('webgl2');
+                if (rendererContext === null) {
+                    return;
+                }
+    
+                // Determine the largest square that can be cropped from the center of the view
+                const squareSize = Math.min(viewWidth, viewHeight);
+                const xOffset = (viewWidth - squareSize) / 2; // Crop equally from both sides (horizontal)
+                const yOffset = (viewHeight - squareSize) / 2; // Crop equally from top and bottom (vertical)
+    
+                const squareSlice = new Uint8Array(squareSize * squareSize * 4);
+                rendererContext.readPixels(xOffset, yOffset, squareSize, squareSize, rendererContext.RGBA, rendererContext.UNSIGNED_BYTE, squareSlice);
+    
+                const sliceData = new ImageData(squareSize, squareSize);
+                squareSlice.forEach((pixelValue, i) => sliceData.data[i] = pixelValue);
+    
+                // Create a temporary canvas to hold the square slice
+                const tempCanvas = document.createElement('canvas');
+                tempCanvas.width = squareSize;
+                tempCanvas.height = squareSize;
+                const tempContext = tempCanvas.getContext('2d');
+                tempContext.putImageData(sliceData, 0, 0);
+    
+                // Calculate size and positioning for the 1x4 grid layout
+                const gridCols = 4;
+                const cellWidth = A4_WIDTH_PX / gridCols;   // Width of each cell in the grid (1 row, 4 columns)
+                const cellHeight = A4_HEIGHT_PX;            // Full height of the canvas for each image
+    
+                // Calculate scaling factor to fit the square within the grid cell
+                const scaleFactor = Math.min(cellWidth / squareSize, cellHeight / squareSize);
+                const scaledWidth = squareSize * scaleFactor;
+                const scaledHeight = squareSize * scaleFactor;
+    
+                // Calculate position to center the image within its grid cell
+                const col = index % gridCols;               // Which column the image will go in
+                const xPos = col * cellWidth + (cellWidth - scaledWidth) / 2; // Center horizontally
+                const yPos = (A4_HEIGHT_PX - scaledHeight);               // Center vertically
+    
+                // Draw the scaled image on the output canvas
+                outputContext.drawImage(tempCanvas, 0, 0, squareSize, squareSize, xPos, yPos, scaledWidth, scaledHeight);
+    
+                loadingCallback((index + 1) / NUM_VIEWS); // Update progress
+                ++index;
+            }
+    
+            if (index === NUM_VIEWS) {
+                // Once all 4 images are drawn on the same canvas, add it to the PDF
+                const canvasDataUrl = outputCanvas.toDataURL('image/png');
+                pdf.addImage(canvasDataUrl, 'PNG', 0, 0, A4_WIDTH_MM, A4_HEIGHT_MM);
+    
+                // Save the PDF after adding the page
+                pdf.save('cubed_printable.pdf');
+                onComplete();
+            }
+    
+            if (index < NUM_VIEWS) {
+                setTimeout(doChunk, 1);
+            }
+        };
+    
+        doChunk();
+    }
+    
+    
 
     private positionCamera(camera: THREE.Camera, modelDimensions: ModelDimensions, position: SphericalCoordinate) {
         // const center = [modelDimensions.width / 2, modelDimensions.length / 2, 0];
