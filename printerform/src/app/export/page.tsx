@@ -8,6 +8,7 @@ import { CameraPosition } from "../stl-viewer-src/StlViewer/SceneElements/Camera
 import { ModelDimensions } from "../stl-viewer-src";
 import { string } from "three/examples/jsm/nodes/Nodes.js";
 import { jsPDF } from 'jspdf';
+import curvedBackgroundImage from './CURVED_FORM_TEMPLATE.jpg';
 
 type ModelInfo = {
     modelUrl: string,
@@ -56,7 +57,8 @@ function sphericalToCartesian(spherical: SphericalCoordinate): [number, number, 
 enum ProjectionKind {
     REVOLVED,
     FOUR_SIDED_CUBE,
-    SIX_SIDED_CUBE
+    SIX_SIDED_CUBE,
+    CURVED
 }
 
 class PrintableFactory {
@@ -100,6 +102,9 @@ class PrintableFactory {
                 return;
             case ProjectionKind.SIX_SIDED_CUBE:
                 this.produceRevolvedPrintable(loadingCallback, onComplete);
+                return;
+            case ProjectionKind.CURVED:
+                this.produceCurvedPrintable(loadingCallback, onComplete);
                 return;
             default:
                 throw new Error(`Invalid projection kind provided: ${projectionKind}. Available options are ${Object.keys(ProjectionKind)}`);
@@ -290,7 +295,91 @@ class PrintableFactory {
         doChunk();
     }
     
+    public produceCurvedPrintable(loadingCallback: (percentComplete: number) => any, onComplete: () => any) {
+        const img = new Image();
+        img.src = curvedBackgroundImage.src;
     
+        img.onload = () => {
+          const canvasWidth = img.width;
+          const canvasHeight = img.height;
+    
+          const outputCanvas = document.createElement('canvas');
+          outputCanvas.width = canvasWidth;
+          outputCanvas.height = canvasHeight;
+    
+          const outputContext = outputCanvas.getContext('2d');
+          if (outputContext === null) return;
+    
+          outputContext.drawImage(img, 0, 0, canvasWidth, canvasHeight);
+    
+          const renderSide = (cameraAngle: number, flipHorizontally: boolean, flipVertically: boolean, offsetY: number, scale: number
+          ) => {
+            this.positionCamera(this.camera, this.modelDimensions, {phi: Math.PI / 2, theta: cameraAngle, radius: this.appropriateCameraDistance(this.modelDimensions)
+            });
+    
+            // Color of WebGL context should be transparent on the template
+            const rendererContext = this.renderer.domElement.getContext('webgl2');
+            if (rendererContext !== null) {
+              rendererContext.clearColor(0, 0, 0, 0);
+              rendererContext.clear(rendererContext.COLOR_BUFFER_BIT);
+            }
+            this.renderer.render(this.scene, this.camera);
+    
+            if (rendererContext) {
+              const pixels = new Uint8Array(canvasWidth * canvasHeight * 4);
+              rendererContext.readPixels(0, 0, canvasWidth, canvasHeight, rendererContext.RGBA, rendererContext.UNSIGNED_BYTE, pixels);
+              const imageData = new ImageData(new Uint8ClampedArray(pixels), canvasWidth, canvasHeight);
+  
+              const tempCanvas = document.createElement('canvas');
+              tempCanvas.width = canvasWidth;
+              tempCanvas.height = canvasHeight;
+              const tempContext = tempCanvas.getContext('2d');
+              if (tempContext === null) return;
+    
+              tempContext.putImageData(imageData, 0, 0);
+              outputContext.save();
+    
+              // transformations for flipping horizontally and vertically
+              if (flipHorizontally) {
+                outputContext.translate(canvasWidth, 0);
+                outputContext.scale(-1, 1);
+              }
+              if (flipVertically) {
+                outputContext.translate(0, canvasHeight);
+                outputContext.scale(1, -1);
+              }
+              const modelWidth = canvasWidth * scale;
+              const modelHeight = (canvasHeight / 2) * scale;
+    
+              outputContext.drawImage(tempCanvas, 0, 0, canvasWidth, canvasHeight / 2, (canvasWidth - modelWidth) / 2, offsetY, modelWidth, modelHeight);
+  
+              outputContext.restore();
+            } else {
+              console.error("Renderer context is null. Couldn't read pixels.");
+            }
+          };
+    
+          // top model
+          renderSide(0, true, false, -50, 1);
+    
+          // bottom model
+          renderSide(Math.PI, false, true, (canvasHeight / 2) - 1500, 0.85);
+    
+          // generating PDF
+          const pdf = new jsPDF({orientation: 'portrait', unit: 'px', format: [canvasWidth, canvasHeight], putOnlyUsedFonts: true, floatPrecision: 16});
+    
+          const imgData = outputCanvas.toDataURL('image/png');
+          pdf.addImage(imgData, 'PNG', 0, 0, canvasWidth, canvasHeight);
+          pdf.save('curved.pdf');
+    
+          onComplete();
+          document.body.appendChild(outputCanvas);
+        };
+    
+        img.onerror = (error) => {
+          console.error('Error loading image:', error);
+        };
+  }
 
     private positionCamera(camera: THREE.Camera, modelDimensions: ModelDimensions, position: SphericalCoordinate) {
         // const center = [modelDimensions.width / 2, modelDimensions.length / 2, 0];
@@ -418,6 +507,13 @@ const ALL_PROJECTIONS: ProjectionSelection[] = [
         projectionDescription: "Suits a variety of geometries well",
         projectionTitle: "Six Sided Cube Projection"
     },
+    {
+      key: ProjectionKind.CURVED,
+      previewThumbnailImgSrc: "https://picsum.photos/500",
+      projectionDescription: "Front and back of the model printed in a curved form",
+      projectionTitle: "Curved Volume Form"
+  } 
+
 ];
 
 const Export = () => {
