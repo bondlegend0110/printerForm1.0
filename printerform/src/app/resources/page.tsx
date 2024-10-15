@@ -151,6 +151,27 @@ const Resources = () => {
           </div>
         </div>
       </div>
+      <h2 className="text-5xl mb-5 text-black">Case Studies</h2>
+      <div className="mb-10 flex justify-center space-x-6">
+        <div>
+          <div className="flex justify-center space-x-4 mt-6">
+            <div className="flex space-x-4">
+              <div className="flex flex-col justify-center">
+                <div className="w-80 h-80 bg-gray-300 flex-shrink-0"></div>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-80 h-80 bg-gray-300 flex-shrink-0"></div>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-80 h-80 bg-gray-300 flex-shrink-0"></div>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-80 h-80 bg-gray-300 flex-shrink-0"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
