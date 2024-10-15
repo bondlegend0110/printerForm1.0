@@ -312,7 +312,7 @@ class PrintableFactory {
     
           outputContext.drawImage(img, 0, 0, canvasWidth, canvasHeight);
     
-          const renderSide = (cameraAngle: number, flipHorizontally: boolean, flipVertically: boolean, offsetY: number, scale: number
+          const renderSide = (cameraAngle: number, flipHorizontally: boolean, flipVertically: boolean, offsetY: number, horizontalOffset: number = 0, scale: number
           ) => {
             this.positionCamera(this.camera, this.modelDimensions, {phi: Math.PI / 2, theta: cameraAngle, radius: this.appropriateCameraDistance(this.modelDimensions)
             });
@@ -350,9 +350,12 @@ class PrintableFactory {
               }
               const modelWidth = canvasWidth * scale;
               const modelHeight = (canvasHeight / 2) * scale;
-    
-              outputContext.drawImage(tempCanvas, 0, 0, canvasWidth, canvasHeight / 2, (canvasWidth - modelWidth) / 2, offsetY, modelWidth, modelHeight);
-  
+
+              outputContext.drawImage(tempCanvas, 0, 0, canvasWidth, canvasHeight / 2, (canvasWidth - modelWidth) / 2 + horizontalOffset, offsetY, modelWidth, modelHeight);
+              console.log(img.height)
+              console.log(img.width)
+              console.log(canvasHeight)
+              console.log(canvasWidth)
               outputContext.restore();
             } else {
               console.error("Renderer context is null. Couldn't read pixels.");
@@ -360,11 +363,10 @@ class PrintableFactory {
           };
     
           // top model
-          renderSide(0, true, false, -50, 1);
-    
+          renderSide(0, true, false, 65, 155, 0.9);
           // bottom model
-          renderSide(Math.PI, false, true, (canvasHeight / 2) - 1500, 0.85);
-    
+          renderSide(Math.PI, false, true, 65, 155, 0.9);
+
           // generating PDF
           const pdf = new jsPDF({orientation: 'portrait', unit: 'px', format: [canvasWidth, canvasHeight], putOnlyUsedFonts: true, floatPrecision: 16});
     
