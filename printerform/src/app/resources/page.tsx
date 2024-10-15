@@ -3,6 +3,9 @@ import fusion360Logo from "../assets/autodesk-fusion-360-logo-7F72A76397-seeklog
 import thingiverseLogo from "../assets/thingiverse-logo.png";
 import grabCADLogo from "../assets/large.jpg";
 import xyzLogo from "../assets/xyzLogo.png";
+import activityA from "../assets/activityA.png";
+import activityB from "../assets/activityB.png";
+import lessonA from "../assets/lessonA.png";
 
 const Resources = () => {
   return (
@@ -111,37 +114,40 @@ const Resources = () => {
           </p>
           <div className="flex justify-center space-x-4 mt-6">
             <div className="flex space-x-4">
-              <div className="flex flex-col items-center">
-                <div className="w-80 h-80 bg-gray-300 flex-shrink-0"></div>
+              <div className="flex flex-col items-center w-80 h-80">
+                <img
+                  src={activityA.src}
+                  alt="Activity A"
+                  className="w-full h-full object-cover"
+                />
                 <a
-                  href="link-to-download1"
+                  href="/printerform_activitya.pdf"
                   className="mt-2 text-blue-500 underline"
                 >
                   Download Here
                 </a>
               </div>
-              <div className="flex flex-col items-center">
-                <div className="w-80 h-80 bg-gray-300 flex-shrink-0"></div>
+              <div className="flex flex-col items-center w-80 h-80">
+                <img
+                  src={activityB.src}
+                  alt="Activity B"
+                  className="w-full h-full object-cover"
+                />{" "}
                 <a
-                  href="link-to-download2"
+                  href="/printerform_activityb.pdf"
                   className="mt-2 text-blue-500 underline"
                 >
                   Download Here
                 </a>
               </div>
-              <div className="flex flex-col items-center">
-                <div className="w-80 h-80 bg-gray-300 flex-shrink-0"></div>
+              <div className="flex flex-col items-center w-80 h-80">
+                <img
+                  src={lessonA.src}
+                  alt="Lesson A"
+                  className="w-full h-full object-cover"
+                />{" "}
                 <a
-                  href="link-to-download3"
-                  className="mt-2 text-blue-500 underline"
-                >
-                  Download Here
-                </a>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="w-80 h-80 bg-gray-300 flex-shrink-0"></div>
-                <a
-                  href="link-to-download4"
+                  href="printerform_lessona.pdf"
                   className="mt-2 text-blue-500 underline"
                 >
                   Download Here
