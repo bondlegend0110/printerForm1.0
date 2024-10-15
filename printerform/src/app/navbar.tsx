@@ -26,16 +26,20 @@ export const Navbar = () => {
   }
 
   return (
-    <nav className="w-full fixed flex items-center justify-between px-12 pb-12 pt-8 z-50 text-black bg-[#e2edff] opacity-90">
+    <nav className="w-full fixed flex items-center justify-between px-12 pb-12 pt-8 z-50 text-black  bg-white">
       <Link href="/">
-        <p>Printer Form (Logo here eventually)</p>
+        <img src="/logo.png" className="w-[100px] shadow-none" alt="" />
       </Link>
       <div className="flex items-center space-x-10 ">
-        {pathname !== "/" && <NavbarItem text="Home" href="/" />}
-        <NavbarItem text="How To" href="how-to" />
+        <NavbarItem text="Instructions" href="how-to" />
         <NavbarItem text="Resources" href="resources" />
         <NavbarItem text="About" href="about" />
-        <NavbarItem text="Upload" href="upload" />
+        <a
+          href="/upload"
+          className="bg-purple-600 rounded-xl px-[8px] py-[12px] text-white drop-shadow "
+        >
+          Upload
+        </a>
       </div>
     </nav>
   );
