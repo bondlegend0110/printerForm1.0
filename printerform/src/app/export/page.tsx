@@ -9,6 +9,8 @@ import { ModelDimensions } from "../stl-viewer-src";
 import { string } from "three/examples/jsm/nodes/Nodes.js";
 import { jsPDF } from 'jspdf';
 import curvedBackgroundImage from './CURVED_FORM_TEMPLATE.jpg';
+import cubeBackgroundImage from './FOUR_SIDED_BOX.jpg';
+import sixBackgroundImage from './SIX_SIDE_TEMPLATE1.jpg';
 
 type ModelInfo = {
     modelUrl: string,
@@ -39,19 +41,21 @@ type SphericalCoordinate = {
 };
 
 function sphericalToCartesian(spherical: SphericalCoordinate): [number, number, number] {
-    const phi = clamp(0, spherical.phi, Math.PI / 2);
-    const theta = clamp(0, spherical.theta, 2 * Math.PI);
+    // const phi = clamp(0, spherical.phi, Math.PI / 2);
+    // const theta = clamp(0, spherical.theta, 2 * Math.PI);
+    const phi = clamp(spherical.phi, 0, Math.PI);  // Full range: 0 to π
+    const theta = spherical.theta % (2 * Math.PI); // Wrap theta between 0 and 2π
 
     // return [
-    //     spherical.radius * Math.sin(phi) * Math.cos(theta),
-    //     spherical.radius * Math.sin(phi) * Math.sin(theta),
-    //     spherical.radius * Math.cos(phi)
+    //     spherical.radius * Math.sin(theta),
+    //     spherical.radius * Math.cos(theta),
+    //     0
     // ];
-    return [
-        spherical.radius * Math.sin(theta),
-        spherical.radius * Math.cos(theta),
-        0
-    ];
+
+    const x = spherical.radius * Math.sin(phi) * Math.cos(theta);
+    const y = spherical.radius * Math.cos(phi);  // Y-axis depends on phi
+    const z = spherical.radius * Math.sin(phi) * Math.sin(theta);
+    return [x, y, z];
 }
 
 enum ProjectionKind {
@@ -101,7 +105,7 @@ class PrintableFactory {
                 this.produceCubedPrintable(loadingCallback, onComplete);
                 return;
             case ProjectionKind.SIX_SIDED_CUBE:
-                this.produceRevolvedPrintable(loadingCallback, onComplete);
+                this.produceSixPrintable(loadingCallback, onComplete);
                 return;
             case ProjectionKind.CURVED:
                 this.produceCurvedPrintable(loadingCallback, onComplete);
@@ -192,108 +196,126 @@ class PrintableFactory {
             format: 'a4'
         });
     
-        // Calculate A4 paper size in pixels
         const A4_WIDTH_PX = Math.floor(A4_WIDTH_MM * MM_TO_PX);
         const A4_HEIGHT_PX = Math.floor(A4_HEIGHT_MM * MM_TO_PX);
     
-        // Set the canvas size to A4 dimensions in pixels
         const outputCanvas = document.createElement('canvas');
         outputCanvas.width = A4_WIDTH_PX;
         outputCanvas.height = A4_HEIGHT_PX;
-        
+    
         const outputContext = outputCanvas.getContext('2d');
-        if (outputContext === null) {
-            return;
-        }
+        if (outputContext === null) return;
     
         const MAX_TIME_PER_CHUNK = 10;
         let index = 0;
     
-        // Define camera angles for front, left, back, and right views (90-degree increments)
         const cameraAngles = [
-            0,               // Front (theta = 0)
-            Math.PI / 2,     // Left (theta = 90 degrees)
-            Math.PI,         // Back (theta = 180 degrees)
-            3 * Math.PI / 2  // Right (theta = 270 degrees)
+            // 0,               // Front (theta = 0)
+            // Math.PI / 2,     // Left (theta = 90 degrees)
+            // Math.PI,         // Back (theta = 180 degrees)
+            // 3 * Math.PI / 2  // Right (theta = 270 degrees)
+            //after weird transition...
+            { theta: 0, phi: Math.PI / 2 },                // Front view (along +Z axis)
+            { theta: 0, phi: Math.PI },                           // Left view (along -X axis)
+            { theta: Math.PI, phi: Math.PI / 2 },          // Back view (along -Z axis)
+            { theta: 0, phi: 0 }
         ];
     
-        const doChunk = () => {
-            const startTime = new Date().getTime();
-            while (index < NUM_VIEWS && (new Date().getTime() - startTime <= MAX_TIME_PER_CHUNK)) {
-                const viewWidth = this.renderer.domElement.width;
-                const viewHeight = this.renderer.domElement.height;
+        const templateImage = new Image();
+        templateImage.src = cubeBackgroundImage.src;
     
-                // Position camera at each of the 4 angles
-                this.positionCamera(this.camera, this.modelDimensions, {
-                    phi: Math.PI / 2,  // Keep phi fixed at 90 degrees (horizontal plane)
-                    theta: cameraAngles[index],  // Use specific theta values for front, left, back, right
-                    radius: this.appropriateCameraDistance(this.modelDimensions)
-                });
+        templateImage.onload = () => {
+            // Draw template image as the background
+            outputContext.drawImage(templateImage, 0, 0, A4_WIDTH_PX, A4_HEIGHT_PX);
     
-                this.renderer.render(this.scene, this.camera);
+            const doChunk = () => {
+                const startTime = new Date().getTime();
+                while (index < NUM_VIEWS && (new Date().getTime() - startTime <= MAX_TIME_PER_CHUNK)) {
+                    const viewWidth = this.renderer.domElement.width;
+                    const viewHeight = this.renderer.domElement.height;
     
-                const rendererContext = this.renderer.domElement.getContext('webgl2');
-                if (rendererContext === null) {
-                    return;
+                    // this.positionCamera(this.camera, this.modelDimensions, {
+                    //     phi: Math.PI / 2,
+                    //     theta: cameraAngles[index],
+                    //     radius: this.appropriateCameraDistance(this.modelDimensions)
+                    // });
+                    const { theta, phi } = cameraAngles[index];
+                    this.positionCamera(this.camera, this.modelDimensions, {
+                        phi: phi,
+                        theta: theta,
+                        radius: this.appropriateCameraDistance(this.modelDimensions)
+                    });
+    
+                    // Ensure WebGL context has transparent background
+                    const rendererContext = this.renderer.domElement.getContext('webgl2', { preserveDrawingBuffer: true, alpha: true });
+                    if (rendererContext !== null) {
+                        rendererContext.clearColor(0, 0, 0, 0); // Transparent background
+                        rendererContext.clear(rendererContext.COLOR_BUFFER_BIT);
+                    }
+    
+                    this.renderer.render(this.scene, this.camera);
+    
+                    if (rendererContext === null) return;
+    
+                    const squareSize = Math.min(viewWidth, viewHeight);
+                    const xOffset = (viewWidth - squareSize) / 2;
+                    const yOffset = (viewHeight - squareSize) / 2;
+    
+                    const squareSlice = new Uint8Array(squareSize * squareSize * 4);
+                    rendererContext.readPixels(xOffset, yOffset, squareSize, squareSize, rendererContext.RGBA, rendererContext.UNSIGNED_BYTE, squareSlice);
+    
+                    const sliceData = new ImageData(new Uint8ClampedArray(squareSlice), squareSize, squareSize);
+    
+                    const tempCanvas = document.createElement('canvas');
+                    tempCanvas.width = squareSize;
+                    tempCanvas.height = squareSize;
+                    const tempContext = tempCanvas.getContext('2d');
+                    if (tempContext === null) return;
+    
+                    tempContext.putImageData(sliceData, 0, 0);
+    
+                    const gridCols = 5;
+                    const cellWidth = A4_WIDTH_PX / gridCols;
+                    const cellHeight = A4_HEIGHT_PX;
+    
+                    const scaleFactor = Math.min(cellWidth / squareSize, cellHeight / squareSize);
+                    const scaledWidth = squareSize * scaleFactor;
+                    const scaledHeight = squareSize * scaleFactor;
+    
+                    const col = index % gridCols;
+                    const xPos = col * cellWidth + (cellWidth - scaledWidth) / 2;
+                    const yPos = (A4_HEIGHT_PX - scaledHeight) / 2;
+    
+                    outputContext.drawImage(tempCanvas, 0, 0, squareSize, squareSize, xPos+cellWidth, yPos, scaledWidth, scaledHeight);
+    
+                    loadingCallback((index + 1) / NUM_VIEWS);
+                    ++index;
                 }
     
-                // Determine the largest square that can be cropped from the center of the view
-                const squareSize = Math.min(viewWidth, viewHeight);
-                const xOffset = (viewWidth - squareSize) / 2; // Crop equally from both sides (horizontal)
-                const yOffset = (viewHeight - squareSize) / 2; // Crop equally from top and bottom (vertical)
+                if (index === NUM_VIEWS) {
+                    const canvasDataUrl = outputCanvas.toDataURL('image/png');
+                    pdf.addImage(canvasDataUrl, 'PNG', 0, 0, A4_WIDTH_MM, A4_HEIGHT_MM);
     
-                const squareSlice = new Uint8Array(squareSize * squareSize * 4);
-                rendererContext.readPixels(xOffset, yOffset, squareSize, squareSize, rendererContext.RGBA, rendererContext.UNSIGNED_BYTE, squareSlice);
+                    pdf.save('cubed_printable.pdf');
+                    onComplete();
+                }
     
-                const sliceData = new ImageData(squareSize, squareSize);
-                squareSlice.forEach((pixelValue, i) => sliceData.data[i] = pixelValue);
+                if (index < NUM_VIEWS) {
+                    setTimeout(doChunk, 1);
+                }
+            };
     
-                // Create a temporary canvas to hold the square slice
-                const tempCanvas = document.createElement('canvas');
-                tempCanvas.width = squareSize;
-                tempCanvas.height = squareSize;
-                const tempContext = tempCanvas.getContext('2d');
-                tempContext.putImageData(sliceData, 0, 0);
-    
-                // Calculate size and positioning for the 1x4 grid layout
-                const gridCols = 4;
-                const cellWidth = A4_WIDTH_PX / gridCols;   // Width of each cell in the grid (1 row, 4 columns)
-                const cellHeight = A4_HEIGHT_PX;            // Full height of the canvas for each image
-    
-                // Calculate scaling factor to fit the square within the grid cell
-                const scaleFactor = Math.min(cellWidth / squareSize, cellHeight / squareSize);
-                const scaledWidth = squareSize * scaleFactor;
-                const scaledHeight = squareSize * scaleFactor;
-    
-                // Calculate position to center the image within its grid cell
-                const col = index % gridCols;               // Which column the image will go in
-                const xPos = col * cellWidth + (cellWidth - scaledWidth) / 2; // Center horizontally
-                const yPos = (A4_HEIGHT_PX - scaledHeight);               // Center vertically
-    
-                // Draw the scaled image on the output canvas
-                outputContext.drawImage(tempCanvas, 0, 0, squareSize, squareSize, xPos, yPos, scaledWidth, scaledHeight);
-    
-                loadingCallback((index + 1) / NUM_VIEWS); // Update progress
-                ++index;
-            }
-    
-            if (index === NUM_VIEWS) {
-                // Once all 4 images are drawn on the same canvas, add it to the PDF
-                const canvasDataUrl = outputCanvas.toDataURL('image/png');
-                pdf.addImage(canvasDataUrl, 'PNG', 0, 0, A4_WIDTH_MM, A4_HEIGHT_MM);
-    
-                // Save the PDF after adding the page
-                pdf.save('cubed_printable.pdf');
-                onComplete();
-            }
-    
-            if (index < NUM_VIEWS) {
-                setTimeout(doChunk, 1);
-            }
+            doChunk();
         };
     
-        doChunk();
+        templateImage.onerror = (error) => {
+            console.error('Error loading template image:', error);
+        };
     }
+    
+    
+    
+    
     
     public produceCurvedPrintable(loadingCallback: (percentComplete: number) => any, onComplete: () => any) {
         const img = new Image();
@@ -382,6 +404,147 @@ class PrintableFactory {
           console.error('Error loading image:', error);
         };
   }
+
+  public produceSixPrintable(loadingCallback: (percentComplete: number) => any, onComplete: () => any) {
+    const NUM_VIEWS = 6; // Front, left, back, right, top, bottom
+
+    const A4_WIDTH_MM = 297; // A4 paper width in mm (landscape)
+    const A4_HEIGHT_MM = 210; // A4 paper height in mm (landscape)
+    const MM_TO_PX = 3.7795275591; // Conversion from mm to pixels (72 DPI)
+
+    const pdf = new jsPDF({
+        orientation: 'landscape',
+        unit: 'mm',
+        format: 'a4'
+    });
+
+    const A4_WIDTH_PX = Math.floor(A4_WIDTH_MM * MM_TO_PX);
+    const A4_HEIGHT_PX = Math.floor(A4_HEIGHT_MM * MM_TO_PX);
+
+    const outputCanvas = document.createElement('canvas');
+    outputCanvas.width = A4_WIDTH_PX;
+    outputCanvas.height = A4_HEIGHT_PX;
+
+    const outputContext = outputCanvas.getContext('2d');
+    if (outputContext === null) return;
+
+    const MAX_TIME_PER_CHUNK = 10;
+    let index = 0;
+
+    // Camera angles for 6 sides: front, left, back, right, top, bottom
+    const cameraAngles = [
+        { theta: 0, phi: Math.PI / 2 },                // Front view (along +Z axis)
+        { theta: 0, phi: Math.PI },                           // Left view (along -X axis)
+        { theta: Math.PI, phi: Math.PI / 2 },          // Back view (along -Z axis)
+        { theta: 0, phi: 0 } ,                          // Right view (along +X axis)
+        { theta: 3 * Math.PI / 2, phi: Math.PI / 2 }, //top
+        { theta: Math.PI / 2, phi: Math.PI / 2 }                  // Bottom
+    ];
+
+    const templateImage = new Image();
+    templateImage.src = sixBackgroundImage.src;
+
+    templateImage.onload = () => {
+        // Draw template image as the background
+        outputContext.drawImage(templateImage, 0, 0, A4_WIDTH_PX, A4_HEIGHT_PX);
+
+        const doChunk = () => {
+            const startTime = new Date().getTime();
+            while (index < NUM_VIEWS && (new Date().getTime() - startTime <= MAX_TIME_PER_CHUNK)) {
+                const viewWidth = this.renderer.domElement.width;
+                const viewHeight = this.renderer.domElement.height;
+
+                const { theta, phi } = cameraAngles[index];
+                this.positionCamera(this.camera, this.modelDimensions, {
+                    phi: phi,
+                    theta: theta,
+                    radius: this.appropriateCameraDistance(this.modelDimensions)
+                });
+
+                const rendererContext = this.renderer.domElement.getContext('webgl2', { preserveDrawingBuffer: true, alpha: true });
+                if (rendererContext !== null) {
+                    rendererContext.clearColor(0, 0, 0, 0); // Transparent background
+                    rendererContext.clear(rendererContext.COLOR_BUFFER_BIT);
+                }
+
+                this.renderer.render(this.scene, this.camera);
+
+                if (rendererContext === null) return;
+
+                const squareSize = Math.min(viewWidth, viewHeight);
+                const xOffset = (viewWidth - squareSize) / 2;
+                const yOffset = (viewHeight - squareSize) / 2;
+
+                const squareSlice = new Uint8Array(squareSize * squareSize * 4);
+                rendererContext.readPixels(xOffset, yOffset, squareSize, squareSize, rendererContext.RGBA, rendererContext.UNSIGNED_BYTE, squareSlice);
+
+                const sliceData = new ImageData(new Uint8ClampedArray(squareSlice), squareSize, squareSize);
+
+                const tempCanvas = document.createElement('canvas');
+                tempCanvas.width = squareSize;
+                tempCanvas.height = squareSize;
+                const tempContext = tempCanvas.getContext('2d');
+                if (tempContext === null) return;
+
+                tempContext.putImageData(sliceData, 0, 0);
+
+                const gridCols = 4; 
+                const cellWidth = A4_WIDTH_PX / gridCols;
+                const cellHeight = A4_HEIGHT_PX / 3;
+                const scaleFactor = Math.min(cellWidth / squareSize, cellHeight / squareSize);
+                const scaledWidth = squareSize * scaleFactor;
+                const scaledHeight = squareSize * scaleFactor;
+                let xPos = 0; 
+                let yPos = 0
+                if (index<4){
+                    // const col = index % gridCols;
+                    xPos = index * cellWidth+ (cellWidth - scaledWidth) / 2;
+                    yPos = cellHeight;
+                }
+                
+                else if(index==4){
+                    xPos = 3 * cellWidth + (cellWidth - scaledWidth) / 2;
+                    yPos = 0;
+                }
+                else if(index==5){
+                    xPos = 3 * cellWidth + (cellWidth - scaledWidth) / 2;
+                    yPos = 2*cellHeight;
+                }
+                // else if(index==5){
+                //     xPos = 4 * cellWidth + (cellWidth - squareSize) / 2;
+                //     yPos = 2*cellHeight;
+                // }
+
+                // const xPos = col * cellWidth + (cellWidth - squareSize) / 2;
+                // const yPos = row * cellHeight + (cellHeight - squareSize) / 2;
+
+                outputContext.drawImage(tempCanvas, 0, 0, squareSize, squareSize, xPos, yPos, scaledWidth, scaledHeight);
+
+                loadingCallback((index + 1) / NUM_VIEWS);
+                ++index;
+            }
+
+            if (index === NUM_VIEWS) {
+                const canvasDataUrl = outputCanvas.toDataURL('image/png');
+                pdf.addImage(canvasDataUrl, 'PNG', 0, 0, A4_WIDTH_MM, A4_HEIGHT_MM);
+
+                pdf.save('SixSideCubed_printable.pdf');
+                onComplete();
+            }
+
+            if (index < NUM_VIEWS) {
+                setTimeout(doChunk, 1);
+            }
+        };
+
+        doChunk();
+    };
+
+    templateImage.onerror = (error) => {
+        console.error('Error loading template image:', error);
+    };
+}
+
 
     private positionCamera(camera: THREE.Camera, modelDimensions: ModelDimensions, position: SphericalCoordinate) {
         // const center = [modelDimensions.width / 2, modelDimensions.length / 2, 0];
