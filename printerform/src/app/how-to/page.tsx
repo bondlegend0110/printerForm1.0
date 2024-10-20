@@ -1,4 +1,8 @@
 import React from "react";
+import folding from "../assets/IMG_7545.jpg";
+import howto1 from "../assets/IMG_7606.jpg";
+import howto2 from "../assets/IMG_7630.jpg";
+import howto3 from "../assets/IMG_7655.jpg";
 
 const HowTo = () => {
   return (
@@ -60,7 +64,31 @@ const HowTo = () => {
             you selected.)
           </p>
         </div>
-        <div className="w-80 h-80 bg-gray-300 flex-shrink-0"></div>
+        <img
+          className="w-80 h-80 bg-gray-300 object-cover flex-shrink-0"
+          src={folding.src}
+          alt=""
+        ></img>
+      </div>
+
+      <div className="flex flex-col items-center mt-[100px]">
+        <div className="gap-[60px] flex">
+          <img
+            src={howto1.src}
+            alt="foursided"
+            className="bg-white-400 w-[300px] h-[200px] rounded drop-shadow"
+          ></img>
+          <img
+            src={howto2.src}
+            alt="all examples"
+            className="bg-white-400 w-[300px] h-[200px] rounded drop-shadow"
+          ></img>
+          <img
+            src={howto3.src}
+            alt="curved Bunny"
+            className="bg-white-400 w-[300px] h-[200px] rounded drop-shadow"
+          ></img>
+        </div>
       </div>
     </div>
   );
