@@ -13,7 +13,7 @@ const Home = () => {
         <section className="w-screen justify-center flex flex-col">
           <video
             autoPlay
-            className="w-full rounded drop-shadow"
+            className="w-[80%] self-center rounded drop-shadow"
             src="/IntroVideoV2.mp4"
           ></video>
         </section>
@@ -43,7 +43,7 @@ const Home = () => {
         </section>
       </section>
       <section className="justify-center items-center">
-        <button className="text-8xl bg-purple-600 rounded-xl px-[24px] py-[32px] text-white drop-shadow ">
+        <button className="text-8xl bg-red-600 rounded-xl px-[24px] py-[32px] text-white drop-shadow ">
           <a href="/how-to">GET STARTED</a>
         </button>
       </section>

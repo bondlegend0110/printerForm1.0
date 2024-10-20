@@ -36,7 +36,7 @@ export const Navbar = () => {
         <NavbarItem text="About" href="about" />
         <a
           href="/upload"
-          className="bg-purple-600 rounded-xl px-[8px] py-[12px] text-white drop-shadow "
+          className="bg-red-600 rounded-xl px-[8px] py-[12px] text-white drop-shadow "
         >
           Upload
         </a>
