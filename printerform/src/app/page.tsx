@@ -44,7 +44,7 @@ const Home = () => {
       </section>
       <section className="justify-center items-center">
         <button className="text-8xl bg-purple-600 rounded-xl px-[24px] py-[32px] text-white drop-shadow ">
-          GET STARTED
+          <a href="/how-to">GET STARTED</a>
         </button>
       </section>
       <section className="flex flex-col items-center">
