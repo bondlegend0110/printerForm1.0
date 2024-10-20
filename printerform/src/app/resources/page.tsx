@@ -10,7 +10,7 @@ import lessonA from "../assets/lessonA.png";
 const Resources = () => {
   return (
     <div className="min-h-screen w-full bg-white p-40">
-      <h1 className="text-8xl font-bold mt-20 mb-10 text-center text-black">
+      <h1 className="text-8xl font-bold mt-20 mb-20 text-center text-black">
         Resources
       </h1>
 
@@ -28,14 +28,14 @@ const Resources = () => {
             guide, providing step-by-step instructions on utilizing PrinterForm
             to create 3D forms using 2D printers.
           </p>
-          <div className="flex justify-center space-x-4 mt-6">
+          {/* <div className="flex justify-center space-x-4 mt-6">
             <div className="w-80 h-80 bg-gray-300 flex-shrink-0"></div>
             <div className="w-80 h-80 bg-gray-300 flex-shrink-0"></div>
-          </div>
+          </div> */}
         </div>
       </div>
 
-      <div className="mb-10 items-center space-x-6">
+      <div className="mb-10 mt-20 items-center space-x-6 ">
         <div>
           <h2 className="text-5xl mb-5 text-black">Accessing 3D Files</h2>
           <p className="text-xl text-black">
@@ -102,7 +102,7 @@ const Resources = () => {
         </div>
       </div>
 
-      <div className="mb-10 flex items-center space-x-6">
+      <div className="mb-10 flex items-center space-x-6 mt-20">
         <div>
           <h2 className="text-5xl mb-5 text-black">
             Activities and Lesson Plans
@@ -157,7 +157,7 @@ const Resources = () => {
           </div>
         </div>
       </div>
-      <h2 className="text-5xl mb-5 text-black">Case Studies</h2>
+      <h2 className="text-5xl mb-5 text-black mt-20">Case Studies</h2>
       <div className="mb-10 flex justify-center space-x-6">
         <div>
           <div className="flex justify-center space-x-4 mt-6">
