@@ -6,6 +6,10 @@ import xyzLogo from "../assets/xyzLogo.png";
 import activityA from "../assets/activityA.png";
 import activityB from "../assets/activityB.png";
 import lessonA from "../assets/lessonA.png";
+import casestudy1 from "../assets/IMG_7563.jpg";
+import casestudy2 from "../assets/IMG_7706.jpg";
+import casestudy3 from "../assets/IMG_7655.jpg";
+import casestudy4 from "../assets/IMG_7724.jpg";
 
 const Resources = () => {
   return (
@@ -145,7 +149,7 @@ const Resources = () => {
                   src={lessonA.src}
                   alt="Lesson A"
                   className="w-full h-full object-cover"
-                />{" "}
+                />
                 <a
                   href="printerform_lessona.pdf"
                   className="mt-2 text-blue-500 underline"
@@ -163,16 +167,28 @@ const Resources = () => {
           <div className="flex justify-center space-x-4 mt-6">
             <div className="flex space-x-4">
               <div className="flex flex-col justify-center">
-                <div className="w-80 h-80 bg-gray-300 flex-shrink-0"></div>
+                <img
+                  className="w-80 h-80 bg-gray-300 flex-shrink-0 object-cover"
+                  src={casestudy1.src}
+                ></img>
               </div>
               <div className="flex flex-col items-center">
-                <div className="w-80 h-80 bg-gray-300 flex-shrink-0"></div>
+                <img
+                  className="w-80 h-80 bg-gray-300 flex-shrink-0 object-cover"
+                  src={casestudy2.src}
+                ></img>
               </div>
               <div className="flex flex-col items-center">
-                <div className="w-80 h-80 bg-gray-300 flex-shrink-0"></div>
+                <img
+                  className="w-80 h-80 bg-gray-300 flex-shrink-0 object-cover"
+                  src={casestudy3.src}
+                ></img>
               </div>
               <div className="flex flex-col items-center">
-                <div className="w-80 h-80 bg-gray-300 flex-shrink-0"></div>
+                <img
+                  className="w-80 h-80 bg-gray-300 flex-shrink-0 object-cover"
+                  src={casestudy4.src}
+                ></img>
               </div>
             </div>
           </div>
