@@ -1,5 +1,8 @@
 import React from "react";
 import folding from "../assets/IMG_7545.jpg";
+import stlEditor from "../assets/stlEditor.png";
+import pdf from "../assets/pdf.png";
+import upload from "../assets/upload.png";
 import howto1 from "../assets/IMG_7606.jpg";
 import howto2 from "../assets/IMG_7630.jpg";
 import howto3 from "../assets/IMG_7655.jpg";
@@ -13,7 +16,11 @@ const HowTo = () => {
 
       {/* Step 1: Upload */}
       <div className="mb-10 flex items-center space-x-6">
-        <div className="w-80 h-80 bg-gray-300 flex-shrink-0"></div>
+        <img
+          src={upload.src}
+          alt="uload"
+          className="w-80 h-80 bg-gray-300 object-cover flex-shrink-0"
+        ></img>
         <div>
           <h2 className="text-5xl mb-5 text-black">1. Upload</h2>
           <p className="text-xl text-black">
@@ -35,12 +42,20 @@ const HowTo = () => {
             of your file preview.
           </p>
         </div>
-        <div className="w-80 h-80 bg-gray-300 flex-shrink-0"></div>
+        <img
+          src={stlEditor.src}
+          alt="stl Editor"
+          className="w-80 h-80 bg-gray-300 object-cover flex-shrink-0"
+        ></img>
       </div>
 
       {/* Step 3: Download */}
       <div className="mb-10 flex items-center space-x-6">
-        <div className="w-80 h-80 bg-gray-300 flex-shrink-0"></div>
+        <img
+          src={pdf.src}
+          alt="pdf"
+          className="w-80 h-80 bg-gray-300 object-cover flex-shrink-0"
+        ></img>
         <div>
           <h2 className="text-5xl mb-5 text-black">3. Download</h2>
           <p className="text-xl text-black">
