@@ -26,9 +26,9 @@ export const Navbar = () => {
   }
 
   return (
-    <nav className="w-full fixed flex items-center justify-between px-12 pb-12 pt-8 z-50 text-black  bg-white">
+    <nav className="w-full fixed flex items-center justify-between px-12 pb-8 pt-4 z-50 text-black  bg-white">
       <Link href="/">
-        <img src="/logo.png" className="w-[100px] shadow-none" alt="" />
+        <img src="/logo.png" className="w-[80px] shadow-none" alt="" />
       </Link>
       <div className="flex items-center space-x-10 ">
         <NavbarItem text="Instructions" href="how-to" />
