@@ -12,7 +12,8 @@ const Home = () => {
       <section className="flex w-full relative">
         <section className="w-screen justify-center flex flex-col">
           <video
-            autoPlay
+            controls
+            loop
             className="w-[80%] self-center rounded drop-shadow"
             src="/IntroVideoV2.mp4"
           ></video>
