@@ -8,7 +8,7 @@ import all from "./assets/IMG_7724.jpg";
 
 const Home = () => {
   return (
-    <main className="flex flex-col min-h-screen w-full items-center justify-center  bg-[#fffffe] text-black gap-[120px] pb-[80px]">
+    <main className="flex flex-col min-h-screen w-full items-center justify-center  bg-[#fffffe] text-black gap-[60px] pb-[80px]">
       <section className="flex w-full relative">
         <section className="w-screen justify-center flex flex-col">
           <video
@@ -19,14 +19,9 @@ const Home = () => {
           ></video>
         </section>
       </section>
-      <section className="flex flex-col items-center justify-center px-[10%] pb-[24px] text-center">
+      <section className="flex flex-col items-center justify-center px-[10%] pb-[24px] pt-[24px] text-center">
         <h2 className="text-8xl pb-[30px]">What is PrinterForm?</h2>
         <section className="flex flex-col items-center w-full">
-          {/* <img
-            src={fscube.src}
-            alt="FSCube Bunny"
-            className="w-[30%] h-[350px] object-overflow mr-[5%] rounded"
-          /> */}
           <p className="text-3xl w-[80%]">
             We aim to create a more accessible tool that introduces basic 3D
             modeling and 3D printing into educational and creative spaces. It
@@ -36,11 +31,6 @@ const Home = () => {
             8.5”x11” paper, and PrinterForm anyone can practice their 3D
             modeling skills and produce high speed, low resolution 3D objects.
           </p>
-          {/* <img
-            src={curved.src}
-            alt="Curved Bunny"
-            className="w-[25%] h-[350px] object-contain ml-[5%] rounded"
-          /> */}
         </section>
       </section>
       <section className="justify-center items-center">
@@ -48,7 +38,6 @@ const Home = () => {
           <a href="/how-to">GET STARTED</a>
         </button>
       </section>
-      
     </main>
   );
 };
