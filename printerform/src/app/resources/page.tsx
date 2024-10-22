@@ -1,3 +1,4 @@
+import React from "react";
 import tinkerCADLogo from "../assets/logo-tinkercad-256.png";
 import fusion360Logo from "../assets/autodesk-fusion-360-logo-7F72A76397-seeklogo.com.png";
 import thingiverseLogo from "../assets/thingiverse-logo.png";
@@ -13,17 +14,20 @@ import casestudy4 from "../assets/IMG_7724.jpg";
 
 const Resources = () => {
   return (
-    <div className="min-h-screen w-full bg-white p-40">
-      <h1 className="text-8xl font-bold mt-20 mb-20 text-center text-black">
+    <div className="min-h-screen w-full bg-white p-10 mx-auto max-w-7xl">
+      <h1
+        style={{ color: "#40001C" }}
+        className="font-fatfrank text-8xl font-bold mt-24 mb-20 text-center"
+      >
         Resources
       </h1>
 
       <div className="mb-10 flex items-center space-x-6">
         <div>
-          <h2 className="text-5xl mb-5 text-black">
+          <h2 style={{ color: "#40001C" }} className="text-5xl mb-5">
             Using PrinterForm In The Classroom
           </h2>
-          <p className="text-xl text-black">
+          <p style={{ color: "#40001C" }} className="text-xl">
             With a focus on making 3D printing accessible through 2D printers,
             we have provided activities and lesson plans that introduce students
             to PrinterForm. Teachers can integrate our activities and lesson
@@ -32,17 +36,15 @@ const Resources = () => {
             guide, providing step-by-step instructions on utilizing PrinterForm
             to create 3D forms using 2D printers.
           </p>
-          {/* <div className="flex justify-center space-x-4 mt-6">
-            <div className="w-80 h-80 bg-gray-300 flex-shrink-0"></div>
-            <div className="w-80 h-80 bg-gray-300 flex-shrink-0"></div>
-          </div> */}
         </div>
       </div>
 
-      <div className="mb-10 mt-20 items-center space-x-6 ">
+      <div className="mb-10 mt-20 items-center space-x-6">
         <div>
-          <h2 className="text-5xl mb-5 text-black">Accessing 3D Files</h2>
-          <p className="text-xl text-black">
+          <h2 style={{ color: "#40001C" }} className="text-5xl mb-5">
+            Accessing 3D Files
+          </h2>
+          <p style={{ color: "#40001C" }} className="text-xl">
             Using the links below anyone can create original model files or
             search crowd sourced catalogs to find the perfect printable parts.
           </p>
@@ -99,7 +101,7 @@ const Resources = () => {
               <img
                 src={xyzLogo.src}
                 alt="xyzPrinting Logo"
-                className="w-40 h-40 object-contain"
+                className="w-40 h-40 object-contain mb-5"
               />
             </a>
           </div>
@@ -108,12 +110,12 @@ const Resources = () => {
 
       <div className="mb-10 flex items-center space-x-6 mt-20">
         <div>
-          <h2 className="text-5xl mb-5 text-black">
+          <h2 style={{ color: "#40001C" }} className="text-5xl mb-5">
             Activities and Lesson Plans
           </h2>
-          <p className="text-xl text-black">
+          <p style={{ color: "#40001C" }} className="text-xl">
             Here are the activities and lesson plans that can be exercised in
-            the clasroom using PrinterForm. These lessons aim to introduce
+            the classroom using PrinterForm. These lessons aim to introduce
             students to the fundamental concepts in a fun and engaging way.
           </p>
           <div className="flex justify-center space-x-4 mt-6">
@@ -126,7 +128,8 @@ const Resources = () => {
                 />
                 <a
                   href="/printerform_activitya.pdf"
-                  className="mt-2 text-blue-500 underline"
+                  className="mt-5  underline"
+                  style={{ color: "#a280ff" }}
                 >
                   Download Here
                 </a>
@@ -136,10 +139,11 @@ const Resources = () => {
                   src={activityB.src}
                   alt="Activity B"
                   className="w-full h-full object-cover"
-                />{" "}
+                />
                 <a
                   href="/printerform_activityb.pdf"
-                  className="mt-2 text-blue-500 underline"
+                  className="mt-5 underline"
+                  style={{ color: "#a280ff" }}
                 >
                   Download Here
                 </a>
@@ -152,7 +156,8 @@ const Resources = () => {
                 />
                 <a
                   href="printerform_lessona.pdf"
-                  className="mt-2 text-blue-500 underline"
+                  className="mt-5 mb-20 underline"
+                  style={{ color: "#a280ff" }}
                 >
                   Download Here
                 </a>
@@ -161,7 +166,10 @@ const Resources = () => {
           </div>
         </div>
       </div>
-      <h2 className="text-5xl mb-5 text-black mt-20">Case Studies</h2>
+
+      <h2 style={{ color: "#40001C" }} className="text-5xl mb-5 mt-20">
+        Case Studies
+      </h2>
       <div className="mb-10 flex justify-center space-x-6">
         <div>
           <div className="flex justify-center space-x-4 mt-6">
@@ -170,25 +178,25 @@ const Resources = () => {
                 <img
                   className="w-80 h-80 bg-gray-300 flex-shrink-0 object-cover"
                   src={casestudy1.src}
-                ></img>
+                />
               </div>
               <div className="flex flex-col items-center">
                 <img
                   className="w-80 h-80 bg-gray-300 flex-shrink-0 object-cover"
                   src={casestudy2.src}
-                ></img>
+                />
               </div>
               <div className="flex flex-col items-center">
                 <img
                   className="w-80 h-80 bg-gray-300 flex-shrink-0 object-cover"
                   src={casestudy3.src}
-                ></img>
+                />
               </div>
               <div className="flex flex-col items-center">
                 <img
                   className="w-80 h-80 bg-gray-300 flex-shrink-0 object-cover"
                   src={casestudy4.src}
-                ></img>
+                />
               </div>
             </div>
           </div>
