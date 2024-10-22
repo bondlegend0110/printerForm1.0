@@ -20,14 +20,14 @@ const Home = () => {
         </section>
       </section>
       <section className="flex flex-col items-center justify-center px-[10%] pb-[24px] text-center">
-        <h2 className="text-8xl pb-[30px]">Mission</h2>
+        <h2 className="text-8xl pb-[30px]">What is PrinterForm?</h2>
         <section className="flex flex-col items-center w-full">
           {/* <img
             src={fscube.src}
             alt="FSCube Bunny"
             className="w-[30%] h-[350px] object-overflow mr-[5%] rounded"
           /> */}
-          <p className="text-2xl w-[60%]">
+          <p className="text-3xl w-[80%]">
             We aim to create a more accessible tool that introduces basic 3D
             modeling and 3D printing into educational and creative spaces. It
             does not replace traditional plastic 3D printing but it hopefully
@@ -48,25 +48,7 @@ const Home = () => {
           <a href="/how-to">GET STARTED</a>
         </button>
       </section>
-      <section className="flex flex-col items-center">
-        <section className="gap-[60px] flex">
-          <img
-            src={foursided.src}
-            alt="foursided"
-            className="bg-white-400 w-[300px] h-[200px] rounded drop-shadow"
-          ></img>
-          <img
-            src={all.src}
-            alt="all examples"
-            className="bg-white-400 w-[300px] h-[200px] rounded drop-shadow"
-          ></img>
-          <img
-            src={curvedBunny.src}
-            alt="curved Bunny"
-            className="bg-white-400 w-[300px] h-[200px] rounded drop-shadow"
-          ></img>
-        </section>
-      </section>
+      
     </main>
   );
 };
