@@ -1,12 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap");
 @import url("https://use.typekit.net/zst0kpr.css");
+@import url("https://use.typekit.net/rbd8ccs.css");
+@import url("https://use.typekit.net/rbd8ccs.css");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
+  --background-start-rgb: 255, 255, 255;
   --background-end-rgb: 255, 255, 255;
 }
 
@@ -15,19 +17,22 @@ nav {
   mask-image: linear-gradient(to bottom, white 90%, transparent 100%);
 }
 
-@media (prefers-color-scheme: dark) {
+body {
+  color: rgb(var(--foreground-rgb));
+  background-color: white; /* Add this line */
+}
+
+/* @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
+} */
 
 .example {
   font-family: "sora", sans-serif;
-  font-variation-settings:
-    "wght" 400,
-    "wdth" 100;
+  font-variation-settings: "wght" 400, "wdth" 100;
 }
 
 body {
@@ -38,6 +43,30 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+.font-fatfrank {
+  font-family: "fatfrank", sans-serif;
+}
+
+.font-marco {
+  font-family: "marco", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.scroll-container {
+  display: flex;
+  animation: scroll 10s linear infinite;
 }
 
 @layer utilities {
@@ -66,7 +95,5 @@ body {
 
 img {
   border-radius: 8px;
-  box-shadow:
-    0 4px 6px -1px rgb(0 0 0 / 0.1),
-    0 2px 4px -2px rgb(0 0 0 / 0.1);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
