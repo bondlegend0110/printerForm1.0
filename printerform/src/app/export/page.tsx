@@ -336,7 +336,7 @@ class PrintableFactory {
     
           const renderSide = (cameraAngle: number, flipHorizontally: boolean, flipVertically: boolean, offsetY: number, horizontalOffset: number = 0, scale: number
           ) => {
-            this.positionCamera(this.camera, this.modelDimensions, {phi: Math.PI / 2, theta: cameraAngle, radius: this.appropriateCameraDistance(this.modelDimensions)
+            this.positionCamera(this.camera, this.modelDimensions, {phi: cameraAngle, theta: 0, radius: this.appropriateCameraDistance(this.modelDimensions)
             });
     
             // Color of WebGL context should be transparent on the template
