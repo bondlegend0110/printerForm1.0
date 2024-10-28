@@ -9,7 +9,7 @@ import poster from "./assets/video_display.jpg";
 
 const Home = () => {
   return (
-    <main className="flex flex-col min-h-screen w-full items-center justify-center  bg-[#fffffe] text-black gap-[120px] pb-[80px]">
+    <main className="flex flex-col min-h-screen w-full items-center justify-center  bg-[#fffffe] text-black gap-[60px] pb-[80px]">
       <section className="flex w-full relative">
         <section className="w-screen justify-center flex flex-col">
           <video
