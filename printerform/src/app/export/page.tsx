@@ -96,7 +96,7 @@ class PrintableFactory {
         return Math.max(modelDimensions.height, modelDimensions.length, modelDimensions.width);
     }
 
-    public producePrintable(projectionKind: ProjectionKind, loadingCallback: (percentComplete: number) => any, onComplete: () => any) {
+    public producePrintable(projectionKind: ProjectionKind, loadingCallback: (percentComplete: number) => any, onComplete: (pdfDataUrl: string) => any) {
         switch (projectionKind) {
             case ProjectionKind.REVOLVED:
                 this.produceRevolvedPrintable(loadingCallback, onComplete);
@@ -116,10 +116,17 @@ class PrintableFactory {
         }
     }
 
-    public produceRevolvedPrintable(loadingCallback: (percentComplete: number) => any, onComplete: () => any) {
+    public produceRevolvedPrintable(loadingCallback: (percentComplete: number) => any, onComplete: (pdfDataUrl: string) => any) {
         // FIXME: The black streak problem goes away when there is one pixel being sampled per slice. I wonder what could be causing the streaking with smaller NUM_SLICES values.
         const NUM_SLICES = this.renderer.domElement.width;
-
+        const A4_WIDTH_MM = 297; // A4 paper width in mm (landscape)
+        const A4_HEIGHT_MM = 210; // A4 paper height in mm (landscape)
+        const MM_TO_PX = 3.7795275591; // Conversion from mm to pixels (72 DPI)
+        const pdf = new jsPDF({
+            orientation: 'landscape',
+            unit: 'mm',
+            format: 'a4'
+        });
         const outputCanvas = document.createElement('canvas');
         // REPLACE THIS WITH HARD CODED CONSTANT VALUES FOR BOTH CANVASES
         outputCanvas.width = this.renderer.domElement.width;
@@ -169,7 +176,12 @@ class PrintableFactory {
             }
 
             if (index === NUM_SLICES) {
-                onComplete();
+                const canvasDataUrl = outputCanvas.toDataURL('image/png');
+                pdf.addImage(canvasDataUrl, 'PNG', 0, 0, A4_WIDTH_MM, A4_HEIGHT_MM);
+
+                const pdfDataUrl = pdf.output('dataurlstring');
+                onComplete(pdfDataUrl);
+                // onComplete();
             }
 
             if (index < NUM_SLICES) {
@@ -183,7 +195,7 @@ class PrintableFactory {
     }
 
     //xinyu 4 side cube
-    public produceCubedPrintable(loadingCallback: (percentComplete: number) => any, onComplete: () => any) {
+    public produceCubedPrintable(loadingCallback: (percentComplete: number) => any, onComplete: (pdfDataUrl: string) => any) {
         const NUM_VIEWS = 4; // Front, left, back, right
     
         const A4_WIDTH_MM = 297; // A4 paper width in mm (landscape)
@@ -296,8 +308,10 @@ class PrintableFactory {
                     const canvasDataUrl = outputCanvas.toDataURL('image/png');
                     pdf.addImage(canvasDataUrl, 'PNG', 0, 0, A4_WIDTH_MM, A4_HEIGHT_MM);
     
-                    pdf.save('cubed_printable.pdf');
-                    onComplete();
+                    // pdf.save('cubed_printable.pdf');
+                    // onComplete();
+                    const pdfDataUrl = pdf.output('dataurlstring');
+                    onComplete(pdfDataUrl);
                 }
     
                 if (index < NUM_VIEWS) {
@@ -317,7 +331,7 @@ class PrintableFactory {
     
     
     
-    public produceCurvedPrintable(loadingCallback: (percentComplete: number) => any, onComplete: () => any) {
+    public produceCurvedPrintable(loadingCallback: (percentComplete: number) => any, onComplete: (pdfDataUrl: string) => any) {
         const img = new Image();
         img.src = curvedBackgroundImage.src;
     
@@ -394,10 +408,10 @@ class PrintableFactory {
     
           const imgData = outputCanvas.toDataURL('image/png');
           pdf.addImage(imgData, 'PNG', 0, 0, canvasWidth, canvasHeight);
-          pdf.save('curved.pdf');
-    
-          onComplete();
-          document.body.appendChild(outputCanvas);
+        //   pdf.save('curved.pdf');
+          const pdfDataUrl = pdf.output('dataurlstring');
+          onComplete(pdfDataUrl);
+        //   onComplete();
         };
     
         img.onerror = (error) => {
@@ -405,7 +419,7 @@ class PrintableFactory {
         };
   }
 
-  public produceSixPrintable(loadingCallback: (percentComplete: number) => any, onComplete: () => any) {
+  public produceSixPrintable(loadingCallback: (percentComplete: number) => any, onComplete: (pdfDataUrl: string) => any) {
     const NUM_VIEWS = 6; // Front, left, back, right, top, bottom
 
     const A4_WIDTH_MM = 297; // A4 paper width in mm (landscape)
@@ -528,8 +542,10 @@ class PrintableFactory {
                 const canvasDataUrl = outputCanvas.toDataURL('image/png');
                 pdf.addImage(canvasDataUrl, 'PNG', 0, 0, A4_WIDTH_MM, A4_HEIGHT_MM);
 
-                pdf.save('SixSideCubed_printable.pdf');
-                onComplete();
+                // pdf.save('SixSideCubed_printable.pdf');
+                // onComplete();
+                const pdfDataUrl = pdf.output('dataurlstring');
+                onComplete(pdfDataUrl);
             }
 
             if (index < NUM_VIEWS) {
@@ -688,29 +704,49 @@ const Export = () => {
     // const [isLoading, setIsLoading] = useState(false);
     const [loadingProgress, setLoadingProgress] = useState(0);
     const loadingBarRef = useRef<HTMLDivElement>(null);
-
+    const [pdfPreviewUrl, setPdfPreviewUrl] = useState<string | null>(null);
+    const pdfPreviewRef = useRef<HTMLDivElement>(null);
+    const [showPdfPreview, setShowPdfPreview] = useState(false);
+    const [isPreviewExpanded, setIsPreviewExpanded] = useState(false);
+  
     const runQueuedProjections = (printableFactory: PrintableFactory, queuedProjections: ProjectionSelection[]) => {
         const projectionSelection = queuedProjections[0];
-
-        printableFactory.producePrintable(projectionSelection.key, (percentComplete) => {
-            if (!loadingBarRef.current) {
-                return;
+    
+        printableFactory.producePrintable(
+            projectionSelection.key,
+            (percentComplete) => {
+                if (!loadingBarRef.current) {
+                    return;
+                }
+                setLoadingProgress(percentComplete * 100);
+            },
+            (generatedPdfUrl) => {
+                if (pdfPreviewUrl) {
+                    URL.revokeObjectURL(pdfPreviewUrl);
+                }
+    
+                const byteCharacters = atob(generatedPdfUrl.split(',')[1]);
+                const byteNumbers = new Uint8Array(byteCharacters.length);
+                for (let i = 0; i < byteCharacters.length; i++) {
+                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+                const blob = new Blob([byteNumbers], { type: 'application/pdf' });
+                const blobUrl = URL.createObjectURL(blob); // Create a Blob URL
+    
+                setPdfPreviewUrl(blobUrl); 
+                setShowPdfPreview(true); 
+    
+                const shrunkProjectionQueue = [...queuedProjections.slice(1)];
+                setProjectionLoadingInfo(old => ({ ...old, remainingProjections: shrunkProjectionQueue.length }));
+                setLoadingProgress(0);
+    
+                if (shrunkProjectionQueue.length > 0) {
+                    runQueuedProjections(printableFactory, shrunkProjectionQueue);
+                }
             }
-
-            setLoadingProgress(percentComplete * 100);
-        }, () => {
-            const shrunkProjectionQueue = [...queuedProjections.slice(1)];
-            setProjectionLoadingInfo(old => ({ ...old, remainingProjections: shrunkProjectionQueue.length }));
-
-            setLoadingProgress(0);
-
-            if (shrunkProjectionQueue.length > 0) {
-                runQueuedProjections(printableFactory, shrunkProjectionQueue);
-            }
-        }
         );
     };
-
+    
     const handleProjectionDownload = async () => {
         const selectedProjections = projectionSelections;
         setProjectionLoadingInfo({ remainingProjections: projectionSelections.length, numTotalQueuedProjections: projectionSelections.length });
@@ -727,13 +763,43 @@ const Export = () => {
         runQueuedProjections(printableFactory, selectedProjections);
     };
 
+    const handleNext = async () => {
+        setIsPreviewExpanded(true);
+        if (pdfPreviewUrl) {
+            URL.revokeObjectURL(pdfPreviewUrl);
+            setPdfPreviewUrl(null);
+        }
+        setShowPdfPreview(false);
+    
+        const selectedProjections = projectionSelections;
+        setProjectionLoadingInfo({ remainingProjections: projectionSelections.length, numTotalQueuedProjections: projectionSelections.length });
+        setProjectionSelections([]); 
+        const modelUrl = searchParams.get('modelUrl');
+        if (modelUrl === null) return;
+        const modelColor = searchParams.get('modelColor') ?? "#dedede";
+    
+        const printableFactory = new PrintableFactory({ modelUrl: modelUrl, modelColor: modelColor });
+    
+        await printableFactory.initializeRenderEnvironment();
+    
+        runQueuedProjections(printableFactory, selectedProjections);
+    };
+
+    const downloadPdf = () => {
+        if (!pdfPreviewUrl) return;
+        const link = document.createElement('a');
+        link.href = pdfPreviewUrl; 
+        link.download = 'curved_previewed.pdf'; // change to handle other projections
+        link.click(); 
+    };
+
     const isLoading = loadingProgress > 0;
 
     return (
         <div
             className="flex flex-col h-screen w-full "
         >
-            <div className="bg-[#1e1e1e] h-full overflow-auto">
+            <div className="bg-[#1e1e1e] h-full overflow-scroll">
                 <div className="flex flex-row items-center sticky h-16 top-0 bg-[#1e1e1e]">
                     <div className="px-8 w-full">
                         <h1 className="font-bold text-3xl">Select Model Projection(s)</h1>
@@ -767,8 +833,52 @@ const Export = () => {
                         );
                     })}
                 </div>
+            <div className="bg-[#1e1e1e] px-5 py-3 flex flex-row justify-between items-center">
+                {/* Back Button */}
+                <button
+                    type="button"
+                    className="bg-gray-500 hover:bg-gray-600 text-white transition duration-200 rounded-md p-5"
+                    onClick={() => {
+                        // function that handles going back to the upload page
+                    }}
+                >
+                    Back
+                </button>
+                
+                {/* Next Button */}
+                <button
+                    type="button"
+                    className={`${projectionSelections.length === 0 || isLoading
+                        ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                        : "bg-blue-500"} transition duration-200 rounded-md p-5`}
+                    onClick={projectionSelections.length === 0 || isLoading ? undefined : handleNext}
+                    style={{ backgroundColor: '#8E2929' }}
+                >
+                    Next
+                </button>
             </div>
-
+            {showPdfPreview && (
+            <div ref={pdfPreviewRef} style={{ marginTop: '50px' }} className="bg-[#1e1e1e] px-8">
+                <h2 className="text-2xl font-bold text-white mb-4">PDF Preview</h2>
+                <iframe
+                    id="pdfPreview"
+                    src={pdfPreviewUrl || "hi"}
+                    width="100%"
+                    height="500px"
+                    title="PDF Preview"
+                    style={{ border: '1px solid black' }}
+                />
+                <button
+                    type="button"
+                    className="transition duration-200 rounded-md p-5 mt-5"
+                    style={{ backgroundColor: '#8E2929' }}
+                    onClick={downloadPdf}
+                >
+                    Download Final PDF
+                </button>
+            </div>
+        )}
+        </div>
             <div>
                 <div className={`h-2 w-full ${!isLoading && 'bg-[#1e1e1e]'}`}>
                     <div className={`relative h-full overflow-hidden bg-[#222222]`}>
@@ -786,13 +896,13 @@ const Export = () => {
                             <p className="font-bold text-2xl text-blue-400">{Math.round(loadingProgress)}%</p>
                         </div>
                     )}
-                    <button
+                    {/* <button
                         type="button"
                         className={`${projectionSelections.length === 0 || isLoading ? "bg-gray-300 text-gray-500 cursor-not-allowed" : "bg-blue-500"} transition duration-200 rounded-md p-5`}
                         onClick={projectionSelections.length === 0 || isLoading ? undefined : handleProjectionDownload}
                     >
                         Download Projections
-                    </button>
+                    </button> */}
                 </div>
             </div>
         </div >
