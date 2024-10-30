@@ -59,7 +59,7 @@ function sphericalToCartesian(spherical: SphericalCoordinate): [number, number, 
 }
 
 enum ProjectionKind {
-    REVOLVED,
+    // REVOLVED,
     FOUR_SIDED_CUBE,
     SIX_SIDED_CUBE,
     CURVED
@@ -98,9 +98,9 @@ class PrintableFactory {
 
     public producePrintable(projectionKind: ProjectionKind, loadingCallback: (percentComplete: number) => any, onComplete: (pdfDataUrl: string) => any) {
         switch (projectionKind) {
-            case ProjectionKind.REVOLVED:
-                this.produceRevolvedPrintable(loadingCallback, onComplete);
-                return;
+            // case ProjectionKind.REVOLVED:
+            //     this.produceRevolvedPrintable(loadingCallback, onComplete);
+            //     return;
             case ProjectionKind.FOUR_SIDED_CUBE:
                 this.produceCubedPrintable(loadingCallback, onComplete);
                 return;
@@ -670,12 +670,12 @@ type ProjectionSelection = {
 };
 
 const ALL_PROJECTIONS: ProjectionSelection[] = [
-    {
-        key: ProjectionKind.REVOLVED,
-        previewThumbnailImgSrc: "https://picsum.photos/500",
-        projectionDescription: "Best for objects with cylindrical symmetry",
-        projectionTitle: "Revolved Projection"
-    },
+    // {
+    //     key: ProjectionKind.REVOLVED,
+    //     previewThumbnailImgSrc: "https://picsum.photos/500",
+    //     projectionDescription: "Best for objects with cylindrical symmetry",
+    //     projectionTitle: "Revolved Projection"
+    // },
     {
         key: ProjectionKind.FOUR_SIDED_CUBE,
         previewThumbnailImgSrc: "https://picsum.photos/500",
