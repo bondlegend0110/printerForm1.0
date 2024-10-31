@@ -60,6 +60,10 @@ const Upload = () => {
         };
     }, [modelUrl, modelColor]);
 
+    const setViewDirection = (direction: string) => {
+        toolbarRef.current?.setViewDirection(direction);
+    };
+
     useEffect(() => {
         const globalKeyDown = (e: KeyboardEvent) => {
             if (e.key.toUpperCase() === "R") {
@@ -99,7 +103,7 @@ const Upload = () => {
                                 dragInactiveClassName="bg-[#2c2c2c] border-gray-500"
                                 onFileSelect={onFileSelect}
                             >
-                                <p className="text-white">Drag/select STL model file here</p>
+                                <p style={{ color: '#D3D3D3' }}>Drag/select STL model file here</p>
                             </DragDropFileUpload>
                         </div>
                     )}
@@ -172,6 +176,8 @@ const Upload = () => {
                                     set: setModelColor
                                 }}
                                 modelRefs={[previewModelRef, modelRef]}
+                                setViewDirection={setViewDirection}
+                                cameraRef={cameraRef}
                             />
                         </div>
                     )}
