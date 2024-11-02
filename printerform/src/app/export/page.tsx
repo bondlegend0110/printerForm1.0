@@ -8,12 +8,14 @@ import { CameraPosition } from "../stl-viewer-src/StlViewer/SceneElements/Camera
 import { ModelDimensions } from "../stl-viewer-src";
 import { string } from "three/examples/jsm/nodes/Nodes.js";
 import { jsPDF } from 'jspdf';
+import { useRouter } from 'next/navigation';
 // import curvedBackgroundImage from './CURVED_FORM_TEMPLATE.jpg';
 // import cubeBackgroundImage from './FOUR_SIDED_BOX.jpg';
 // import sixBackgroundImage from './SIX_SIDE_TEMPLATE1.jpg';
 const curvedBackgroundImage = '/CURVED_FORM_TEMPLATE.jpg';
 const cubeBackgroundImage = '/FOUR_SIDED_BOX.jpg';
 const sixBackgroundImage = '/SIX_SIDE_TEMPLATE1.jpg';
+
 type ModelInfo = {
    modelUrl: string,
    modelColor: string,
@@ -805,6 +807,7 @@ const Export = () => {
    const pdfPreviewRef = useRef<HTMLDivElement>(null);
    const [showPdfPreview, setShowPdfPreview] = useState(false);
    const [isPreviewExpanded, setIsPreviewExpanded] = useState(false);
+   const router = useRouter();
 
     const runQueuedProjections = (printableFactory: PrintableFactory, queuedProjections: ProjectionSelection[]) => {
        const projectionSelection = queuedProjections[0];
@@ -946,7 +949,7 @@ const Export = () => {
                <button
                 type="button"
                 className="bg-gray-500 hover:bg-gray-600 text-white transition duration-200 rounded-md p-5"
-                onClick={() => window.history.back()}
+                onClick={() => router.push('/upload')}
             >
                 Back
             </button>
