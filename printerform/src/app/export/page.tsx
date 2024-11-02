@@ -8,10 +8,12 @@ import { CameraPosition } from "../stl-viewer-src/StlViewer/SceneElements/Camera
 import { ModelDimensions } from "../stl-viewer-src";
 import { string } from "three/examples/jsm/nodes/Nodes.js";
 import { jsPDF } from 'jspdf';
-import curvedBackgroundImage from './CURVED_FORM_TEMPLATE.jpg';
-import cubeBackgroundImage from './FOUR_SIDED_BOX.jpg';
-import sixBackgroundImage from './SIX_SIDE_TEMPLATE1.jpg';
-
+// import curvedBackgroundImage from './CURVED_FORM_TEMPLATE.jpg';
+// import cubeBackgroundImage from './FOUR_SIDED_BOX.jpg';
+// import sixBackgroundImage from './SIX_SIDE_TEMPLATE1.jpg';
+const curvedBackgroundImage = '/CURVED_FORM_TEMPLATE.jpg';
+const cubeBackgroundImage = '/FOUR_SIDED_BOX.jpg';
+const sixBackgroundImage = '/SIX_SIDE_TEMPLATE1.jpg';
 type ModelInfo = {
    modelUrl: string,
    modelColor: string,
@@ -273,7 +275,7 @@ class PrintableFactory {
        ];
   
        const templateImage = new Image();
-       templateImage.src = cubeBackgroundImage.src;
+       templateImage.src = cubeBackgroundImage;
   
        templateImage.onload = () => {
            // Draw template image as the background
@@ -372,7 +374,7 @@ class PrintableFactory {
   
    public produceCurvedPrintable(loadingCallback: (percentComplete: number) => any, onComplete: (pdfDataUrl: string) => any) {
        const img = new Image();
-       img.src = curvedBackgroundImage.src;
+       img.src = curvedBackgroundImage;
   
        img.onload = () => {
          const canvasWidth = img.width;
@@ -505,7 +507,7 @@ class PrintableFactory {
 
 
    const templateImage = new Image();
-   templateImage.src = sixBackgroundImage.src;
+   templateImage.src = sixBackgroundImage;
 
 
    templateImage.onload = () => {
