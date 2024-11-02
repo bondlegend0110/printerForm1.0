@@ -774,19 +774,19 @@ const ALL_PROJECTIONS: ProjectionSelection[] = [
    // },
    {
        key: ProjectionKind.FOUR_SIDED_CUBE,
-       previewThumbnailImgSrc: "https://picsum.photos/500",
+       previewThumbnailImgSrc: "/four_side 2.jpg",
        projectionDescription: "Suits a variety of geometries well",
        projectionTitle: "Four Sided Cube Projection"
    },
    {
        key: ProjectionKind.SIX_SIDED_CUBE,
-       previewThumbnailImgSrc: "https://picsum.photos/500",
+       previewThumbnailImgSrc: "/six_side 2.jpg",
        projectionDescription: "Suits a variety of geometries well",
        projectionTitle: "Six Sided Cube Projection"
    },
    {
      key: ProjectionKind.CURVED,
-     previewThumbnailImgSrc: "https://picsum.photos/500",
+     previewThumbnailImgSrc: "/curved 2.jpg",
      projectionDescription: "Front and back of the model printed in a curved form",
      projectionTitle: "Curved Volume Form"
  }
