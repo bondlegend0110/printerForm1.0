@@ -9,6 +9,7 @@ import { ModelDimensions } from "../stl-viewer-src";
 import { string } from "three/examples/jsm/nodes/Nodes.js";
 import { jsPDF } from 'jspdf';
 import { useRouter } from 'next/navigation';
+
 // import curvedBackgroundImage from './CURVED_FORM_TEMPLATE.jpg';
 // import cubeBackgroundImage from './FOUR_SIDED_BOX.jpg';
 // import sixBackgroundImage from './SIX_SIDE_TEMPLATE1.jpg';
@@ -914,9 +915,18 @@ const Export = () => {
                    </div>
 
 
-                   <button type="button" className=" bg-[#2c2c2c] px-4 h-full text-white">
-                       Return to Editor (inop)
-                   </button>
+                   <button type="button"
+                    className="bg-[#2c2c2c] px-4 h-full text-white"
+                    onClick={() => {
+                        // Set the flag in localStorage
+                    localStorage.setItem("returningToUpload", "true");
+
+                        // Navigate to the upload page
+                    router.push('/upload');
+            }}
+        >
+            Return to Editor
+        </button>
                </div>
 
 
