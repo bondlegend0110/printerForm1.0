@@ -443,9 +443,9 @@ class PrintableFactory {
          };
   
          // top model
-         renderSide(0, true, false, 80, 280, 0.9);
+         renderSide(0, true, false, 80, 65, 0.9);
          // bottom model
-         renderSide(Math.PI, false, true, 80, 280, 0.9);
+         renderSide(Math.PI, false, true, 80, 65, 0.9);
 
 
          // generating PDF
@@ -961,7 +961,7 @@ const Export = () => {
                 className="bg-gray-500 hover:bg-gray-600 text-white transition duration-200 rounded-md p-5"
                 onClick={() => router.push('/upload')}
             >
-                Back
+                Reupload
             </button>
               {/* Next Button */}
                 <button
