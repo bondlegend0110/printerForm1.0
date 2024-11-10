@@ -1,6 +1,6 @@
 'use client';
 import { useSearchParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, Suspense } from "react";
 import * as THREE from 'three';
 import { STLLoader } from 'three/addons/loaders/STLLoader.js';
 import { OrbitControls } from "three/examples/jsm/Addons.js";
@@ -81,14 +81,15 @@ enum ProjectionKind {
 
 
 class PrintableFactory {
-   private modelInfo: ModelInfo;
-   private modelDimensions: ModelDimensions;
-   private scene: THREE.Scene;
-   private camera: THREE.Camera;
-   private renderer: THREE.WebGLRenderer;
+   private modelInfo!: ModelInfo;
+   private modelDimensions!: ModelDimensions;
+   private scene!: THREE.Scene;
+   private camera!: THREE.Camera;
+   private renderer!: THREE.WebGLRenderer;
 
 
    constructor(modelInfo: ModelInfo) {
+    if (typeof window !== 'undefined') {
        this.modelInfo = modelInfo;
        this.modelDimensions = { width: 0, length: 0, height: 0, boundingRadius: 0 };
 
@@ -96,6 +97,7 @@ class PrintableFactory {
        this.scene = new THREE.Scene();
        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight);
        this.renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+        }
    }
 
 
@@ -685,10 +687,12 @@ class PrintableFactory {
 
 
    private configureRenderer(animationLoopCallback: XRFrameRequestCallback | null) {
+    if (typeof window !== 'undefined') {
        this.renderer.setPixelRatio(window.devicePixelRatio);
        this.renderer.setSize(window.innerWidth, window.innerHeight);
        this.renderer.setAnimationLoop(animationLoopCallback);
        this.renderer.shadowMap.enabled = true;
+    }
    }
 
 
@@ -831,11 +835,13 @@ const Export = () => {
                for (let i = 0; i < byteCharacters.length; i++) {
                    byteNumbers[i] = byteCharacters.charCodeAt(i);
                }
-               const blob = new Blob([byteNumbers], { type: 'application/pdf' });
-               const blobUrl = URL.createObjectURL(blob); // Create a Blob URL
+               if (typeof window !== 'undefined') {
+                   const blob = new Blob([byteNumbers], { type: 'application/pdf' });
+                   const blobUrl = URL.createObjectURL(blob); // Create a Blob URL
   
-               setPdfPreviewUrl(blobUrl);
-               setShowPdfPreview(true);
+                   setPdfPreviewUrl(blobUrl);
+                   setShowPdfPreview(true);
+               }
   
                const shrunkProjectionQueue = [...queuedProjections.slice(1)];
                setProjectionLoadingInfo(old => ({ ...old, remainingProjections: shrunkProjectionQueue.length }));
@@ -848,25 +854,25 @@ const Export = () => {
        );
    };
   
-   const handleProjectionDownload = async () => {
-       const selectedProjections = projectionSelections;
-       setProjectionLoadingInfo({ remainingProjections: projectionSelections.length, numTotalQueuedProjections: projectionSelections.length });
-       setProjectionSelections([]);
+//    const handleProjectionDownload = async () => {
+//        const selectedProjections = projectionSelections;
+//        setProjectionLoadingInfo({ remainingProjections: projectionSelections.length, numTotalQueuedProjections: projectionSelections.length });
+//        setProjectionSelections([]);
 
 
-       const modelUrl = searchParams.get('modelUrl');
-       if (modelUrl === null) return;
-       const modelColor = searchParams.get('modelColor') ?? "#dedede";
+//        const modelUrl = searchParams.get('modelUrl');
+//        if (modelUrl === null) return;
+//        const modelColor = searchParams.get('modelColor') ?? "#dedede";
 
 
-       const printableFactory = new PrintableFactory({ modelUrl: modelUrl, modelColor: modelColor });
+//        const printableFactory = new PrintableFactory({ modelUrl: modelUrl, modelColor: modelColor });
 
 
-       await printableFactory.initializeRenderEnvironment();
+//        await printableFactory.initializeRenderEnvironment();
 
 
-       runQueuedProjections(printableFactory, selectedProjections);
-   };
+//        runQueuedProjections(printableFactory, selectedProjections);
+//    };
 
 
    const handleNext = async () => {
@@ -905,6 +911,7 @@ const Export = () => {
 
 
    return (
+    <Suspense fallback={<div>Loading...</div>}>
        <div
            className="flex flex-col h-screen w-full "
        >
@@ -1026,6 +1033,7 @@ const Export = () => {
                </div>
            </div>
        </div >
+       </Suspense>
    );
 };
 export default Export;;
