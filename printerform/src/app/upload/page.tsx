@@ -190,7 +190,7 @@ const Upload = () => {
                                     showRotationGizmo={rotationGizmoShown}
                                     objectRespectsFloor={false}
                                     orbitControls
-                                    url={modelUrl}
+                                    url={modelUrl || ""}
                                 />
                             </DragDropFileUpload>
 
