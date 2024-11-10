@@ -2,12 +2,15 @@
   "name": "printerform",
   "version": "0.1.0",
   "private": true,
-  
+  "homepage": "https://printerform1.github.io/integrate",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next build && next export",
+    "predeploy": "npm run export",
+    "deploy": "gh-pages -d out"
   },
   "dependencies": {
     "@react-three/drei": "^9.107.0",
@@ -28,7 +31,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-router-dom": "^5.3.3",
-    "@types/three": "^0.164.0",
+    "@types/three": "^0.164.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "postcss": "^8",
