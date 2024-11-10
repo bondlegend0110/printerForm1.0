@@ -934,6 +934,7 @@ const Export = () => {
                    {ALL_PROJECTIONS.map((projectionSelection) => {
                        return (
                            <div
+                               key={projectionSelection.key}
                                className={`rounded-md overflow-hidden ${projectionSelections.find(selection => selection.key === projectionSelection.key) ? 'border-blue-600' : 'border-[#2c2c2c] hover:border-blue-300'} transition duration-200 border-2 h-96`}
                                onClick={() => {
                                    if (projectionSelections.find(selection => selection.key === projectionSelection.key)) {
