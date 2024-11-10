@@ -43,7 +43,7 @@ const HowTo = () => {
             2. Modify
           </h2>
           <p className="text-xl " style={{ color: "#40001C" }}>
-            Once you've uploaded your file, select the layout that best fits
+            Once you&apos;ve uploaded your file, select the layout that best fits
             your object. After selecting the layout, you can modify your
             selection using the drop-down tools and sliders located on the right
             of your file preview.
@@ -83,7 +83,7 @@ const HowTo = () => {
           </h2>
           <p className="text-xl " style={{ color: "#40001C" }}>
             Using a standard inkjet or laser printer and 8.5” x 11” paper, print
-            your saved PDF. Once you've printed out your PDF, use the dots and
+            your saved PDF. Once you&apos;ve printed out your PDF, use the dots and
             lines shown as instructions for how to fold the sheet into your 3D
             object. (Note that the locations of the lines and dots will change
             based on the size and shape of your file as well as the layout type
