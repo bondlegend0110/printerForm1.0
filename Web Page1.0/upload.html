@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--upload-->
+    <script src="https://kit.fontawesome.com/67e5d0119e.js" crossorigin="anonymous"></script>
+
+    <!-- Include from the CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
+
+    <!--jsPDF-->
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+
+    <title>Home - Printer Form</title>
+    <link rel="stylesheet" href="shared-styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="editStyles.css">
+</head>
+
+<body>
+    <!--Don't Show Again popup-->
+    <div id="DSApopup" class="popup">
+        <!-- Popup content -->
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <p>Welcome to our website! Learn how to use our site with our guide.</p>
+            <input type="checkbox" id="doNotShow">
+            <label for="doNotShow">Don't show this message again</label>
+        </div>
+    </div>
+    <!--Form Selection Popup-->
+    <div id="formSelectionPopup" class="popup">
+        <div class="popup-content" id="fs-popup-container">
+            <!--TOOD Fix Close-->
+            <span id="closeFormSelectionPopupBtn" class="close-button">&times;</span>
+            <h2 id="fs-title">Form Selection</h2>
+            <div id="fs-content-container">
+                <div id="fs-curvedvolume" class="fs-item">
+                    <img class="fs-pic"src="./pictures/samples/curved-Bunny-sample.png" 
+                    alt="Sample of the curved volume form. Displaying a rabit stl." />
+                    <div class="fs-text">
+                        <h3 class="fs-text-item">Curved Volume</h3>
+                        <p class="fs-text-item">information</p>
+                    </div>
+                </div>
+                <div id="fs-foursidedcube" class="fs-item">
+                    <img class="fs-pic"src="./pictures/samples/fourSideCube-Bunny-sample.png" 
+                    alt="Sample of the four sided cube form. Displaying a rabit stl." />
+                    <div class="fs-text">
+                        <h3 class="fs-text-item">Four-Sided Cube</h3>
+                        <p class="fs-text-item">information</p>
+                    </div>
+                </div>
+                <div id="fs-sixsidedtwoflapscube"  class="fs-item">
+                    <img class="fs-pic"src="./pictures/samples/sixSidedCube-Bunny-sample.png" 
+                    alt="Sample of the six sided cube form. Displaying a _ stl."/>
+                    <div class="fs-text">
+                        <h3 class="fs-text-item">Six-Sided Cube</h3>
+                        <p class="fs-text-item">information</p>
+                    </div>
+                </div>
+                <div id="fs-sixsidedfourflapscube" class="fs-item">
+                    <img class="fs-pic"src="./pictures/samples/sixSidedCube-Bunny-sample.png" 
+                    alt="Sample of the six sided cube form. Displaying a _ stl."/>
+                    <div class="fs-text">
+                        <h3 class="fs-text-item">Cylinder</h3>
+                        <p class="fs-text-item">information</p>
+                    </div>
+                </div>
+                <div id="fs-cylinderelement"class="fs-item">
+                    <img class="fs-pic"src="./pictures/samples/curved-Bunny-sample.png" alt="" />
+                    <div class="fs-text">
+                        <h3 class="fs-text-item">Form Name</h3>
+                        <p class="fs-text-item">information</p>
+                    </div>
+                </div>
+                <div class="fs-item">
+                    <img class="fs-pic"src="./pictures/samples/curved-Bunny-sample.png" alt="" />
+                    <div class="fs-text">
+                        <h3 class="fs-text-item">Form Name</h3>
+                        <p class="fs-text-item">information</p>
+                    </div>
+                </div>
+                <div class="fs-item">
+                    <img class="fs-pic"src="./pictures/samples/curved-Bunny-sample.png" alt="" />
+                    <div class="fs-text">
+                        <h3 class="fs-text-item">Form Name</h3>
+                        <p class="fs-text-item">information</p>
+                    </div>
+                </div>
+                <div class="fs-item">
+                    <img class="fs-pic"src="./pictures/samples/curved-Bunny-sample.png" alt="" />
+                    <div class="fs-text">
+                        <h3 class="fs-text-item">Form Name</h3>
+                        <p class="fs-text-item">information</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-buttons">
+                <button id="backFormSelectionPopupBtn" class="back-button" type="button">BACK</button>
+                <button id="nextFormSelectionPopupBtn"  class="next-button" type="button">NEXT</button>
+            </div>
+        </div>
+    </div>
+
+    <!--Download Preview Popup-->
+    <div id="downloadPopup" class="popup">
+        <div class="popup-content">
+            <!--TOOD Fix Close-->
+            <span id="closeDownloadPopupBtn" class="close-button">&times;</span>
+            <div id="print-preview-container" class="background-container">
+                <p>Print Preview</p>
+            </div>
+            <div>
+                <button id="backDownloadPopupBtn" class="back-button" type="button">BACK</button>
+                <button id="downloadPDFbtn"  class="download-button" type="button">DOWNLOAD</button>
+            </div>
+        </div>
+    </div>
+
+    <!--Popup overlay-->
+    <div id="overlay" class="overlay"></div>
+
+    <div id="header">
+        <div class="container">
+            <!--  navigation bar -->
+            <nav class="nav-bar">
+                <!--  logo/name -->
+                <a href="./index.html"><img class="logo" src="./pictures/start_page/LOGOTYPE_fall2023.png"
+                        alt="Printerform logo"></a>
+                <!--  menu items -->
+                <ul id="menu">
+                    <li><a href="./how-to.html">How To</a></li>
+                    <li class="menu-item dropdown">
+                        <a href="./resource.html" class="dropbtn">Resources</a>
+                        <div class="dropdown-content">
+                            <a href="#">TinkerCAD</a>
+                            <a href="#">Lesson Plans</a>
+                        </div>
+                    </li>
+                    <li class = "gallery gallery-nav"><a href="./gallery.html">Gallery</a></li>
+                    <li><a href="./about.html">About</a></li>
+                </ul>
+            </nav>
+
+        </div>
+
+        <!-- upload button/div-->
+        <div id="directory-container" class="background-container">
+            <div class ="item-swtich">
+                <!-- upload button/div-->
+                <div id="open-directory_container" class="background-container" style="margin-top:40px; margin-bottom: 0; background: #F1F1FD;">
+                    <button id="openFileDirectoryBtn" class="upload-button"  type="button">UPLOAD</button>
+                </div>
+                <div id="printPreview">
+                    <div class="carousel">
+                        <div id="stlPreviews" class="carousel-view">
+                            <div class="carousel-horses">
+                                <div  id="front_canvas" class="stl_display slide">
+                                    <h4>Front View </h4>
+                                    <div id="stl_view1" class="stl_cont stl_curve "></div> 
+                                </div>
+                            
+                                <div  id="back_canvas" class="stl_display slide">
+                                    <h4>Back View</h4>
+                                    <div id="stl_view2" class="stl_cont stl_curve "></div>
+                                </div>
+                                <div  id="right_canvas" class="stl_display slide">
+                                    <h4>Right View</h4>
+                                    <div id="stl_view3" class="stl_cont stl_curve "></div> 
+                                </div>
+                            
+                                <div  id="left_canvas" class="stl_display slide">
+                                    <h4>Left View</h4>
+                                    <div id="stl_view4" class="stl_cont stl_curve "></div>
+                                </div> 
+                                <div  id="top_canvas" class="stl_display slide">
+                                    <h4>Top View</h4>
+                                    <div id="stl_view5" class="stl_cont stl_curve "></div>
+                                </div>
+                                <div  id="bottom_canvas" class="stl_display slide">
+                                    <h4>Right View</h4>
+                                    <div id="stl_view6" class="stl_cont stl_curve "></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="slide-controls" class="carousel-horses carousel-base">
+                            <!-- Navigation Previous View Buttons -->
+                            <button class="indicator" onclick="moveSlide(-1)">&#10094;</button>
+                            <!-- Text Indicators -->
+                            <div class="indicators">
+                                <button class="indicator" onclick="showSlides(0)">FRONT</button>
+                                <button class="indicator" onclick="showSlides(1)">BACK</button>
+                                <button class="indicator" onclick="showSlides(2)">RIGHT</button>
+                                <button class="indicator" onclick="showSlides(3)">LEFT</button>
+                                <button class="indicator" onclick="showSlides(4)">TOP</button>
+                                <button class="indicator" onclick="showSlides(5)">BOTTOM</button>
+                            </div>
+                            <!-- Navigation Next View Buttons -->
+                            <button class="indicator" onclick="moveSlide(1)">&#10095;</button>
+                        </div>
+                    </div>
+                    <div id = "formControlsPreview">
+                        <div id = "formControls" class="editor-container-controls">
+                            <!-- TODO Add Paper Size when pertinent
+                            <div class="grid-control">
+                                <label for="paper-size">Paper Size: </label>
+                                <select id="paper-size" name="paper-size">
+                                    <option value="letter">Letter</option>
+                                    <option value="a4">A4</option>
+                                    <option value="a3">A3</option>
+                                    <option value="legal">Legal</option>
+                                </select>
+                            </div> -->
+                            <!-- <div class="grid-control">
+                                <div class="magnification-input-wrapper">
+                                    <label for="magnification">Magnification: </label>
+                                    <input id="magnification-value" class="input-value" type="text" value="1">
+                                </div>
+                                <input type="range" id="magnification" name="magnification" min="0.1" max="2" step="0.1" value="1">
+                            </div> -->
+                            <div class="grid-control controlPreview">
+                                <div class="rotation-input-wrapper">
+                                    <label for="rotationX">Rotation X-Axis: </label>
+                                    <input id="rotation-x-value" class="input-value" type="text" value="0">
+                                </div>
+                                <input type="range" id="rotationX" name="rotationX" min="-2" max="2" step="0.1" value="0">
+                            </div>
+                            <div class="grid-control controlPreview">
+                                <div class="rotation-input-wrapper">
+                                    <label for="rotationY">Rotation Y-Axis: </label>
+                                    <input id="rotation-y-value" class="input-value" type="text" value="0">
+                                </div>
+                                <input type="range" id="rotationY" name="rotationY" min="-2" max="2" step="0.1" value="0">
+                            </div>
+                            <div class="grid-control controlPreview">
+                                <div class="rotation-input-wrapper">
+                                    <label for="rotationZ">Rotation Z-Axis: </label>
+                                    <input id="rotation-z-value" class="input-value" type="text" value="0">
+                                </div>
+                                <input type="range" id="rotationZ" name="rotationZ" min="-2" max="2" step="0.1" value="0">
+                            </div>
+                            
+                            <div class="grid-control controlPreview">
+                                <button id ="sceneRotationZero">View Zero</button>
+                                <button id="displayPose">Display Pose</button>
+                            </div>                            
+
+                            <!-- TODO Add Line Color when pertinent
+                            <div class="grid-control">
+                                <label for="line-color">Line Color: </label>
+                                <select id="line-color" name="line-color">
+                                    <option value="red">Red</option>
+                                    <option value="green">Green</option>
+                                    <option value="blue">Blue</option>
+                                    <option value="black">Black</option>
+                                </select>
+                            </div> -->
+                            <div class="grid-control">
+                                <label for="model-color">Model Color: </label>
+                                <select id="model-color" name="model-color">
+                                    <option value="white">White</option>
+                                    <option value="gray">Gray</option>
+                                    <option value="yellow">Yellow</option>
+                                    <option value="brown">Brown</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="control-switch">
+                    <div id="start-controls">
+                        <div id="start-buttons" class ="bottom-buttons">
+                            <button class="back-button" id="reopenFileDirectoryBtn" type="button">REUPLOAD</button>
+                            <div class="file-input-wrapper">
+                                <label for="file">Current File: </label>
+                                <input id="fileNameDisplay" type="text" value="No file chosen." readonly>
+                            </div>
+                            <button id="nextStartPageBtn" class="next-button" type="button"> NEXT </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div id = "other-forms" class="gallery">
+        <div class="container">
+            <h1 class="title">OTHER FORMS</h1>
+            <ul class="image-gallery">
+                <li class="image-gallery-item">
+                    <img src="./pictures/samples/curved-Bunny-sample.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/samples/fourSideCube-Bunny-sample.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/samples/curved-Bunny-sample.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/samples/curved-Bunny-sample.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/samples/curved-Bunny-sample.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/samples/curved-Bunny-sample.png" alt="" />
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--Feedback Tab-->
+    <input type="checkbox" id="slide" name="" value="" />
+    <div class="fb-container">
+        <label for="slide" class="toggle"><div id="fb-tab">Feedback</div></label>
+        <div class="sidebar" id="fb-form" >
+            <h3>Printerform Experience:</h3>
+            <iframe name="hiddenFrame" class="hide"></iframe>
+            <form id="fb-user-inputs-form" method="POST" target="hiddenFrame" action="https://script.google.com/macros/s/AKfycbxzzbnYd8Oy2uJ9FNa_CgAR_ukJbMPbcnWoSo8ohP2AZK55SQ_fEptRvLw0aJOvCHL6/exec">
+                <div id="fb-user-inputs-items">
+                    <div id="select-role">
+                        <label for="role" class="required">Your are a...</label>
+                        <select name="role" id="role" required >
+                        <option value="" selected="selected" disabled="true">--Please Select --</option>
+                        <option value="student">Student</option>
+                        <option value="educator">Educator</option>
+                        <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="text-input">Share your thoughts:</label>
+                        <textarea id="text-input" name="text-input"></textarea>
+                    </div>
+                </div>
+                <input type="button" id="fb-submit-btn" value="Submit" onclick="submitForm()">
+            </form>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScCbfCI4AGwUjoJ6NzdIvLrkpYKWgth8RgtbY9oTs-fHyMbQw/viewform" target="_blank"><button id="fb-survey-btn">Take Our Full Survey</button></a>
+            
+        </div>
+    </div>
+
+    <div id = "instructions" class="container" style="background: #7072EC;">
+        <h2 class="workflow-instructions">Instructions</h2>
+        <div id="workflow">
+            <div class="work-item">
+                <h2 class="work-item-title">Upload</h2>
+                <img class="work-item-pic" src="./pictures/start_page/upload.png" />
+                <p class="work-item-text">Upload any .STL file.</p>
+            </div>
+            <div class="work-item">
+                <h2 class="work-item-title">Modify</h2>
+                <img class="work-item-pic" src="./pictures/start_page/modify.png" />
+                <p class="work-item-text">Modify your selections to best fit the shape of your file.</p>
+            </div>
+            <div class="work-item">
+                <h2 class="work-item-title">Download</h2>
+                <img class="work-item-pic" src="./pictures/start_page/download.png" />
+                <p class="work-item-text">Download your .PDF to print.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id = "public-gallery" class="gallery">
+        <div class="container">
+            <h1 class="title">Gallery</h1>
+            <ul class="image-gallery">
+                <li class="image-gallery-item">
+                    <img src="./pictures/samples/curved-Bunny-sample.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/samples/fourSideCube-Bunny-sample.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/samples/curved-Bunny-sample.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/samples/curved-Bunny-sample.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/samples/curved-Bunny-sample.png" alt="" />
+                </li>
+                <li class="image-gallery-item">
+                    <img src="./pictures/samples/curved-Bunny-sample.png" alt="" />
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="about">
+        <div class="container">
+            <h1 class="title">About</h1>
+            <p class="about-text">Printerform allows anyone to utilize 
+                common materials like an inkjet or laser printer and 8.5” x 11” 
+                paper to produce high speed, low resolution 3D objects.
+            </p>
+            <a href="about.html"><button class="read-more-button">Read More</button></a>
+        </div>
+    </div>
+
+
+    <!--TODO: Make Footer?-->
+    <div id="footer">
+        <div class="container">
+
+            <div class="footer-nav-container">
+                <ul class="footer-nav" style="text-align:center;">
+                    <li><a href="./how-to.html">How To</a></li>
+                    <h1>|</h1>
+                    <li><a href="./resource.html">Resources</a></li>
+                    <h1>|</h1>
+                    <li class = "gallery gallery-nav"><a href="./gallery.html">Gallery</a></li>
+                        <h1 class = "gallery gallery-nav">|</h1>
+                    <li><a href="./about.html">About</a></li>
+                </ul>
+
+                <ul class="footer-nav" style="text-align:center;">
+                    <li><a href="mailto:email@brown.edu">email@brown.edu</a></li>
+                    <h1>|</h1>
+                    <li><a href="googlesurveylink.com">Feedback Form</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="./viewstl/stl_viewer.min.js"></script>
+    <script src="viewer.js"></script>
+    <script src = "edit.js"></script>
+    <script src="upload.js"></script>
+</body>
+<div id = "output"></div>
+<input type="file" id="fileInput" onchange="inputChange(this)" placeholder="Upload" accept="*.*">
+
+</html>

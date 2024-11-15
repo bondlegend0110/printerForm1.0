@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - PrinterForm</title>
+    <link rel="stylesheet" href="about-styles.css">
+    <link rel="stylesheet" href="shared-styles.css">
+    <script src="shared-script.js"></script>
+</head>
+
+<body>
+
+    <div id="header">
+        <div class="container">
+            <!--  navigation bar -->
+            <nav class="nav-bar">
+                <!--  logo/name -->
+                <a href="./index.html"><img class="logo" src="./pictures/start_page/LOGOTYPE_fall2023.png" alt="Printerform logo"></a>
+                <!--  menu items -->
+                <ul id="menu">
+                    <li><a href="./how-to.html">How To</a></li>
+                    <li class="menu-item dropdown">
+                        <a href="./resource.html" class="dropbtn">Resources</a>
+                        <div class="dropdown-content">
+                                <a href="#">TinkerCAD</a>
+                                <a href="#">Lesson Plans</a>
+                            </div>
+                        </li>
+                        <li class = "gallery gallery-nav"><a href="./gallery.html">Gallery</a></li>
+                    <li><a href="./about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!--our mission box-->
+    <div id="mission">
+        <div class="container">
+            <h1 class="title">Our Mission</h1>
+            <div class="text-container">
+                <p class="mission-text">We aim to create a more accessible tool that introduces basic 3D modeling and
+                    3D printing into educational and creative spaces. It does not replace traditional
+                    plastic 3D printing but it hopefully provides an opportunity to create quick mock-ups,
+                    test, and iterate ideas. Using common materials like an inkjet or laser printer, 8.5”x11”
+                    paper, and PrinterForm anyone can practice their 3D modeling skills and produce high speed,
+                    low resolution 3D objects.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!--Feedback Tab-->
+    <input type="checkbox" id="slide" name="" value="" />
+    <div class="fb-container">
+        <label for="slide" class="toggle"><div id="fb-tab">Feedback</div></label>
+        <div class="sidebar" id="fb-form" >
+            <h3>Printerform Experience:</h3>
+            <iframe name="hiddenFrame" class="hide"></iframe>
+            <form id="fb-user-inputs-form" method="POST" target="hiddenFrame" action="https://script.google.com/macros/s/AKfycbxzzbnYd8Oy2uJ9FNa_CgAR_ukJbMPbcnWoSo8ohP2AZK55SQ_fEptRvLw0aJOvCHL6/exec">
+                <div id="fb-user-inputs-items">
+                    <div id="select-role">
+                        <label for="role" class="required">Your are a...</label>
+                        <select name="role" id="role" required >
+                        <option value="" selected="selected" disabled="true">--Please Select --</option>
+                        <option value="student">Student</option>
+                        <option value="educator">Educator</option>
+                        <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="text-input">Share your thoughts:</label>
+                        <textarea id="text-input" name="text-input"></textarea>
+                    </div>
+                </div>
+                <input type="button" id="fb-submit-btn" value="Submit" onclick="submitForm()">
+            </form>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScCbfCI4AGwUjoJ6NzdIvLrkpYKWgth8RgtbY9oTs-fHyMbQw/viewform" target="_blank"><button id="fb-survey-btn">Take Our Full Survey</button></a>
+            
+        </div>
+    </div>
+
+    <!-- team gallery-->
+    <div id="team">
+        <div class="container">
+            <!-- title -->
+            <h1 class="title">The Team</h1>
+
+            <div class="team-list">
+                <!-- individual cards: Ian Gonsher -->
+                <div class="card">
+                    <img class="team-pic" src="./pictures/profiles/IanGonsher.jpg" alt="Ian Gonsher">
+                    <h2 class="name">Ian Gonsher</h2>
+                    <p class="card-text">Ian Gonsher is Assistant Professor of Practice in the School of Engineering
+                        and Department of Computer Science at Brown University. His teaching and
+                        research interests examine creative process as applied to interdisciplinary
+                        design practices, and the development of emerging and speculative technologies.
+                        <br>View Ian's website here: <a href="https://www.gonsherdesign.com/" target="_blank">www.gonsherdesign.com/</a>
+                    </p>
+                </div>
+
+                <!-- Alara Kalfazade -->
+                <div class="card">
+                    <img class="team-pic" src="./pictures/profiles/AlaraKalfazade.jpg" alt="Alara Kalfazade">
+                    <h2 class="name">Alara Kalfazade</h2>
+                    <p class="card-text">Alara Kalfazade is a senior at Brown University studying Computer Science-Economics. She is from Istanbul, Turkey. 
+                        She is passionate about UI/UX and graphic design. 
+                        <br>View Alara's website here: <a href="https://akalfaza.github.io/" target="_blank">https://akalfaza.github.io/</a>
+                    </p>
+                </div>
+
+                <!-- Catherina Niu -->
+                <div class="card">
+                    <img class="team-pic" src="./pictures/profiles/CatherinaNiu.JPEG" alt="Catherina Niu">
+                    <h2 class="name">Catherina Niu</h2>
+                    <p class="card-text">Catherina Niu is a senior at Brown University studying APMA-CS and Economics.
+                        Catherina is from Shanghai, China and Canada. A fun fact about her is that she practices Brazilian Jiu Jitsu.
+                    </p>
+                </div>
+
+                <!-- Jose Sandoval -->
+                <div class="card">
+                    <img class="team-pic" src="./pictures/profiles/JoseSandoval.jpg" alt="Jose Sandoval">
+                    <h2 class="name">Jose Sandoval</h2>
+                    <p class="card-text">Jose Sandoval is Brown University student studying computer science and Portuguese 
+                        and Brazilian Studies. He is passionate about information security and the intersection of social 
+                        justice and media. 
+                        <br>His latest projects can be found: <a href="linktr.ee/josesandoval018" target="_blank">linktr.ee/josesandoval018</a>
+                    </p>
+                </div>
+
+                <!-- Katie Lynch -->
+                <div class="card">
+                    <img class="team-pic" src="./pictures/profiles/KatieLynch.jpg" alt="Katie Lynch">
+                    <h2 class="name">Katie Lynch</h2>
+                    <p class="card-text">Katie Lynch holds a BFA in Industrial Design from SCAD and 
+                        is currently pursuing her MA in Design Engineering from RISD and Brown in a dual 
+                        degree program. Her work primarily features physical products but she is excited 
+                        by opportunities that allow for collaboration between the digital and physical realms of design. 
+                        <br>View Katie's website here: <a href="katielynchdesign.com" target="_blank">katielynchdesign.com</a>
+                    </p>
+                </div>
+
+                <!-- Vivian Li -->
+                <div class="card">
+                    <img class="team-pic" src="./pictures/profiles/VivianLi.jpg" alt="Vivian Li">
+                    <h2 class="name">Vivian Li</h2>
+                    <p class="card-text">Vivian Li
+                    </p>
+                </div>
+            </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- footer -->
+    <div id="footer">
+        <div class="container">
+
+            <div class="footer-nav-container">
+                <ul class="footer-nav" style="text-align:center;">
+                    <li><a href="./how-to.html">How To</a></li>
+                    <h1>|</h1>
+                    <li><a href="./resource.html">Resources</a></li>
+                    <h1>|</h1>
+                    <li class = "gallery gallery-nav"><a href="./gallery.html">Gallery</a></li>
+                        <h1 class = "gallery gallery-nav">|</h1>
+                    <li><a href="./about.html">About</a></li>
+                </ul>
+
+                <ul class="footer-nav" style="text-align:center;">
+                    <li><a href="mailto:printerform1@gmail.com">printerform1@gmail.com</a></li>
+                    <h1>|</h1>
+                    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScCbfCI4AGwUjoJ6NzdIvLrkpYKWgth8RgtbY9oTs-fHyMbQw/viewform" target="_blank">Feedback Form</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

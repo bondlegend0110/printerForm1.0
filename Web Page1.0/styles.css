@@ -1,0 +1,759 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  box-sizing: border-box;
+}
+
+.container {
+  padding: 30px 10%;
+}
+
+/* navigation bar */
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* logo/name */
+.logo {
+  width: 50%;
+  height: auto;
+  display: block;
+}
+
+/* menu items */
+nav ul li {
+  display: inline-block;
+  list-style: none;
+  margin: 10px 20px;
+}
+
+/* each menu item */
+nav ul li a {
+  color: #404040;
+  text-decoration: none;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  position: relative;
+}
+
+.custom-font {
+  font-family: "FatFrank Heavy, sans-serif";
+}
+
+nav .fas {
+  display: none;
+}
+
+/* Style the dropdown content container */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Style the dropdown links */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* background container */
+.background-container {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: auto;
+  padding: 30px;
+  background-color: rgba(255, 224, 125, 0.2);
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Feedback slide-out */
+.toggle {
+  -webkit-transition: all 0.15s ease-out 0;
+  -moz-transition: all 0.15s ease-out 0;
+  transition: all 0.45s ease-out 0;
+  position: fixed;
+  top: 40vh;
+  left: 0;
+  cursor: pointer;
+  width: fit-content;
+}
+
+#fb-tab {
+  writing-mode: vertical-lr;
+  text-orientation: sideways;
+  width: fit-content;
+  padding: 1vw 0.7vw;
+  background-color: #000;
+  color: white;
+  border-top-right-radius: 10%;
+  border-bottom-right-radius: 10%;
+}
+
+#fb-form {
+  position: fixed;
+  top: 28vh;
+  left: -300px; /* == -1* width, toggle-left [below]*/
+  -webkit-transition: all 0.15s ease-out 0;
+  -moz-transition: all 0.15s ease-out 0;
+  transition: all 0.15s ease-out 0;
+  width: 300px; /* == -1* left, toggle-left [below]*/
+  height: 60vh;
+  padding: 1vw;
+  background: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-top-right-radius: 3%;
+  border-bottom-right-radius: 3%;
+}
+
+.sidebar a:hover {
+  color: rgba(0, 0, 0, 0.61);
+}
+
+#slide:checked + .fb-container .sidebar {
+  left: 0px;
+}
+
+#slide:checked + .fb-container .toggle {
+  left: 300px; /*== fb-form width*/
+}
+
+#fb-user-inputs-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 90%;
+}
+
+#fb-user-inputs-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: max-content;
+  margin: 2vh 0.5vw;
+}
+
+#select-role {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 2vh;
+}
+
+#role {
+  border: 1px solid white;
+  border-bottom-left-radius: 3%;
+  border-bottom-right-radius: 3%;
+}
+
+#text-input {
+  margin-top: 1vh;
+  width: 100%;
+  border-radius: 3%;
+  height: 20vh;
+  padding: 0.3vw;
+  font-size: 14px;
+}
+
+#fb-survey-btn {
+  border-radius: 1vh;
+  background: #ff664f;
+  height: 5vh;
+  padding: 0 1vw;
+  color: white;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  margin-bottom: 2vh;
+}
+
+#fb-submit-btn {
+  border-radius: 1vh;
+  background: #7072ec;
+  height: 4vh;
+  padding: 0 1vw;
+  color: white;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  margin-bottom: 2vh;
+}
+
+#IntroVideoV2 {
+  display: flex;
+  justify-content: center; /* Ensures the video is centered horizontally in the container */
+}
+
+.hide {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 1px;
+  height: 1px;
+}
+#fileNameDisplay {
+  border: none; /* Remove the border */
+  background: none; /* Remove the background */
+  outline: none; /* Remove the focus outline */
+  cursor: default; /* Use the default cursor instead of the text selection cursor */
+  width: 120px; /* Adjust width as needed, auto will make it fit content */
+  color: inherit; /* Inherit text color from parent, can be set to any desired color */
+  font-family: inherit; /* Inherit font family from parent */
+  font-size: inherit; /* Inherit font size from parent */
+  pointer-events: none; /* Prevent any mouse interactions */
+}
+
+/* upload container */
+#directory-container {
+  flex-direction: column;
+  justify-content: center;
+  height: fit-content;
+}
+
+#upload-directory_container {
+  flex-direction: column;
+  justify-content: center;
+  height: fit-content;
+}
+#open-directory_container {
+  flex-direction: column;
+  justify-content: center;
+  height: fit-content;
+}
+
+#upload-container {
+  flex-direction: column;
+  justify-content: center;
+  height: fit-content;
+}
+
+#reopenFileDirectoryBtn {
+  display: none;
+  border-radius: 10px;
+  width: 120px;
+  height: 45px;
+}
+
+/* upload container */
+#open-directory-container {
+  display: flex;
+  height: 200px;
+}
+
+#other-forms {
+  display: none;
+}
+
+.item-swtich {
+  float: right;
+  height: fit-content;
+}
+
+#printPreview {
+  display: flex;
+  flex-direction: row;
+}
+
+#form_controls {
+  display: flex;
+  flex-direction: column; /* Stack image and label vertically */
+  justify-content: center; /* Vertically center content */
+  align-items: center; /* Horizontally center content */
+}
+
+.carousel-view {
+  position: relative;
+  margin: auto;
+  overflow: hidden;
+  overflow-x: auto; /* Allow horizontal scrolling */
+}
+.carousel-horses {
+  display: flex;
+  flex-direction: row;
+}
+
+.carousel-base {
+  justify-content: center; /* Vertically center content */
+  align-items: center; /* Horizontally center content */
+}
+
+.slide {
+  width: 400px;
+  height: 400px;
+  margin: 50px;
+  flex: 0 0 auto;
+}
+
+/* Style for Text Indicators */
+.indicators {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.indicator {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 5px;
+  padding: 5px;
+  font-size: 16px;
+  color: #333;
+  background-color: #eee;
+  border-radius: 5px;
+  transition: background-color 0.6s ease;
+}
+
+.indicator:hover,
+.indicator.active {
+  background-color: #bbb;
+}
+
+.canvases {
+  display: flex;
+  flex-direction: row;
+  width: 700px;
+  height: fit-content;
+  margin: 10px;
+}
+
+#dummyDisplay {
+  width: 70px;
+  height: 100px;
+  border-style: ridge;
+  margin: 20px;
+  left: 50%;
+}
+
+.stl_cont {
+  background-color: #ffffff; /*TODO automate color change for screenshot*/
+}
+
+/* Base size */
+.stl_cont,
+.carousel-view {
+  width: 700px; /* Default size */
+  height: 700px; /* Adjust as needed */
+}
+
+/* For tablets */
+@media (max-width: 768px) {
+  .stl_cont,
+  .carousel-view {
+    width: 450px;
+    height: 450px; /* Adjust based on your preference */
+  }
+}
+
+/* For mobile phones */
+@media (max-width: 480px) {
+  .stl_cont,
+  .carousel-view {
+    width: 250px;
+    height: 250px; /* Adjust based on your preference */
+  }
+}
+
+.stl_display,
+.slide {
+  width: fit-content;
+  height: fit-content;
+}
+
+#download-container {
+  /*display: none;*/
+  margin-top: 40px;
+  margin-bottom: 40px;
+  height: 500px;
+}
+.file-input-wrapper {
+  padding: 30px;
+}
+
+/*TODO fix the upload styles so that the popup style and the home screen room*/
+
+.upload-button {
+  color: #ffffff;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  border-radius: 30px;
+  background: #ff664f;
+  width: 400px;
+  height: 100px;
+}
+.close-button {
+  padding: 10px;
+}
+
+/*TODO fix the botton styles*/
+.bottom-buttons {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+}
+
+.back-button {
+  color: #fff;
+  font-family: Futura;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  background: #7072ec;
+  width: 90px;
+  height: 45px;
+}
+
+.next-button,
+.download-button {
+  color: #fff;
+  font-family: Futura;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  background: #ff664f;
+  width: 90px;
+  height: 45px;
+}
+
+/*TODO fix the upload styles so that the popup style and the home screen room*/
+
+.big-button {
+  padding: 10px;
+  width: auto;
+  height: auto;
+}
+
+/*curve picture*/
+#background-template {
+  position: absolute;
+  background-color: none;
+  height: 100px;
+  padding: 10px;
+  width: 100px;
+}
+
+.workflow-instructions {
+  color: #fff;
+  text-decoration: none;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+#workflow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  /* justify-content: space-between; */
+  align-items: center;
+  flex-wrap: wrap;
+  /* width: 100%; */
+  /* background: #7072EC; */
+}
+
+.work-item {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 300px;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.work-item-title {
+  margin-bottom: 10px;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+/* The Popup (background) */
+.popup {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  top: 0; /* half of width */
+  left: 0; /* half of height */
+  z-index: 1; /* Sit on top */
+  /*padding-top: 100px; /* Location of the box */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Popup Content */
+.popup-content {
+  background-color: #fefefe;
+  margin: 2vh auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* Form Selection Popup*/
+#fs-popup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#closeFormSelectionPopupBtn {
+  align-self: flex-start;
+}
+#fs-title {
+  align-self: flex-start;
+  margin-left: 5vw;
+}
+
+#fs-content-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 90%;
+  height: 55vh;
+  margin-top: 2vw;
+  margin-bottom: 5vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 1vw 0;
+}
+
+.fs-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 22%; /*4: 18%, 3: 22%*/
+  /*adjusts the width of the items and in turn how many will be displayed*/
+  height: 50vh;
+  background: #7072ec;
+  border-radius: 5%;
+  margin: 2vh;
+}
+
+.fs-item:hover {
+  -webkit-transform: scale(1.02); /* or some other value */
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+.selected {
+  border: 0.5vw solid black;
+}
+
+.fs-pic {
+  width: 80%;
+  height: 30vh;
+  background-color: #fff;
+  object-fit: cover;
+  border-radius: 5%;
+  margin-top: 10%;
+  margin-bottom: 3vh;
+}
+
+.fs-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  width: 80%;
+}
+
+.fs-text-item {
+  color: white;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.work-item-pic {
+  width: 70%;
+  height: auto;
+  background-color: #fff;
+  /* height: 20vw; */
+  object-fit: cover;
+  border-radius: 30px;
+}
+
+.work-item-text {
+  width: 65%;
+  /* height: 12.5vw; */
+  height: 60px;
+  margin-top: 10px;
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.gallery {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.title {
+  color: #404040;
+  text-decoration: none;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  /* font-weight: 700; this is what I pushed*/
+  line-height: normal;
+}
+
+.image-gallery {
+  margin-top: 5%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 50px;
+  list-style-type: none;
+  /* align-items:stretch; */
+}
+
+.image-gallery > li {
+  flex-basis: 350px;
+  /* width: 350px; */
+}
+
+.image-gallery li img {
+  object-fit: cover;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border-radius: 0px;
+}
+
+.about {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.about-text {
+  margin-top: 2%;
+  color: #404040;
+  text-decoration: none;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.read-more-button {
+  margin-top: 2%;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  border-radius: 30px;
+  background: #ffe07d;
+  width: 120px;
+  height: 40px;
+}
+
+#footer {
+  background-color: #7072ec;
+  margin-top: 30px;
+}
+
+.footer-nav-container {
+  display: block;
+  align-items: center;
+}
+
+.footer-nav {
+  /* display: block; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.footer-nav li {
+  list-style: none;
+}
+
+.footer-nav a {
+  display: inline-block;
+  color: #fff;
+  margin: 10px;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.footer-nav h1 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 400;
+}

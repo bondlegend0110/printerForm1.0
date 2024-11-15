@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--upload-->
+    <script
+      src="https://kit.fontawesome.com/67e5d0119e.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Include from the CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
+
+    <!--jsPDF-->
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+
+    <title>Home - Printer Form</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="editStyles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="shared-styles.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/rbd8ccs.css" />
+  </head>
+
+  <body onload>
+    <!--Don't Show Again popup-->
+    <div id="DSApopup" class="popup">
+      <!-- Popup content -->
+      <div class="popup-content">
+        <span class="close">&times;</span>
+        <p>Welcome to our website! Learn how to use our site with our guide.</p>
+        <input type="checkbox" id="doNotShow" />
+        <label for="doNotShow">Don't show this message again</label>
+        <div class="video-container">
+          <video id="IntroVideoV2" controls>
+            <source
+              src="./pictures/start_page/IntroVideoV2.mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <!--Popup overlay-->
+    <div id="overlay" class="overlay"></div>
+
+    <div id="header">
+      <div class="container">
+        <!--  navigation bar -->
+        <nav class="nav-bar">
+          <!--  logo/name -->
+          <a href="./index.html"
+            ><img
+              class="logo"
+              src="./pictures/start_page/LOGOTYPE_fall2023.png"
+              alt="Printerform logo"
+          /></a>
+          <!--  menu items -->
+          <ul id="menu">
+            <li><a href="./how-to.html">How To</a></li>
+            <li class="menu-item dropdown">
+              <a href="./resource.html" class="dropbtn">Resources</a>
+              <div class="dropdown-content">
+                <a href="#">TinkerCAD</a>
+                <a href="#">Lesson Plans</a>
+              </div>
+            </li>
+            <li class="gallery gallery-nav">
+              <a href="./gallery.html">Gallery</a>
+            </li>
+            <li><a href="./about.html">About</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- upload button/div-->
+      <div id="upload-container">
+        <div
+          class="container"
+          style="margin-top: 40px; margin-bottom: 0; background: #f1f1fd"
+        >
+          <div
+            class="background-container"
+            style="background-color: transparent"
+          >
+            <button class="upload-button" id="uploadBtn" type="button">
+              START
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="other-forms" class="gallery">
+      <div class="container">
+        <h1 class="title">OTHER FORMS</h1>
+        <ul class="image-gallery">
+          <li class="image-gallery-item">
+            <img
+              src="./pictures/samples/curved-Bunny-sample.png"
+              alt=" Bunny stl displayed in the curved volume form."
+            />
+          </li>
+          <li class="image-gallery-item">
+            <img
+              src="./pictures/samples/fourSideCube-Bunny-sample.png"
+              alt="Bunny stl displayed in the four sided cube form."
+            />
+          </li>
+          <li class="image-gallery-item">
+            <img
+              src="./pictures/samples/curved-Bunny-sample.png"
+              alt=" Bunny stl displayed in the curved volume form."
+            />
+          </li>
+          <li class="image-gallery-item">
+            <img
+              src="./pictures/samples/curved-Bunny-sample.png"
+              alt=" Bunny stl displayed in the curved volume form."
+            />
+          </li>
+          <li class="image-gallery-item">
+            <img
+              src="./pictures/samples/curved-Bunny-sample.png"
+              alt=" Bunny stl displayed in the curved volume form."
+            />
+          </li>
+          <li class="image-gallery-item">
+            <img
+              src="./pictures/samples/curved-Bunny-sample.png"
+              alt=" Bunny stl displayed in the curved volume form."
+            />
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!--Feedback Tab-->
+    <input type="checkbox" id="slide" name="" value="" />
+    <div class="fb-container">
+      <label for="slide" class="toggle"><div id="fb-tab">Feedback</div></label>
+      <div class="sidebar" id="fb-form">
+        <h3>Printerform Experience:</h3>
+        <iframe name="hiddenFrame" class="hide"></iframe>
+        <form
+          id="fb-user-inputs-form"
+          method="POST"
+          target="hiddenFrame"
+          action="https://script.google.com/macros/s/AKfycbxzzbnYd8Oy2uJ9FNa_CgAR_ukJbMPbcnWoSo8ohP2AZK55SQ_fEptRvLw0aJOvCHL6/exec"
+        >
+          <div id="fb-user-inputs-items">
+            <div id="select-role">
+              <label for="role" class="required">Your are a...</label>
+              <select name="role" id="role" required>
+                <option value="" selected="selected" disabled="true">
+                  --Please Select --
+                </option>
+                <option value="student">Student</option>
+                <option value="educator">Educator</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label for="text-input">Share your thoughts:</label>
+              <textarea id="text-input" name="text-input"></textarea>
+            </div>
+          </div>
+          <input
+            type="button"
+            id="fb-submit-btn"
+            value="Submit"
+            onclick="submitForm()"
+          />
+        </form>
+        <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLScCbfCI4AGwUjoJ6NzdIvLrkpYKWgth8RgtbY9oTs-fHyMbQw/viewform"
+          target="_blank"
+          ><button id="fb-survey-btn">Take Our Full Survey</button></a
+        >
+      </div>
+    </div>
+
+    <div id="instructions" class="container" style="background: #7072ec">
+      <h2 class="workflow-instructions">Instructions</h2>
+      <div id="workflow">
+        <div class="work-item">
+          <h2 class="work-item-title">Upload</h2>
+          <img class="work-item-pic" src="./pictures/start_page/upload.png" />
+          <p class="work-item-text">Upload any .STL file.</p>
+        </div>
+        <div class="work-item">
+          <h2 class="work-item-title">Modify</h2>
+          <img class="work-item-pic" src="./pictures/start_page/modify.png" />
+          <p class="work-item-text">
+            Modify your selections to best fit the shape of your file.
+          </p>
+        </div>
+        <div class="work-item">
+          <h2 class="work-item-title">Download</h2>
+          <img class="work-item-pic" src="./pictures/start_page/download.png" />
+          <p class="work-item-text">Download your .PDF to print.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="public-gallery" class="gallery">
+      <div class="container">
+        <h1 class="title">Gallery</h1>
+        <ul class="image-gallery">
+          <li class="image-gallery-item">
+            <img
+              src="./pictures/samples/curved-Bunny-sample.png"
+              alt=" Bunny stl displayed in the curved volume form."
+            />
+          </li>
+          <li class="image-gallery-item">
+            <img
+              src="./pictures/samples/fourSideCube-Bunny-sample.png"
+              alt="Bunny stl displayed in the four sided cube form."
+            />
+          </li>
+          <li class="image-gallery-item">
+            <img
+              src="./pictures/samples/curved-Bunny-sample.png"
+              alt=" Bunny stl displayed in the curved volume form."
+            />
+          </li>
+          <li class="image-gallery-item">
+            <img
+              src="./pictures/samples/curved-Bunny-sample.png"
+              alt=" Bunny stl displayed in the curved volume form."
+            />
+          </li>
+          <li class="image-gallery-item">
+            <img
+              src="./pictures/samples/curved-Bunny-sample.png"
+              alt=" Bunny stl displayed in the curved volume form."
+            />
+          </li>
+          <li class="image-gallery-item">
+            <img
+              src="./pictures/samples/curved-Bunny-sample.png"
+              alt=" Bunny stl displayed in the curved volume form."
+            />
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="about">
+      <div class="container">
+        <h1 class="title">About</h1>
+        <p class="about-text">
+          Printerform allows anyone to utilize common materials like an inkjet
+          or laser printer and 8.5” x 11” paper to produce high speed, low
+          resolution 3D objects.
+        </p>
+        <a href="./about.html"
+          ><button class="read-more-button">Read More</button></a
+        >
+      </div>
+    </div>
+
+    <!--TODO: Make Footer?-->
+    <div id="footer">
+      <div class="container">
+        <div class="footer-nav-container">
+          <ul class="footer-nav" style="text-align: center">
+            <li><a href="./how-to.html">How To</a></li>
+            <h1>|</h1>
+            <li><a href="./resource.html">Resources</a></li>
+            <h1>|</h1>
+            <li class="gallery gallery-nav">
+              <a href="./gallery.html">Gallery</a>
+            </li>
+            <h1 class="gallery gallery-nav">|</h1>
+            <li><a href="./about.html">About</a></li>
+          </ul>
+
+          <ul class="footer-nav" style="text-align: center">
+            <li>
+              <a href="mailto:printerform1@gmail.com">printerform1@gmail.com</a>
+            </li>
+            <h1>|</h1>
+            <li>
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLScCbfCI4AGwUjoJ6NzdIvLrkpYKWgth8RgtbY9oTs-fHyMbQw/viewform"
+                target="_blank"
+                >Feedback Form</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
