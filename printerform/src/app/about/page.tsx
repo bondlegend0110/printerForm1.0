@@ -38,7 +38,7 @@ const About = () => {
               Engineering and Department of Computer Science at Brown
               University. His teaching and research interests examine creative
               process as applied to interdisciplinary design practices, and the
-              development of emerging and speculative technologies. Visit Ian's
+              development of emerging and speculative technologies. Visit Ian&apos;s
               website{" "}
               <a
                 href="www.gonsherdesign.com/"
@@ -213,7 +213,7 @@ const About = () => {
             <p style={{ color: "#40001C" }} className="text-left text-lg mt-4">
               Alara Kalfazade is a senior at Brown University studying Computer
               Science-Economics. She is from Istanbul, Turkey. She is passionate
-              about UI/UX and graphic design. View Alara's website{" "}
+              about UI/UX and graphic design. View Alara&apos;s website{" "}
               <a
                 href="https://akalfaza.github.io/"
                 target="_blank"
@@ -264,7 +264,7 @@ const About = () => {
               Brown in a dual degree program. Her work primarily features
               physical products but she is excited by opportunities that allow
               for collaboration between the digital and physical realms of
-              design. View Katie's website{" "}
+              design. View Katie&apos;s website{" "}
               <a
                 href="http://katielynchdesign.com"
                 target="_blank"

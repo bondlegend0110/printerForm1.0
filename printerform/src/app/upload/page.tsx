@@ -25,12 +25,16 @@ const Upload = () => {
 
     const toolbarRef = useRef<PropertiesControlPanelRef>(null);
 
-
     const { showModal } = useModals();
 
     const stlLoadCurve = (file: File) => {
-        setModelUrl(URL.createObjectURL(file));
-        setPreviewModelUrl(URL.createObjectURL(file));
+        const fileUrl = URL.createObjectURL(file);
+        setModelUrl(fileUrl);
+        setPreviewModelUrl(fileUrl);
+
+        // Store the model URL and filename in localStorage
+        localStorage.setItem("stlFileUrl", fileUrl);
+        localStorage.setItem("stlFileName", file.name);
     };
 
     const onFileSelect = (file: File) => {
@@ -60,6 +64,10 @@ const Upload = () => {
         };
     }, [modelUrl, modelColor]);
 
+    const setViewDirection = (direction: string) => {
+        toolbarRef.current?.setViewDirection(direction);
+    };
+
     useEffect(() => {
         const globalKeyDown = (e: KeyboardEvent) => {
             if (e.key.toUpperCase() === "R") {
@@ -70,6 +78,26 @@ const Upload = () => {
         document.addEventListener("keydown", globalKeyDown);
 
         return () => document.removeEventListener("keydown", globalKeyDown);
+    }, []);
+
+    // Check if returning to the page and an STL file is already stored
+    const [isReturningWithStoredFile, setIsReturningWithStoredFile] = useState(false);
+    useEffect(() => {
+        const returningToUpload = localStorage.getItem("returningToUpload");
+        const savedModelUrl = localStorage.getItem("stlFileUrl");
+        const savedFileName = localStorage.getItem("stlFileName");
+
+        if (returningToUpload === "true" && savedModelUrl && savedFileName) {
+            setModelUrl(savedModelUrl);
+            setPreviewModelUrl(savedModelUrl);
+            setProjectFilename(`printerForm-${savedFileName}.pdf`);
+            document.title = `printerForm-${savedFileName}.pdf`;
+
+            // Clear the flag after use
+            localStorage.removeItem("returningToUpload");
+
+            setIsReturningWithStoredFile(true); // Set flag to indicate we have a stored file
+        }
     }, []);
 
     return (
@@ -91,7 +119,8 @@ const Upload = () => {
                 />
 
                 <div className="bg-[#1E1E1E] flex w-full h-full flex-col justify-center">
-                    {!modelUrl && (
+                    {/* Render based on the isReturningWithStoredFile flag */}
+                    {(!isReturningWithStoredFile && !modelUrl) && (
                         <div className="m-12 h-full">
                             <DragDropFileUpload
                                 className="flex w-full h-full items-center justify-center cursor-pointer rounded-lg border-dashed border-2 transition duration-200"
@@ -99,12 +128,12 @@ const Upload = () => {
                                 dragInactiveClassName="bg-[#2c2c2c] border-gray-500"
                                 onFileSelect={onFileSelect}
                             >
-                                <p className="text-white">Drag/select STL model file here</p>
+                                <p style={{ color: '#D3D3D3' }}>Drag/select STL model file here</p>
                             </DragDropFileUpload>
                         </div>
                     )}
 
-                    {modelUrl && (
+                    {(isReturningWithStoredFile || modelUrl) && (
                         <div className="relative flex grow flex-row w-full bg-[#2c2c2c]">
                             <div className="absolute bottom-4 left-4 z-30">
                                 <div className="relative overflow-hidden border-gray-500 hover:border-blue-500 transition duration-100 rounded-xl border-2 w-80 h-48 shadow-xl">
@@ -161,7 +190,7 @@ const Upload = () => {
                                     showRotationGizmo={rotationGizmoShown}
                                     objectRespectsFloor={false}
                                     orbitControls
-                                    url={modelUrl}
+                                    url={modelUrl || ""}
                                 />
                             </DragDropFileUpload>
 
@@ -172,6 +201,8 @@ const Upload = () => {
                                     set: setModelColor
                                 }}
                                 modelRefs={[previewModelRef, modelRef]}
+                                setViewDirection={setViewDirection}
+                                cameraRef={cameraRef}
                             />
                         </div>
                     )}

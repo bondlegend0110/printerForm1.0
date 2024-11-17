@@ -46,7 +46,7 @@ const Toolbar = ({
 
           <div className="flex flex-row h-full">
             <button
-              className="flex h-full items-center justify-center p-5 bg-blue-900 cursor-pointer"
+              className="flex h-full items-center justify-center p-5 bg-blue-900 text-white cursor-pointer"
               onClick={() => reuploadInputRef.current?.click()}
             >
               Reupload
@@ -66,7 +66,7 @@ const Toolbar = ({
                 pathname: "/export",
                 query: exportQuery,
               }}
-              className="flex h-full items-center justify-center p-5 bg-blue-700 cursor-pointer"
+              className="flex h-full items-center justify-center p-5 bg-blue-700 text-white cursor-pointer"
             >
               Export
             </Link>

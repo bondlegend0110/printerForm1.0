@@ -1,7 +1,8 @@
 import { EventManager, PrimitiveProps, useFrame, useThree } from '@react-three/fiber';
 import { useEffect } from 'react';
 import * as React from 'react';
-import { OrbitControls as StdOrbitControls } from 'three-stdlib/controls/OrbitControls';
+//@ts-ignore
+import { OrbitControls as StdOrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 export type OrbitControlsProps = Omit<PrimitiveProps, 'object'> | { onOrbitChange?: () => void; };
 
