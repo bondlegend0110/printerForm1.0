@@ -13,9 +13,9 @@ import { useRouter } from 'next/navigation';
 // import curvedBackgroundImage from './CURVED_FORM_TEMPLATE.jpg';
 // import cubeBackgroundImage from './FOUR_SIDED_BOX.jpg';
 // import sixBackgroundImage from './SIX_SIDE_TEMPLATE1.jpg';
-const curvedBackgroundImage = '/CURVED_FORM_TEMPLATE.jpg';
-const cubeBackgroundImage = '/FOUR_SIDED_BOX.jpg';
-const sixBackgroundImage = '/SIX_SIDE_TEMPLATE1.jpg';
+const curvedBackgroundImage = 'CURVED_FORM_TEMPLATE.jpg';
+const cubeBackgroundImage = 'FOUR_SIDED_BOX.jpg';
+const sixBackgroundImage = 'SIX_SIDE_TEMPLATE1.jpg';
 
 type ModelInfo = {
     modelUrl: string,
@@ -782,19 +782,19 @@ const ALL_PROJECTIONS: ProjectionSelection[] = [
     // },
     {
         key: ProjectionKind.FOUR_SIDED_CUBE,
-        previewThumbnailImgSrc: "/four_side 2.jpg",
+        previewThumbnailImgSrc: "four_side_2.jpg",
         projectionDescription: "Suits a variety of geometries well",
         projectionTitle: "Four Sided Cube Projection"
     },
     {
         key: ProjectionKind.SIX_SIDED_CUBE,
-        previewThumbnailImgSrc: "/six_side 2.jpg",
+        previewThumbnailImgSrc: "six_side_2.jpg",
         projectionDescription: "Suits a variety of geometries well",
         projectionTitle: "Six Sided Cube Projection"
     },
     {
         key: ProjectionKind.CURVED,
-        previewThumbnailImgSrc: "/curved 2.jpg",
+        previewThumbnailImgSrc: "curved_2.jpg",
         projectionDescription: "Front and back of the model printed in a curved form",
         projectionTitle: "Curved Volume Form"
     }
