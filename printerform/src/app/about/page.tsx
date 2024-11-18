@@ -1,4 +1,5 @@
 import React from "react";
+import ian from "../assets/IanGonsher.jpg"; 
 import xinyu from "../assets/Xinyu.jpeg";
 import havi from "../assets/havi.jpeg";
 import lynda from "../assets/lynda.jpeg";
@@ -23,7 +24,7 @@ const About = () => {
         <div className="flex justify-start space-x-10 mb-12">
           <div>
             <img
-              src="https://printerform1.github.io/printerForm1.0/_next/static/media/IanGonsher.jpg"
+              src={ian.src}
               alt="Ian Gonsher"
               className="object-cover max-w-[300px] min-w-[300px] min-h-[350px] max-h-[350px] w-full h-auto"
             />
