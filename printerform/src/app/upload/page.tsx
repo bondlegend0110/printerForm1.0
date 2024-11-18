@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-dynamic";
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ModelRef, StlViewer } from "../stl-viewer-src";
@@ -69,34 +70,38 @@ const Upload = () => {
     };
 
     useEffect(() => {
-        const globalKeyDown = (e: KeyboardEvent) => {
-            if (e.key.toUpperCase() === "R") {
-                setRotationGizmoShown(old => !old);
-            }
-        };
+        if (typeof window !== "undefined") {
+            const globalKeyDown = (e: KeyboardEvent) => {
+                if (e.key.toUpperCase() === "R") {
+                    setRotationGizmoShown(old => !old);
+                }
+            };
 
-        document.addEventListener("keydown", globalKeyDown);
+            document.addEventListener("keydown", globalKeyDown);
 
-        return () => document.removeEventListener("keydown", globalKeyDown);
+            return () => document.removeEventListener("keydown", globalKeyDown);
+        }
     }, []);
 
     // Check if returning to the page and an STL file is already stored
     const [isReturningWithStoredFile, setIsReturningWithStoredFile] = useState(false);
     useEffect(() => {
-        const returningToUpload = localStorage.getItem("returningToUpload");
-        const savedModelUrl = localStorage.getItem("stlFileUrl");
-        const savedFileName = localStorage.getItem("stlFileName");
+        if (typeof window !== "undefined") {
+            const returningToUpload = localStorage.getItem("returningToUpload");
+            const savedModelUrl = localStorage.getItem("stlFileUrl");
+            const savedFileName = localStorage.getItem("stlFileName");
 
-        if (returningToUpload === "true" && savedModelUrl && savedFileName) {
-            setModelUrl(savedModelUrl);
-            setPreviewModelUrl(savedModelUrl);
-            setProjectFilename(`printerForm-${savedFileName}.pdf`);
-            document.title = `printerForm-${savedFileName}.pdf`;
+            if (returningToUpload === "true" && savedModelUrl && savedFileName) {
+                setModelUrl(savedModelUrl);
+                setPreviewModelUrl(savedModelUrl);
+                setProjectFilename(`printerForm-${savedFileName}.pdf`);
+                document.title = `printerForm-${savedFileName}.pdf`;
 
-            // Clear the flag after use
-            localStorage.removeItem("returningToUpload");
+                // Clear the flag after use
+                localStorage.removeItem("returningToUpload");
 
-            setIsReturningWithStoredFile(true); // Set flag to indicate we have a stored file
+                setIsReturningWithStoredFile(true); // Set flag to indicate we have a stored file
+            }
         }
     }, []);
 
