@@ -39,7 +39,7 @@ export const Navbar = () => {
         <NavbarItem text="Resources" href="resources" />
         <NavbarItem text="About" href="about" />
         <a
-          href="/upload"
+          href="upload"
           className="rounded-xl px-[8px] py-[12px] text-white drop-shadow transform transition-all duration-300 ease-in-out hover:bg-red-500 hover:scale-105"
           style={{ backgroundColor: "#D80029" }}
         >

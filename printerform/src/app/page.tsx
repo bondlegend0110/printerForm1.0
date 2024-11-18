@@ -66,7 +66,7 @@ const Home = () => {
           className="font-fatfrank text-7xl bg-red-600 rounded-xl px-[24px] py-[32px] text-white drop-shadow transform transition-all duration-300 ease-in-out hover:bg-red-500 hover:scale-105"
           style={{ backgroundColor: "#D80029" }}
         >
-          <a href="/how-to">GET STARTED</a>
+          <a href="how-to">GET STARTED</a>
         </button>
       </section>
     </main>
