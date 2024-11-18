@@ -6,6 +6,10 @@ import lynda from "../assets/lynda.jpeg";
 import jackie from "../assets/jackie.jpeg";
 import sophia from "../assets/sophia.jpeg";
 import jose from "../assets/JoseSandoval.jpg";
+import alara from "../assets/AlaraKalfazade.jpg";
+import catherina from "../assets/CatherinaNiu.JPEG";
+import katie from "../assets/KatieLynch.jpg";
+import vivian from "../assets/VivianLi.jpg";
 
 const About = () => {
   return (
@@ -202,7 +206,7 @@ const About = () => {
         <div className="flex justify-start space-x-10 mb-12">
           <div className="max-w-[300px]">
             <img
-              src="https://printerform.com/pictures/profiles/AlaraKalfazade.jpg"
+              src={alara.src}
               alt="Alara Kalfazade"
               className="object-cover max-w-[300px] min-w-[300px] min-h-[350px] max-h-[350px] w-full h-auto"
             />
@@ -230,7 +234,7 @@ const About = () => {
           </div>
           <div className="max-w-[300px]">
             <img
-              src="https://printerform.com/pictures/profiles/CatherinaNiu.JPEG"
+              src={catherina.src}
               alt="Catherina Niu"
               className="object-cover max-w-[300px] min-w-[300px] min-h-[350px] max-h-[350px] w-full h-auto"
             />
@@ -250,7 +254,7 @@ const About = () => {
           </div>
           <div>
             <img
-              src="https://printerform.com/pictures/profiles/KatieLynch.jpg"
+              src={katie.src}
               alt="Katie Lynch"
               className="object-cover max-w-[300px] min-w-[300px] min-h-[350px] max-h-[350px] w-full h-auto"
             />
@@ -282,7 +286,7 @@ const About = () => {
         </div>
         <div className="max-w-[300px]">
           <img
-            src="https://printerform.com/pictures/profiles/VivianLi.jpg"
+            src={vivian.src}
             alt="Vivian Li"
             className="object-cover max-w-[300px] min-w-[300px] min-h-[350px] max-h-[350px] w-full h-auto"
           />
