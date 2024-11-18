@@ -165,7 +165,7 @@ const About = () => {
         <div className="flex justify-start space-x-10 mb-12">
           <div className="max-w-[300px]">
             <img
-              src={jose}
+              src={jose.src}
               alt="Jose Sandoval"
               className="object-cover max-w-[300px] min-w-[300px] min-h-[350px] max-h-[350px] w-full h-auto"
             />
