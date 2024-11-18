@@ -10,17 +10,17 @@
     "lint": "next lint",
     "export": "next build",
     "predeploy": "npm run export",
-    "deploy": "touch ./out/.nojekyll && gh-pages -d out -t true"
+    "deploy": "npm run build && npm run export && touch ./out/.nojekyll && gh-pages -d out -t true"
   },
   "dependencies": {
     "@react-three/drei": "^9.107.0",
     "@react-three/fiber": "^8.17.9",
     "@types/react-color": "^3.0.12",
     "jspdf": "^2.5.2",
-    "next": "^15.0.3",
-    "react": "^18.3.1",
+    "next": "15.0.3",
+    "react": "^18",
     "react-color": "^2.19.3",
-    "react-dom": "^18.3.1",
+    "react-dom": "^18",
     "react-router-dom": "^6.27.0",
     "three": "^0.164.1",
     "three-stdlib": "^2.32.2"
