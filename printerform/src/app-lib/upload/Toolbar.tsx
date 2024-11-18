@@ -29,7 +29,7 @@ const Toolbar = ({
   return (
     <div className="relative flex flex-row items-center justify-between bg-[#2c2c2c] h-12">
       <Link className="flex h-full items-center justify-center p-5" href="/">
-        <img src="/logo.png" className="w-[100px] shadow-none" alt="" />
+        <img src="logo.png" className="w-[100px] shadow-none" alt="" />
       </Link>
 
       {modelLoaded && (

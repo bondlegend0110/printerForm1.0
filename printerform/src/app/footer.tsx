@@ -14,7 +14,7 @@ const Footer = () => {
 
   return (
     <div className="flex items-center justify-end px-[24px] bg-[#ffffff] w-full min-h-40 text-black ">
-      {/* <img src="/logo.png" className="w-[100px] shadow-none" alt="" /> */}
+      {/* <img src="logo.png" className="w-[100px] shadow-none" alt="" /> */}
       <div>
         <a href="mailto:printerform1@gmail.com" target="_blank">
           printerform1@gmail.com
