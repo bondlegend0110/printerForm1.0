@@ -10,7 +10,7 @@
     "lint": "next lint",
     "export": "next build",
     "predeploy": "npm run export",
-    "deploy": "gh-pages -d out"
+    "deploy": "npm run build && npm run export && touch ./out/.nojekyll && gh-pages -d out -t true"
   },
   "dependencies": {
     "@react-three/drei": "^9.107.0",
