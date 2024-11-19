@@ -446,9 +446,9 @@ class PrintableFactory {
             };
 
             // top model
-            renderSide(0, true, false, 80, 500, 0.9);
+            renderSide(0, true, false, 80, 360, 0.9);
             // bottom model
-            renderSide(Math.PI, false, true, 80, 500, 0.9);
+            renderSide(Math.PI, false, true, 80, 360, 0.9);
 
 
             // generating PDF
