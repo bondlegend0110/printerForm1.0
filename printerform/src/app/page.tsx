@@ -16,7 +16,7 @@ const Home = () => {
             controls
             loop
             className="w-[80%] self-center rounded"
-            src="/introvideo3.mp4"
+            src="https://printerform1.github.io/printerForm1.0/_next/static/media/introvideo3.mp4"
             poster={poster.src}
             style={{ objectFit: "cover" }}
           ></video>
