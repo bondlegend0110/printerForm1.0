@@ -6,7 +6,7 @@ import foursided from "./assets/IMG_7563.jpg";
 import curvedBunny from "./assets/IMG_7706.jpg";
 import all from "./assets/IMG_7724.jpg";
 import poster from "./assets/video_display.jpg";
-import introVideo from "./assets/introvideo3.mp4"
+// import introVideo from "./assets/introvideo3.mp4";
 
 const Home = () => {
   return (
@@ -17,7 +17,7 @@ const Home = () => {
             controls
             loop
             className="w-[80%] self-center rounded"
-            src={introVideo.src}
+            src="/introvideo3.mp4"
             poster={poster.src}
             style={{ objectFit: "cover" }}
           ></video>

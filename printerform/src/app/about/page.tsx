@@ -7,7 +7,7 @@ import jackie from "../assets/jackie.jpeg";
 import sophia from "../assets/sophia.jpeg";
 import jose from "../assets/JoseSandoval.jpg";
 import alara from "../assets/AlaraKalfazade.jpg";
-import catherina from "../assets/CatherinaNiu.JPEG";
+import catherina from "../assets/CatherinaNiu.png";
 import katie from "../assets/KatieLynch.jpg";
 import vivian from "../assets/VivianLi.jpg";
 
