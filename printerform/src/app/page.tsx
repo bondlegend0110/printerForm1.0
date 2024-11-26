@@ -17,7 +17,7 @@ const Home = () => {
             controls
             loop
             className="w-[80%] self-center rounded"
-            src="introvideo3.mp4"
+            src="printerformFinal.mp4"
             poster={poster.src}
             style={{ objectFit: "cover" }}
           ></video>
@@ -32,13 +32,12 @@ const Home = () => {
         </h2>
         <section className="flex flex-col items-center w-full">
           <p className="text-2xl w-[60%]" style={{ color: "#40001C" }}>
-            We aim to create a more accessible tool that introduces basic 3D
-            modeling and 3D printing into educational and creative spaces. It
-            does not replace traditional plastic 3D printing but it hopefully
-            provides an opportunity to create quick mock-ups, test, and iterate
-            ideas. Using common materials like an inkjet or laser printer,
-            8.5”x11” paper, and PrinterForm anyone can practice their 3D
-            modeling skills and produce high speed, low resolution 3D objects.
+            CAD (Computer Aided Design) and 3D printing have become essential tools 
+            in design and engineering. PrinterForm gives anyone with an internet 
+            connection and an inkjet or laser printer the ability to make low fidelity 
+            3D prints. Simply upload your model, select your form, print, and fold. 
+            PrinterForm also provides resources and lessons for creating and translating 
+            your CAD files into physical objects.
           </p>
         </section>
       </section>
