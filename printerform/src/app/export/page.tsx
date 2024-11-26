@@ -487,12 +487,137 @@ class PrintableFactory {
    }
 
 
-
-
-
-
-
    public produceCurvedPrintable(
+    loadingCallback: (percentComplete: number) => any,
+    onComplete: (pdfDataUrl: string) => any
+  ) {
+    const img = new Image();
+    img.src = curvedBackgroundImage;
+  
+    img.onload = () => {
+      const canvasWidth = img.width;
+      const canvasHeight = img.height;
+  
+      const outputCanvas = document.createElement('canvas');
+      outputCanvas.width = canvasWidth;
+      outputCanvas.height = canvasHeight;
+  
+      const outputContext = outputCanvas.getContext('2d');
+      if (outputContext === null) return;
+  
+      // Draw the background image onto the canvas
+      outputContext.drawImage(img, 0, 0, canvasWidth, canvasHeight);
+  
+      const renderSide = (
+        cameraAngle: number,
+        flipHorizontally: boolean,
+        flipVertically: boolean,
+        offsetY: number,
+        scale: number
+      ) => {
+        this.positionCamera(this.camera, this.modelDimensions, {
+          phi: cameraAngle,
+          theta: 0,
+          radius: this.appropriateCameraDistance(this.modelDimensions),
+        });
+  
+        // Clear the WebGL context to ensure transparency
+        const rendererContext = this.renderer.domElement.getContext('webgl2');
+        if (rendererContext !== null) {
+          rendererContext.clearColor(0, 0, 0, 0);
+          rendererContext.clear(rendererContext.COLOR_BUFFER_BIT);
+        }
+        this.renderer.render(this.scene, this.camera);
+  
+        if (rendererContext) {
+          const pixels = new Uint8Array(canvasWidth * canvasHeight * 4);
+          rendererContext.readPixels(
+            0,
+            0,
+            canvasWidth,
+            canvasHeight,
+            rendererContext.RGBA,
+            rendererContext.UNSIGNED_BYTE,
+            pixels
+          );
+          const imageData = new ImageData(new Uint8ClampedArray(pixels), canvasWidth, canvasHeight);
+  
+          const tempCanvas = document.createElement('canvas');
+          tempCanvas.width = canvasWidth;
+          tempCanvas.height = canvasHeight;
+          const tempContext = tempCanvas.getContext('2d');
+          if (tempContext === null) return;
+  
+          tempContext.putImageData(imageData, 0, 0);
+          outputContext.save();
+  
+          // Apply transformations for flipping horizontally/vertically
+          if (flipHorizontally) {
+            outputContext.translate(canvasWidth, 0);
+            outputContext.scale(-1, 1);
+          }
+          if (flipVertically) {
+            outputContext.translate(0, canvasHeight);
+            outputContext.scale(1, -1);
+          }
+  
+          const modelWidth = canvasWidth * scale;
+          const modelHeight = (canvasHeight / 2) * scale;
+  
+          // Center horizontally using the canvas center
+          const canvasCenterX = canvasWidth / 2;
+          const xPosition = canvasCenterX - modelWidth / 2;
+  
+          // Draw the rendered side onto the output canvas
+          outputContext.drawImage(
+            tempCanvas,
+            0,
+            0,
+            canvasWidth,
+            canvasHeight / 2, // Use only half the canvas height
+            xPosition,        // Center horizontally
+            offsetY,          // Vertical offset
+            modelWidth,
+            modelHeight
+          );
+          outputContext.restore();
+        } else {
+          console.error("Renderer context is null. Couldn't read pixels.");
+        }
+      };
+  
+      // Render the top model
+      renderSide(0, true, false, 80, 0.9); // OffsetY = 80 for top positioning
+  
+      // Render the bottom model
+      renderSide(Math.PI, false, true, canvasHeight / 2 + 80, 0.9); // OffsetY = canvasHeight / 2 + 80 for bottom positioning
+  
+      // Generate the PDF
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'px',
+        format: [canvasWidth, canvasHeight],
+        putOnlyUsedFonts: true,
+        floatPrecision: 16,
+      });
+  
+      const imgData = outputCanvas.toDataURL('image/png');
+      pdf.addImage(imgData, 'PNG', 0, 0, canvasWidth, canvasHeight);
+  
+      const pdfDataUrl = pdf.output('dataurlstring');
+      onComplete(pdfDataUrl);
+    };
+  
+    img.onerror = (error) => {
+      console.error('Error loading image:', error);
+    };
+  }
+  
+
+
+
+
+   public produceCurvedPrintable2(
     loadingCallback: (percentComplete: number) => any,
     onComplete: (pdfDataUrl: string) => any
   ) {
