@@ -486,7 +486,6 @@ class PrintableFactory {
        };
    }
 
-
    public produceCurvedPrintable(
     loadingCallback: (percentComplete: number) => any,
     onComplete: (pdfDataUrl: string) => any
@@ -512,7 +511,7 @@ class PrintableFactory {
         cameraAngle: number,
         flipHorizontally: boolean,
         flipVertically: boolean,
-        offsetY: number,
+        originalOffsetY: number,
         scale: number
       ) => {
         this.positionCamera(this.camera, this.modelDimensions, {
@@ -531,15 +530,7 @@ class PrintableFactory {
   
         if (rendererContext) {
           const pixels = new Uint8Array(canvasWidth * canvasHeight * 4);
-          rendererContext.readPixels(
-            0,
-            0,
-            canvasWidth,
-            canvasHeight,
-            rendererContext.RGBA,
-            rendererContext.UNSIGNED_BYTE,
-            pixels
-          );
+          rendererContext.readPixels(0, 0, canvasWidth, canvasHeight, rendererContext.RGBA, rendererContext.UNSIGNED_BYTE, pixels);
           const imageData = new ImageData(new Uint8ClampedArray(pixels), canvasWidth, canvasHeight);
   
           const tempCanvas = document.createElement('canvas');
@@ -549,9 +540,9 @@ class PrintableFactory {
           if (tempContext === null) return;
   
           tempContext.putImageData(imageData, 0, 0);
-          outputContext.save();
   
           // Apply transformations for flipping horizontally/vertically
+          outputContext.save();
           if (flipHorizontally) {
             outputContext.translate(canvasWidth, 0);
             outputContext.scale(-1, 1);
@@ -564,19 +555,20 @@ class PrintableFactory {
           const modelWidth = canvasWidth * scale;
           const modelHeight = (canvasHeight / 2) * scale;
   
-          // Center horizontally using the canvas center
-          const canvasCenterX = canvasWidth / 2;
-          const xPosition = canvasCenterX - modelWidth / 2;
+          // Center the models horizontally
+          const xPosition = (canvasWidth - modelWidth) / 2;
   
-          // Draw the rendered side onto the output canvas
+          // Correct the vertical offset based on original Y positions
+          const correctedYPosition = originalOffsetY;
+  
           outputContext.drawImage(
             tempCanvas,
             0,
             0,
             canvasWidth,
             canvasHeight / 2, // Use only half the canvas height
-            xPosition,        // Center horizontally
-            offsetY,          // Vertical offset
+            xPosition,        // Align both horizontally
+            correctedYPosition, // Maintain original Y position
             modelWidth,
             modelHeight
           );
@@ -586,11 +578,11 @@ class PrintableFactory {
         }
       };
   
-      // Render the top model
-      renderSide(0, true, false, 80, 0.9); // OffsetY = 80 for top positioning
+      // Render the top model (Y position unchanged)
+      renderSide(0, true, false, 80, 0.9);
   
-      // Render the bottom model
-      renderSide(Math.PI, false, true, canvasHeight / 2 + 80, 0.9); // OffsetY = canvasHeight / 2 + 80 for bottom positioning
+      // Render the bottom model (Y position unchanged)
+      renderSide(Math.PI, false, true, canvasHeight - 200, 0.9);
   
       // Generate the PDF
       const pdf = new jsPDF({
@@ -613,9 +605,6 @@ class PrintableFactory {
     };
   }
   
-
-
-
 
    public produceCurvedPrintable2(
     loadingCallback: (percentComplete: number) => any,
