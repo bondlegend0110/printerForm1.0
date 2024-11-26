@@ -567,9 +567,9 @@ class PrintableFactory {
 
 
            // top model
-           renderSide(0, true, false, 80, 75, 0.9);
+           renderSide(0, true, false, 80, 80, 0.9);
            // bottom model
-           renderSide(Math.PI, false, true, 80, 75, 0.9);
+           renderSide(Math.PI, false, true, 80, 80, 0.9);
 
         //    // top model
         //    renderSide(0, true, false, canvasHeight / 4, 0, 0.9); // Centered horizontally and vertically
@@ -676,9 +676,9 @@ class PrintableFactory {
 
 
            // top model
-           renderSide(Math.PI/2, true, false, 80, 75, 0.9);
+           renderSide(Math.PI/2, true, false, 80, 80, 0.9);
            // bottom model
-           renderSide(3 * Math.PI / 2, false, true, 80, 75, 0.9);
+           renderSide(3 * Math.PI / 2, false, true, 80, 80, 0.9);
 
 
         //    // top model
@@ -1129,26 +1129,26 @@ const ALL_PROJECTIONS: ProjectionSelection[] = [
    {
        key: ProjectionKind.FOUR_SIDED_CUBE,
        previewThumbnailImgSrc: "four_side_2.jpg",
-       projectionDescription: "Suits a variety of geometries well",
+       projectionDescription: "Displays the model on four perpendicular planes",
        projectionTitle: "Four Sided Cube Projection"
    },
    {
        key: ProjectionKind.SIX_SIDED_CUBE,
        previewThumbnailImgSrc: "six_side_2.jpg",
-       projectionDescription: "Suits a variety of geometries well",
+       projectionDescription: "Displays the model on all six sides of a cube",
        projectionTitle: "Six Sided Cube Projection"
    },
    {
        key: ProjectionKind.CURVED,
        previewThumbnailImgSrc: "curved_2.jpg",
-       projectionDescription: "Front and back of the model printed in a curved form",
-       projectionTitle: "Curved Volume Form"
+       projectionDescription: "Displays the model's front and back on a smooth continuous curve",
+       projectionTitle: "Curved Volume Projection"
    },
    {
        key: ProjectionKind.CURVED_SIDE_VIEW,
        previewThumbnailImgSrc: "curved_2.jpg",
-       projectionDescription: "Side view of the model printed in a curved form",
-       projectionTitle: "Curved Volume Form - Side View"
+       projectionDescription: "Displays the model's side views on a smooth continuous curve",
+       projectionTitle: "Curved Volume Projection - Side View"
    }
 
 
