@@ -575,23 +575,16 @@ class PrintableFactory {
            };
 
 
-           // // top model
-           // renderSide(0, true, false, 80, 360, 0.9);
-           // // bottom model
-           // renderSide(Math.PI, false, true, 80, 360, 0.9);
-
-
            // top model
-           renderSide(0, true, false, canvasHeight / 4, 0, 0.9); // Centered horizontally and vertically
-
-
+           renderSide(0, true, false, 80, 360, 0.9);
            // bottom model
-           renderSide(Math.PI, false, true, (canvasHeight / 4) * 3, 0, 0.9); // Centered horizontally and vertically
+           renderSide(Math.PI, false, true, 80, 360, 0.9);
 
 
-
-
-
+        //    // top model
+        //    renderSide(0, true, false, canvasHeight / 4, 0, 0.9); // Centered horizontally and vertically
+        //    // bottom model
+        //    renderSide(Math.PI, false, true, (canvasHeight / 4) * 3, 0, 0.9); // Centered horizontally and vertically
 
            // generating PDF
            const pdf = new jsPDF({ orientation: 'portrait', unit: 'px', format: [canvasWidth, canvasHeight], putOnlyUsedFonts: true, floatPrecision: 16 });
@@ -692,23 +685,16 @@ class PrintableFactory {
            };
 
 
-           // // top model
-           // renderSide(0, true, false, 80, 360, 0.9);
-           // // bottom model
-           // renderSide(Math.PI, false, true, 80, 360, 0.9);
-
-
            // top model
-           renderSide(Math.PI/2, true, false, canvasHeight / 4, 0, 0.9); // Centered horizontally and vertically
-
-
+           renderSide(0, true, false, 80, 360, 0.9);
            // bottom model
-           renderSide(-Math.PI/2, false, true, (canvasHeight / 4) * 3, 0, 0.9); // Centered horizontally and vertically
+           renderSide(Math.PI, false, true, 80, 360, 0.9);
 
 
-
-
-
+        //    // top model
+        //    renderSide(Math.PI/2, true, false, canvasHeight / 4, 0, 0.9); // Centered horizontally and vertically
+        //    // bottom model
+        //    renderSide(-Math.PI/2, false, true, (canvasHeight / 4) * 3, 0, 0.9); // Centered horizontally and vertically
 
            // generating PDF
            const pdf = new jsPDF({ orientation: 'portrait', unit: 'px', format: [canvasWidth, canvasHeight], putOnlyUsedFonts: true, floatPrecision: 16 });
