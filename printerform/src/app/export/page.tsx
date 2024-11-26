@@ -583,10 +583,10 @@ class PrintableFactory {
       };
   
       // Render the top model
-      renderSide(0, true, false, 0, 0.9); // OffsetY = 0 aligns it at the top
+      renderSide(0, true, false, 80, 0.9); // OffsetY = 0 aligns it at the top
   
       // Render the bottom model
-      renderSide(Math.PI, false, true, canvasHeight / 2, 0.9); // OffsetY = canvasHeight / 2 moves it to the bottom
+      renderSide(Math.PI, false, true, 80, 0.9); // OffsetY = canvasHeight / 2 moves it to the bottom
   
       // Generate the PDF
       const pdf = new jsPDF({
