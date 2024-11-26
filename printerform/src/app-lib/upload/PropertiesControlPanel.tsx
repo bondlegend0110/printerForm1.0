@@ -155,7 +155,7 @@ const PropertiesControlPanel = forwardRef<PropertiesControlPanelRef, PropertiesC
                         )}
                     </div>
                 </div>
-                <div className="flex flex-col p-4 gap-y-6">
+                {/* <div className="flex flex-col p-4 gap-y-6">
                     <AxisRotationSelector
                         axis="x"
                         modelRefs={modelRefs}
@@ -171,9 +171,9 @@ const PropertiesControlPanel = forwardRef<PropertiesControlPanelRef, PropertiesC
                         modelRefs={modelRefs}
                         ref={zRef}
                     />
-                </div>
+                </div> */}
             </div>
-            <div className="flex flex-row space-x-2">
+            {/* <div className="flex flex-row space-x-2">
                 <button
                     className="text-white bg-[#444444] hover:bg-[#555555] rounded-md px-2 py-1"
                     onClick={() => setViewDirection("front")}
@@ -210,7 +210,7 @@ const PropertiesControlPanel = forwardRef<PropertiesControlPanelRef, PropertiesC
                 >
                     Bottom
                 </button>
-            </div>
+            </div> */}
         </div>
     )
 });
