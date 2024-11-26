@@ -567,9 +567,9 @@ class PrintableFactory {
 
 
            // top model
-           renderSide(0, true, false, 80, 70, 0.9);
+           renderSide(0, true, false, 80, 75, 0.9);
            // bottom model
-           renderSide(Math.PI, false, true, 80, 70, 0.9);
+           renderSide(Math.PI, false, true, 80, 75, 0.9);
 
         //    // top model
         //    renderSide(0, true, false, canvasHeight / 4, 0, 0.9); // Centered horizontally and vertically
@@ -676,9 +676,9 @@ class PrintableFactory {
 
 
            // top model
-           renderSide(Math.PI/2, true, false, 80, 65, 0.9);
+           renderSide(Math.PI/2, true, false, 80, 75, 0.9);
            // bottom model
-           renderSide(3 * Math.PI / 2, false, true, 80, 65, 0.9);
+           renderSide(3 * Math.PI / 2, false, true, 80, 75, 0.9);
 
 
         //    // top model
