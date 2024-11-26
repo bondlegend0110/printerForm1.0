@@ -29,7 +29,7 @@ export const Navbar = () => {
     <nav className="w-full fixed flex items-center justify-between px-12 pb-8 pt-4 z-50 text-black  bg-white">
       <Link href="/">
         <img
-          src="https://printerform1.github.io/printerForm1.0/_next/static/media/logo.png"
+          src="logo.png"
           className="w-[80px] shadow-none transform transition-all duration-300 ease-in-out hover:scale-110"
           alt=""
         />

@@ -485,7 +485,7 @@ class PrintableFactory {
            console.error('Error loading template image:', error);
        };
    }
-   
+
    public produceCurvedPrintable(loadingCallback: (percentComplete: number) => any, onComplete: (pdfDataUrl: string) => any) {
        const img = new Image();
        img.src = curvedBackgroundImage;
@@ -567,10 +567,9 @@ class PrintableFactory {
 
 
            // top model
-           renderSide(0, true, false, 80, 65, 0.9);
+           renderSide(0, true, false, 80, 68, 0.9);
            // bottom model
-           renderSide(Math.PI, false, true, 80, 65, 0.9);
-
+           renderSide(Math.PI, false, true, 80, 68, 0.9);
 
         //    // top model
         //    renderSide(0, true, false, canvasHeight / 4, 0, 0.9); // Centered horizontally and vertically
