@@ -486,7 +486,7 @@ class PrintableFactory {
        };
    }
 
-   public produceCurvedPrintable(
+   public produceCurvedPrintableweirdalignment(
     loadingCallback: (percentComplete: number) => any,
     onComplete: (pdfDataUrl: string) => any
   ) {
@@ -725,7 +725,7 @@ class PrintableFactory {
   
 
 
-   public produceCurvedPrintable1(loadingCallback: (percentComplete: number) => any, onComplete: (pdfDataUrl: string) => any) {
+   public produceCurvedPrintable(loadingCallback: (percentComplete: number) => any, onComplete: (pdfDataUrl: string) => any) {
        const img = new Image();
        img.src = curvedBackgroundImage;
 
