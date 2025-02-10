@@ -32,6 +32,17 @@ const Toolbar = ({
         <img src="logo.png" className="w-[100px] shadow-none" alt="" />
       </Link>
 
+      {!modelLoaded && (
+        <div className="flex flex-row h-full">
+          <Link
+            href="/resources"
+            className="flex h-full items-center justify-center p-5 bg-green-600 text-white cursor-pointer hover:bg-green-700 transition"
+          >
+            Resources
+          </Link>
+        </div>
+      )}
+
       {modelLoaded && (
         <>
           <input

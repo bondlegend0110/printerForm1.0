@@ -108,11 +108,14 @@ const Upload = () => {
                 className="flex flex-col h-screen w-full"
                 onClick={() => toolbarRef.current?.setColorPickerOpen(false)}
             >
-            {(!isReturningWithStoredFile && !modelUrl) && (
-                <nav className="bg-gray-900 text-white p-4 flex justify-between items-center">
-                    <a href="resources" className="text-blue-400 hover:underline">Resources</a>
-                </nav>
-            )}
+            {/* {(!isReturningWithStoredFile && !modelUrl) && (
+                <button 
+                className="absolute top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+                onClick={() => window.location.href = "resources"}
+            >
+                Resources
+            </button>
+            )} */}
                 <Toolbar
                     modelLoaded={modelUrl !== undefined}
                     projectFilename={{
