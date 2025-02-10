@@ -1297,33 +1297,33 @@ const Export = () => {
 
 
    return (
-       <Suspense fallback={<div>Loading...</div>}>
-           <div className="flex flex-col h-screen w-full ">
-               <div className="bg-[#1e1e1e] h-full overflow-scroll">
-                   <div className="flex flex-row items-center sticky h-16 top-0 bg-[#1e1e1e]">
-                   <div className="px-8 w-full">
+        <Suspense fallback={<div>Loading...</div>}>
+            <div className="flex flex-col h-screen w-full">
+                <div className="bg-[#1e1e1e] h-full overflow-scroll">
+                    {/* Header */}
+                    <div className="flex flex-row items-center justify-between sticky h-16 top-0 bg-[#1e1e1e] px-8">
+                    {/* Logo */}
                     <Link href="/" className="flex items-center">
-                    <img src="logo.png" className="w-[100px] shadow-none" alt="Home" />
+                        <img src="logo.png" className="w-[100px] shadow-none" alt="Home" />
                     </Link>
-                    </div>
-                       <div className="px-8 w-full">
-                           <h1 className="font-bold text-3xl text-white">Select Model Projection(s)</h1>
-                       </div>
-
-                       <button type="button"
-                           className="bg-[#2c2c2c] px-4 h-full text-white"
-                           onClick={() => {
-                               // Set the flag in localStorage
-                               localStorage.setItem("returningToUpload", "true");
-
-
-                               // Navigate to the upload page
-                               router.push('/upload');
-                           }}
-                       >
-                           Return to Editor
-                       </button>
-                   </div>
+            
+                    {/* Title */}
+                    <h1 className="font-bold text-3xl text-white text-center flex-grow">
+                        Select Model Projection(s)
+                    </h1>
+            
+                    {/* Button */}
+                    <button
+                        type="button"
+                        className="bg-[#2c2c2c] px-4 py-2 text-white rounded"
+                        onClick={() => {
+                        localStorage.setItem("returningToUpload", "true");
+                        router.push('/upload');
+                        }}
+                    >
+                        Return to Editor
+                        </button>
+                </div>
 
                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pl-8 pr-8 pb-8">
                        {ALL_PROJECTIONS.map((projectionSelection) => {
