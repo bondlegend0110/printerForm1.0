@@ -110,7 +110,6 @@ const Upload = () => {
             >
             {(!isReturningWithStoredFile && !modelUrl) && (
                 <nav className="bg-gray-900 text-white p-4 flex justify-between items-center">
-                    <h1 className="text-lg font-bold">STL Viewer</h1>
                     <a href="resources" className="text-blue-400 hover:underline">Resources</a>
                 </nav>
             )}
