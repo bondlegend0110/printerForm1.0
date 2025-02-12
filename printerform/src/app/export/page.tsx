@@ -1309,7 +1309,7 @@ const Export = () => {
             
                     {/* Title */}
                     <h1 className="font-bold text-3xl text-white text-center flex-grow">
-                        Select Model Projection(s)
+                        Select Model Projection
                     </h1>
             
                     {/* Button */}
